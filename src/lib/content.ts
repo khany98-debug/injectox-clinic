@@ -1,8 +1,8 @@
 export const booking = {
-  provider: "Faces",
-  consultation:
-    "https://facesconsent.com/clinics/manchester-salford-injectox-clinic-7fa674fa29d6/injectoxclinic?clinicName=injectoxclinic",
-  treatment:
+  provider: "Injectox",
+  consultation: "/book?service=Free%20consultation",
+  treatment: "/book",
+  currentDiary:
     "https://facesconsent.com/clinics/manchester-salford-injectox-clinic-7fa674fa29d6/injectoxclinic?clinicName=injectoxclinic",
   instagram: "https://www.instagram.com/injectoxclinic/",
   // Add the clinic's dedicated WhatsApp URL before launch. CTAs gracefully fall back to Instagram.
@@ -230,8 +230,11 @@ export const pricing: PriceGroup[] = [
     { name: "Marionette lines — 1.1ml", price: 119, duration: "30 mins" },
     { name: "Nasolabial folds — 1.1ml", price: 119, duration: "30 mins" },
     { name: "Tear trough — Teosyal Redensity 2", price: 199, duration: "30 mins" },
-    { name: "Chin or jaw — 1.1ml", price: 119, duration: "30–45 mins" },
-    { name: "Chin, cheek or jaw — 2.2ml", price: 219, duration: "45 mins" },
+    { name: "Chin filler — 1.1ml", price: 119, duration: "30 mins" },
+    { name: "Jaw filler — 1.1ml", price: 119, duration: "45 mins" },
+    { name: "Chin filler — 2.2ml", price: 219, duration: "45 mins" },
+    { name: "Cheek filler — 2.2ml", price: 219, duration: "45 mins" },
+    { name: "Jaw filler — 2.2ml", price: 219, duration: "45 mins" },
     { name: "Filler dissolving", price: 119, duration: "45 mins" },
   ]},
   { category: "Anti-wrinkle", items: [
@@ -239,7 +242,10 @@ export const pricing: PriceGroup[] = [
     { name: "Two areas", price: 175, duration: "45 mins" },
     { name: "Three areas", price: 199, duration: "30 mins" },
     { name: "Masseter", price: 175, duration: "30 mins" },
-    { name: "Lip flip / brow lift / bunny lines / downturned smile add-on", price: 75, duration: "30 mins" },
+    { name: "Lip flip add-on", price: 75, duration: "30 mins" },
+    { name: "Brow lift add-on", price: 75, duration: "30 mins" },
+    { name: "Bunny lines add-on", price: 75, duration: "30 mins" },
+    { name: "Downturned smile add-on", price: 75, duration: "30 mins" },
   ]},
   { category: "Skin boosters & polynucleotides", items: [
     { name: "Lumi Pro / Aqua Shine / Skin Booster", price: 119, duration: "30 mins" },
@@ -249,6 +255,7 @@ export const pricing: PriceGroup[] = [
     { name: "Lumi Eyes", price: 149, duration: "30 mins" },
     { name: "Ami Eyes", price: 99, duration: "30 mins" },
     { name: "Polynucleotides", price: 119, duration: "45 mins" },
+    { name: "Lemon Bottle skin booster", price: 119, duration: "30 mins" },
   ]},
   { category: "Facials & microneedling", items: [
     { name: "Microneedling", price: 65, duration: "60 mins" },
@@ -259,6 +266,7 @@ export const pricing: PriceGroup[] = [
     { name: "The Full Works facial", price: 99, duration: "60 mins" },
     { name: "Medical-grade Clinicare facial", price: 75, duration: "60 mins" },
     { name: "Dermaplane", price: 15, duration: "15 mins" },
+    { name: "Dermaplane add-on", price: 10, duration: "15 mins" },
   ]},
   { category: "Laser hair removal", note: "Patch test and consultation requirements apply.", items: [
     { name: "Small area", price: 25, duration: "30 mins" },
@@ -277,10 +285,14 @@ export const pricing: PriceGroup[] = [
     { name: "Medium-area laser course", price: 270, duration: "6 + 1 sessions" },
     { name: "Large-area laser course", price: 540, duration: "6 + 1 sessions" },
     { name: "Full-body laser package", price: 1050, duration: "6 sessions" },
+    { name: "Underarms + Hollywood laser course", price: 570, duration: "6 + 1 sessions" },
+    { name: "Lemon Bottle six-session package", price: 300, duration: "6 sessions" },
   ]},
   { category: "Wellness & other", items: [
-    { name: "Vitamin B12 / B complex", price: 25, duration: "30 mins" },
-    { name: "Vitamin D / Biotin", price: 29, duration: "30 mins" },
+    { name: "Vitamin B12", price: 25, duration: "30 mins" },
+    { name: "Vitamin B complex", price: 25, duration: "30 mins" },
+    { name: "Vitamin D", price: 29, duration: "30 mins" },
+    { name: "Biotin (Vitamin B7)", price: 29, duration: "30 mins" },
     { name: "Lemon Bottle small area", price: 60, duration: "30 mins" },
     { name: "Lemon Bottle medium area", price: 75, duration: "30 mins" },
     { name: "Lemon Bottle large area", price: 90, duration: "30 mins" },

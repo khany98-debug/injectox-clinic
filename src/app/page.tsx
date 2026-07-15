@@ -11,13 +11,17 @@ export default function Home() {
     <>
       <section className="home-hero">
         <HeroImageMotion>
-          <Image src="/images/injectox-hero.png" alt="Editorial beauty portrait with refined, natural-looking results" fill priority sizes="100vw" className="hero-image" />
+          <Image src="/images/injectox-hero.png" alt="Injectox Clinic treatment film poster" fill priority sizes="100vw" className="hero-image hero-poster" />
+          <video className="hero-video" autoPlay muted loop playsInline preload="auto" poster="/images/injectox-hero.png" aria-hidden="true" tabIndex={-1}>
+            <source src="/media/injectox-hero.mp4" type="video/mp4" />
+          </video>
         </HeroImageMotion>
         <div className="hero-wash" />
         <div className="hero-grain" />
         <div className="hero-copy">
-          <Reveal><span className="eyebrow">Manchester · Salford · Bolton</span><h1>Refined aesthetics.<br /><em>Entirely yours.</em></h1><p>Lips, skin, laser and facial harmony—planned with honesty, precision and an eye for what already makes you beautiful.</p><div className="button-row"><Button href={booking.consultation} external>Book consultation</Button><Button href="/treatments" variant="line">Explore treatments</Button></div></Reveal>
+          <Reveal><span className="eyebrow">Manchester · Salford · Bolton</span><h1>Refined aesthetics.<br /><em>Entirely yours.</em></h1><p>Lips, skin, laser and facial harmony—planned with honesty, precision and an eye for what already makes you beautiful.</p><div className="button-row"><Button href={booking.consultation}>Book consultation</Button><Button href="/treatments" variant="line">Explore treatments</Button></div></Reveal>
         </div>
+        <span className="hero-film-note">A treatment-room film by Injectox</span>
         <div className="hero-side-note"><span>By Fatima Khan</span><i /><span>Aesthetic practitioner</span></div>
         <Link className="scroll-cue" href="#discover"><span>Discover</span><ArrowDown /></Link>
       </section>
@@ -60,7 +64,7 @@ export default function Home() {
 
       <section className="booking-section">
         <div className="booking-image"><Image src="/images/social/0636b6d47d8d3e49.jpg" alt="Fatima Khan at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 42vw" /><a href={booking.instagram} target="_blank" rel="noreferrer"><Play fill="currentColor" /> Watch the clinic story</a></div>
-        <div className="booking-copy"><SectionIntro eyebrow="Your experience" title={<>Thoughtful from hello<br /><em>to aftercare.</em></>} copy="Three simple steps. No pressure, no guesswork." /><BookingSteps /><div className="button-row"><Button href={booking.consultation} external>Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></div>
+        <div className="booking-copy"><SectionIntro eyebrow="Your experience" title={<>Thoughtful from hello<br /><em>to aftercare.</em></>} copy="Three simple steps. No pressure, no guesswork." /><BookingSteps /><div className="button-row"><Button href={booking.consultation}>Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></div>
       </section>
 
       <section className="section shell practitioner-section">

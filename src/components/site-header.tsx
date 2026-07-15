@@ -29,7 +29,7 @@ export function SiteHeader() {
           <Link key={href} href={href} data-active={pathname.startsWith(href)}>{label}</Link>
         ))}
       </nav>
-      <a className="header-book" href={booking.consultation} target="_blank" rel="noreferrer">Book now <span>↗</span></a>
+      <Link className="header-book" href={booking.treatment}>Book now <span>↗</span></Link>
       <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"}>
         {open ? <X /> : <Menu />}
       </button>
@@ -38,7 +38,7 @@ export function SiteHeader() {
         {nav.map(([label, href], i) => <Link key={href} href={href} onClick={() => setOpen(false)}><small>0{i + 1}</small>{label}</Link>)}
         <Link href="/reviews" onClick={() => setOpen(false)}><small>06</small>Reviews</Link>
         <Link href="/contact" onClick={() => setOpen(false)}><small>07</small>Contact</Link>
-        <a className="button button-light" href={booking.consultation} target="_blank" rel="noreferrer">Book consultation</a>
+        <Link className="button button-light" href={booking.consultation} onClick={() => setOpen(false)}>Book consultation</Link>
       </div>
     </header>
   );

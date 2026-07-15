@@ -1,6 +1,27 @@
 import type { Metadata } from "next";
-import { BookingSteps, Button, PageHero, PricingTable } from "@/components/ui";
-import { booking } from "@/lib/content";
+import { BookingFlow } from "@/components/booking-flow";
+import { PageHero } from "@/components/ui";
 
-export const metadata: Metadata = { title: "Book", description: "Book an Injectox Clinic consultation or treatment through the live Faces appointment diary." };
-export default function BookPage() { return <><PageHero eyebrow="Your next appointment" title={<>A beautiful plan<br /><em>starts here.</em></>} copy="Choose a free consultation or open the live diary to book a treatment. Prices and availability are managed centrally through Faces." index="11" /><section className="inner-section shell"><BookingSteps /><div className="button-row" style={{ margin: "50px 0 90px" }}><Button href={booking.consultation} external>Book free consultation</Button><Button href={booking.treatment} variant="line" external>Book a treatment</Button></div><PricingTable compact /></section></>; }
+export const metadata: Metadata = {
+  title: "Book Online",
+  description: "Choose an Injectox Clinic treatment, preferred appointment and contact details in one beautifully simple on-site booking journey.",
+};
+
+export default async function BookPage({ searchParams }: PageProps<"/book">) {
+  const query = await searchParams;
+  const initialService = Array.isArray(query.service) ? query.service[0] : query.service;
+
+  return (
+    <>
+      <PageHero
+        eyebrow="Book directly with Injectox"
+        title={<>Your next appointment.<br /><em>Beautifully simple.</em></>}
+        copy="Explore the full treatment menu, choose a preferred time and keep the whole journey inside Injectox."
+        index="11"
+      />
+      <section id="booking-studio" className="booking-studio-section shell">
+        <BookingFlow initialService={initialService} />
+      </section>
+    </>
+  );
+}
