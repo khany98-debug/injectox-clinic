@@ -1,78 +1,195 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowRight, Play } from "lucide-react";
+import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles } from "lucide-react";
 import { GalleryGrid } from "@/components/gallery-grid";
-import { Marquee, Reveal } from "@/components/motion";
+import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
 import { BookingSteps, Button, ConcernGrid, FAQList, FinalCTA, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
 import { booking } from "@/lib/content";
 
+const reasons = [
+  {
+    icon: HeartHandshake,
+    title: "Honest consultation",
+    copy: "Every plan starts with what will suit your face, not what is trending online.",
+  },
+  {
+    icon: Sparkles,
+    title: "Natural-looking finish",
+    copy: "Lips, skin and facial balancing are approached with polish, restraint and proportion.",
+  },
+  {
+    icon: ShieldCheck,
+    title: "Clear treatment info",
+    copy: "Prices, booking notes and suitability guidance stay visible before you commit.",
+  },
+];
+
 export default function Home() {
   return (
     <>
-      <section className="home-hero">
+      <section className="home-hero reference-hero">
         <HeroFilm />
         <div className="hero-wash" />
         <div className="hero-grain" />
-        <div className="hero-copy">
-          <Reveal><span className="eyebrow">Manchester · Salford · Bolton</span><h1>Refined aesthetics.<br /><em>Entirely yours.</em></h1><p>Lips, skin, laser and facial harmony—planned with honesty, precision and an eye for what already makes you beautiful.</p><div className="button-row"><Button href={booking.consultation}>Book consultation</Button><Button href="/treatments" variant="line">Explore treatments</Button></div></Reveal>
+        <div className="hero-copy reference-hero-copy">
+          <Reveal>
+            <span className="eyebrow">Aesthetics clinic in Manchester, Salford & Bolton</span>
+            <h1>Injectox Clinic</h1>
+            <p>
+              Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
+              consultation-led approach.
+            </p>
+            <div className="button-row">
+              <Button href={booking.consultation}>Book consultation</Button>
+              <Button href="/treatments" variant="line">View treatments</Button>
+            </div>
+          </Reveal>
         </div>
-        <span className="hero-film-note">A treatment-room film by Injectox</span>
-        <div className="hero-side-note"><span>By Fatima Khan</span><i /><span>Aesthetic practitioner</span></div>
-        <Link className="scroll-cue" href="#discover"><span>Discover</span><ArrowDown /></Link>
+        <div className="reference-hero-panel">
+          <span>Known for</span>
+          <b>Russian lips, skin glow plans and balanced, natural-looking enhancement.</b>
+          <Link href="/pricing">View pricing <ArrowRight size={14} /></Link>
+        </div>
       </section>
 
-      <Marquee items={["18+ treatments", "Consultation-led care", "Natural-looking results", "Transparent pricing", "Salford clinic"]} />
+      <section className="reference-trust shell" aria-label="Clinic trust points">
+        {["18+ treatments only", "Free consultation option", "Transparent pricing", "Salford clinic"].map((item) => (
+          <div key={item}><CheckCircle2 size={17} /><span>{item}</span></div>
+        ))}
+      </section>
 
-      <section id="discover" className="section shell concern-section">
-        <div className="split-heading"><SectionIntro eyebrow="Start with what you see" title={<>Not sure what to book?<br /><em>Begin with your concern.</em></>} copy="Find the route that fits how you want to feel—not just a treatment name." /><span className="section-number">01 / 08</span></div>
+      <section className="section shell why-section">
+        <div className="split-heading">
+          <SectionIntro
+            eyebrow="Why Injectox"
+            title={<>Beauty that feels<br /><em>considered.</em></>}
+            copy="A calm, high-trust clinic experience for clients who want polished results, clear advice and a treatment plan that feels personal."
+          />
+          <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
+        </div>
+        <div className="reason-grid">
+          {reasons.map(({ icon: Icon, title, copy }, index) => (
+            <Reveal className="reason-card" delay={index * 0.06} key={title}>
+              <Icon size={22} />
+              <h3>{title}</h3>
+              <p>{copy}</p>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      <section id="discover" className="section shell concern-section reference-concerns">
+        <div className="split-heading">
+          <SectionIntro
+            eyebrow="What brings you here?"
+            title={<>Start with your<br /><em>concern.</em></>}
+            copy="Choose what you want to improve and the site guides you to the most relevant treatment options."
+          />
+          <span className="section-number">01 / 07</span>
+        </div>
         <ConcernGrid />
       </section>
 
-      <section className="signature-section">
-        <div className="signature-image"><Image src="/images/social/c7fad21909e20ae0.jpg" alt="Injectox Clinic lip enhancement result" fill sizes="(max-width: 800px) 100vw, 50vw" /><div className="signature-seal"><span>THE</span><b>SIGNATURE</b><span>INJECTOX</span></div></div>
-        <Reveal className="signature-copy"><span className="eyebrow">The Injectox signature</span><h2>Shape over size.<br /><em>Harmony over hype.</em></h2><p>Beautiful lips do not begin with a trend. They begin with your face. Fatima’s approach considers proportion, profile and expression—then builds only what belongs.</p><blockquote>“Enhance, don’t change.”</blockquote><Button href="/treatments/russian-lip-filler" variant="line">Explore the signature</Button></Reveal>
-      </section>
-
-      <section className="section shell">
-        <div className="split-heading"><SectionIntro eyebrow="Curated treatment edit" title={<>Treatments with<br /><em>intention.</em></>} copy="A focused edit of the clinic’s most requested routes." /><Link className="text-link" href="/treatments">View all treatments <ArrowRight /></Link></div>
+      <section className="section shell reference-services">
+        <div className="split-heading">
+          <SectionIntro
+            eyebrow="Signature treatments"
+            title={<>Lips, skin, laser<br /><em>and balance.</em></>}
+            copy="A clear treatment edit that lets visitors understand what Injectox offers before they book."
+          />
+          <Link className="text-link" href="/treatments">All treatments <ArrowRight /></Link>
+        </div>
         <TreatmentsGrid limit={6} />
       </section>
 
-      <section className="philosophy-section">
-        <Reveal className="philosophy-title"><span className="eyebrow">The results philosophy</span><h2>Never more.<br />Always <em>more you.</em></h2></Reveal>
-        <div className="philosophy-cards">
-          {[ ["01", "Facial harmony", "Every decision considers the whole face—not one isolated feature."], ["02", "Honest advice", "Sometimes the most expert recommendation is to wait, stage, or say no."], ["03", "Tailored plans", "Your anatomy, goals and lifestyle define the route forward."], ["04", "Polished results", "Subtle enough to feel like you. Considered enough to feel different."] ].map(([n, title, copy], i) => <Reveal className="philosophy-card" delay={i * .08} key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></Reveal>)}
+      <section className="experience-section">
+        <div className="experience-copy">
+          <SectionIntro
+            eyebrow="The Injectox experience"
+            title={<>Precise work in a<br /><em>private clinic setting.</em></>}
+            copy="From consultation to aftercare, the experience is designed to feel clear, warm and confidence-led."
+          />
+          <TrustPanel />
+          <Button href="/book" variant="line">Book an appointment</Button>
+        </div>
+        <div className="experience-media">
+          <Image src="/images/social/0636b6d47d8d3e49.jpg" alt="Injectox Clinic treatment room moment" fill sizes="(max-width: 800px) 100vw, 46vw" />
         </div>
       </section>
 
       <StatsSection />
 
-      <section className="section social-section">
-        <div className="shell split-heading"><SectionIntro eyebrow="From the treatment room" title={<>Real work.<br /><em>Real conversations.</em></>} copy="A living edit from Injectox Clinic’s Instagram—education, client journeys and the details behind each result." /><SocialFollow /></div>
+      <section className="section shell pricing-preview">
+        <div className="pricing-preview-copy">
+          <span className="eyebrow">Treatment pricing</span>
+          <h2>Clear prices before you book.</h2>
+          <p>Visitors can scan key services, compare starting prices and continue straight into the built-in booking page.</p>
+        </div>
+        <div className="mini-pricing">
+          {[
+            ["Russian Lip - 0.7ml", "From £160"],
+            ["Anti-Wrinkle", "From £149"],
+            ["Skin Boosters", "From £119"],
+            ["Laser Hair Removal", "From £25"],
+          ].map(([name, price]) => (
+            <Link href={`/book?service=${encodeURIComponent(name)}`} key={name}>
+              <span>{name}</span>
+              <b>{price}</b>
+              <ArrowRight size={15} />
+            </Link>
+          ))}
+        </div>
+        <Link className="text-link" href="/pricing">View full pricing <ArrowRight /></Link>
+      </section>
+
+      <section className="section social-section reference-social">
+        <div className="shell split-heading">
+          <SectionIntro
+            eyebrow="Our work"
+            title={<>Results that look<br /><em>polished, not overdone.</em></>}
+            copy="A refined gallery of treatment-room moments, transformations and educational content from the Injectox social feed."
+          />
+          <SocialFollow />
+        </div>
         <GalleryGrid limit={6} />
       </section>
 
-      <section className="section shell reviews-section">
-        <div className="split-heading"><SectionIntro eyebrow="Client words" title={<>The kind of trust<br /><em>you can’t manufacture.</em></>} /><Link className="text-link" href="/reviews">Read all reviews <ArrowRight /></Link></div>
+      <section className="section shell reviews-section reference-reviews">
+        <div className="split-heading">
+          <SectionIntro eyebrow="Client feedback" title={<>Trust built through<br /><em>real experience.</em></>} />
+          <Link className="text-link" href="/reviews">Read reviews <ArrowRight /></Link>
+        </div>
         <ReviewsStrip />
       </section>
 
-      <section className="booking-section">
-        <div className="booking-image"><Image src="/images/social/0636b6d47d8d3e49.jpg" alt="Fatima Khan at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 42vw" /><a href={booking.instagram} target="_blank" rel="noreferrer"><Play fill="currentColor" /> Watch the clinic story</a></div>
-        <div className="booking-copy"><SectionIntro eyebrow="Your experience" title={<>Thoughtful from hello<br /><em>to aftercare.</em></>} copy="Three simple steps. No pressure, no guesswork." /><BookingSteps /><div className="button-row"><Button href={booking.consultation}>Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></div>
+      <section className="booking-section reference-booking">
+        <div className="booking-image">
+          <Image src="/images/social/d63e43704810bbe8.jpg" alt="Injectox Clinic facial harmony result" fill sizes="(max-width: 800px) 100vw, 42vw" />
+        </div>
+        <div className="booking-copy">
+          <SectionIntro
+            eyebrow="Booking journey"
+            title={<>Simple, clear<br /><em>and reassuring.</em></>}
+            copy="A client can choose a consultation, browse treatments, select a time and submit their details without being pushed away from the site."
+          />
+          <BookingSteps />
+          <div className="button-row">
+            <Button href="/book">Book now</Button>
+            <Button href="/contact" variant="line">Ask a question</Button>
+          </div>
+        </div>
       </section>
 
-      <section className="section shell practitioner-section">
-        <div className="practitioner-copy"><SectionIntro eyebrow="Meet your practitioner" title={<>A precise eye.<br /><em>A very human approach.</em></>} copy="Fatima Khan is the aesthetic practitioner behind Injectox Clinic. Her public work is defined by facial harmony, natural-looking outcomes and the confidence to recommend only what adds genuine value." /><TrustPanel /><Button href="/about" variant="line">Meet Fatima</Button></div>
-        <div className="practitioner-image"><Image src="/images/social/d63e43704810bbe8.jpg" alt="Injectox Clinic treatment detail" fill sizes="(max-width: 800px) 100vw, 42vw" /><span>Manchester<br />Salford<br />Bolton</span></div>
+      <section className="section shell faq-section reference-faq">
+        <div>
+          <SectionIntro eyebrow="Before you book" title={<>Common<br /><em>questions.</em></>} />
+          <Button href="/faq" variant="line">View all FAQs</Button>
+        </div>
+        <FAQList limit={5} />
       </section>
 
-      <section className="section shell faq-section">
-        <div><SectionIntro eyebrow="Before you book" title={<>Questions,<br /><em>answered honestly.</em></>} /><Button href="/faq" variant="line">View all FAQs</Button></div><FAQList limit={5} />
-      </section>
-
-      <FinalCTA />
+      <FinalCTA title={<>Ready to begin with<br /><em>Injectox Clinic?</em></>} />
     </>
   );
 }
