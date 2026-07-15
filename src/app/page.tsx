@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDown, ArrowRight, Play } from "lucide-react";
 import { GalleryGrid } from "@/components/gallery-grid";
-import { HeroImageMotion, Marquee, Reveal } from "@/components/motion";
+import { Marquee, Reveal } from "@/components/motion";
+import { HeroFilm } from "@/components/hero-film";
 import { BookingSteps, Button, ConcernGrid, FAQList, FinalCTA, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
 import { booking } from "@/lib/content";
 
@@ -10,12 +11,7 @@ export default function Home() {
   return (
     <>
       <section className="home-hero">
-        <HeroImageMotion>
-          <Image src="/images/injectox-hero.png" alt="Injectox Clinic treatment film poster" fill priority sizes="100vw" className="hero-image hero-poster" />
-          <video className="hero-video" autoPlay muted loop playsInline preload="auto" poster="/images/injectox-hero.png" aria-hidden="true" tabIndex={-1}>
-            <source src="/media/injectox-hero.mp4" type="video/mp4" />
-          </video>
-        </HeroImageMotion>
+        <HeroFilm />
         <div className="hero-wash" />
         <div className="hero-grain" />
         <div className="hero-copy">
