@@ -301,6 +301,11 @@ export const pricing: PriceGroup[] = [
 ];
 
 export const gallery = [
+  { src: "/images/dropbox/injectox-editorial-01.jpg", label: "Clinic atmosphere", href: "#" },
+  { src: "/images/dropbox/injectox-editorial-02.jpg", label: "Treatment detail", href: "#" },
+  { src: "/images/dropbox/injectox-clinic-sign.jpg", label: "The Injectox clinic", href: "#" },
+  { src: "/images/dropbox/injectox-result-01.jpg", label: "Client result", href: "#" },
+  { src: "/images/dropbox/injectox-result-02.jpg", label: "Skin result", href: "#" },
   { src: "/images/social/4fc1e289fbac258e.jpg", label: "Treatment philosophy", href: "https://www.instagram.com/injectoxclinic/reel/DZVY34pskdH/" },
   { src: "/images/social/0636b6d47d8d3e49.jpg", label: "Clinic moments", href: "https://www.instagram.com/injectoxclinic/p/DX9Cbg2s1SD/" },
   { src: "/images/social/54478c754cf500e7.jpg", label: "Skin education", href: "https://www.instagram.com/injectoxclinic/reel/DanzQC4o3DN/" },

@@ -16,6 +16,13 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+### Clinic operations
+
+- `/book` is the on-site booking journey.
+- `/admin` is the private clinic workspace for diary management, service pricing, review moderation and settings.
+- `/api/checkout` is a Stripe PaymentIntent endpoint. Add a server-side `STRIPE_SECRET_KEY` from `.env.example` to enable test-mode deposits.
+- Dropbox-supplied media is stored in `public/media/dropbox` and `public/images/dropbox` so the site does not depend on third-party image URLs.
+
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
