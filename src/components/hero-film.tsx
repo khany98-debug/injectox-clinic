@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
-const filmSrc = "/media/dropbox/injectox-treatment-loop.mp4";
+const filmSrc = "/media/dropbox/injectox-skin-loop.mp4";
 const posterSrc = "/images/injectox-hero-film-poster.jpg";
 
 export function HeroFilm() {
