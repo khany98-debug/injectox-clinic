@@ -1,8 +1,9 @@
 "use client";
 
 import { CalendarDays, Check, ChevronLeft, Clock3, LoaderCircle, LockKeyhole, Sparkles } from "lucide-react";
+import Image from "next/image";
 import { FormEvent, useMemo, useState } from "react";
-import { formatPrice, pricing } from "@/lib/content";
+import { bookingImageFor, formatPrice, pricing } from "@/lib/content";
 
 type BookingService = {
   id: string;
@@ -10,6 +11,7 @@ type BookingService = {
   name: string;
   price: number;
   duration: string;
+  image: string;
 };
 
 const services: BookingService[] = pricing.flatMap((group, groupIndex) =>
@@ -17,6 +19,7 @@ const services: BookingService[] = pricing.flatMap((group, groupIndex) =>
     ...item,
     category: group.category,
     id: `${groupIndex}-${itemIndex}`,
+    image: bookingImageFor(item.name),
   })),
 );
 
@@ -126,6 +129,7 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
               <div className="booking-service-list">
                 {visibleServices.map((service) => (
                   <button className={service.id === serviceId ? "booking-service is-selected" : "booking-service"} type="button" onClick={() => setServiceId(service.id)} aria-pressed={service.id === serviceId} key={service.id}>
+                    <span className="booking-service-image"><Image src={service.image} alt="" fill sizes="72px" /></span>
                     <span><b>{service.name}</b><small><Clock3 size={12} /> {service.duration}</small></span>
                     <strong>{formatPrice(service.price)}</strong>
                     <i>{service.id === serviceId ? <Check size={14} /> : null}</i>
@@ -190,7 +194,7 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
 
         <aside className="booking-summary">
           <span className="eyebrow">Your appointment</span>
-          <div className="booking-summary-mark">I</div>
+          {selected ? <div className="booking-summary-image"><Image src={selected.image} alt={selected.name} fill sizes="290px" /></div> : <div className="booking-summary-mark">I</div>}
           {selected ? <><h3>{selected.name}</h3><p>{selected.category}</p><dl><div><dt><Clock3 size={13} /> Duration</dt><dd>{selected.duration}</dd></div><div><dt>From</dt><dd>{formatPrice(selected.price)}</dd></div>{date && <div><dt><CalendarDays size={13} /> Preferred date</dt><dd>{dateParts(date).long}</dd></div>}{time && <div><dt>Preferred time</dt><dd>{time}</dd></div>}</dl></> : <><h3>Your plan will appear here.</h3><p>Select a treatment to begin.</p></>}
           <div className="booking-summary-trust"><LockKeyhole size={15} /><span><b>Secure by design</b><small>Payment is handled on Stripe Checkout. Card details never touch this website.</small></span></div>
         </aside>

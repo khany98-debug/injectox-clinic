@@ -18,6 +18,7 @@ export default async function BookPage({ searchParams }: PageProps<"/book">) {
         title={<>Your next appointment.<br /><em>Beautifully simple.</em></>}
         copy="Explore the full treatment menu, choose a preferred time and keep the whole journey inside Injectox."
         index="11"
+        compact
       />
       <section id="booking-studio" className="booking-studio-section shell">
         <BookingFlow initialService={initialService} />

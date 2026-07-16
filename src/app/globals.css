@@ -596,6 +596,254 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
 }
 
+/* Client-approved natural cream and deep-maroon refinement */
+:root {
+  --ivory: #fbf5ec;
+  --paper: #fffaf3;
+  --stone: #eadfd2;
+  --taupe: #947f70;
+  --champagne: #b99355;
+  --rose: #702838;
+  --bronze: #72513d;
+  --line: rgba(61, 42, 34, .14);
+}
+
+html,
+body {
+  background: var(--ivory);
+}
+
+.site-header.on-light-page,
+.site-header.is-scrolled {
+  background: rgba(251, 245, 236, .94);
+}
+
+.wordmark {
+  font-weight: 600;
+  letter-spacing: .2em;
+}
+
+.reason-card,
+.concern-card,
+.concern-card:nth-child(n),
+.compare-card,
+.price-row,
+.review-card,
+.booking-service,
+.contact-details > div {
+  border-radius: 10px;
+}
+
+.reason-grid,
+.concern-grid,
+.compare-grid {
+  gap: 14px;
+}
+
+.concern-card,
+.concern-card:nth-child(n) {
+  overflow: hidden;
+  background: rgba(255, 250, 243, .84);
+  box-shadow: 0 14px 44px rgba(62, 42, 33, .045);
+}
+
+.reference-hero .hero-video {
+  object-position: 50% 50%;
+}
+
+.home-about {
+  display: grid;
+  grid-template-columns: .88fr 1.12fr;
+  gap: clamp(50px, 8vw, 120px);
+  align-items: center;
+}
+
+.home-about-media {
+  position: relative;
+  min-height: 700px;
+  overflow: hidden;
+  border-radius: 140px 14px 14px 14px;
+  background: var(--stone);
+}
+
+.home-about-media img {
+  object-position: 50% center;
+}
+
+.home-about-copy > p {
+  max-width: 590px;
+  margin: -30px 0 32px;
+  color: var(--taupe);
+}
+
+.clinic-location-band {
+  padding: 110px 0;
+  color: var(--paper);
+  background: var(--rose);
+}
+
+.clinic-location-grid {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.clinic-location-grid h2 {
+  margin: 0;
+  font-size: clamp(58px, 6vw, 90px);
+  line-height: .9;
+}
+
+.clinic-location-grid h2 em {
+  color: #ead2c4;
+}
+
+.clinic-location-grid p {
+  max-width: 470px;
+  color: rgba(255, 250, 243, .78);
+}
+
+.booking-service-list {
+  gap: 10px;
+}
+
+.booking-service {
+  min-height: 104px;
+  grid-template-columns: 70px minmax(0, 1fr) auto;
+  padding: 10px 45px 10px 10px;
+  background: rgba(255, 250, 243, .7);
+}
+
+.booking-service-image {
+  position: relative;
+  width: 70px;
+  height: 82px;
+  overflow: hidden;
+  border-radius: 7px;
+  background: var(--stone);
+}
+
+.booking-service-image img,
+.booking-summary-image img {
+  object-position: center;
+}
+
+.booking-summary-image {
+  position: relative;
+  width: 100%;
+  height: 190px;
+  margin: 6px 0 26px;
+  overflow: hidden;
+  border-radius: 9px;
+  background: var(--stone);
+}
+
+.booking-summary-image img {
+  object-position: 50% 38%;
+}
+
+@media (max-width: 1050px) {
+  .site-header {
+    grid-template-columns: 1fr auto 1fr;
+  }
+
+  .site-header .wordmark {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .site-header .header-book {
+    display: inline-flex;
+    justify-self: start;
+    gap: 8px;
+  }
+
+  .site-header .header-book span {
+    width: 28px;
+    height: 28px;
+  }
+
+  .site-header .menu-button {
+    grid-column: 3;
+  }
+
+  .site-header.menu-open .header-book {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    padding-inline: 15px;
+  }
+
+  .site-header .wordmark {
+    gap: 7px;
+    font-size: 9px;
+    letter-spacing: .15em;
+  }
+
+  .site-header .wordmark-mark {
+    width: 28px;
+    height: 28px;
+    font-size: 19px;
+  }
+
+  .site-header .header-book {
+    font-size: 8px;
+    letter-spacing: .12em;
+  }
+
+  .home-about {
+    grid-template-columns: 1fr;
+    gap: 38px;
+  }
+
+  .home-about-media {
+    min-height: 490px;
+    border-radius: 80px 10px 10px 10px;
+  }
+
+  .home-about-copy > p {
+    margin-top: -8px;
+    font-size: 12px;
+  }
+
+  .clinic-location-band {
+    padding: 72px 0;
+  }
+
+  .clinic-location-grid {
+    grid-template-columns: 1fr;
+    gap: 34px;
+  }
+
+  .clinic-location-grid h2 {
+    font-size: 54px;
+  }
+
+  .reference-hero .hero-video {
+    object-position: 50% center;
+  }
+
+  .hero-location {
+    font-size: 9.5px;
+  }
+
+  .booking-service {
+    grid-template-columns: 60px minmax(0, 1fr) auto;
+    min-height: 92px;
+  }
+
+  .booking-service-image {
+    width: 60px;
+    height: 70px;
+  }
+}
+
 /* Reference-led Injectox homepage refresh */
 :root {
   --ivory: #f2f0ea;
@@ -1864,4 +2112,26 @@ h2 {
     animation: none !important;
     overflow-x: auto;
   }
+}
+
+/* Final palette authority — client-approved warm cream and deep maroon */
+:root {
+  --ivory: #fbf5ec;
+  --paper: #fffaf3;
+  --stone: #eadfd2;
+  --taupe: #947f70;
+  --champagne: #b99355;
+  --bronze: #72513d;
+  --rose: #702838;
+  --line: rgba(61, 42, 34, .14);
+}
+
+html,
+body {
+  background: var(--ivory);
+}
+
+.site-header.on-light-page,
+.site-header.is-scrolled {
+  background: rgba(251, 245, 236, .95);
 }

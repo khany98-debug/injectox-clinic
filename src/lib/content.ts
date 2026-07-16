@@ -14,11 +14,11 @@ export const clinic = {
   practitioner: "Fatima Khan",
   role: "Aesthetic practitioner",
   location: "Skin Clinic MCR, Waters Edge Business Park, Modwen Road, Salford",
-  areas: ["Manchester", "Salford", "Bolton"],
+  areas: ["Salford", "Manchester"],
   rating: "5.0",
-  verifiedReviews: 53,
-  treatmentsCompleted: 492,
-  // Keep these figures editable. Review count was verified against the public Faces profile on 16 July 2026.
+  verifiedReviews: 100,
+  treatmentsCompleted: 1500,
+  // Figures supplied and approved by Fatima across her full treatment and review history.
   instagramFollowers: "8.3k",
 } as const;
 
@@ -81,7 +81,7 @@ export const treatments: Treatment[] = [
       { q: "Which areas are treated?", a: "That depends on your anatomy and goals. Packages are flexible and the consultation is used to decide where treatment adds genuine value." },
       { q: "Do I need everything at once?", a: "No. A staged plan can often be the most refined route and helps protect natural proportions." },
     ],
-    image: "/images/dropbox/curated/practitioner-lip-treatment.jpg",
+    image: "/images/dropbox/client-labelled/facial-balancing.jpg",
     relatedConcerns: ["facial-imbalance", "fine-lines"],
   },
   {
@@ -101,7 +101,7 @@ export const treatments: Treatment[] = [
       { q: "How many areas do I need?", a: "One, two and three-area options are listed. Your assessment determines the most appropriate plan." },
       { q: "When will I see a change?", a: "Results develop gradually rather than instantly. Your practitioner will outline the expected timeline and review process." },
     ],
-    image: "/images/dropbox/curated/treatment-anti-wrinkle.jpg",
+    image: "/images/dropbox/client-labelled/anti-wrinkle.jpg",
     relatedConcerns: ["fine-lines", "facial-imbalance"],
   },
   {
@@ -121,7 +121,7 @@ export const treatments: Treatment[] = [
       { q: "Which skin booster is right for me?", a: "Injectox lists several options including Lumi Pro, Baby Glow, Seventy Hyal, Aqua Shine and Profhilo. Selection depends on your skin and goals." },
       { q: "Can it be combined with microneedling?", a: "The clinic’s public education highlights combination planning. Suitability, order and timing should be confirmed at consultation." },
     ],
-    image: "/images/dropbox/curated/treatment-skin-booster.jpg",
+    image: "/images/dropbox/client-labelled/lumi-pro-skin-booster.jpg",
     relatedConcerns: ["dull-skin", "acne-pigmentation-texture"],
   },
   {
@@ -141,7 +141,7 @@ export const treatments: Treatment[] = [
       { q: "Is one session enough?", a: "Some clients value a single refresh; texture and scarring goals often benefit from a planned course." },
       { q: "What should I avoid afterwards?", a: "You will receive aftercare tailored to your treatment. SPF, gentle skincare and avoiding heat or active ingredients are commonly discussed." },
     ],
-    image: "/images/dropbox/curated/treatment-microneedling.jpg",
+    image: "/images/dropbox/client-labelled/microneedling.jpg",
     relatedConcerns: ["acne-pigmentation-texture", "dull-skin"],
   },
   {
@@ -161,7 +161,7 @@ export const treatments: Treatment[] = [
       { q: "Which facial should I book?", a: "If you are unsure, book a consultation or send an enquiry. The right choice depends on sensitivity, congestion, goals and timing." },
       { q: "Can I book before an event?", a: "Yes, but leave appropriate time—especially for peels or extraction. Ask the clinic for a personalised timeline." },
     ],
-    image: "/images/dropbox/curated/treatment-advanced-facial.jpg",
+    image: "/images/dropbox/client-labelled/advanced-facial.jpg",
     relatedConcerns: ["dull-skin", "acne-pigmentation-texture"],
   },
   {
@@ -182,7 +182,7 @@ export const treatments: Treatment[] = [
       { q: "Do I need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course." },
       { q: "How many sessions are available?", a: "Current package listings use six sessions with one session free for selected areas." },
     ],
-    image: "/images/dropbox/curated/treatment-laser-machine.jpg",
+    image: "/images/dropbox/client-labelled/laser-hair-removal.jpg",
     relatedConcerns: ["unwanted-hair"],
   },
   {
@@ -202,7 +202,7 @@ export const treatments: Treatment[] = [
       { q: "Can I refill immediately?", a: "A suitable interval and reassessment are important. The clinic will advise your personal timeline." },
       { q: "Is dissolving always needed?", a: "No. An honest assessment is the right first step; treatment is only recommended when appropriate." },
     ],
-    image: "/images/dropbox/curated/treatment-lip-injection.jpg",
+    image: "/images/dropbox/client-labelled/lip-treatment.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
 ];
@@ -362,7 +362,7 @@ export const reviews = [
 export const faqs = [
   { q: "Do I need a consultation?", a: "Consultation is central to injectable, laser and more advanced treatment planning. A free 15-minute consultation is currently listed through Faces." },
   { q: "Will I still look like myself?", a: "That is the point. The clinic’s public philosophy is built around facial harmony, tailored plans and enhancement that looks polished rather than overdone." },
-  { q: "Where is the clinic?", a: "Injectox currently operates from Skin Clinic MCR at Waters Edge Business Park on Modwen Road in Salford. The old Bolton location is marked unavailable on Faces." },
+  { q: "Where is the clinic?", a: "Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road in Salford, Greater Manchester. Full directions are available on the contact page and in every booking confirmation." },
   { q: "How do deposits and cancellations work?", a: "The external booking flow shows the terms that apply to your appointment. Read and accept the current provider policy before paying a deposit." },
   { q: "Are treatments 18+?", a: "Injectable aesthetic treatments on this site are presented for adults aged 18 and over. ID and suitability checks may apply." },
   { q: "Do laser treatments need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course. The clinic will give you the correct preparation window." },
@@ -378,4 +378,21 @@ export function concernBySlug(slug: string) {
 
 export function formatPrice(value: number) {
   return value === 0 ? "Free" : `£${value}`;
+}
+
+export function bookingImageFor(serviceName: string) {
+  const name = serviceName.toLowerCase();
+  if (name.includes("consultation")) return "/images/dropbox/client-labelled/consultation-fatima.jpg";
+  if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal.jpg";
+  if (name.includes("microneedling")) return "/images/dropbox/client-labelled/microneedling.jpg";
+  if (name.includes("chemical peel") || name.includes("biorepeel")) return "/images/dropbox/client-labelled/chemical-peel.jpg";
+  if (name.includes("clinicare")) return "/images/dropbox/client-labelled/clinicare-facial.jpg";
+  if (name.includes("dermaplane")) return "/images/dropbox/client-labelled/dermaplane.jpg";
+  if (name.includes("glass skin") || name.includes("full works") || name.includes("extraction")) return "/images/dropbox/client-labelled/glow-facial.jpg";
+  if (name.includes("skin booster") || name.includes("lumi") || name.includes("aqua") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("polynucleotide") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/lumi-pro-skin-booster.jpg";
+  if (name.includes("anti-wrinkle") || name.includes("one area") || name.includes("two areas") || name.includes("three areas") || name.includes("masseter") || name.includes("brow") || name.includes("bunny") || name.includes("lip flip") || name.includes("downturned")) return "/images/dropbox/client-labelled/anti-wrinkle.jpg";
+  if (name.includes("facial balancing") || name.includes("package") || name.includes("chin") || name.includes("jaw") || name.includes("cheek") || name.includes("tear trough")) return "/images/dropbox/client-labelled/facial-balancing.jpg";
+  if (name.includes("dissolv")) return "/images/dropbox/client-labelled/lip-result.jpg";
+  if (name.includes("lip") || name.includes("smile") || name.includes("marionette") || name.includes("nasolabial")) return "/images/dropbox/curated/treatment-russian-lips.jpg";
+  return "/images/dropbox/client-labelled/advanced-facial.jpg";
 }

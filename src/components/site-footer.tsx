@@ -19,7 +19,7 @@ export function SiteFooter() {
       <div className="footer-location"><MapPin size={17} /><span>{clinic.location}</span></div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Injectox Clinic</span>
-        <span>Manchester · Salford · Bolton</span>
+        <span>Salford · Greater Manchester</span>
         <a href={booking.instagram} target="_blank" rel="noreferrer" aria-label="Injectox Clinic on Instagram"><Camera size={18} /> @injectoxclinic</a>
       </div>
     </footer>

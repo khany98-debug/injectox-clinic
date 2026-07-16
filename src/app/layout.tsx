@@ -12,7 +12,7 @@ const sans = Manrope({ variable: "--font-sans", subsets: ["latin"], display: "sw
 export const metadata: Metadata = {
   metadataBase: new URL("https://injectoxclinic.co.uk"),
   title: { default: "Injectox Clinic | Refined Aesthetics in Manchester & Salford", template: "%s | Injectox Clinic" },
-  description: "Luxury, consultation-led lip filler, facial balancing, skin and laser treatments in Salford, serving Manchester and Bolton.",
+  description: "Luxury, consultation-led lip filler, facial balancing, skin and laser treatments in Salford, Greater Manchester.",
   keywords: ["lip filler Manchester", "Russian lips Manchester", "facial balancing Manchester", "aesthetics clinic Salford", "laser hair removal Manchester"],
   openGraph: { title: "Injectox Clinic", description: "Refined aesthetics. Entirely yours.", images: [{ url: "/images/injectox-hero.png", width: 1672, height: 941, alt: "Injectox Clinic editorial campaign" }], locale: "en_GB", type: "website" },
   robots: { index: true, follow: true },

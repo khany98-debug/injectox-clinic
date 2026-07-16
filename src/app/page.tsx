@@ -34,14 +34,14 @@ export default function Home() {
         <div className="hero-grain" />
         <div className="hero-copy reference-hero-copy">
           <Reveal>
-            <span className="eyebrow hero-location"><span>Aesthetics clinic in Manchester,</span><span>Salford &amp; Bolton</span></span>
+            <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford &amp; Manchester</span></span>
             <h1>Injectox Clinic</h1>
             <p>
               Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
               consultation-led approach.
             </p>
             <div className="button-row">
-              <Button href={booking.consultation}>Book consultation</Button>
+              <Button href={booking.treatment}>Book now</Button>
               <Button href="/treatments" variant="line">View treatments</Button>
             </div>
           </Reveal>
@@ -115,6 +115,24 @@ export default function Home() {
         </div>
         <div className="experience-media">
           <Image src="/images/social/0636b6d47d8d3e49.jpg" alt="Injectox Clinic treatment room moment" fill sizes="(max-width: 800px) 100vw, 46vw" />
+        </div>
+      </section>
+
+      <section className="section shell home-about">
+        <div className="home-about-media">
+          <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima consulting with a client at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 44vw" />
+        </div>
+        <div className="home-about-copy">
+          <SectionIntro eyebrow="Meet Fatima" title={<>Honest advice.<br /><em>Beautiful judgement.</em></>} copy="Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you." />
+          <p>There is no one-size-fits-all plan. Fatima considers your features, lifestyle and timing before recommending what will make a genuine difference—and will always say when less is more.</p>
+          <Button href="/about" variant="line">About Fatima</Button>
+        </div>
+      </section>
+
+      <section className="clinic-location-band">
+        <div className="shell clinic-location-grid">
+          <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
+          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><p>Full arrival details and an add-to-calendar link are included with confirmed bookings.</p><Button href="/contact" variant="light">Directions &amp; contact</Button></div>
         </div>
       </section>
 
