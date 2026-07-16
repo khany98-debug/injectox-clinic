@@ -39,7 +39,7 @@ export function TreatmentCard({ treatment, index }: { treatment: Treatment; inde
     <TiltCard className="treatment-card">
       <Link href={`/treatments/${treatment.slug}`}>
         <div className="treatment-image">
-          <Image src={treatment.image} alt={treatment.name} fill sizes="(max-width: 760px) 86vw, 30vw" />
+          <Image src={treatment.image} alt={treatment.name} fill loading={index === 0 ? "eager" : "lazy"} sizes="(max-width: 760px) 86vw, 30vw" />
           <span>{String(index + 1).padStart(2, "0")}</span>
         </div>
         <div className="treatment-card-meta"><span>{treatment.category}</span><span>From {formatPrice(treatment.price)}</span></div>
