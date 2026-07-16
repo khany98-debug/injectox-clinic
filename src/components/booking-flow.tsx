@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarDays, Check, ChevronLeft, Clock3, LockKeyhole, Sparkles } from "lucide-react";
+import { CalendarDays, Check, ChevronLeft, Clock3, LoaderCircle, LockKeyhole, Sparkles } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import { formatPrice, pricing } from "@/lib/content";
 
@@ -62,7 +62,8 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
   const [serviceId, setServiceId] = useState(initial?.id ?? "");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
-  const [confirmation, setConfirmation] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [checkoutError, setCheckoutError] = useState("");
   const [details, setDetails] = useState({ name: "", email: "", phone: "", notes: "", consent: false });
   const dates = useMemo(() => nextDates(), []);
   const selected = services.find((service) => service.id === serviceId);
@@ -74,29 +75,20 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
     if (canContinue) setStep((current) => Math.min(current + 1, 3));
   }
 
-  function submitBooking(event: FormEvent<HTMLFormElement>) {
+  async function submitBooking(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (!selected || !date || !time || !canContinue) return;
-    const reference = `IC-${Date.now().toString(36).slice(-6).toUpperCase()}`;
-    setConfirmation(reference);
-  }
-
-  if (confirmation && selected) {
-    return (
-      <div className="booking-confirmation" aria-live="polite">
-        <div className="booking-confirmation-mark"><Check /></div>
-        <span className="eyebrow">Booking preview complete</span>
-        <h2>Your request is beautifully organised.</h2>
-        <p className="booking-confirmation-lead">Reference {confirmation}</p>
-        <div className="booking-confirmation-details">
-          <div><small>Treatment</small><b>{selected.name}</b></div>
-          <div><small>Preferred time</small><b>{dateParts(date).long} · {time}</b></div>
-          <div><small>Investment</small><b>{formatPrice(selected.price)}</b></div>
-        </div>
-        <p className="booking-demo-disclosure">This preview intentionally does not transmit personal data. Connect the clinic calendar, notifications and deposit provider before launch to turn requests into confirmed appointments.</p>
-        <button className="button button-dark" type="button" onClick={() => { setConfirmation(""); setStep(0); }}>Start another booking</button>
-      </div>
-    );
+    setSubmitting(true);
+    setCheckoutError("");
+    try {
+      const response = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ service: selected.name, date, time, name: details.name, email: details.email, phone: details.phone, notes: details.notes }) });
+      const payload = await response.json() as { url?: string; error?: string };
+      if (!response.ok || !payload.url) throw new Error(payload.error || "Checkout could not be started.");
+      window.location.assign(payload.url);
+    } catch (error) {
+      setCheckoutError(error instanceof Error ? error.message : "Checkout could not be started.");
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -107,7 +99,7 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
           <h2>Build your appointment.</h2>
           <p>Choose your treatment, preferred visit and details without leaving Injectox.</p>
         </div>
-        <p className="booking-demo-note"><LockKeyhole size={14} /> Interactive preview · no personal data is sent</p>
+          <p className="booking-demo-note"><LockKeyhole size={14} /> Secure booking · Stripe protected checkout</p>
       </div>
 
       <ol className="booking-progress" aria-label="Booking progress">
@@ -164,7 +156,7 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
             <div>
               <span className="eyebrow">03 · Your details</span>
               <h3>Where should we confirm?</h3>
-              <p className="booking-panel-copy">These fields are ready for the clinic’s secure notification and calendar connection.</p>
+              <p className="booking-panel-copy">These details are used to confirm your appointment and send your branded booking email.</p>
               <div className="booking-form-grid">
                 <label><span>Full name</span><input value={details.name} onChange={(event) => setDetails({ ...details, name: event.target.value })} autoComplete="name" required /></label>
                 <label><span>Mobile number</span><input value={details.phone} onChange={(event) => setDetails({ ...details, phone: event.target.value })} autoComplete="tel" inputMode="tel" required /></label>
@@ -183,15 +175,16 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
                 <div><small>Treatment</small><b>{selected.name}</b><button type="button" onClick={() => setStep(0)}>Change</button></div>
                 <div><small>Preferred visit</small><b>{dateParts(date).long} at {time}</b><button type="button" onClick={() => setStep(1)}>Change</button></div>
                 <div><small>Contact</small><b>{details.name}<br />{details.email}<br />{details.phone}</b><button type="button" onClick={() => setStep(2)}>Change</button></div>
-                <div><small>Treatment price</small><strong>{formatPrice(selected.price)}</strong><span>Deposit and final confirmation are completed after suitability checks.</span></div>
+                <div><small>Treatment price</small><strong>{formatPrice(selected.price)}</strong><span>{selected.price === 0 ? "No payment is required for this consultation." : "A £20 deposit is taken securely through Stripe. The remaining balance is paid according to clinic policy."}</span></div>
               </div>
               <p className="booking-panel-copy">By continuing, you acknowledge the clinic’s booking, cancellation and privacy policies.</p>
             </div>
           )}
 
+          {checkoutError && <p className="booking-checkout-error" role="alert">{checkoutError}</p>}
           <div className="booking-actions">
             {step > 0 && <button className="booking-back" type="button" onClick={() => setStep((current) => current - 1)}><ChevronLeft size={16} /> Back</button>}
-            {step < 3 ? <button className="button button-dark" type="button" onClick={continueFlow} disabled={!canContinue}>Continue</button> : <button className="button button-dark" type="submit">Complete booking preview</button>}
+            {step < 3 ? <button className="button button-dark" type="button" onClick={continueFlow} disabled={!canContinue}>Continue</button> : <button className="button button-dark" type="submit" disabled={submitting}>{submitting ? <><LoaderCircle className="booking-spinner" size={15} /> Opening Stripe…</> : selected?.price === 0 ? "Confirm consultation" : "Pay deposit securely"}</button>}
           </div>
         </div>
 
@@ -199,7 +192,7 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
           <span className="eyebrow">Your appointment</span>
           <div className="booking-summary-mark">I</div>
           {selected ? <><h3>{selected.name}</h3><p>{selected.category}</p><dl><div><dt><Clock3 size={13} /> Duration</dt><dd>{selected.duration}</dd></div><div><dt>From</dt><dd>{formatPrice(selected.price)}</dd></div>{date && <div><dt><CalendarDays size={13} /> Preferred date</dt><dd>{dateParts(date).long}</dd></div>}{time && <div><dt>Preferred time</dt><dd>{time}</dd></div>}</dl></> : <><h3>Your plan will appear here.</h3><p>Select a treatment to begin.</p></>}
-          <div className="booking-summary-trust"><LockKeyhole size={15} /><span><b>Private by design</b><small>This preview never sends or stores your details.</small></span></div>
+          <div className="booking-summary-trust"><LockKeyhole size={15} /><span><b>Secure by design</b><small>Payment is handled on Stripe Checkout. Card details never touch this website.</small></span></div>
         </aside>
       </div>
     </form>

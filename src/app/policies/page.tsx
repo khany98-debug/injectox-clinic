@@ -5,7 +5,7 @@ export const metadata: Metadata = { title: "Clinic Policies", description: "Inje
 const policies = [
   ["01", "Adults only", "Injectable treatments are presented for clients aged 18 and over. Valid photo ID may be requested."],
   ["02", "Consultation & suitability", "Treatment is subject to assessment and medical suitability. A booking does not guarantee that treatment will proceed."],
-  ["03", "Deposits", "Deposits and any remaining balance are handled through the external booking provider. The current terms shown at checkout apply."],
+  ["03", "Deposits", "Paid bookings use Stripe Checkout for a secure deposit. The remaining balance and the clinic’s current cancellation terms are confirmed in your booking email."],
   ["04", "Cancellations", "Please review the cancellation and rescheduling window shown during booking. Late changes and non-attendance may affect your deposit."],
   ["05", "Laser patch testing", "A consultation and patch test may be required before laser treatment. Follow all preparation guidance supplied by the clinic."],
   ["06", "Results & aftercare", "Results and recovery vary. Follow your personalised aftercare and contact the clinic promptly with any concerns."],

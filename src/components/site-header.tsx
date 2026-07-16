@@ -18,6 +18,7 @@ export function SiteHeader() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const onHomeHero = pathname === "/" && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
@@ -27,7 +28,7 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
+    <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${onHomeHero ? "on-hero" : "on-light-page"}`}>
       <Link className="wordmark" href="/" aria-label="Injectox Clinic home">
         <span className="wordmark-mark">I</span>
         <span>INJECTOX</span>

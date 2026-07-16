@@ -320,6 +320,18 @@ export const gallery = [
   { src: "/images/social/afba577fea3621ea.jpg", label: "Clinic reel", href: "https://www.instagram.com/injectoxclinic/reel/DaVwv_psWTA/" },
 ] as const;
 
+// First-party client imagery supplied by Injectox. Publish only where the clinic has confirmed image consent.
+export const results = [
+  { src: "/images/results/client-lip-result-01.jpg", label: "Lip enhancement", category: "Lips", note: "Shape, definition and a softly polished finish." },
+  { src: "/images/results/client-lip-result-02.jpg", label: "Lip and skin finish", category: "Lips", note: "A balanced result photographed in the clinic." },
+  { src: "/images/results/client-lip-result-03.jpg", label: "Refined lip profile", category: "Lips", note: "Close-up treatment result with natural proportions retained." },
+  { src: "/images/results/client-skin-result-01.jpg", label: "Skin treatment", category: "Skin", note: "Real client treatment imagery from the Injectox clinic." },
+  { src: "/images/results/client-lip-result-04.jpg", label: "Russian lip result", category: "Lips", note: "Definition and lift tailored to the client’s features." },
+  { src: "/images/results/client-lip-result-05.jpg", label: "Lip detail", category: "Lips", note: "A close-up of the result immediately following treatment." },
+  { src: "/images/results/client-skin-result-02.jpg", label: "Advanced skin treatment", category: "Skin", note: "A real client receiving a bespoke skin treatment." },
+  { src: "/images/results/client-lip-result-06.jpg", label: "Natural lip finish", category: "Lips", note: "A proportion-led result designed around the face." },
+] as const;
+
 export const reviews = [
   { name: "Evin B.", treatment: "Aesthetics", date: "July 2026", quote: "The only person I will ever let touch my face. I’m ageing backwards!" },
   { name: "Lacey H.", treatment: "Bespoke plan", date: "July 2026", quote: "Fatima is amazing. She is so genuine and has talked me out of procedures she knew I didn’t need. She really cares about the results and looking natural." },

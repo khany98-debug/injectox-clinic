@@ -1,13 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, X } from "lucide-react";
+import { X } from "lucide-react";
 import { useEffect, useState } from "react";
-import { gallery } from "@/lib/content";
+import { gallery, results } from "@/lib/content";
 
-export function GalleryGrid({ limit }: { limit?: number }) {
-  const items = limit ? gallery.slice(0, limit) : gallery;
-  const [selected, setSelected] = useState<(typeof gallery)[number] | null>(null);
+type GalleryItem = { src: string; label: string; href?: string; category?: string; note?: string };
+
+export function GalleryGrid({ limit, source = "journal" }: { limit?: number; source?: "journal" | "results" }) {
+  const collection: readonly GalleryItem[] = source === "results" ? results : gallery;
+  const items = limit ? collection.slice(0, limit) : collection;
+  const [selected, setSelected] = useState<GalleryItem | null>(null);
   useEffect(() => {
     if (!selected) return;
     const close = (event: KeyboardEvent) => event.key === "Escape" && setSelected(null);
@@ -21,7 +24,7 @@ export function GalleryGrid({ limit }: { limit?: number }) {
         {items.map((item, i) => (
           <button className="gallery-card" key={`${item.src}-${i}`} onClick={() => setSelected(item)} aria-label={`View ${item.label}`}>
             <Image src={item.src} alt={item.label} fill sizes={limit ? "(max-width: 700px) 88vw, 30vw" : "(max-width: 700px) 100vw, 33vw"} />
-            <span><small>0{String(i + 1).padStart(2, "0")}</small>{item.label}</span>
+            <span><small>{item.category ?? `0${String(i + 1).padStart(2, "0")}`}</small>{item.label}</span>
           </button>
         ))}
       </div>
@@ -31,7 +34,7 @@ export function GalleryGrid({ limit }: { limit?: number }) {
           <div className="lightbox-image" onClick={(e) => e.stopPropagation()}>
             <Image src={selected.src} alt={selected.label} fill sizes="90vw" />
           </div>
-          <a href={selected.href} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>View original on Instagram <ExternalLink size={15} /></a>
+          <div className="lightbox-caption" onClick={(e) => e.stopPropagation()}><small>{selected.category ?? "Injectox Clinic"}</small><b>{selected.label}</b>{selected.note && <p>{selected.note}</p>}</div>
         </div>
       )}
     </>

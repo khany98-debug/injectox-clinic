@@ -13,7 +13,7 @@ export function SiteFooter() {
         <div className="footer-links">
           <div><b>Discover</b><Link href="/treatments">Treatments</Link><Link href="/concerns">Concerns</Link><Link href="/pricing">Pricing</Link><Link href="/gallery">Results</Link></div>
           <div><b>Clinic</b><Link href="/about">About</Link><Link href="/reviews">Reviews</Link><Link href="/faq">FAQ</Link><Link href="/contact">Contact</Link></div>
-          <div><b>Essentials</b><Link href="/policies">Policies</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookies">Cookies</Link></div>
+          <div><b>Essentials</b><Link href="/policies">Policies</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookies">Cookies</Link><Link href="/admin">Clinic admin</Link></div>
         </div>
       </div>
       <div className="footer-location"><MapPin size={17} /><span>{clinic.location}</span></div>

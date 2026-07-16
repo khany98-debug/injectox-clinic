@@ -20,7 +20,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 - `/book` is the on-site booking journey.
 - `/admin` is the private clinic workspace for diary management, service pricing, review moderation and settings.
-- `/api/checkout` is a Stripe PaymentIntent endpoint. Add a server-side `STRIPE_SECRET_KEY` from `.env.example` to enable test-mode deposits.
+- `/api/checkout` creates a hosted Stripe Checkout session for the booking deposit.
+- `/api/stripe/webhook` verifies paid sessions and triggers the branded customer and clinic confirmation emails.
+- `/api/calendar` generates the calendar attachment used by the success page and confirmation email.
+- Add the Stripe, Resend, clinic email, site URL and admin password values shown in `.env.example` to Vercel before launch.
 - Dropbox-supplied media is stored in `public/media/dropbox` and `public/images/dropbox` so the site does not depend on third-party image URLs.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
