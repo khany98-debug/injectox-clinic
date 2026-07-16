@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles } from 
 import { GalleryGrid } from "@/components/gallery-grid";
 import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
-import { BookingSteps, Button, ConcernGrid, FAQList, FinalCTA, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
+import { BookingSteps, Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
 import { booking } from "@/lib/content";
 
 const reasons = [
@@ -119,6 +119,7 @@ export default function Home() {
       </section>
 
       <StatsSection />
+      <ResultFilmPanel />
 
       <section className="section shell pricing-preview">
         <div className="pricing-preview-copy">
@@ -148,19 +149,22 @@ export default function Home() {
           <SectionIntro
             eyebrow="Our work"
             title={<>Results that look<br /><em>polished, not overdone.</em></>}
-            copy="A refined gallery of treatment-room moments, transformations and educational content from the Injectox social feed."
+            copy="A refined gallery of real client outcomes, treatment-room moments and professional clinic films."
           />
           <SocialFollow />
         </div>
-        <GalleryGrid limit={6} />
+        <GalleryGrid source="results" limit={8} mobileLoop includeFilms />
       </section>
 
       <section className="section shell reviews-section reference-reviews">
         <div className="split-heading">
           <SectionIntro eyebrow="Client feedback" title={<>Trust built through<br /><em>real experience.</em></>} />
-          <Link className="text-link" href="/reviews">Read reviews <ArrowRight /></Link>
+          <div className="review-actions">
+            <Link className="text-link" href="/reviews">Read reviews <ArrowRight /></Link>
+            <Link className="text-link muted" href="/reviews#leave-review">Leave a review <ArrowRight /></Link>
+          </div>
         </div>
-        <ReviewsStrip />
+        <ReviewsStrip mobileLoop />
       </section>
 
       <section className="booking-section reference-booking">

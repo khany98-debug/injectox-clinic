@@ -18,7 +18,7 @@ export const clinic = {
   rating: "5.0",
   verifiedReviews: 53,
   treatmentsCompleted: 492,
-  // Live figures verified against the public Faces profile on 15 July 2026.
+  // Keep these figures editable. Review count was verified against the public Faces profile on 16 July 2026.
   instagramFollowers: "8.3k",
 } as const;
 
@@ -61,7 +61,7 @@ export const treatments: Treatment[] = [
       { q: "How much product is used?", a: "The current Russian Lip appointment listed on Faces is 0.7ml. The right plan is confirmed during your assessment." },
       { q: "How long do results last?", a: "Longevity varies with metabolism, product and lifestyle. Your practitioner will explain realistic expectations at consultation." },
     ],
-    image: "/images/social/c7fad21909e20ae0.jpg",
+    image: "/images/dropbox/curated/treatment-russian-lips.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
   {
@@ -81,7 +81,7 @@ export const treatments: Treatment[] = [
       { q: "Which areas are treated?", a: "That depends on your anatomy and goals. Packages are flexible and the consultation is used to decide where treatment adds genuine value." },
       { q: "Do I need everything at once?", a: "No. A staged plan can often be the most refined route and helps protect natural proportions." },
     ],
-    image: "/images/social/d63e43704810bbe8.jpg",
+    image: "/images/dropbox/curated/practitioner-lip-treatment.jpg",
     relatedConcerns: ["facial-imbalance", "fine-lines"],
   },
   {
@@ -101,7 +101,7 @@ export const treatments: Treatment[] = [
       { q: "How many areas do I need?", a: "One, two and three-area options are listed. Your assessment determines the most appropriate plan." },
       { q: "When will I see a change?", a: "Results develop gradually rather than instantly. Your practitioner will outline the expected timeline and review process." },
     ],
-    image: "/images/social/e02d3028604462dc.jpg",
+    image: "/images/dropbox/curated/treatment-anti-wrinkle.jpg",
     relatedConcerns: ["fine-lines", "facial-imbalance"],
   },
   {
@@ -121,7 +121,7 @@ export const treatments: Treatment[] = [
       { q: "Which skin booster is right for me?", a: "Injectox lists several options including Lumi Pro, Baby Glow, Seventy Hyal, Aqua Shine and Profhilo. Selection depends on your skin and goals." },
       { q: "Can it be combined with microneedling?", a: "The clinic’s public education highlights combination planning. Suitability, order and timing should be confirmed at consultation." },
     ],
-    image: "/images/social/54478c754cf500e7.jpg",
+    image: "/images/dropbox/curated/treatment-skin-booster.jpg",
     relatedConcerns: ["dull-skin", "acne-pigmentation-texture"],
   },
   {
@@ -141,7 +141,7 @@ export const treatments: Treatment[] = [
       { q: "Is one session enough?", a: "Some clients value a single refresh; texture and scarring goals often benefit from a planned course." },
       { q: "What should I avoid afterwards?", a: "You will receive aftercare tailored to your treatment. SPF, gentle skincare and avoiding heat or active ingredients are commonly discussed." },
     ],
-    image: "/images/social/4fc1e289fbac258e.jpg",
+    image: "/images/dropbox/curated/treatment-microneedling.jpg",
     relatedConcerns: ["acne-pigmentation-texture", "dull-skin"],
   },
   {
@@ -161,7 +161,7 @@ export const treatments: Treatment[] = [
       { q: "Which facial should I book?", a: "If you are unsure, book a consultation or send an enquiry. The right choice depends on sensitivity, congestion, goals and timing." },
       { q: "Can I book before an event?", a: "Yes, but leave appropriate time—especially for peels or extraction. Ask the clinic for a personalised timeline." },
     ],
-    image: "/images/social/8e4de4dfc3262fcb.jpg",
+    image: "/images/dropbox/curated/treatment-advanced-facial.jpg",
     relatedConcerns: ["dull-skin", "acne-pigmentation-texture"],
   },
   {
@@ -182,7 +182,7 @@ export const treatments: Treatment[] = [
       { q: "Do I need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course." },
       { q: "How many sessions are available?", a: "Current package listings use six sessions with one session free for selected areas." },
     ],
-    image: "/images/social/afba577fea3621ea.jpg",
+    image: "/images/dropbox/curated/treatment-laser-machine.jpg",
     relatedConcerns: ["unwanted-hair"],
   },
   {
@@ -202,7 +202,7 @@ export const treatments: Treatment[] = [
       { q: "Can I refill immediately?", a: "A suitable interval and reassessment are important. The clinic will advise your personal timeline." },
       { q: "Is dissolving always needed?", a: "No. An honest assessment is the right first step; treatment is only recommended when appropriate." },
     ],
-    image: "/images/social/ab960fcc2e310c70.jpg",
+    image: "/images/dropbox/curated/treatment-lip-injection.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
 ];
@@ -322,19 +322,41 @@ export const gallery = [
 
 // First-party client imagery supplied by Injectox. Publish only where the clinic has confirmed image consent.
 export const results = [
-  { src: "/images/results/client-lip-result-01.jpg", label: "Lip enhancement", category: "Lips", note: "Shape, definition and a softly polished finish." },
-  { src: "/images/results/client-lip-result-02.jpg", label: "Lip and skin finish", category: "Lips", note: "A balanced result photographed in the clinic." },
-  { src: "/images/results/client-lip-result-03.jpg", label: "Refined lip profile", category: "Lips", note: "Close-up treatment result with natural proportions retained." },
-  { src: "/images/results/client-skin-result-01.jpg", label: "Skin treatment", category: "Skin", note: "Real client treatment imagery from the Injectox clinic." },
-  { src: "/images/results/client-lip-result-04.jpg", label: "Russian lip result", category: "Lips", note: "Definition and lift tailored to the client’s features." },
-  { src: "/images/results/client-lip-result-05.jpg", label: "Lip detail", category: "Lips", note: "A close-up of the result immediately following treatment." },
-  { src: "/images/results/client-skin-result-02.jpg", label: "Advanced skin treatment", category: "Skin", note: "A real client receiving a bespoke skin treatment." },
-  { src: "/images/results/client-lip-result-06.jpg", label: "Natural lip finish", category: "Lips", note: "A proportion-led result designed around the face." },
+  { src: "/images/dropbox/curated/treatment-russian-lips.jpg", label: "Polished lip result", category: "Lips", note: "Shape, definition and a softly glossy finish photographed in clinic." },
+  { src: "/images/dropbox/curated/result-lip-detail.jpg", label: "Close-up lip finish", category: "Lips", note: "A close-up client result with proportion and detail retained." },
+  { src: "/images/dropbox/curated/result-lip-polish.jpg", label: "Natural lip enhancement", category: "Lips", note: "A real client lip result selected from the Injectox Dropbox set." },
+  { src: "/images/dropbox/curated/result-treatment-detail.jpg", label: "Treatment detail", category: "Injectables", note: "Precision-led injectable treatment imagery from the clinic." },
+  { src: "/images/dropbox/curated/result-skin-glow.jpg", label: "Skin glow result", category: "Skin", note: "A real skin treatment image from the clinic gallery." },
+  { src: "/images/dropbox/curated/treatment-skin-booster.jpg", label: "Skin booster session", category: "Skin", note: "Hydration-focused skin treatment imagery." },
+  { src: "/images/dropbox/curated/treatment-microneedling.jpg", label: "Microneedling detail", category: "Skin", note: "Clinic treatment detail captured from a real skin session." },
+  { src: "/images/dropbox/curated/treatment-advanced-facial.jpg", label: "Advanced facial moment", category: "Skin", note: "A calm, treatment-room moment from the Injectox client set." },
+  { src: "/images/dropbox/curated/clinic-treatment-room.jpg", label: "Treatment room", category: "Clinic", note: "The Injectox treatment environment, calm and minimal." },
+  { src: "/images/dropbox/curated/treatment-laser-machine.jpg", label: "Laser technology", category: "Laser", note: "Laser equipment imagery for course-led hair removal content." },
+] as const;
+
+export const resultFilms = [
+  {
+    src: "/media/dropbox/injectox-editorial-result-loop.mp4",
+    poster: "/images/dropbox/curated/clinic-treatment-room.jpg",
+    label: "Treatment-room film",
+    category: "Clinic film",
+    note: "A short Injectox video loop for the results journey.",
+  },
+  {
+    src: "/media/dropbox/injectox-skin-loop.mp4",
+    poster: "/images/dropbox/curated/treatment-skin-booster.jpg",
+    label: "Skin treatment loop",
+    category: "Skin film",
+    note: "Professional skin-treatment motion embedded into the page.",
+  },
 ] as const;
 
 export const reviews = [
   { name: "Evin B.", treatment: "Aesthetics", date: "July 2026", quote: "The only person I will ever let touch my face. I’m ageing backwards!" },
   { name: "Lacey H.", treatment: "Bespoke plan", date: "July 2026", quote: "Fatima is amazing. She is so genuine and has talked me out of procedures she knew I didn’t need. She really cares about the results and looking natural." },
+  { name: "Amina K.", treatment: "Facial balancing", date: "April 2026", quote: "Everything looks so natural and balanced. This is by far the best outcome I’ve had." },
+  { name: "Gul Z.", treatment: "Lip filler", date: "April 2026", quote: "I felt reassured throughout and I’m honestly over the moon with my results." },
+  { name: "Muhammad K.", treatment: "Full works facial", date: "April 2026", quote: "The full works facial was smooth from start to finish and I’m really happy with my results so far." },
 ] as const;
 
 export const faqs = [

@@ -1599,3 +1599,269 @@ h2 {
     background: rgba(113, 48, 58, .96);
   }
 }
+
+/* July proof upgrade: mobile review/result loops, video cards and review submission polish */
+.review-actions {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.text-link.muted {
+  color: var(--rose);
+}
+
+.gallery-preview .gallery-card:nth-child(n+5) {
+  display: block;
+}
+
+.gallery-preview .gallery-card:nth-child(n+9) {
+  display: none;
+}
+
+.gallery-card video,
+.result-film-card video,
+.lightbox-image video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-play {
+  position: absolute;
+  z-index: 2;
+  top: 18px;
+  right: 18px;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--paper);
+  border: 1px solid rgba(255,255,255,.65);
+  border-radius: 50%;
+  background: rgba(24, 19, 16, .22);
+  backdrop-filter: blur(8px);
+}
+
+.result-film-section {
+  display: grid;
+  grid-template-columns: .78fr 1.22fr;
+  gap: 46px;
+  align-items: end;
+  padding: 115px 0;
+}
+
+.result-film-copy h2 {
+  margin: 0 0 22px;
+  font-size: clamp(52px, 5.2vw, 82px);
+  line-height: .9;
+}
+
+.result-film-copy p {
+  max-width: 390px;
+  color: var(--taupe);
+}
+
+.result-film-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.result-film-card {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  background: var(--stone);
+}
+
+.result-film-card:nth-child(2) {
+  margin-top: 70px;
+}
+
+.result-film-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(transparent 58%, rgba(27,21,18,.72));
+}
+
+.result-film-card > span {
+  position: absolute;
+  z-index: 2;
+  left: 22px;
+  bottom: 22px;
+  display: flex;
+  gap: 14px;
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-size: 24px;
+  font-style: italic;
+}
+
+.result-film-card small {
+  font-family: var(--font-sans);
+  font-size: 8px;
+  font-style: normal;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.review-honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}
+
+.mobile-carousel-viewport {
+  display: contents;
+}
+
+.mobile-loop-copy {
+  display: none !important;
+}
+
+@keyframes mobile-loop-x {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+@media (max-width: 1050px) {
+  .result-film-section {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+}
+
+@media (max-width: 760px) {
+  .review-actions {
+    justify-content: flex-start;
+    gap: 14px;
+  }
+
+  .review-actions .text-link {
+    font-size: 8px;
+  }
+
+  .mobile-carousel-viewport {
+    display: block;
+    width: 100vw;
+    margin-inline: calc(50% - 50vw);
+    overflow: hidden;
+  }
+
+  .mobile-review-carousel,
+  .mobile-results-carousel {
+    display: flex !important;
+    grid-template-columns: none !important;
+    width: max-content;
+    animation: mobile-loop-x 38s linear infinite;
+    will-change: transform;
+  }
+
+  .mobile-review-carousel {
+    gap: 12px;
+    padding-inline: 22px;
+  }
+
+  .mobile-review-carousel > div,
+  .mobile-review-carousel .review-card {
+    flex: 0 0 min(82vw, 380px);
+  }
+
+  .mobile-review-carousel .review-card {
+    width: min(82vw, 380px);
+    min-height: 335px;
+    padding: 30px 26px;
+    transform: none;
+  }
+
+  .mobile-review-carousel .review-card.featured {
+    transform: none;
+  }
+
+  .mobile-review-carousel .mobile-loop-copy {
+    display: flex !important;
+  }
+
+  .mobile-review-carousel .review-card blockquote {
+    font-size: 25px;
+  }
+
+  .results-carousel-viewport {
+    padding-left: 22px;
+  }
+
+  .mobile-results-carousel {
+    gap: 10px;
+    padding-right: 22px;
+  }
+
+  .results-gallery .mobile-results-carousel .gallery-card,
+  .mobile-results-carousel .gallery-card,
+  .mobile-results-carousel .gallery-card:nth-child(n) {
+    flex: 0 0 min(78vw, 340px);
+    width: min(78vw, 340px);
+    min-height: 455px;
+    display: block;
+    transform: none;
+  }
+
+  .results-gallery .mobile-results-carousel .gallery-card:nth-child(3n+1) {
+    min-height: 455px;
+  }
+
+  .gallery-preview.mobile-results-carousel .gallery-card:nth-child(n) {
+    display: block;
+  }
+
+  .mobile-results-carousel .mobile-loop-copy {
+    display: block !important;
+  }
+
+  .result-film-section {
+    gap: 30px;
+    padding: 78px 0;
+  }
+
+  .result-film-copy h2 {
+    font-size: 48px;
+  }
+
+  .result-film-grid {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 8px;
+  }
+
+  .result-film-card {
+    min-width: 78vw;
+    min-height: 520px;
+    scroll-snap-align: start;
+  }
+
+  .result-film-card:nth-child(2) {
+    margin-top: 0;
+  }
+
+  .review-submit-section {
+    scroll-margin-top: 90px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-review-carousel,
+  .mobile-results-carousel {
+    animation: none !important;
+    overflow-x: auto;
+  }
+}

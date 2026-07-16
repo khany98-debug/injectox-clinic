@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, ShieldCheck, Sparkles } from "lucide-react";
-import { booking, clinic, concerns, faqs, formatPrice, pricing, reviews, treatments, type Treatment } from "@/lib/content";
+import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
@@ -73,7 +73,7 @@ export function StatsSection() {
   return (
     <section className="stats-section">
       <div className="shell stats-grid">
-        <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2><p>Live figures verified from the clinic’s public Faces booking profile.</p></Reveal>
+        <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2><p>Figures are editable for launch and review totals are based on public verified booking profiles.</p></Reveal>
         <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
         <div className="stat"><strong><CountUp value={clinic.verifiedReviews} /></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
@@ -82,18 +82,48 @@ export function StatsSection() {
   );
 }
 
-export function ReviewsStrip({ all = false }: { all?: boolean }) {
-  const cards = all ? [...reviews, ...reviews] : reviews;
+export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolean; mobileLoop?: boolean }) {
+  const baseCards = all ? reviews : reviews.slice(0, 4);
   return (
-    <div className="reviews-grid">
-      {cards.map((review, i) => (
-        <Reveal className={`review-card ${i === 1 ? "featured" : ""}`} delay={(i % 3) * 0.08} key={`${review.name}-${i}`}>
-          <div className="review-stars">★★★★★</div>
-          <blockquote>“{review.quote}”</blockquote>
-          <div><b>{review.name}</b><span>{review.treatment} · {review.date}</span></div>
-        </Reveal>
-      ))}
+    <div className={mobileLoop ? "mobile-carousel-viewport reviews-carousel-viewport" : undefined}>
+      <div className={`reviews-grid ${mobileLoop ? "mobile-review-carousel" : ""}`}>
+        {baseCards.map((review, i) => (
+          <Reveal className={`review-card ${i % baseCards.length === 1 ? "featured" : ""}`} delay={(i % 3) * 0.08} key={`${review.name}-${i}`}>
+            <div className="review-stars">★★★★★</div>
+            <blockquote>“{review.quote}”</blockquote>
+            <div><b>{review.name}</b><span>{review.treatment} · {review.date}</span></div>
+          </Reveal>
+        ))}
+        {mobileLoop && baseCards.map((review, i) => (
+          <Reveal className={`review-card mobile-loop-copy ${i % baseCards.length === 1 ? "featured" : ""}`} delay={0} key={`${review.name}-loop-${i}`}>
+            <div className="review-stars">★★★★★</div>
+            <blockquote>“{review.quote}”</blockquote>
+            <div><b>{review.name}</b><span>{review.treatment} · {review.date}</span></div>
+          </Reveal>
+        ))}
+      </div>
     </div>
+  );
+}
+
+export function ResultFilmPanel() {
+  return (
+    <section className="result-film-section shell">
+      <div className="result-film-copy">
+        <span className="eyebrow">Inside Injectox</span>
+        <h2>Treatment moments,<br /><em>on loop.</em></h2>
+        <p>Short clinic films add movement without pulling visitors away from the booking journey.</p>
+        <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
+      </div>
+      <div className="result-film-grid">
+        {resultFilms.map((film, index) => (
+          <div className="result-film-card" key={film.src}>
+            <video src={film.src} poster={film.poster} autoPlay muted loop playsInline preload={index === 0 ? "metadata" : "none"} />
+            <span><small>{String(index + 1).padStart(2, "0")}</small>{film.label}</span>
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }
 

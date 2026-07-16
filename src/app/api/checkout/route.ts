@@ -7,9 +7,21 @@ type CheckoutBody = { service?: string; date?: string; time?: string; name?: str
 
 const services = pricing.flatMap((group) => group.items.map((item) => ({ ...item, category: group.category })));
 const safe = (value: unknown, limit = 240) => typeof value === "string" ? value.trim().slice(0, limit) : "";
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+function isValidAppointmentDate(value: string) {
+  const selected = new Date(`${value}T12:00:00Z`);
+  if (Number.isNaN(selected.getTime())) return false;
+  const today = new Date();
+  today.setUTCHours(0, 0, 0, 0);
+  const max = new Date(today);
+  max.setUTCDate(max.getUTCDate() + 120);
+  return selected > today && selected <= max && selected.getUTCDay() !== 0;
+}
 
 export async function POST(request: Request) {
   try {
+    if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid booking request." }, { status: 415 });
     const body = await request.json() as CheckoutBody;
     const serviceName = safe(body.service, 120);
     const service = services.find((item) => item.name === serviceName);
@@ -19,7 +31,7 @@ export async function POST(request: Request) {
     const email = safe(body.email, 160);
     const phone = safe(body.phone, 40);
     const notes = safe(body.notes, 500);
-    if (!service || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !/^\d{2}:\d{2}$/.test(time) || !name || !email.includes("@") || !phone) return NextResponse.json({ error: "Please review your treatment, appointment and contact details." }, { status: 400 });
+    if (!service || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !isValidAppointmentDate(date) || !/^\d{2}:\d{2}$/.test(time) || !name || !emailPattern.test(email) || phone.length < 7) return NextResponse.json({ error: "Please review your treatment, appointment and contact details." }, { status: 400 });
 
     const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? new URL(request.url).origin;
     const reference = `IC-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
