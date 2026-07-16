@@ -1,11 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const filmSrc = "/media/dropbox/injectox-client-hero.mp4";
-const posterSrc = "/images/dropbox/client-labelled/consultation-fatima.jpg";
 
 export function HeroFilm() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -76,7 +74,6 @@ export function HeroFilm() {
 
   return (
     <div className={`hero-film ${ready ? "is-ready" : ""}`}>
-      <Image src={posterSrc} alt="" fill priority sizes="100vw" className="hero-poster" />
       <video
         ref={videoRef}
         className="hero-video"
@@ -85,7 +82,6 @@ export function HeroFilm() {
         loop
         playsInline
         preload="auto"
-        poster={posterSrc}
         aria-hidden="true"
         tabIndex={-1}
       >
