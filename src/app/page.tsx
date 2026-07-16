@@ -34,7 +34,7 @@ export default function Home() {
         <div className="hero-grain" />
         <div className="hero-copy reference-hero-copy">
           <Reveal>
-            <span className="eyebrow">Aesthetics clinic in Manchester, Salford & Bolton</span>
+            <span className="eyebrow hero-location"><span>Aesthetics clinic in Manchester,</span><span>Salford &amp; Bolton</span></span>
             <h1>Injectox Clinic</h1>
             <p>
               Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,

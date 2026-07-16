@@ -20,9 +20,9 @@ export function SectionIntro({ eyebrow, title, copy, align = "left" }: { eyebrow
   );
 }
 
-export function PageHero({ eyebrow, title, copy, index = "01" }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string }) {
+export function PageHero({ eyebrow, title, copy, index = "01", compact = false }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string; compact?: boolean }) {
   return (
-    <section className="page-hero shell">
+    <section className={`page-hero shell ${compact ? "page-hero-compact" : ""}`}>
       <Reveal className="page-hero-copy">
         <span className="eyebrow">{eyebrow}</span>
         <h1>{title}</h1>
