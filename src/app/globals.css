@@ -2715,6 +2715,21 @@ h2 em,
   }
 }
 
+/* Mobile header order: menu first, centred wordmark, booking action last. */
+@media (max-width: 1050px) {
+  .site-header .menu-button {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  .site-header .header-book {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+  }
+}
+
 /* High-visibility booking CTA: editorial cream on film, signature wine on light pages. */
 .site-header .header-book {
   min-width: 136px;
