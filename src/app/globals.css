@@ -2275,9 +2275,7 @@ body {
 
 .stats-section {
   padding-block: 92px;
-  background:
-    radial-gradient(circle at 10% 6%, rgba(189, 150, 87, .1), transparent 25%),
-    #17110f;
+  background: #292a26;
 }
 
 .stat strong {
@@ -2568,9 +2566,7 @@ h2 em,
 
 .site-footer {
   color: #fff8ef;
-  background:
-    radial-gradient(circle at 10% 6%, rgba(189, 150, 87, .1), transparent 25%),
-    #17110f;
+  background: #292a26;
 }
 
 .footer-strap {
