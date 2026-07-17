@@ -2906,3 +2906,84 @@ h2 em,
     padding-top: 38px;
   }
 }
+
+/* Soft editorial script for the hero, kept deliberately restrained and legible. */
+.reference-hero-copy h1 {
+  max-width: 7.2ch;
+  font-family: var(--font-editorial), serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: .82;
+}
+
+/* Warm, reassuring booking journey with signature wine accents. */
+.reference-booking {
+  color: #422f27;
+  background: #eee3d4;
+}
+
+.reference-booking .booking-image::after {
+  background: linear-gradient(90deg, transparent 68%, #eee3d4 100%);
+}
+
+.reference-booking .section-intro .eyebrow,
+.reference-booking .booking-steps span {
+  color: var(--rose);
+}
+
+.reference-booking .section-intro h2,
+.reference-booking .booking-steps h3 {
+  color: #422f27;
+}
+
+.reference-booking .section-intro h2 em {
+  color: var(--rose);
+}
+
+.reference-booking .booking-copy .section-intro p,
+.reference-booking .booking-steps p {
+  color: rgba(66, 47, 39, .72);
+}
+
+.reference-booking .booking-steps {
+  border-top-color: rgba(66, 47, 39, .2);
+}
+
+.reference-booking .booking-steps > div {
+  border-bottom-color: rgba(66, 47, 39, .2);
+}
+
+.reference-booking .button-dark {
+  color: #fffaf3;
+  border-color: #422f27;
+  background: #422f27;
+}
+
+.reference-booking .button-dark:hover {
+  color: #fffaf3;
+  background: var(--rose);
+}
+
+.reference-booking .button-line {
+  color: #422f27;
+  border-color: rgba(66, 47, 39, .48);
+}
+
+.reference-booking .button-line:hover {
+  color: #fffaf3;
+  background: #422f27;
+}
+
+@media (max-width: 760px) {
+  .reference-hero-copy h1 {
+    max-width: 6.8ch;
+    font-size: clamp(72px, 20vw, 88px);
+    letter-spacing: -.04em;
+    line-height: .84;
+  }
+
+  .reference-booking .booking-image::after {
+    background: linear-gradient(0deg, #eee3d4 0%, rgba(238, 227, 212, .9) 10%, transparent 42%);
+  }
+}
