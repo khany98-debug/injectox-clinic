@@ -2798,3 +2798,111 @@ h2 em,
     margin-right: 4px;
   }
 }
+
+/* Keep the header CTA visually stable during touch, focus and pressed states. */
+.site-header .header-book {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+  user-select: none;
+}
+
+.site-header .header-book .header-book-label,
+.site-header .header-book:hover .header-book-label,
+.site-header .header-book:active .header-book-label,
+.site-header .header-book:focus-visible .header-book-label,
+.site-header.on-light-page .header-book:hover .header-book-label,
+.site-header.is-scrolled .header-book:hover .header-book-label {
+  color: inherit !important;
+  border: 0;
+  background: transparent !important;
+}
+
+.site-header .header-book:active {
+  transform: translateY(0) scale(.98);
+}
+
+.site-header .header-book:focus-visible {
+  outline: 2px solid var(--champagne);
+  outline-offset: 3px;
+}
+
+/* Give the primary hero conversion action a clear visual lead. */
+.reference-hero-copy .button-dark {
+  min-width: 188px;
+  min-height: 58px;
+  justify-content: space-between;
+  padding: 0 9px 0 24px;
+  color: #521624;
+  border: 1px solid rgba(255, 248, 237, .9);
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fffaf2 0%, #efdfcd 100%);
+  box-shadow: 0 16px 36px rgba(17, 9, 7, .28);
+}
+
+.reference-hero-copy .button-dark svg {
+  width: 38px;
+  height: 38px;
+  padding: 11px;
+  color: #fffaf3;
+  border-radius: 50%;
+  background: var(--rose);
+  transition: transform .3s ease, background .3s ease;
+}
+
+.reference-hero-copy .button-dark:hover {
+  color: #521624;
+  background: #fffaf2;
+  box-shadow: 0 20px 44px rgba(17, 9, 7, .34);
+}
+
+.reference-hero-copy .button-dark:hover svg {
+  transform: translateX(2px);
+  background: #3d101b;
+}
+
+.reference-hero-copy .button-line {
+  min-height: 58px;
+  border-radius: 999px;
+  background: rgba(24, 14, 11, .18);
+  backdrop-filter: blur(10px);
+}
+
+/* Reduce the visual pause between the value cards and concern discovery. */
+.why-section {
+  padding-bottom: 58px;
+}
+
+.reference-concerns {
+  padding-top: 62px;
+}
+
+@media (max-width: 760px) {
+  .reference-hero-copy .button-row {
+    gap: 8px;
+  }
+
+  .reference-hero-copy .button-dark,
+  .reference-hero-copy .button-line {
+    min-width: 0;
+    min-height: 52px;
+  }
+
+  .reference-hero-copy .button-dark {
+    padding: 0 7px 0 16px;
+  }
+
+  .reference-hero-copy .button-dark svg {
+    width: 34px;
+    height: 34px;
+    padding: 10px;
+  }
+
+  .why-section {
+    padding-bottom: 30px;
+  }
+
+  .reference-concerns {
+    padding-top: 38px;
+  }
+}
