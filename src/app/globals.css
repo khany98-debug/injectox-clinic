@@ -3014,6 +3014,10 @@ h2 em,
     linear-gradient(145deg, #211713 0%, #160f0d 58%, #191310 100%);
 }
 
+.stats-heading h2 em {
+  color: #e5b8bd;
+}
+
 /* Concern markers pair a quiet visual cue with the existing sequence number. */
 .concern-card .concern-card-kicker {
   width: max-content;
