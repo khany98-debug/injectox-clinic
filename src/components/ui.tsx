@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
 
@@ -58,13 +58,25 @@ export function TreatmentsGrid({ limit }: { limit?: number }) {
 
 export function ConcernGrid({ limit }: { limit?: number }) {
   const items = limit ? concerns.slice(0, limit) : concerns;
+  const concernIcons = {
+    "thin-lips": Heart,
+    "facial-imbalance": ScanFace,
+    "fine-lines": Clock3,
+    "dull-skin": Droplets,
+    "acne-pigmentation-texture": Focus,
+    "unwanted-hair": Zap,
+  } as const;
   return (
     <div className="concern-grid">
-      {items.map((concern) => (
-        <Link href={`/concerns/${concern.slug}`} className="concern-card" key={concern.slug}>
-          <span>{concern.number}</span><div><h3>{concern.title}</h3><p>{concern.short}</p></div><ArrowDownRight />
-        </Link>
-      ))}
+      {items.map((concern) => {
+        const Icon = concernIcons[concern.slug];
+        return (
+          <Link href={`/concerns/${concern.slug}`} className="concern-card" key={concern.slug}>
+            <span className="concern-card-kicker"><Icon aria-hidden="true" /><small>{concern.number}</small></span>
+            <div><h3>{concern.title}</h3><p>{concern.short}</p></div><ArrowDownRight aria-hidden="true" />
+          </Link>
+        );
+      })}
     </div>
   );
 }

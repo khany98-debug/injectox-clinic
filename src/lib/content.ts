@@ -383,6 +383,8 @@ export function formatPrice(value: number) {
 export function bookingImageFor(serviceName: string) {
   const name = serviceName.toLowerCase();
   if (name.includes("consultation")) return "/images/dropbox/client-labelled/consultation-fatima.jpg";
+  if (name.includes("vitamin") || name.includes("biotin")) return "/images/dropbox/client-labelled/vitamin-injection.jpg";
+  if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle-booking.jpg";
   if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal-main.jpg";
   if (name.includes("microneedling")) return "/images/dropbox/client-labelled/microneedling.jpg";
   if (name.includes("chemical peel") || name.includes("biorepeel")) return "/images/dropbox/client-labelled/chemical-peel.jpg";
@@ -390,7 +392,6 @@ export function bookingImageFor(serviceName: string) {
   if (name.includes("dermaplane")) return "/images/dropbox/client-labelled/dermaplane.jpg";
   if (name.includes("glass skin") || name.includes("full works") || name.includes("extraction")) return "/images/dropbox/client-labelled/glow-facial.jpg";
   if (name.includes("polynucleotide")) return "/images/dropbox/client-labelled/polynucleotides.jpg";
-  if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle.jpg";
   if (name.includes("lumi pro") || name.includes("aqua shine")) return "/images/dropbox/client-labelled/lumi-pro-skin-booster-product.jpg";
   if (name.includes("skin booster") || name.includes("lumi") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/skin-booster-main.jpg";
   if (name.includes("anti-wrinkle") || name.includes("one area") || name.includes("two areas") || name.includes("three areas") || name.includes("masseter") || name.includes("brow") || name.includes("bunny") || name.includes("lip flip") || name.includes("downturned")) return "/images/dropbox/client-labelled/anti-wrinkle.jpg";
@@ -400,7 +401,9 @@ export function bookingImageFor(serviceName: string) {
   if (name.includes("cheek")) return "/images/dropbox/client-labelled/cheek-filler.jpg";
   if (name.includes("facial balancing") || name.includes("package")) return "/images/dropbox/client-labelled/facial-balancing.jpg";
   if (name.includes("dissolv")) return "/images/dropbox/client-labelled/filler-dissolving.jpg";
-  if (name.includes("smile") || name.includes("marionette") || name.includes("nasolabial")) return "/images/dropbox/client-labelled/lip-1-1ml.jpg";
+  if (name.includes("smile lines")) return "/images/dropbox/client-labelled/smile-lines.jpg";
+  if (name.includes("marionette")) return "/images/dropbox/client-labelled/marionette-lines.jpg";
+  if (name.includes("nasolabial")) return "/images/dropbox/client-labelled/lip-1-1ml.jpg";
   if (name.includes("lip")) return "/images/dropbox/client-labelled/lip-0-7ml.jpg";
   return "/images/dropbox/client-labelled/advanced-facial.jpg";
 }

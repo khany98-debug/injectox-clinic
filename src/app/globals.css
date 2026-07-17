@@ -3004,3 +3004,51 @@ h2 em,
     background: linear-gradient(0deg, #d9cbbd 0%, rgba(217, 203, 189, .92) 12%, transparent 46%);
   }
 }
+
+/* Carry the footer's rich editorial backdrop into the proof section. */
+.stats-section,
+.site-footer {
+  background-color: #191310;
+  background-image:
+    radial-gradient(circle at 14% 8%, rgba(112, 40, 56, .14), transparent 34%),
+    linear-gradient(145deg, #211713 0%, #160f0d 58%, #191310 100%);
+}
+
+/* Concern markers pair a quiet visual cue with the existing sequence number. */
+.concern-card .concern-card-kicker {
+  width: max-content;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--rose);
+}
+
+.concern-card .concern-card-kicker svg {
+  position: static;
+  width: 17px;
+  height: 17px;
+  color: currentColor;
+  stroke-width: 1.55;
+}
+
+.concern-card .concern-card-kicker small {
+  font-family: var(--font-display), sans-serif;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: .04em;
+}
+
+.concern-card:hover .concern-card-kicker {
+  color: #f1d8c9;
+}
+
+@media (max-width: 760px) {
+  .concern-card .concern-card-kicker {
+    gap: 6px;
+  }
+
+  .concern-card .concern-card-kicker svg {
+    width: 15px;
+    height: 15px;
+  }
+}
