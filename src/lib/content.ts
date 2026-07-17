@@ -61,7 +61,7 @@ export const treatments: Treatment[] = [
       { q: "How much product is used?", a: "The current Russian Lip appointment listed on Faces is 0.7ml. The right plan is confirmed during your assessment." },
       { q: "How long do results last?", a: "Longevity varies with metabolism, product and lifestyle. Your practitioner will explain realistic expectations at consultation." },
     ],
-    image: "/images/dropbox/curated/treatment-russian-lips.jpg",
+    image: "/images/dropbox/client-labelled/lip-0-7ml.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
   {
@@ -121,7 +121,7 @@ export const treatments: Treatment[] = [
       { q: "Which skin booster is right for me?", a: "Injectox lists several options including Lumi Pro, Baby Glow, Seventy Hyal, Aqua Shine and Profhilo. Selection depends on your skin and goals." },
       { q: "Can it be combined with microneedling?", a: "The clinic’s public education highlights combination planning. Suitability, order and timing should be confirmed at consultation." },
     ],
-    image: "/images/dropbox/client-labelled/lumi-pro-skin-booster.jpg",
+    image: "/images/dropbox/client-labelled/skin-booster-main.jpg",
     relatedConcerns: ["dull-skin", "acne-pigmentation-texture"],
   },
   {
@@ -182,7 +182,7 @@ export const treatments: Treatment[] = [
       { q: "Do I need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course." },
       { q: "How many sessions are available?", a: "Current package listings use six sessions with one session free for selected areas." },
     ],
-    image: "/images/dropbox/client-labelled/laser-hair-removal.jpg",
+    image: "/images/dropbox/client-labelled/laser-hair-removal-main.jpg",
     relatedConcerns: ["unwanted-hair"],
   },
   {
@@ -202,7 +202,7 @@ export const treatments: Treatment[] = [
       { q: "Can I refill immediately?", a: "A suitable interval and reassessment are important. The clinic will advise your personal timeline." },
       { q: "Is dissolving always needed?", a: "No. An honest assessment is the right first step; treatment is only recommended when appropriate." },
     ],
-    image: "/images/dropbox/client-labelled/lip-treatment.jpg",
+    image: "/images/dropbox/client-labelled/filler-dissolving.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
 ];
@@ -322,13 +322,13 @@ export const gallery = [
 
 // First-party client imagery supplied by Injectox. Publish only where the clinic has confirmed image consent.
 export const results = [
-  { src: "/images/dropbox/curated/treatment-russian-lips.jpg", label: "Polished lip result", category: "Lips", note: "Shape, definition and a softly glossy finish photographed in clinic." },
-  { src: "/images/dropbox/curated/result-lip-detail.jpg", label: "Close-up lip finish", category: "Lips", note: "A close-up client result with proportion and detail retained." },
-  { src: "/images/dropbox/curated/result-lip-polish.jpg", label: "Natural lip enhancement", category: "Lips", note: "A real client lip result selected from the Injectox Dropbox set." },
+  { src: "/images/dropbox/client-labelled/lip-1-1ml.jpg", label: "Polished lip result", category: "Lips", note: "Shape, definition and a softly glossy finish photographed in clinic." },
+  { src: "/images/dropbox/client-labelled/lip-0-5ml.jpg", label: "Close-up lip finish", category: "Lips", note: "A close-up client result with proportion and detail retained." },
+  { src: "/images/dropbox/client-labelled/lip-0-7ml.jpg", label: "Natural lip enhancement", category: "Lips", note: "A real client lip result selected from the Injectox Dropbox set." },
   { src: "/images/dropbox/curated/result-treatment-detail.jpg", label: "Treatment detail", category: "Injectables", note: "Precision-led injectable treatment imagery from the clinic." },
   { src: "/images/dropbox/curated/result-skin-glow.jpg", label: "Skin glow result", category: "Skin", note: "A real skin treatment image from the clinic gallery." },
   { src: "/images/dropbox/curated/treatment-skin-booster.jpg", label: "Skin booster session", category: "Skin", note: "Hydration-focused skin treatment imagery." },
-  { src: "/images/dropbox/curated/treatment-microneedling.jpg", label: "Microneedling detail", category: "Skin", note: "Clinic treatment detail captured from a real skin session." },
+  { src: "/images/dropbox/client-labelled/lip-treatment.jpg", label: "Lip injection detail", category: "Lips", note: "A close treatment-room moment from a lip appointment." },
   { src: "/images/dropbox/curated/treatment-advanced-facial.jpg", label: "Advanced facial moment", category: "Skin", note: "A calm, treatment-room moment from the Injectox client set." },
   { src: "/images/dropbox/curated/clinic-treatment-room.jpg", label: "Treatment room", category: "Clinic", note: "The Injectox treatment environment, calm and minimal." },
   { src: "/images/dropbox/curated/treatment-laser-machine.jpg", label: "Laser technology", category: "Laser", note: "Laser equipment imagery for course-led hair removal content." },
@@ -383,16 +383,23 @@ export function formatPrice(value: number) {
 export function bookingImageFor(serviceName: string) {
   const name = serviceName.toLowerCase();
   if (name.includes("consultation")) return "/images/dropbox/client-labelled/consultation-fatima.jpg";
-  if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal.jpg";
+  if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal-main.jpg";
   if (name.includes("microneedling")) return "/images/dropbox/client-labelled/microneedling.jpg";
   if (name.includes("chemical peel") || name.includes("biorepeel")) return "/images/dropbox/client-labelled/chemical-peel.jpg";
   if (name.includes("clinicare")) return "/images/dropbox/client-labelled/clinicare-facial.jpg";
   if (name.includes("dermaplane")) return "/images/dropbox/client-labelled/dermaplane.jpg";
   if (name.includes("glass skin") || name.includes("full works") || name.includes("extraction")) return "/images/dropbox/client-labelled/glow-facial.jpg";
-  if (name.includes("skin booster") || name.includes("lumi") || name.includes("aqua") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("polynucleotide") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/lumi-pro-skin-booster.jpg";
+  if (name.includes("polynucleotide")) return "/images/dropbox/client-labelled/polynucleotides.jpg";
+  if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle.jpg";
+  if (name.includes("skin booster") || name.includes("lumi") || name.includes("aqua") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/skin-booster-main.jpg";
   if (name.includes("anti-wrinkle") || name.includes("one area") || name.includes("two areas") || name.includes("three areas") || name.includes("masseter") || name.includes("brow") || name.includes("bunny") || name.includes("lip flip") || name.includes("downturned")) return "/images/dropbox/client-labelled/anti-wrinkle.jpg";
-  if (name.includes("facial balancing") || name.includes("package") || name.includes("chin") || name.includes("jaw") || name.includes("cheek") || name.includes("tear trough")) return "/images/dropbox/client-labelled/facial-balancing.jpg";
-  if (name.includes("dissolv")) return "/images/dropbox/client-labelled/lip-result.jpg";
-  if (name.includes("lip") || name.includes("smile") || name.includes("marionette") || name.includes("nasolabial")) return "/images/dropbox/curated/treatment-russian-lips.jpg";
+  if (name.includes("tear trough")) return "/images/dropbox/client-labelled/tear-trough-filler.jpg";
+  if (name.includes("chin")) return "/images/dropbox/client-labelled/chin-filler.jpg";
+  if (name.includes("jaw")) return "/images/dropbox/client-labelled/jaw-filler.jpg";
+  if (name.includes("cheek")) return "/images/dropbox/client-labelled/cheek-filler.jpg";
+  if (name.includes("facial balancing") || name.includes("package")) return "/images/dropbox/client-labelled/facial-balancing.jpg";
+  if (name.includes("dissolv")) return "/images/dropbox/client-labelled/filler-dissolving.jpg";
+  if (name.includes("smile") || name.includes("marionette") || name.includes("nasolabial")) return "/images/dropbox/client-labelled/lip-1-1ml.jpg";
+  if (name.includes("lip")) return "/images/dropbox/client-labelled/lip-0-7ml.jpg";
   return "/images/dropbox/client-labelled/advanced-facial.jpg";
 }

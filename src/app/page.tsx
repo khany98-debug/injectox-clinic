@@ -34,7 +34,7 @@ export default function Home() {
         <div className="hero-grain" />
         <div className="hero-copy reference-hero-copy">
           <Reveal>
-            <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford &amp; Manchester</span></span>
+            <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
             <h1>Injectox Clinic</h1>
             <p>
               Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
@@ -103,21 +103,6 @@ export default function Home() {
         <TreatmentsGrid limit={6} />
       </section>
 
-      <section className="experience-section">
-        <div className="experience-copy">
-          <SectionIntro
-            eyebrow="The Injectox experience"
-            title={<>Precise work in a<br /><em>private clinic setting.</em></>}
-            copy="From consultation to aftercare, the experience is designed to feel clear, warm and confidence-led."
-          />
-          <TrustPanel />
-          <Button href="/book" variant="line">Book an appointment</Button>
-        </div>
-        <div className="experience-media">
-          <Image src="/images/social/0636b6d47d8d3e49.jpg" alt="Injectox Clinic treatment room moment" fill sizes="(max-width: 800px) 100vw, 46vw" />
-        </div>
-      </section>
-
       <section className="section shell home-about">
         <div className="home-about-media">
           <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima consulting with a client at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 44vw" />
@@ -129,10 +114,25 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="experience-section">
+        <div className="experience-copy">
+          <SectionIntro
+            eyebrow="The Injectox experience"
+            title={<>A calm space for<br /><em>considered care.</em></>}
+            copy="From consultation to aftercare, every appointment is designed to feel clear, warm and confidence-led."
+          />
+          <TrustPanel />
+          <Button href="/book" variant="line">Book an appointment</Button>
+        </div>
+        <div className="experience-media">
+          <Image src="/images/dropbox/curated/clinic-treatment-room.jpg" alt="Inside the private Injectox Clinic treatment room" fill sizes="(max-width: 800px) 100vw, 46vw" />
+        </div>
+      </section>
+
       <section className="clinic-location-band">
         <div className="shell clinic-location-grid">
           <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><p>Full arrival details and an add-to-calendar link are included with confirmed bookings.</p><Button href="/contact" variant="light">Directions &amp; contact</Button></div>
+          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><p>Full arrival details and an add-to-calendar link are included with confirmed bookings.</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
 
@@ -187,7 +187,7 @@ export default function Home() {
 
       <section className="booking-section reference-booking">
         <div className="booking-image">
-          <Image src="/images/social/d63e43704810bbe8.jpg" alt="Injectox Clinic facial harmony result" fill sizes="(max-width: 800px) 100vw, 42vw" />
+          <Image src="/images/dropbox/curated/result-lip-polish.jpg" alt="Injectox Clinic lip treatment result" fill sizes="(max-width: 800px) 100vw, 42vw" />
         </div>
         <div className="booking-copy">
           <SectionIntro

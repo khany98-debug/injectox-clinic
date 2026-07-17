@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { sendReviewNotification } from "@/lib/emails";
+import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 export async function POST(request: Request) {
   try {
+    const limiter = rateLimit(request, "reviews", 5, 15 * 60 * 1000);
+    if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
     if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid review request." }, { status: 415 });
     const body = await request.json() as { name?: string; treatment?: string; review?: string; website?: string; consent?: boolean };
     if (body.website) return NextResponse.json({ success: true });

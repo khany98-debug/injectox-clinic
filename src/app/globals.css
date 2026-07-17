@@ -48,8 +48,8 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
 .hero-film { position: absolute; inset: 0; overflow: hidden; background: #66584e; }
 .hero-poster, .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 52% center; }
 .hero-poster { opacity: 1; filter: saturate(.72) contrast(1.03) brightness(.88); transition: opacity .9s ease; }
-.hero-video { opacity: 0; filter: saturate(.78) contrast(1.04) brightness(.88); transition: opacity 1s ease; }
-.hero-film.is-ready .hero-video { opacity: 1; }
+.hero-video { opacity: 0; visibility: hidden; filter: saturate(.78) contrast(1.04) brightness(.88); transition: opacity 1s ease, visibility 0s linear 1s; }
+.hero-film.is-ready .hero-video { opacity: 1; visibility: visible; transition-delay: 0s; }
 .hero-film.is-ready .hero-poster { opacity: .06; }
 .hero-film-control { position: absolute; z-index: 5; top: 112px; right: 42px; display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; color: rgba(255,255,255,.86); border: 1px solid rgba(255,255,255,.4); background: rgba(25,18,15,.28); backdrop-filter: blur(10px); cursor: pointer; font-size: 7px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .hero-wash { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(27,18,14,.74) 0%, rgba(30,20,16,.46) 31%, rgba(20,14,10,.08) 62%, rgba(20,14,10,.18) 100%); }
@@ -2134,4 +2134,288 @@ body {
 .site-header.on-light-page,
 .site-header.is-scrolled {
   background: rgba(251, 245, 236, .95);
+}
+
+/* Final client polish: stronger contrast, softer rhythm and labelled imagery. */
+:root {
+  --ivory: #fffdf8;
+  --paper: #ffffff;
+  --stone: #eee6dc;
+  --taupe: #746960;
+  --champagne: #bd9657;
+  --bronze: #644b3e;
+  --espresso: #2b211e;
+  --rose: #641f2d;
+  --line: rgba(43, 33, 30, .15);
+}
+
+.site-header {
+  height: 82px;
+  background: rgba(43, 33, 30, .14);
+  backdrop-filter: blur(12px);
+}
+
+.site-header.on-light-page,
+.site-header.is-scrolled {
+  color: var(--espresso);
+  background: rgba(255, 253, 248, .96);
+  border-bottom-color: var(--line);
+  box-shadow: 0 8px 30px rgba(43, 33, 30, .08);
+}
+
+.header-book {
+  min-height: 40px;
+  padding: 0 7px 0 15px;
+  gap: 10px;
+  border: 1px solid rgba(255,255,255,.42);
+  border-radius: 999px;
+  background: rgba(43, 33, 30, .34);
+  backdrop-filter: blur(10px);
+}
+
+.header-book span {
+  width: 27px;
+  height: 27px;
+  border: 0;
+  background: rgba(255,255,255,.13);
+}
+
+.site-header.on-light-page .header-book,
+.site-header.is-scrolled .header-book {
+  color: var(--paper);
+  border-color: var(--rose);
+  background: var(--rose);
+}
+
+.site-header.on-light-page .header-book span,
+.site-header.is-scrolled .header-book span {
+  border: 0;
+  background: rgba(255,255,255,.16);
+}
+
+.reference-hero {
+  min-height: min(860px, 94svh);
+}
+
+.reference-hero .hero-video {
+  object-position: 58% 50%;
+  transform: scale(1.035);
+}
+
+.reference-hero .hero-wash {
+  background:
+    linear-gradient(90deg, rgba(28, 18, 15, .82) 0%, rgba(28, 18, 15, .52) 40%, rgba(28, 18, 15, .18) 100%),
+    linear-gradient(0deg, rgba(28, 18, 15, .7) 0%, transparent 48%);
+}
+
+.hero-location {
+  letter-spacing: .16em;
+}
+
+.hero-location > span + span::before {
+  content: " ";
+}
+
+.hero-poster { display: none !important; }
+
+.treatment-image {
+  min-height: 390px;
+  border-radius: 12px;
+}
+
+.treatment-image img {
+  opacity: 1 !important;
+  object-position: center center;
+}
+
+.home-about-copy > p {
+  margin: 6px 0 30px;
+  color: var(--taupe);
+}
+
+.home-about-copy .section-intro p {
+  margin-bottom: 0;
+}
+
+.experience-section {
+  padding-block: 95px;
+  background: #f1e9df;
+}
+
+.experience-media {
+  min-height: 580px;
+  border-radius: 12px;
+}
+
+.experience-media img {
+  object-position: center;
+}
+
+.clinic-location-band {
+  padding-block: 90px;
+  background: var(--rose);
+}
+
+.clinic-map {
+  width: 100%;
+  height: 180px;
+  margin-top: 26px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.28);
+  border-radius: 10px;
+  background: rgba(0,0,0,.18);
+}
+
+.clinic-map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  filter: grayscale(.8) sepia(.15) contrast(.94);
+}
+
+.stats-section {
+  padding-block: 92px;
+  background: #292a26;
+}
+
+.stat strong {
+  color: var(--paper);
+  font-size: clamp(64px, 7vw, 104px);
+}
+
+.stat span {
+  color: #e7c8b5;
+  font-weight: 700;
+}
+
+.result-film-section,
+.pricing-preview,
+.reference-reviews,
+.reference-faq {
+  padding-block: 98px;
+}
+
+.reference-booking {
+  background: #2b211e;
+}
+
+.final-cta {
+  min-height: 560px;
+  background: #3c2028;
+}
+
+.final-cta h2 em {
+  color: #edcbbb;
+}
+
+.concern-options {
+  padding-top: 30px;
+}
+
+.concern-options-head {
+  margin-bottom: 22px;
+}
+
+@media (max-width: 1050px) {
+  .reference-hero .hero-video {
+    object-position: 57% 50%;
+  }
+
+  .treatment-image {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header {
+    height: 74px;
+    background: rgba(43, 33, 30, .18);
+  }
+
+  .header-book {
+    min-height: 34px;
+    padding-left: 11px;
+    font-size: 8px;
+  }
+
+  .header-book span {
+    width: 24px;
+    height: 24px;
+  }
+
+  .reference-hero .hero-video {
+    object-position: 52% 50%;
+    transform: scale(1.02);
+  }
+
+  .hero-location {
+    font-size: 9.5px;
+    letter-spacing: .13em;
+  }
+
+  .hero-location > span {
+    white-space: nowrap;
+  }
+
+  .reference-hero-copy h1 {
+    font-size: clamp(64px, 18vw, 82px);
+  }
+
+  .treatment-image {
+    min-height: 0;
+    aspect-ratio: .78;
+    border-radius: 10px;
+  }
+
+  .home-about-copy > p {
+    margin-top: 8px;
+  }
+
+  .experience-section {
+    padding-block: 70px;
+  }
+
+  .experience-media {
+    min-height: 420px;
+  }
+
+  .clinic-location-band {
+    padding-block: 68px;
+  }
+
+  .clinic-map {
+    height: 165px;
+  }
+
+  .stats-section {
+    padding-block: 70px;
+  }
+
+  .stat strong {
+    font-size: 58px;
+  }
+
+  .result-film-section,
+  .pricing-preview,
+  .reference-reviews,
+  .reference-faq {
+    padding-block: 70px;
+  }
+
+  .mobile-review-carousel {
+    animation-duration: 25s;
+  }
+
+  .concern-options {
+    padding-top: 10px;
+    padding-bottom: 70px;
+  }
+
+  .concern-options-head h2 {
+    font-size: 35px;
+  }
+
+  .concern-options-head > p {
+    max-width: 330px;
+  }
 }

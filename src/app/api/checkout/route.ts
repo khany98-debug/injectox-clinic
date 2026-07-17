@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { pricing } from "@/lib/content";
 import { sendBookingEmails } from "@/lib/emails";
+import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 
 type CheckoutBody = { service?: string; date?: string; time?: string; name?: string; email?: string; phone?: string; notes?: string };
 
@@ -21,6 +22,8 @@ function isValidAppointmentDate(value: string) {
 
 export async function POST(request: Request) {
   try {
+    const limiter = rateLimit(request, "checkout", 12, 10 * 60 * 1000);
+    if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
     if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid booking request." }, { status: 415 });
     const body = await request.json() as CheckoutBody;
     const serviceName = safe(body.service, 120);
