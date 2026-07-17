@@ -61,7 +61,7 @@ export const treatments: Treatment[] = [
       { q: "How much product is used?", a: "The current Russian Lip appointment listed on Faces is 0.7ml. The right plan is confirmed during your assessment." },
       { q: "How long do results last?", a: "Longevity varies with metabolism, product and lifestyle. Your practitioner will explain realistic expectations at consultation." },
     ],
-    image: "/images/dropbox/client-labelled/lip-0-7ml.jpg",
+    image: "/images/dropbox/client-labelled/lip-1-1ml.jpg",
     relatedConcerns: ["thin-lips", "facial-imbalance"],
   },
   {
@@ -391,7 +391,8 @@ export function bookingImageFor(serviceName: string) {
   if (name.includes("glass skin") || name.includes("full works") || name.includes("extraction")) return "/images/dropbox/client-labelled/glow-facial.jpg";
   if (name.includes("polynucleotide")) return "/images/dropbox/client-labelled/polynucleotides.jpg";
   if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle.jpg";
-  if (name.includes("skin booster") || name.includes("lumi") || name.includes("aqua") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/skin-booster-main.jpg";
+  if (name.includes("lumi pro") || name.includes("aqua shine")) return "/images/dropbox/client-labelled/lumi-pro-skin-booster-product.jpg";
+  if (name.includes("skin booster") || name.includes("lumi") || name.includes("profhilo") || name.includes("hyal") || name.includes("baby glow") || name.includes("ami eyes")) return "/images/dropbox/client-labelled/skin-booster-main.jpg";
   if (name.includes("anti-wrinkle") || name.includes("one area") || name.includes("two areas") || name.includes("three areas") || name.includes("masseter") || name.includes("brow") || name.includes("bunny") || name.includes("lip flip") || name.includes("downturned")) return "/images/dropbox/client-labelled/anti-wrinkle.jpg";
   if (name.includes("tear trough")) return "/images/dropbox/client-labelled/tear-trough-filler.jpg";
   if (name.includes("chin")) return "/images/dropbox/client-labelled/chin-filler.jpg";

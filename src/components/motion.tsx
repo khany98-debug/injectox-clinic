@@ -44,12 +44,13 @@ export function CountUp({ value, suffix = "" }: { value: number; suffix?: string
       const eased = 1 - Math.pow(1 - p, 4);
       setDisplay(Math.round(value * eased));
       if (p < 1) frame = requestAnimationFrame(tick);
+      else setDisplay(value);
     };
     frame = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(frame);
   }, [inView, reduce, value]);
 
-  return <span ref={ref}>{(reduce ? value : display).toLocaleString("en-GB")}{suffix}</span>;
+  return <span ref={ref} aria-label={`${value.toLocaleString("en-GB")}${suffix}`}>{(reduce ? value : display).toLocaleString("en-GB")}{suffix}</span>;
 }
 
 export function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { booking } from "@/lib/content";
@@ -44,7 +44,10 @@ export function SiteHeader() {
             <Link key={href} href={href} data-active={pathname.startsWith(href)}>{label}</Link>
           ))}
         </nav>
-        <Link className="header-book" href={booking.treatment}>Book <span>↗</span></Link>
+        <Link className="header-book" href={booking.treatment}>
+          <span className="header-book-label">Book now</span>
+          <span className="header-book-icon" aria-hidden="true"><ArrowUpRight size={14} strokeWidth={1.7} /></span>
+        </Link>
         <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"}>
           {open ? <X /> : <Menu />}
         </button>

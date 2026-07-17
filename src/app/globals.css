@@ -2419,3 +2419,275 @@ body {
     max-width: 330px;
   }
 }
+
+/* Client typography and clarity pass — inspired by Injectox's social artwork. */
+h1,
+h2 {
+  font-family: var(--font-display), sans-serif;
+  font-weight: 500;
+  letter-spacing: -.055em;
+}
+
+h1 em,
+h2 em,
+.footer-strap em {
+  font-family: var(--font-display), sans-serif;
+  font-style: italic;
+  font-weight: 300;
+  letter-spacing: -.06em;
+}
+
+.wordmark-mark,
+.footer-monogram,
+.admin-login-mark {
+  font-family: var(--font-editorial), serif;
+}
+
+.site-header .header-book {
+  min-width: 120px;
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 1fr 40px;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+  color: var(--paper);
+  border: 1px solid rgba(255, 255, 255, .58);
+  border-radius: 2px;
+  background: rgba(24, 17, 14, .24);
+  box-shadow: 0 10px 28px rgba(20, 13, 11, .08);
+  backdrop-filter: blur(12px);
+}
+
+.site-header .header-book .header-book-label {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  white-space: nowrap;
+}
+
+.site-header .header-book .header-book-icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-left: 1px solid rgba(255, 255, 255, .34);
+  border-radius: 0;
+  background: rgba(255, 255, 255, .08);
+  transition: color .3s ease, background .3s ease;
+}
+
+.site-header .header-book:hover .header-book-icon {
+  color: var(--espresso);
+  background: var(--paper);
+}
+
+.site-header.on-light-page .header-book,
+.site-header.is-scrolled .header-book {
+  color: var(--rose);
+  border-color: rgba(100, 31, 45, .48);
+  background: rgba(255, 255, 255, .72);
+}
+
+.site-header.on-light-page .header-book .header-book-icon,
+.site-header.is-scrolled .header-book .header-book-icon {
+  border-left-color: rgba(100, 31, 45, .25);
+  background: rgba(100, 31, 45, .06);
+}
+
+.site-header.on-light-page .header-book:hover .header-book-icon,
+.site-header.is-scrolled .header-book:hover .header-book-icon {
+  color: var(--paper);
+  background: var(--rose);
+}
+
+.stats-section .stats-grid {
+  grid-template-columns: minmax(270px, 1.15fr) repeat(3, minmax(170px, .85fr));
+  gap: 0;
+}
+
+.stats-section .stat {
+  min-width: 0;
+  min-height: 250px;
+  padding: 34px 26px;
+}
+
+.stats-section .stat strong {
+  display: block;
+  color: #fffaf3;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(68px, 6vw, 104px);
+  font-weight: 500;
+  letter-spacing: -.07em;
+  line-height: .88;
+  font-variant-numeric: tabular-nums;
+}
+
+.stats-section .stat strong > span {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: none;
+}
+
+.stats-section .stat > span {
+  margin-top: 28px;
+  color: #f0d6c7;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.stats-heading p {
+  color: rgba(255, 250, 243, .68);
+  font-size: 12px;
+}
+
+.reference-booking .booking-image img {
+  object-position: 52% 38%;
+}
+
+.story-copy h2 {
+  font-size: clamp(50px, 5vw, 68px);
+  line-height: .98;
+}
+
+.story-copy p {
+  line-height: 1.75;
+}
+
+.site-footer {
+  color: #fff8ef;
+  background:
+    radial-gradient(circle at 10% 6%, rgba(189, 150, 87, .1), transparent 25%),
+    #17110f;
+}
+
+.footer-strap {
+  color: #fff8ef;
+  line-height: .98;
+}
+
+.footer-strap em {
+  color: #e5b8bd;
+}
+
+.footer-links b {
+  color: #cdb9aa;
+}
+
+.footer-links a {
+  color: rgba(255, 248, 239, .84);
+}
+
+.footer-location,
+.footer-bottom {
+  color: rgba(255, 248, 239, .62);
+}
+
+.footer-bottom a {
+  color: rgba(255, 248, 239, .82);
+}
+
+@media (max-width: 1050px) {
+  .stats-section .stats-grid {
+    grid-template-columns: minmax(220px, 1.05fr) repeat(3, minmax(130px, .8fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .site-header .header-book {
+    min-width: 91px;
+    min-height: 36px;
+    grid-template-columns: 1fr 32px;
+    font-size: 8px;
+  }
+
+  .site-header .header-book .header-book-label {
+    padding-inline: 11px 8px;
+  }
+
+  .site-header .header-book .header-book-icon {
+    width: 32px;
+    height: 34px;
+  }
+
+  .site-header .header-book .header-book-icon svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .stats-section .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-section .stats-heading {
+    grid-column: 1;
+  }
+
+  .stats-section .stat {
+    grid-column: 1;
+    min-height: 158px;
+    padding: 24px 18px;
+    border-left: 0;
+  }
+
+  .stats-section .stat:nth-child(4) {
+    grid-column: 1;
+  }
+
+  .stats-section .stat strong {
+    font-size: clamp(64px, 19vw, 82px);
+  }
+
+  .stats-section .stat > span {
+    margin-top: 22px;
+    font-size: 9px;
+  }
+
+  .reference-booking .booking-image {
+    min-height: 470px;
+  }
+
+  .reference-booking .booking-image img {
+    object-position: 52% 34%;
+  }
+
+  .story-grid {
+    gap: 30px;
+    padding-top: 34px;
+  }
+
+  .story-copy h2 {
+    font-size: clamp(42px, 11.7vw, 50px);
+    line-height: 1.02;
+    letter-spacing: -.055em;
+  }
+
+  .story-copy p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .story-quote {
+    margin-block: 34px;
+    padding: 26px 22px;
+    font-size: 24px;
+  }
+
+  .site-footer {
+    padding-top: 68px;
+  }
+
+  .footer-strap {
+    font-size: clamp(42px, 12vw, 56px);
+  }
+}

@@ -187,7 +187,7 @@ export default function Home() {
 
       <section className="booking-section reference-booking">
         <div className="booking-image">
-          <Image src="/images/dropbox/curated/result-lip-polish.jpg" alt="Injectox Clinic lip treatment result" fill sizes="(max-width: 800px) 100vw, 42vw" />
+          <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima planning a treatment with an Injectox Clinic client" fill sizes="(max-width: 800px) 100vw, 42vw" />
         </div>
         <div className="booking-copy">
           <SectionIntro
