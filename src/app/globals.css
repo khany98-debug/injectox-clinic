@@ -2932,14 +2932,18 @@ h2 em,
   line-height: .82;
 }
 
-/* Warm, reassuring booking journey with signature wine accents. */
+/* Cool beige booking journey with signature wine accents. */
 .reference-booking {
-  color: #422f27;
-  background: #eee3d4;
+  color: #3f3028;
+  background: #d9cbbd;
+}
+
+.reference-booking .booking-copy {
+  background: #d9cbbd;
 }
 
 .reference-booking .booking-image::after {
-  background: linear-gradient(90deg, transparent 68%, #eee3d4 100%);
+  background: linear-gradient(90deg, transparent 68%, #d9cbbd 100%);
 }
 
 .reference-booking .section-intro .eyebrow,
@@ -2949,7 +2953,7 @@ h2 em,
 
 .reference-booking .section-intro h2,
 .reference-booking .booking-steps h3 {
-  color: #422f27;
+  color: #3f3028;
 }
 
 .reference-booking .section-intro h2 em {
@@ -2958,21 +2962,21 @@ h2 em,
 
 .reference-booking .booking-copy .section-intro p,
 .reference-booking .booking-steps p {
-  color: rgba(66, 47, 39, .72);
+  color: rgba(63, 48, 40, .74);
 }
 
 .reference-booking .booking-steps {
-  border-top-color: rgba(66, 47, 39, .2);
+  border-top-color: rgba(63, 48, 40, .22);
 }
 
 .reference-booking .booking-steps > div {
-  border-bottom-color: rgba(66, 47, 39, .2);
+  border-bottom-color: rgba(63, 48, 40, .22);
 }
 
 .reference-booking .button-dark {
   color: #fffaf3;
-  border-color: #422f27;
-  background: #422f27;
+  border-color: #3f3028;
+  background: #3f3028;
 }
 
 .reference-booking .button-dark:hover {
@@ -2981,13 +2985,13 @@ h2 em,
 }
 
 .reference-booking .button-line {
-  color: #422f27;
-  border-color: rgba(66, 47, 39, .48);
+  color: #3f3028;
+  border-color: rgba(63, 48, 40, .48);
 }
 
 .reference-booking .button-line:hover {
   color: #fffaf3;
-  background: #422f27;
+  background: #3f3028;
 }
 
 @media (max-width: 760px) {
@@ -2999,6 +3003,6 @@ h2 em,
   }
 
   .reference-booking .booking-image::after {
-    background: linear-gradient(0deg, #eee3d4 0%, rgba(238, 227, 212, .9) 10%, transparent 42%);
+    background: linear-gradient(0deg, #d9cbbd 0%, rgba(217, 203, 189, .92) 12%, transparent 46%);
   }
 }
