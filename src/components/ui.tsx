@@ -75,7 +75,7 @@ export function StatsSection() {
       <div className="shell stats-grid">
         <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2><p>Experience across Fatima’s complete client history and verified feedback collected across the clinic’s booking platforms.</p></Reveal>
         <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
-        <div className="stat"><strong><CountUp value={clinic.verifiedReviews} /></strong><span>Verified reviews</span></div>
+        <div className="stat"><strong><CountUp value={clinic.verifiedReviews} suffix="+" /></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
       </div>
     </section>

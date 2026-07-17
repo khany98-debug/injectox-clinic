@@ -2691,3 +2691,26 @@ h2 em,
     font-size: clamp(42px, 12vw, 56px);
   }
 }
+
+/* Final contrast refinement: deeper wine accents and safe hero title spacing. */
+:root {
+  --rose: #521624;
+}
+
+.reference-hero-copy h1 {
+  line-height: .92;
+}
+
+.sticky-book {
+  background: rgba(82, 22, 36, .97);
+}
+
+.final-cta {
+  background: #2f171e;
+}
+
+@media (max-width: 760px) {
+  .reference-hero-copy h1 {
+    line-height: .95;
+  }
+}
