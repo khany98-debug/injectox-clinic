@@ -2919,6 +2919,206 @@ h2 em,
   color: #e5b8bd;
 }
 
+/* Home art direction: a more editorial first impression without changing the brand system. */
+.reference-hero {
+  isolation: isolate;
+  min-height: min(940px, 100svh);
+  background: #1b120f;
+}
+
+.reference-hero::before {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  inset: 92px 42px 38px;
+  pointer-events: none;
+  border: 1px solid rgba(239, 219, 198, .18);
+  border-bottom: 0;
+}
+
+.reference-hero::after {
+  content: "";
+  position: absolute;
+  z-index: 2;
+  top: 92px;
+  bottom: 38px;
+  left: max(40px, calc((100vw - 1320px) / 2));
+  width: 1px;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0), rgba(232,207,196,.34) 18%, rgba(255,255,255,0));
+}
+
+.reference-hero .hero-video {
+  filter: saturate(.72) contrast(1.08) brightness(.78);
+  transform: scale(1.02);
+}
+
+.reference-hero .hero-wash {
+  background:
+    radial-gradient(circle at 76% 31%, rgba(181, 118, 90, .13), transparent 28%),
+    linear-gradient(90deg, rgba(23, 14, 12, .93) 0%, rgba(28, 17, 14, .74) 35%, rgba(22, 14, 11, .25) 67%, rgba(22, 14, 11, .42) 100%),
+    linear-gradient(0deg, rgba(18, 11, 9, .78) 0%, transparent 52%);
+}
+
+.reference-hero-copy {
+  top: 50%;
+  max-width: 650px;
+}
+
+.reference-hero-copy .eyebrow {
+  margin-bottom: 30px;
+  color: rgba(255, 247, 238, .88);
+}
+
+.reference-hero-copy h1 {
+  max-width: 590px;
+  margin-bottom: 28px;
+  font-size: clamp(86px, 8.1vw, 137px);
+  line-height: .78;
+  letter-spacing: -.052em;
+  text-shadow: 0 16px 42px rgba(0,0,0,.18);
+}
+
+.reference-hero-copy h1 span:last-child {
+  padding-left: .055em;
+}
+
+.reference-hero-copy p {
+  max-width: 500px;
+  margin-bottom: 31px;
+  color: rgba(255, 250, 244, .77);
+  font-size: 15px;
+  line-height: 1.72;
+}
+
+.hero-proof {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px 19px;
+  margin-top: 30px;
+  color: rgba(255, 247, 239, .68);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+
+.hero-proof span { display: inline-flex; align-items: center; gap: 8px; }
+.hero-proof span::before { content: ""; width: 4px; height: 4px; border: 1px solid #e9c8b8; border-radius: 50%; }
+
+.hero-monogram {
+  position: absolute;
+  z-index: 3;
+  right: max(52px, calc((100vw - 1420px) / 2));
+  top: 183px;
+  display: grid;
+  place-items: center;
+  width: 118px;
+  height: 118px;
+  color: rgba(245, 222, 195, .88);
+  border: 1px solid rgba(239, 211, 179, .48);
+  border-radius: 50%;
+  background: rgba(30, 18, 14, .16);
+  box-shadow: inset 0 0 0 8px rgba(255,255,255,.025);
+  backdrop-filter: blur(8px);
+}
+
+.hero-monogram span { font-family: var(--font-display); font-size: 54px; font-style: italic; line-height: 1; }
+.hero-monogram i { position: absolute; bottom: -31px; color: rgba(255,247,239,.65); font-size: 7px; font-style: normal; font-weight: 700; letter-spacing: .16em; line-height: 1.65; text-align: center; text-transform: uppercase; }
+
+.reference-hero-panel {
+  right: max(42px, calc((100vw - 1420px) / 2));
+  bottom: 92px;
+  width: min(400px, 28vw);
+  padding: 30px 34px 29px;
+  border: 1px solid rgba(239, 219, 198, .25);
+  background: linear-gradient(135deg, rgba(42, 25, 20, .7), rgba(20, 13, 11, .57));
+  box-shadow: 0 28px 70px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.05);
+  backdrop-filter: blur(15px);
+}
+
+.reference-hero-panel::before {
+  content: "Signature approach";
+  display: block;
+  margin-bottom: 17px;
+  color: #ebc9b8;
+  font-size: 7px;
+  font-weight: 700;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+}
+
+.reference-hero-panel span { display: none; }
+.reference-hero-panel b { margin: 0 0 23px; font-size: clamp(23px, 2vw, 30px); line-height: 1.05; }
+
+.reference-trust {
+  margin-top: -49px;
+  border-color: rgba(112, 74, 56, .18);
+  background: linear-gradient(100deg, #fffdf8, #f4ebe1);
+  box-shadow: 0 28px 80px rgba(49, 29, 21, .16);
+}
+
+.reference-trust > div { min-height: 90px; }
+.reference-trust > div::before { content: ""; width: 7px; height: 7px; border: 1px solid var(--rose); border-radius: 50%; box-shadow: inset 0 0 0 2px #f5e6d8; }
+.reference-trust svg { display: none; }
+
+.why-section {
+  position: relative;
+  padding-top: 135px;
+  background: radial-gradient(circle at 90% 5%, rgba(180, 139, 104, .12), transparent 29%);
+}
+
+.reason-grid { gap: 18px; }
+.reason-card {
+  position: relative;
+  min-height: 270px;
+  padding: 36px;
+  overflow: hidden;
+  border-radius: 18px;
+  border-color: rgba(86, 54, 39, .18);
+  background: linear-gradient(145deg, rgba(255,255,255,.8), rgba(247, 239, 229, .65));
+  box-shadow: 0 18px 48px rgba(61, 37, 26, .06);
+  transition: transform .45s cubic-bezier(.22,1,.36,1), box-shadow .45s ease, background .45s ease;
+}
+
+.reason-card::before { content: ""; position: absolute; inset: auto -30px -65px auto; width: 150px; height: 150px; border: 1px solid rgba(134, 60, 73, .16); border-radius: 50%; }
+.reason-card::after { content: ""; position: absolute; right: 22px; bottom: 21px; width: 23px; height: 1px; background: var(--rose); transition: width .35s ease; }
+.reason-card:hover { transform: translateY(-7px); border-color: rgba(82, 22, 36, .4); background: #fffdf9; box-shadow: 0 28px 64px rgba(61, 37, 26, .14); }
+.reason-card:hover::after { width: 51px; }
+.reason-card h3 { margin-top: 39px; }
+
+.reference-concerns {
+  position: relative;
+  padding-top: 84px;
+  background: linear-gradient(180deg, rgba(247,242,235,0) 0%, rgba(255,253,249,.82) 100%);
+}
+
+.reference-concerns .split-heading { margin-bottom: 48px; }
+
+@media (max-width: 1050px) {
+  .reference-hero::before { inset-inline: 25px; }
+  .reference-hero::after { left: 25px; }
+  .hero-monogram { right: 31px; }
+  .reference-hero-panel { right: 31px; }
+}
+
+@media (max-width: 760px) {
+  .reference-hero { min-height: 830px; }
+  .reference-hero::before, .reference-hero::after, .hero-monogram, .reference-hero-panel { display: none; }
+  .reference-hero-copy { top: auto; bottom: 74px; left: 23px; right: 23px; max-width: none; transform: none; }
+  .reference-hero-copy .eyebrow { margin-bottom: 24px; }
+  .reference-hero-copy h1 { max-width: 440px; margin-bottom: 23px; font-size: clamp(67px, 19vw, 86px); line-height: .81; }
+  .reference-hero-copy p { max-width: 430px; margin-bottom: 23px; font-size: 13px; line-height: 1.62; }
+  .hero-proof { gap: 7px 12px; margin-top: 20px; font-size: 7px; letter-spacing: .1em; }
+  .hero-proof span:nth-child(3) { display: none; }
+  .reference-trust { margin-top: 0; border-radius: 0; box-shadow: none; }
+  .reference-trust > div { min-height: 78px; }
+  .why-section { padding-top: 70px; }
+  .reason-card { min-height: 212px; padding: 27px; border-radius: 15px; }
+  .reason-card h3 { margin-top: 28px; font-size: 27px; }
+  .reference-concerns { padding-top: 62px; }
+}
+
 /* Concern markers use a single quiet, recognisable visual language. */
 .concern-card .concern-card-kicker {
   display: grid;
@@ -2958,34 +3158,25 @@ h2 em,
   }
 }
 
-/* Final visual calibration: shared temporary wall-mark recreation. */
+/* Final visual calibration: shared supplied logo artwork. */
 .clinic-logo {
   display: inline-flex;
-  flex-direction: column;
-  align-items: flex-start;
-  color: currentColor;
-  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  width: clamp(128px, 10vw, 178px);
+  line-height: 0;
 }
 
-.clinic-logo-name {
-  font-family: var(--font-editorial), Georgia, serif;
-  font-size: 19px;
-  font-style: italic;
-  font-weight: 500;
-  letter-spacing: -.045em;
-  line-height: .76;
+.clinic-logo-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
-.clinic-logo-clinic {
-  margin-top: 5px;
-  font-family: var(--font-sans), sans-serif;
-  font-size: 7px;
-  font-weight: 800;
-  letter-spacing: .31em;
-  line-height: 1;
+.site-footer .clinic-logo {
+  width: min(230px, 58vw);
 }
-
-.site-footer .clinic-logo { color: var(--champagne); }
 
 /* Keep desktop film cinematic without scaling or distorting its source. */
 .reference-hero .hero-video {
@@ -3046,8 +3237,8 @@ h2 em,
 }
 
 @media (max-width: 760px) {
-  .clinic-logo-name { font-size: 17px; }
-  .clinic-logo-clinic { margin-top: 4px; font-size: 6px; }
+  .site-header .clinic-logo { width: 112px; }
+  .site-footer .clinic-logo { width: 190px; }
 
   .reference-hero .hero-video {
     transform: none;

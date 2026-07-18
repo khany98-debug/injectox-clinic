@@ -37,7 +37,7 @@ export function SiteHeader() {
     <>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${onHomeHero ? "on-hero" : "on-light-page"} ${open ? "menu-open" : ""}`}>
         <Link className="wordmark" href="/" aria-label="Injectox Clinic home" onClick={() => setOpen(false)}>
-          <ClinicLogo />
+          <ClinicLogo priority />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {nav.map(([label, href]) => (

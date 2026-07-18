@@ -32,6 +32,7 @@ export default function Home() {
         <HeroFilm />
         <div className="hero-wash" />
         <div className="hero-grain" />
+        <div className="hero-monogram" aria-hidden="true"><span>I</span><i>Refined care<br />in Salford</i></div>
         <div className="hero-copy reference-hero-copy">
           <Reveal>
             <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
@@ -43,6 +44,11 @@ export default function Home() {
             <div className="button-row">
               <Button href={booking.treatment}>Book now</Button>
               <Button href="/treatments" variant="line">View treatments</Button>
+            </div>
+            <div className="hero-proof" aria-label="Injectox Clinic approach">
+              <span>Facial harmony</span>
+              <span>Natural by design</span>
+              <span>Consultation-led</span>
             </div>
           </Reveal>
         </div>

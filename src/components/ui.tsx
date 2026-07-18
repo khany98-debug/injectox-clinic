@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
+import { LoopVideo } from "@/components/loop-video";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
@@ -128,7 +129,7 @@ export function ResultFilmPanel() {
       <div className="result-film-grid">
         {resultFilms.map((film, index) => (
           <div className="result-film-card" key={film.src}>
-            <video src={film.src} poster={film.poster} autoPlay muted loop playsInline preload={index === 0 ? "metadata" : "none"} />
+            <LoopVideo src={film.src} poster={film.poster} preload={index === 0 ? "auto" : "metadata"} />
             <span><small>{String(index + 1).padStart(2, "0")}</small>{film.label}</span>
           </div>
         ))}

@@ -1,13 +1,22 @@
+import Image from "next/image";
+
 type ClinicLogoProps = {
   className?: string;
+  priority?: boolean;
 };
 
-/** Temporary, clean recreation of the clinic wall mark until official artwork is supplied. */
-export function ClinicLogo({ className = "" }: ClinicLogoProps) {
+export function ClinicLogo({ className = "", priority = false }: ClinicLogoProps) {
   return (
     <span className={`clinic-logo ${className}`} aria-hidden="true">
-      <span className="clinic-logo-name">Injectox</span>
-      <span className="clinic-logo-clinic">CLINIC</span>
+      <Image
+        src="/images/brand/injectox-clinic-logo.png"
+        alt=""
+        width={708}
+        height={245}
+        priority={priority}
+        sizes="(max-width: 760px) 112px, 180px"
+        className="clinic-logo-image"
+      />
     </span>
   );
 }
