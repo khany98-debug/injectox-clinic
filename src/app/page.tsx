@@ -32,7 +32,6 @@ export default function Home() {
         <HeroFilm />
         <div className="hero-wash" />
         <div className="hero-grain" />
-        <div className="hero-monogram" aria-hidden="true"><span>I</span><i>Refined care<br />in Salford</i></div>
         <div className="hero-copy reference-hero-copy">
           <Reveal>
             <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>

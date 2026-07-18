@@ -54,7 +54,6 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
 .hero-video { opacity: 0; visibility: hidden; filter: saturate(.78) contrast(1.04) brightness(.88); transition: opacity 1s ease, visibility 0s linear 1s; }
 .hero-film.is-ready .hero-video { opacity: 1; visibility: visible; transition-delay: 0s; }
 .hero-film.is-ready .hero-poster { opacity: .06; }
-.hero-film-control { position: absolute; z-index: 5; top: 112px; right: 42px; display: inline-flex; align-items: center; gap: 7px; padding: 8px 10px; color: rgba(255,255,255,.86); border: 1px solid rgba(255,255,255,.4); background: rgba(25,18,15,.28); backdrop-filter: blur(10px); cursor: pointer; font-size: 7px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .hero-wash { position: absolute; z-index: 1; inset: 0; pointer-events: none; background: linear-gradient(90deg, rgba(27,18,14,.74) 0%, rgba(30,20,16,.46) 31%, rgba(20,14,10,.08) 62%, rgba(20,14,10,.18) 100%); }
 .hero-grain { position: absolute; z-index: 2; inset: 0; opacity: .14; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.25'/%3E%3C/svg%3E"); }
 .hero-copy { position: absolute; z-index: 3; top: 51%; left: max(40px, calc((100vw - 1320px) / 2)); transform: translateY(-47%); max-width: 680px; }
@@ -482,8 +481,6 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
   .hero-image { object-position: 62% center; }
   .hero-video { object-position: 51% center; }
   .hero-poster { object-position: 51% center; }
-  .hero-film-control { top: 90px; right: 17px; padding: 7px 8px; }
-  .hero-film-control span { display: none; }
   .hero-wash { background: linear-gradient(0deg, rgba(23,16,13,.82) 0%, rgba(23,16,13,.35) 65%, rgba(23,16,13,.22)); }
   .hero-copy { top: auto; bottom: 88px; left: 20px; right: 20px; transform: none; }
   .hero-copy h1 { font-size: clamp(58px, 19vw, 78px); line-height: .85; }
@@ -3006,26 +3003,6 @@ h2 em,
 .hero-proof span { display: inline-flex; align-items: center; gap: 8px; }
 .hero-proof span::before { content: ""; width: 4px; height: 4px; border: 1px solid #e9c8b8; border-radius: 50%; }
 
-.hero-monogram {
-  position: absolute;
-  z-index: 3;
-  right: max(52px, calc((100vw - 1420px) / 2));
-  top: 183px;
-  display: grid;
-  place-items: center;
-  width: 118px;
-  height: 118px;
-  color: rgba(245, 222, 195, .88);
-  border: 1px solid rgba(239, 211, 179, .48);
-  border-radius: 50%;
-  background: rgba(30, 18, 14, .16);
-  box-shadow: inset 0 0 0 8px rgba(255,255,255,.025);
-  backdrop-filter: blur(8px);
-}
-
-.hero-monogram span { font-family: var(--font-display); font-size: 54px; font-style: italic; line-height: 1; }
-.hero-monogram i { position: absolute; bottom: -31px; color: rgba(255,247,239,.65); font-size: 7px; font-style: normal; font-weight: 700; letter-spacing: .16em; line-height: 1.65; text-align: center; text-transform: uppercase; }
-
 .reference-hero-panel {
   right: max(42px, calc((100vw - 1420px) / 2));
   bottom: 92px;
@@ -3098,13 +3075,12 @@ h2 em,
 @media (max-width: 1050px) {
   .reference-hero::before { inset-inline: 25px; }
   .reference-hero::after { left: 25px; }
-  .hero-monogram { right: 31px; }
   .reference-hero-panel { right: 31px; }
 }
 
 @media (max-width: 760px) {
   .reference-hero { min-height: 830px; }
-  .reference-hero::before, .reference-hero::after, .hero-monogram, .reference-hero-panel { display: none; }
+  .reference-hero::before, .reference-hero::after, .reference-hero-panel { display: none; }
   .reference-hero-copy { top: auto; bottom: 74px; left: 23px; right: 23px; max-width: none; transform: none; }
   .reference-hero-copy .eyebrow { margin-bottom: 24px; }
   .reference-hero-copy h1 { max-width: 440px; margin-bottom: 23px; font-size: clamp(67px, 19vw, 86px); line-height: .81; }
@@ -3188,16 +3164,45 @@ h2 em,
   line-height: 1;
 }
 
-.site-header .clinic-logo-name { font-size: 25px; }
+.site-header .clinic-logo-name { font-size: 29px; font-style: normal; }
 .site-footer .clinic-logo { color: var(--champagne); }
 .site-footer .clinic-logo-name { font-size: 40px; }
 .site-footer .clinic-logo-clinic { margin-top: 8px; font-size: 11px; letter-spacing: .34em; }
 
-/* Keep desktop film cinematic without scaling or distorting its source. */
+/* Desktop film uses a contained foreground with a softly blurred bleed behind it.
+   This keeps the original portrait composition intact on wide screens. */
 .reference-hero .hero-video {
   transform: none;
   object-position: center center;
   filter: saturate(.78) contrast(1.02) brightness(.82);
+}
+
+.reference-hero .hero-video-backdrop {
+  display: none;
+}
+
+@media (min-width: 761px) {
+  .reference-hero .hero-video-backdrop {
+    display: block;
+    z-index: 0;
+    object-fit: cover;
+    transform: scale(1.08);
+    filter: blur(28px) saturate(.68) contrast(1.04) brightness(.5);
+    opacity: .76;
+  }
+
+  .reference-hero .hero-video-main {
+    z-index: 1;
+    object-fit: contain;
+    object-position: 68% center;
+    filter: saturate(.82) contrast(1.04) brightness(.88);
+  }
+
+  .reference-hero .hero-wash {
+    background:
+      linear-gradient(90deg, rgba(23, 14, 12, .96) 0%, rgba(28, 17, 14, .83) 31%, rgba(22, 14, 11, .32) 58%, rgba(22, 14, 11, .2) 77%, rgba(22, 14, 11, .4) 100%),
+      linear-gradient(0deg, rgba(18, 11, 9, .8) 0%, transparent 52%);
+  }
 }
 
 .reference-hero-copy h1 {
@@ -3206,10 +3211,11 @@ h2 em,
   font-style: italic;
   font-weight: 500;
   letter-spacing: -.035em;
-  line-height: .91;
+  line-height: .86;
 }
 
 .reference-hero-copy h1 span { display: block; }
+.reference-hero-copy h1 span + span { margin-top: .1em; }
 
 /* Match the rounded card language used elsewhere without changing trust content. */
 .reference-trust {
@@ -3252,20 +3258,26 @@ h2 em,
 }
 
 @media (max-width: 760px) {
-  .site-header .clinic-logo-name { font-size: 27px; }
+  .site-header .clinic-logo-name { font-size: 31px; }
   .site-footer .clinic-logo-name { font-size: 34px; }
   .site-footer .clinic-logo-clinic { margin-top: 7px; font-size: 9.5px; }
 
-  .reference-hero .hero-video {
+  .reference-hero .hero-video-backdrop {
+    display: none;
+  }
+
+  .reference-hero .hero-video-main {
     transform: none;
     object-position: 52% center;
   }
 
   .reference-hero-copy h1 {
     font-size: clamp(68px, 18vw, 82px);
-    line-height: .92;
+    line-height: .87;
     letter-spacing: -.03em;
   }
+
+  .reference-hero-copy h1 span + span { margin-top: .1em; }
 
   .reference-trust {
     gap: 8px;

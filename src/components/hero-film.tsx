@@ -1,82 +1,85 @@
 "use client";
 
-import { Pause, Play } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
 const filmSrc = "/media/dropbox/injectox-client-hero.mp4";
 
 export function HeroFilm() {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const userPaused = useRef(false);
+  const mainVideoRef = useRef<HTMLVideoElement>(null);
+  const backdropVideoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
-  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
+    const mainVideo = mainVideoRef.current;
+    const backdropVideo = backdropVideoRef.current;
+    if (!mainVideo || !backdropVideo) return;
 
-    video.muted = true;
-    video.defaultMuted = true;
-    video.loop = true;
-    video.setAttribute("muted", "");
-    video.setAttribute("playsinline", "");
+    const videos = [mainVideo, backdropVideo];
+
+    videos.forEach((video) => {
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+    });
 
     const attemptPlayback = () => {
-      if (userPaused.current || document.hidden) return;
-      const promise = video.play();
-      if (promise) promise.then(handlePlaying).catch(() => setPaused(true));
+      if (document.hidden) return;
+
+      // The foreground is the essential film. Let it appear as soon as it is
+      // ready, even if the decorative blurred backdrop is still buffering.
+      void backdropVideo.play().catch(() => undefined);
+      mainVideo.play().then(handlePlaying).catch(() => undefined);
     };
     const handlePlaying = () => {
       setReady(true);
-      setPaused(false);
     };
     const handleVisibility = () => {
       if (!document.hidden) attemptPlayback();
     };
 
-    video.addEventListener("loadeddata", attemptPlayback);
-    video.addEventListener("canplay", attemptPlayback);
-    video.addEventListener("playing", handlePlaying);
-    document.addEventListener("visibilitychange", handleVisibility);
-    window.addEventListener("pageshow", attemptPlayback);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      userPaused.current = true;
-      window.requestAnimationFrame(() => setPaused(true));
-    } else if (video.readyState >= 2) {
-      attemptPlayback();
+    if (!reducedMotion) {
+      mainVideo.addEventListener("loadeddata", attemptPlayback);
+      mainVideo.addEventListener("canplay", attemptPlayback);
+      mainVideo.addEventListener("playing", handlePlaying);
+      document.addEventListener("visibilitychange", handleVisibility);
+      window.addEventListener("pageshow", attemptPlayback);
+
+      if (mainVideo.readyState >= 2) {
+        attemptPlayback();
+      }
     }
 
     return () => {
-      video.removeEventListener("loadeddata", attemptPlayback);
-      video.removeEventListener("canplay", attemptPlayback);
-      video.removeEventListener("playing", handlePlaying);
+      mainVideo.removeEventListener("loadeddata", attemptPlayback);
+      mainVideo.removeEventListener("canplay", attemptPlayback);
+      mainVideo.removeEventListener("playing", handlePlaying);
       document.removeEventListener("visibilitychange", handleVisibility);
       window.removeEventListener("pageshow", attemptPlayback);
     };
   }, []);
 
-  function togglePlayback() {
-    const video = videoRef.current;
-    if (!video) return;
-
-    if (video.paused) {
-      userPaused.current = false;
-      video.muted = true;
-      const promise = video.play();
-      if (promise) promise.catch(() => setPaused(true));
-    } else {
-      userPaused.current = true;
-      video.pause();
-      setPaused(true);
-    }
-  }
-
   return (
     <div className={`hero-film ${ready ? "is-ready" : ""}`}>
       <video
-        ref={videoRef}
-        className="hero-video"
+        ref={backdropVideoRef}
+        className="hero-video hero-video-backdrop"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src={filmSrc} type="video/mp4; codecs=avc1.4D401F" />
+      </video>
+      <video
+        ref={mainVideoRef}
+        className="hero-video hero-video-main"
         autoPlay
         muted
         loop
@@ -87,10 +90,6 @@ export function HeroFilm() {
       >
         <source src={filmSrc} type="video/mp4; codecs=avc1.4D401F" />
       </video>
-      <button className="hero-film-control" type="button" onClick={togglePlayback} aria-label={paused ? "Play background film" : "Pause background film"}>
-        {paused ? <Play size={12} fill="currentColor" /> : <Pause size={12} fill="currentColor" />}
-        <span>{paused ? "Play film" : "Pause film"}</span>
-      </button>
     </div>
   );
 }
