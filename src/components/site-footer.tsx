@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Camera, MapPin } from "lucide-react";
+import { ClinicLogo } from "@/components/clinic-logo";
 import { booking, clinic } from "@/lib/content";
 
 export function SiteFooter() {
@@ -7,7 +8,9 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="footer-top">
         <div>
-          <span className="footer-monogram">I</span>
+          <div className="footer-brand-stack">
+            <ClinicLogo />
+          </div>
           <p className="footer-strap">Refined aesthetics.<br /><em>Entirely yours.</em></p>
         </div>
         <div className="footer-links">

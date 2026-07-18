@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { ClinicLogo } from "@/components/clinic-logo";
 import { booking } from "@/lib/content";
 
 const nav = [
@@ -36,8 +37,7 @@ export function SiteHeader() {
     <>
       <header className={`site-header ${scrolled ? "is-scrolled" : ""} ${onHomeHero ? "on-hero" : "on-light-page"} ${open ? "menu-open" : ""}`}>
         <Link className="wordmark" href="/" aria-label="Injectox Clinic home" onClick={() => setOpen(false)}>
-          <span className="wordmark-mark">I</span>
-          <span>INJECTOX</span>
+          <ClinicLogo />
         </Link>
         <nav className="desktop-nav" aria-label="Primary navigation">
           {nav.map(([label, href]) => (

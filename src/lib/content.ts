@@ -208,12 +208,12 @@ export const treatments: Treatment[] = [
 ];
 
 export const concerns = [
-  { slug: "thin-lips", title: "Lips & definition", short: "Shape, symmetry and softly considered volume.", number: "01", treatments: ["russian-lip-filler", "filler-dissolving"] },
-  { slug: "facial-imbalance", title: "Facial balancing", short: "Profile harmony, structure and whole-face planning.", number: "02", treatments: ["facial-balancing", "anti-wrinkle"] },
-  { slug: "fine-lines", title: "Fine lines", short: "A fresher expression without erasing character.", number: "03", treatments: ["anti-wrinkle", "skin-boosters"] },
-  { slug: "dull-skin", title: "Dull or tired skin", short: "Hydration, brightness and a polished reset.", number: "04", treatments: ["skin-boosters", "advanced-facials"] },
-  { slug: "acne-pigmentation-texture", title: "Texture & clarity", short: "Support for uneven texture, visible pores and post-acne marks.", number: "05", treatments: ["microneedling", "advanced-facials"] },
-  { slug: "unwanted-hair", title: "Unwanted hair", short: "A considered course for face or body.", number: "06", treatments: ["laser-hair-removal"] },
+  { slug: "thin-lips", title: "Lips & definition", short: "Shape, symmetry and softly considered volume.", treatments: ["russian-lip-filler", "filler-dissolving"] },
+  { slug: "facial-imbalance", title: "Facial balancing", short: "Profile harmony, structure and whole-face planning.", treatments: ["facial-balancing", "anti-wrinkle"] },
+  { slug: "fine-lines", title: "Fine lines", short: "A fresher expression without erasing character.", treatments: ["anti-wrinkle", "skin-boosters"] },
+  { slug: "dull-skin", title: "Dull or tired skin", short: "Hydration, brightness and a polished reset.", treatments: ["skin-boosters", "advanced-facials"] },
+  { slug: "acne-pigmentation-texture", title: "Texture & clarity", short: "Support for uneven texture, visible pores and post-acne marks.", treatments: ["microneedling", "advanced-facials"] },
+  { slug: "unwanted-hair", title: "Unwanted hair", short: "A considered course for face or body.", treatments: ["laser-hair-removal"] },
 ] as const;
 
 export type PriceItem = { name: string; price: number; duration: string };

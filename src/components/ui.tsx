@@ -40,7 +40,6 @@ export function TreatmentCard({ treatment, index }: { treatment: Treatment; inde
       <Link href={`/treatments/${treatment.slug}`}>
         <div className="treatment-image">
           <Image src={treatment.image} alt={treatment.name} fill loading={index === 0 ? "eager" : "lazy"} sizes="(max-width: 760px) 86vw, 30vw" />
-          <span>{String(index + 1).padStart(2, "0")}</span>
         </div>
         <div className="treatment-card-meta"><span>{treatment.category}</span><span>From {formatPrice(treatment.price)}</span></div>
         <h3>{treatment.name}</h3>
@@ -72,7 +71,7 @@ export function ConcernGrid({ limit }: { limit?: number }) {
         const Icon = concernIcons[concern.slug];
         return (
           <Link href={`/concerns/${concern.slug}`} className="concern-card" key={concern.slug}>
-            <span className="concern-card-kicker"><Icon aria-hidden="true" /><small>{concern.number}</small></span>
+            <span className="concern-card-kicker"><Icon aria-hidden="true" strokeWidth={1.65} /></span>
             <div><h3>{concern.title}</h3><p>{concern.short}</p></div><ArrowDownRight aria-hidden="true" />
           </Link>
         );
@@ -124,7 +123,6 @@ export function ResultFilmPanel() {
       <div className="result-film-copy">
         <span className="eyebrow">Inside Injectox</span>
         <h2>Treatment moments,<br /><em>on loop.</em></h2>
-        <p>Short clinic films add movement without pulling visitors away from the booking journey.</p>
         <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
       </div>
       <div className="result-film-grid">

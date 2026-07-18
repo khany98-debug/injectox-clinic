@@ -33,7 +33,7 @@ export function GalleryGrid({ limit, source = "journal", mobileLoop = false, inc
             ) : (
               <Image src={item.src} alt={item.label} fill sizes={limit ? "(max-width: 700px) 88vw, 30vw" : "(max-width: 700px) 100vw, 33vw"} />
             )}
-            <span><small>{item.category ?? `0${String(i + 1).padStart(2, "0")}`}</small>{item.label}</span>
+            <span>{item.category && <small>{item.category}</small>}{item.label}</span>
           </button>
         ))}
         {mobileLoop && baseItems.map((item, i) => (
@@ -46,7 +46,7 @@ export function GalleryGrid({ limit, source = "journal", mobileLoop = false, inc
             ) : (
               <Image src={item.src} alt={item.label} fill sizes={limit ? "(max-width: 700px) 88vw, 30vw" : "(max-width: 700px) 100vw, 33vw"} />
             )}
-            <span><small>{item.category ?? `0${String(i + 1).padStart(2, "0")}`}</small>{item.label}</span>
+            <span>{item.category && <small>{item.category}</small>}{item.label}</span>
           </button>
         ))}
       </div>

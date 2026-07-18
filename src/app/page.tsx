@@ -4,7 +4,7 @@ import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles } from 
 import { GalleryGrid } from "@/components/gallery-grid";
 import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
-import { BookingSteps, Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
+import { Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
 import { booking } from "@/lib/content";
 
 const reasons = [
@@ -35,7 +35,7 @@ export default function Home() {
         <div className="hero-copy reference-hero-copy">
           <Reveal>
             <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
-            <h1>Injectox Clinic</h1>
+            <h1><span>Injectox</span><span>Clinic</span></h1>
             <p>
               Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
               consultation-led approach.
@@ -64,7 +64,6 @@ export default function Home() {
           <SectionIntro
             eyebrow="Why Injectox"
             title={<>Beauty that feels<br /><em>considered.</em></>}
-            copy="A calm, high-trust clinic experience for clients who want polished results, clear advice and a treatment plan that feels personal."
           />
           <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
         </div>
@@ -84,9 +83,7 @@ export default function Home() {
           <SectionIntro
             eyebrow="What brings you here?"
             title={<>Start with your<br /><em>concern.</em></>}
-            copy="Choose what you want to improve and the site guides you to the most relevant treatment options."
           />
-          <span className="section-number">01 / 07</span>
         </div>
         <ConcernGrid />
       </section>
@@ -96,7 +93,6 @@ export default function Home() {
           <SectionIntro
             eyebrow="Signature treatments"
             title={<>Lips, skin, laser<br /><em>and balance.</em></>}
-            copy="A clear treatment edit that lets visitors understand what Injectox offers before they book."
           />
           <Link className="text-link" href="/treatments">All treatments <ArrowRight /></Link>
         </div>
@@ -108,7 +104,8 @@ export default function Home() {
           <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima consulting with a client at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 44vw" />
         </div>
         <div className="home-about-copy">
-          <SectionIntro eyebrow="Meet Fatima" title={<>Honest advice.<br /><em>Beautiful judgement.</em></>} copy="Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you." />
+          <SectionIntro eyebrow="Meet Fatima" title={<>Honest advice.<br /><em>Beautiful judgement.</em></>} />
+          <p>Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you.</p>
           <p>There is no one-size-fits-all plan. Fatima considers your features, lifestyle and timing before recommending what will make a genuine difference—and will always say when less is more.</p>
           <Button href="/about" variant="line">About Fatima</Button>
         </div>
@@ -119,7 +116,6 @@ export default function Home() {
           <SectionIntro
             eyebrow="The Injectox experience"
             title={<>A calm space for<br /><em>considered care.</em></>}
-            copy="From consultation to aftercare, every appointment is designed to feel clear, warm and confidence-led."
           />
           <TrustPanel />
           <Button href="/book" variant="line">Book an appointment</Button>
@@ -132,7 +128,7 @@ export default function Home() {
       <section className="clinic-location-band">
         <div className="shell clinic-location-grid">
           <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><p>Full arrival details and an add-to-calendar link are included with confirmed bookings.</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
+          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
 
@@ -143,7 +139,6 @@ export default function Home() {
         <div className="pricing-preview-copy">
           <span className="eyebrow">Treatment pricing</span>
           <h2>Clear prices before you book.</h2>
-          <p>Visitors can scan key services, compare starting prices and continue straight into the built-in booking page.</p>
         </div>
         <div className="mini-pricing">
           {[
@@ -167,7 +162,6 @@ export default function Home() {
           <SectionIntro
             eyebrow="Our work"
             title={<>Results that look<br /><em>polished, not overdone.</em></>}
-            copy="A refined gallery of real client outcomes, treatment-room moments and professional clinic films."
           />
           <SocialFollow />
         </div>
@@ -185,23 +179,7 @@ export default function Home() {
         <ReviewsStrip mobileLoop />
       </section>
 
-      <section className="booking-section reference-booking">
-        <div className="booking-image">
-          <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima planning a treatment with an Injectox Clinic client" fill sizes="(max-width: 800px) 100vw, 42vw" />
-        </div>
-        <div className="booking-copy">
-          <SectionIntro
-            eyebrow="Booking journey"
-            title={<>Simple, clear<br /><em>and reassuring.</em></>}
-            copy="A client can choose a consultation, browse treatments, select a time and submit their details without being pushed away from the site."
-          />
-          <BookingSteps />
-          <div className="button-row">
-            <Button href="/book">Book now</Button>
-            <Button href="/contact" variant="line">Ask a question</Button>
-          </div>
-        </div>
-      </section>
+
 
       <section className="section shell faq-section reference-faq">
         <div>

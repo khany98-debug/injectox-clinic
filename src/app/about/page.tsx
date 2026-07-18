@@ -14,7 +14,7 @@ export default function AboutPage() {
         <span className="eyebrow">Meet Fatima</span>
         <h2>Expertise is not only what you can do.<br /><em>It is knowing when not to.</em></h2>
         <p>Fatima’s work returns to the same principle: the best result is tailored to the person in front of her. That means facial harmony over trends, staged change where appropriate and honest advice when a treatment is not needed.</p>
-        <p>The Injectox experience is designed to feel warm, polished and clear—from an informed consultation through aftercare. Specific qualifications and credentials will be added once supplied and approved for publication.</p>
+        <p>The Injectox experience is designed to feel warm, polished and clear—from an informed consultation through aftercare.</p>
         <div className="story-quote">“The goal is not to make you look treated. It is to make the whole picture feel more resolved.”</div>
         <TrustPanel />
         <Button href={booking.consultation}>Meet Fatima in consultation</Button>
