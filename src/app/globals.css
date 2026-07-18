@@ -3158,25 +3158,40 @@ h2 em,
   }
 }
 
-/* Final visual calibration: shared supplied logo artwork. */
+/* Final visual calibration: shared temporary wall-mark recreation. */
 .clinic-logo {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: clamp(128px, 10vw, 178px);
-  line-height: 0;
+  color: currentColor;
+  line-height: 1;
 }
 
-.clinic-logo-image {
+.clinic-logo-name {
   display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
+  font-family: var(--font-editorial), Georgia, serif;
+  font-size: 22px;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -.045em;
+  line-height: .76;
 }
 
-.site-footer .clinic-logo {
-  width: min(230px, 58vw);
+.clinic-logo-clinic {
+  display: block;
+  margin-top: 5px;
+  font-family: var(--font-sans), sans-serif;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: .31em;
+  line-height: 1;
 }
+
+.site-header .clinic-logo-name { font-size: 25px; }
+.site-footer .clinic-logo { color: var(--champagne); }
+.site-footer .clinic-logo-name { font-size: 40px; }
+.site-footer .clinic-logo-clinic { margin-top: 8px; font-size: 11px; letter-spacing: .34em; }
 
 /* Keep desktop film cinematic without scaling or distorting its source. */
 .reference-hero .hero-video {
@@ -3237,8 +3252,9 @@ h2 em,
 }
 
 @media (max-width: 760px) {
-  .site-header .clinic-logo { width: 112px; }
-  .site-footer .clinic-logo { width: 190px; }
+  .site-header .clinic-logo-name { font-size: 27px; }
+  .site-footer .clinic-logo-name { font-size: 34px; }
+  .site-footer .clinic-logo-clinic { margin-top: 7px; font-size: 9.5px; }
 
   .reference-hero .hero-video {
     transform: none;
