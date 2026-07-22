@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { Camera, MapPin } from "lucide-react";
 import { ClinicLogo } from "@/components/clinic-logo";
-import { booking, clinic } from "@/lib/content";
+import { EditableText } from "@/components/dev/editable-text";
+import { booking, clinic, siteChrome } from "@/lib/content";
 
 export function SiteFooter() {
   return (
@@ -11,7 +12,7 @@ export function SiteFooter() {
           <div className="footer-brand-stack">
             <ClinicLogo />
           </div>
-          <p className="footer-strap">Refined aesthetics.<br /><em>Entirely yours.</em></p>
+          <p className="footer-strap"><EditableText as="span" path="siteChrome.footerStrapLine1" value={siteChrome.footerStrapLine1} /><br /><em><EditableText as="span" path="siteChrome.footerStrapLine2" value={siteChrome.footerStrapLine2} /></em></p>
         </div>
         <div className="footer-links">
           <div><b>Discover</b><Link href="/treatments">Treatments</Link><Link href="/concerns">Concerns</Link><Link href="/pricing">Pricing</Link><Link href="/gallery">Results</Link></div>
@@ -19,7 +20,7 @@ export function SiteFooter() {
           <div><b>Essentials</b><Link href="/policies">Policies</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookies">Cookies</Link><Link href="/admin">Clinic admin</Link></div>
         </div>
       </div>
-      <div className="footer-location"><MapPin size={17} /><span>{clinic.location}</span></div>
+      <div className="footer-location"><MapPin size={17} /><span><EditableText path="clinic.location" value={clinic.location} /></span></div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Injectox Clinic</span>
         <span>Salford · Greater Manchester</span>

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Stripe from "stripe";
 import { CalendarPlus, Check, MapPin } from "lucide-react";
-import { clinic } from "@/lib/content";
+import { EditableText } from "@/components/dev/editable-text";
+import { clinic, pages } from "@/lib/content";
 
 export const metadata: Metadata = { title: "Booking Confirmed", robots: { index: false, follow: false } };
 
@@ -17,5 +18,6 @@ export default async function BookingSuccessPage({ searchParams }: { searchParam
     } catch { /* The branded confirmation still renders without exposing payment errors. */ }
   }
   const calendar = `/api/calendar?${new URLSearchParams({ treatment: values.service, date: values.date, time: values.time, duration: values.duration, reference: values.reference })}`;
-  return <section className="booking-success"><div className="booking-success-card"><span className="booking-success-mark"><Check /></span><span className="eyebrow">Booking confirmed</span><h1>You’re in the diary.<br /><em>We’ll see you soon.</em></h1><p>Your confirmation email is on its way with your appointment details, clinic address and preparation notes.</p><div className="booking-success-details"><div><small>Treatment</small><b>{values.service}</b></div><div><small>Appointment</small><b>{values.date || "Confirmed by the clinic"}{values.time ? ` · ${values.time}` : ""}</b></div><div><small>Reference</small><b>{values.reference || "Shown in your email"}</b></div><div><small>Clinic</small><b><MapPin size={14} /> {clinic.location}</b></div></div><div className="button-row"><a className="button button-dark" href={calendar}><CalendarPlus size={15} /> Add to calendar</a><Link className="button button-line" href="/">Return home</Link></div></div></section>;
+  const s = pages.bookSuccess;
+  return <section className="booking-success"><div className="booking-success-card"><span className="booking-success-mark"><Check /></span><span className="eyebrow">Booking confirmed</span><h1><EditableText as="span" path="pages.bookSuccess.titleLine1" value={s.titleLine1} /><br /><em><EditableText as="span" path="pages.bookSuccess.titleLine2" value={s.titleLine2} /></em></h1><p><EditableText path="pages.bookSuccess.copy" value={s.copy} /></p><div className="booking-success-details"><div><small>Treatment</small><b>{values.service}</b></div><div><small>Appointment</small><b>{values.date || "Confirmed by the clinic"}{values.time ? ` · ${values.time}` : ""}</b></div><div><small>Reference</small><b>{values.reference || "Shown in your email"}</b></div><div><small>Clinic</small><b><MapPin size={14} /> <EditableText as="span" path="clinic.location" value={clinic.location} /></b></div></div><div className="button-row"><a className="button button-dark" href={calendar}><CalendarPlus size={15} /> Add to calendar</a><Link className="button button-line" href="/">Return home</Link></div></div></section>;
 }

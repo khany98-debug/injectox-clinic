@@ -3,7 +3,8 @@
 import { CalendarDays, Check, ChevronLeft, Clock3, LoaderCircle, LockKeyhole, Sparkles } from "lucide-react";
 import Image from "next/image";
 import { FormEvent, useMemo, useState } from "react";
-import { bookingImageFor, formatPrice, pricing } from "@/lib/content";
+import { bookingImageFor, formatPrice, pricing, shared } from "@/lib/content";
+import { EditableText } from "@/components/dev/editable-text";
 
 type BookingService = {
   id: string;
@@ -58,6 +59,7 @@ function dateParts(value: string) {
 }
 
 export function BookingFlow({ initialService }: { initialService?: string }) {
+  const bf = shared.bookingFlowCopy;
   const requestedService = initialService ? (serviceAliases[initialService] ?? initialService) : undefined;
   const initial = services.find((service) => service.name.toLowerCase() === requestedService?.toLowerCase());
   const [step, setStep] = useState(0);
@@ -99,8 +101,8 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
       <div className="booking-builder-top">
         <div>
           <span className="booking-native-badge"><Sparkles size={13} /> On-site booking</span>
-          <h2>Build your appointment.</h2>
-          <p>Choose your treatment, preferred visit and details without leaving Injectox.</p>
+          <h2><EditableText as="span" path="shared.bookingFlowCopy.introTitle" value={bf.introTitle} /></h2>
+          <p><EditableText path="shared.bookingFlowCopy.introCopy" value={bf.introCopy} /></p>
         </div>
           <p className="booking-demo-note"><LockKeyhole size={14} /> Secure booking · Stripe protected checkout</p>
       </div>
@@ -119,8 +121,8 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
         <div className="booking-panel">
           {step === 0 && (
             <div>
-              <span className="eyebrow">01 · Choose your route</span>
-              <h3>What would you like to book?</h3>
+              <span className="eyebrow"><EditableText path="shared.bookingFlowCopy.step1Eyebrow" value={bf.step1Eyebrow} /></span>
+              <h3><EditableText as="span" path="shared.bookingFlowCopy.step1Title" value={bf.step1Title} /></h3>
               <div className="booking-categories" aria-label="Treatment categories">
                 {pricing.map((group) => (
                   <button className={category === group.category ? "is-active" : ""} type="button" onClick={() => setCategory(group.category)} key={group.category}>{group.category}</button>
@@ -141,9 +143,9 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
 
           {step === 1 && (
             <div>
-              <span className="eyebrow">02 · Choose your preference</span>
-              <h3>When would you like to visit?</h3>
-              <p className="booking-panel-copy">Select your preferred date and time. Final availability is confirmed by the clinic.</p>
+              <span className="eyebrow"><EditableText path="shared.bookingFlowCopy.step2Eyebrow" value={bf.step2Eyebrow} /></span>
+              <h3><EditableText as="span" path="shared.bookingFlowCopy.step2Title" value={bf.step2Title} /></h3>
+              <p className="booking-panel-copy"><EditableText path="shared.bookingFlowCopy.step2Copy" value={bf.step2Copy} /></p>
               <div className="booking-date-grid">
                 {dates.map((value) => {
                   const parts = dateParts(value);
@@ -158,9 +160,9 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
 
           {step === 2 && (
             <div>
-              <span className="eyebrow">03 · Your details</span>
-              <h3>Where should we confirm?</h3>
-              <p className="booking-panel-copy">These details are used to confirm your appointment and send your branded booking email.</p>
+              <span className="eyebrow"><EditableText path="shared.bookingFlowCopy.step3Eyebrow" value={bf.step3Eyebrow} /></span>
+              <h3><EditableText as="span" path="shared.bookingFlowCopy.step3Title" value={bf.step3Title} /></h3>
+              <p className="booking-panel-copy"><EditableText path="shared.bookingFlowCopy.step3Copy" value={bf.step3Copy} /></p>
               <div className="booking-form-grid">
                 <label><span>Full name</span><input value={details.name} onChange={(event) => setDetails({ ...details, name: event.target.value })} autoComplete="name" required /></label>
                 <label><span>Mobile number</span><input value={details.phone} onChange={(event) => setDetails({ ...details, phone: event.target.value })} autoComplete="tel" inputMode="tel" required /></label>
@@ -173,15 +175,15 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
 
           {step === 3 && selected && (
             <div>
-              <span className="eyebrow">04 · Review your request</span>
-              <h3>Everything, considered.</h3>
+              <span className="eyebrow"><EditableText path="shared.bookingFlowCopy.step4Eyebrow" value={bf.step4Eyebrow} /></span>
+              <h3><EditableText as="span" path="shared.bookingFlowCopy.step4Title" value={bf.step4Title} /></h3>
               <div className="booking-review">
                 <div><small>Treatment</small><b>{selected.name}</b><button type="button" onClick={() => setStep(0)}>Change</button></div>
                 <div><small>Preferred visit</small><b>{dateParts(date).long} at {time}</b><button type="button" onClick={() => setStep(1)}>Change</button></div>
                 <div><small>Contact</small><b>{details.name}<br />{details.email}<br />{details.phone}</b><button type="button" onClick={() => setStep(2)}>Change</button></div>
-                <div><small>Treatment price</small><strong>{formatPrice(selected.price)}</strong><span>{selected.price === 0 ? "No payment is required for this consultation." : "A £20 deposit is taken securely through Stripe. The remaining balance is paid according to clinic policy."}</span></div>
+                <div><small>Treatment price</small><strong>{formatPrice(selected.price)}</strong><span>{selected.price === 0 ? <EditableText path="shared.bookingFlowCopy.freeConsultNote" value={bf.freeConsultNote} /> : <EditableText path="shared.bookingFlowCopy.depositNote" value={bf.depositNote} />}</span></div>
               </div>
-              <p className="booking-panel-copy">By continuing, you acknowledge the clinic’s booking, cancellation and privacy policies.</p>
+              <p className="booking-panel-copy"><EditableText path="shared.bookingFlowCopy.consentCopy" value={bf.consentCopy} /></p>
             </div>
           )}
 
@@ -193,10 +195,10 @@ export function BookingFlow({ initialService }: { initialService?: string }) {
         </div>
 
         <aside className="booking-summary">
-          <span className="eyebrow">Your appointment</span>
+          <span className="eyebrow"><EditableText path="shared.bookingFlowCopy.summaryEyebrow" value={bf.summaryEyebrow} /></span>
           {selected ? <div className="booking-summary-image"><Image src={selected.image} alt={selected.name} fill sizes="290px" /></div> : <div className="booking-summary-mark">I</div>}
-          {selected ? <><h3>{selected.name}</h3><p>{selected.category}</p><dl><div><dt><Clock3 size={13} /> Duration</dt><dd>{selected.duration}</dd></div><div><dt>From</dt><dd>{formatPrice(selected.price)}</dd></div>{date && <div><dt><CalendarDays size={13} /> Preferred date</dt><dd>{dateParts(date).long}</dd></div>}{time && <div><dt>Preferred time</dt><dd>{time}</dd></div>}</dl></> : <><h3>Your plan will appear here.</h3><p>Select a treatment to begin.</p></>}
-          <div className="booking-summary-trust"><LockKeyhole size={15} /><span><b>Secure by design</b><small>Payment is handled on Stripe Checkout. Card details never touch this website.</small></span></div>
+          {selected ? <><h3>{selected.name}</h3><p>{selected.category}</p><dl><div><dt><Clock3 size={13} /> Duration</dt><dd>{selected.duration}</dd></div><div><dt>From</dt><dd>{formatPrice(selected.price)}</dd></div>{date && <div><dt><CalendarDays size={13} /> Preferred date</dt><dd>{dateParts(date).long}</dd></div>}{time && <div><dt>Preferred time</dt><dd>{time}</dd></div>}</dl></> : <><h3><EditableText as="span" path="shared.bookingFlowCopy.summaryEmptyTitle" value={bf.summaryEmptyTitle} /></h3><p><EditableText path="shared.bookingFlowCopy.summaryEmptyCopy" value={bf.summaryEmptyCopy} /></p></>}
+          <div className="booking-summary-trust"><LockKeyhole size={15} /><span><b><EditableText path="shared.bookingFlowCopy.secureTitle" value={bf.secureTitle} /></b><small><EditableText path="shared.bookingFlowCopy.secureCopy" value={bf.secureCopy} /></small></span></div>
         </aside>
       </div>
     </form>

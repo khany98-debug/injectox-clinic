@@ -1009,5 +1009,347 @@
       "q": "Do laser treatments need a patch test?",
       "a": "Patch testing and suitability should be confirmed before starting a laser course. The clinic will give you the correct preparation window."
     }
-  ]
+  ],
+  "pages": {
+    "home": {
+      "heroEyebrowLine1": "Aesthetics clinic in",
+      "heroEyebrowLine2": "Salford, Manchester",
+      "heroIntro": "Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm, consultation-led approach.",
+      "heroProof": [
+        "Facial harmony",
+        "Natural by design",
+        "Consultation-led"
+      ],
+      "heroPanelLabel": "Known for",
+      "heroPanelText": "Russian lips, skin glow plans and balanced, natural-looking enhancement.",
+      "trustPoints": [
+        "18+ treatments only",
+        "Free consultation option",
+        "Transparent pricing",
+        "Salford clinic"
+      ],
+      "whyEyebrow": "Why Injectox",
+      "whyTitleLine1": "Beauty that feels",
+      "whyTitleLine2": "considered.",
+      "reasons": [
+        {
+          "title": "Honest consultation",
+          "copy": "Every plan starts with what will suit your face, not what is trending online."
+        },
+        {
+          "title": "Natural-looking finish",
+          "copy": "Lips, skin and facial balancing are approached with polish, restraint and proportion."
+        },
+        {
+          "title": "Clear treatment info",
+          "copy": "Prices, booking notes and suitability guidance stay visible before you commit."
+        }
+      ],
+      "concernEyebrow": "What brings you here?",
+      "concernTitleLine1": "Start with your",
+      "concernTitleLine2": "concern.",
+      "servicesEyebrow": "Signature treatments",
+      "servicesTitleLine1": "Lips, skin, laser",
+      "servicesTitleLine2": "and balance.",
+      "aboutEyebrow": "Meet Fatima",
+      "aboutTitleLine1": "Honest advice.",
+      "aboutTitleLine2": "Beautiful judgement.",
+      "aboutParagraph1": "Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you.",
+      "aboutParagraph2": "There is no one-size-fits-all plan. Fatima considers your features, lifestyle and timing before recommending what will make a genuine difference—and will always say when less is more.",
+      "experienceEyebrow": "The Injectox experience",
+      "experienceTitleLine1": "A calm space for",
+      "experienceTitleLine2": "considered care.",
+      "locationTitleLine1": "Salford, Greater",
+      "locationTitleLine2": "Manchester.",
+      "pricingPreviewEyebrow": "Treatment pricing",
+      "pricingPreviewTitle": "Clear prices before you book.",
+      "socialEyebrow": "Our work",
+      "socialTitleLine1": "Results that look",
+      "socialTitleLine2": "polished, not overdone.",
+      "reviewsEyebrow": "Client feedback",
+      "reviewsTitleLine1": "Trust built through",
+      "reviewsTitleLine2": "real experience.",
+      "faqEyebrow": "Before you book",
+      "faqTitleLine1": "Common",
+      "faqTitleLine2": "questions.",
+      "finalCtaTitleLine1": "Ready to begin with",
+      "finalCtaTitleLine2": "Injectox Clinic?"
+    },
+    "about": {
+      "heroEyebrow": "The woman behind Injectox",
+      "heroTitleLine1": "Beauty judgement.",
+      "heroTitleLine2": "Human honesty.",
+      "heroCopy": "Injectox Clinic is led by aesthetic practitioner Fatima Khan from a private Salford clinic serving Greater Manchester.",
+      "storyEyebrow": "Meet Fatima",
+      "storyTitleLine1": "Expertise is not only what you can do.",
+      "storyTitleLine2": "It is knowing when not to.",
+      "storyParagraph1": "Fatima’s work returns to the same principle: the best result is tailored to the person in front of her. That means facial harmony over trends, staged change where appropriate and honest advice when a treatment is not needed.",
+      "storyParagraph2": "The Injectox experience is designed to feel warm, polished and clear—from an informed consultation through aftercare.",
+      "storyQuote": "The goal is not to make you look treated. It is to make the whole picture feel more resolved."
+    },
+    "contact": {
+      "heroEyebrow": "Talk to Injectox",
+      "heroTitleLine1": "Questions are",
+      "heroTitleLine2": "always welcome.",
+      "heroCopy": "Book directly, start with a free consultation or message the clinic on Instagram before deciding.",
+      "cardEyebrow": "Fastest route",
+      "cardTitle": "Ready to choose a time?",
+      "cardCopy": "Use the on-site booking studio to explore every treatment, price and preferred appointment without leaving Injectox.",
+      "visitCopy": "Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road, Salford. Your confirmation email includes full arrival details.",
+      "socialCopy": "Follow current results, educational content and clinic updates."
+    },
+    "gallery": {
+      "heroEyebrow": "Real client results",
+      "heroTitleLine1": "Subtle changes.",
+      "heroTitleLine2": "Beautifully considered.",
+      "heroCopy": "A curated edit of genuine Injectox client outcomes photographed in the clinic. Tap any result to view it in detail.",
+      "introEyebrow": "The work",
+      "introTitleLine1": "Real faces. Real treatments.",
+      "introTitleLine2": "No stock imagery.",
+      "introCopy": "These images show individual client experiences supplied by the clinic. Results, swelling, recovery and longevity vary. Images should only remain published where valid client consent is recorded."
+    },
+    "concerns": {
+      "heroEyebrow": "Concern-led discovery",
+      "heroTitleLine1": "Start with how you",
+      "heroTitleLine2": "want to feel.",
+      "heroCopy": "Choose the change you are considering. We will show you the most relevant treatment routes.",
+      "introEyebrow": "Choose your concern",
+      "introCopy": "Six clear starting points. Select one to compare suitable options."
+    },
+    "concernDetail": {
+      "heroEyebrow": "Your concern",
+      "optionsEyebrow": "Recommended treatments",
+      "optionsTitle": "Your clearest options.",
+      "optionsCopy": "Suitability and the final plan are always confirmed in consultation. This guide is a simple starting point, not a diagnosis.",
+      "ctaCopy": "Not sure which route is right?"
+    },
+    "treatmentsList": {
+      "heroEyebrow": "The treatment edit",
+      "heroTitleLine1": "Precision, polish &",
+      "heroTitleLine2": "a plan that fits.",
+      "heroCopy": "Explore signature injectables, advanced skin, laser and wellness options. Every route begins with suitability—not pressure."
+    },
+    "packages": {
+      "heroEyebrow": "Planned, not pushed",
+      "heroTitleLine1": "Packages with",
+      "heroTitleLine2": "a purpose.",
+      "heroCopy": "Flexible treatment and laser options for clients who benefit from a joined-up plan. Exact suitability and sequencing are agreed in consultation."
+    },
+    "payLater": {
+      "heroEyebrow": "Payment flexibility",
+      "heroTitleLine1": "Plan the result.",
+      "heroTitleLine2": "Understand the terms.",
+      "heroCopy": "The public booking catalogue lists a PAYL8R service charge. Finance availability, eligibility, rates and terms must be confirmed directly before you commit.",
+      "sectionEyebrow": "Clarity first",
+      "sectionTitleLine1": "Flexible,",
+      "sectionTitleLine2": "never vague.",
+      "sectionCopy": "This site does not advertise unverified credit terms. Ask the clinic for the current regulated provider information, total cost and eligibility criteria."
+    },
+    "shop": {
+      "eyebrow": "The Injectox edit",
+      "titleLine1": "Aftercare,",
+      "titleLine2": "curated.",
+      "copy": "A considered collection of treatment-support and skincare products is coming soon. The shop route is ready to connect to a future commerce platform."
+    },
+    "book": {
+      "heroEyebrow": "Book directly with Injectox",
+      "heroTitleLine1": "Your next appointment.",
+      "heroTitleLine2": "Beautifully simple.",
+      "heroCopy": "Explore the full treatment menu, choose a preferred time and keep the whole journey inside Injectox."
+    },
+    "bookSuccess": {
+      "titleLine1": "You’re in the diary.",
+      "titleLine2": "We’ll see you soon.",
+      "copy": "Your confirmation email is on its way with your appointment details, clinic address and preparation notes."
+    },
+    "policies": {
+      "heroEyebrow": "Policy before pressure",
+      "heroTitleLine1": "The details that keep",
+      "heroTitleLine2": "care feeling clear.",
+      "heroCopy": "This page summarises key principles. The provider terms displayed during your live booking are the final terms for that appointment.",
+      "items": [
+        {
+          "title": "Adults only",
+          "copy": "Injectable treatments are presented for clients aged 18 and over. Valid photo ID may be requested."
+        },
+        {
+          "title": "Consultation & suitability",
+          "copy": "Treatment is subject to assessment and medical suitability. A booking does not guarantee that treatment will proceed."
+        },
+        {
+          "title": "Deposits",
+          "copy": "Paid bookings use Stripe Checkout for a secure deposit. The remaining balance and the clinic’s current cancellation terms are confirmed in your booking email."
+        },
+        {
+          "title": "Cancellations",
+          "copy": "Please review the cancellation and rescheduling window shown during booking. Late changes and non-attendance may affect your deposit."
+        },
+        {
+          "title": "Laser patch testing",
+          "copy": "A consultation and patch test may be required before laser treatment. Follow all preparation guidance supplied by the clinic."
+        },
+        {
+          "title": "Results & aftercare",
+          "copy": "Results and recovery vary. Follow your personalised aftercare and contact the clinic promptly with any concerns."
+        }
+      ]
+    }
+  },
+  "legal": {
+    "cookies": {
+      "title": "Cookies",
+      "intro": "The current build is designed to work without marketing cookies. Update this page when analytics or advertising tools are selected.",
+      "sections": [
+        {
+          "title": "Essential cookies",
+          "copy": "These may be used where strictly necessary to provide security, remember choices or operate core website features."
+        },
+        {
+          "title": "Analytics",
+          "copy": "No analytics provider is assumed in this prototype. If analytics is added, document the provider, retention and consent requirements here."
+        },
+        {
+          "title": "External embeds",
+          "copy": "This build links to Instagram and Faces rather than loading tracking-heavy social embeds automatically. Those sites may set cookies after you follow a link."
+        },
+        {
+          "title": "Your choices",
+          "copy": "A consent banner should be enabled before any non-essential cookies are deployed. Users should be able to change or withdraw consent at any time."
+        }
+      ]
+    },
+    "privacy": {
+      "title": "Privacy",
+      "intro": "A launch-ready framework that must be reviewed against the final hosting, analytics, contact and booking setup.",
+      "sections": [
+        {
+          "title": "Information collected",
+          "copy": "The final site may collect information you actively provide through enquiries, along with limited technical data needed for security, analytics and site operation."
+        },
+        {
+          "title": "External booking",
+          "copy": "Appointments are completed through Faces. Information entered there is processed under that provider’s own privacy terms and not by this website."
+        },
+        {
+          "title": "How information is used",
+          "copy": "Information should only be used to respond to enquiries, administer services, meet legal obligations and improve the experience where consent or another lawful basis applies."
+        },
+        {
+          "title": "Your rights",
+          "copy": "UK data-protection rights may include access, correction, erasure, restriction, objection and portability. Add the clinic’s verified privacy contact before launch."
+        }
+      ]
+    },
+    "terms": {
+      "title": "Website terms",
+      "intro": "Plain-language website terms, separate from the treatment and booking terms shown by the appointment provider.",
+      "sections": [
+        {
+          "title": "Information, not diagnosis",
+          "copy": "Website content is general information and does not replace an in-person consultation, diagnosis or medical advice."
+        },
+        {
+          "title": "Treatment suitability",
+          "copy": "Prices, durations and treatment information may change. Treatment proceeds only after assessment and is never guaranteed by an online booking."
+        },
+        {
+          "title": "Results",
+          "copy": "Images and client stories illustrate individual experiences. Results, longevity, recovery and side effects vary from person to person."
+        },
+        {
+          "title": "External services",
+          "copy": "Links to booking, finance, maps and social platforms are provided for convenience and are governed by those providers’ terms."
+        }
+      ]
+    }
+  },
+  "siteChrome": {
+    "nav": [
+      "Treatments",
+      "Concerns",
+      "Results",
+      "Pricing",
+      "About"
+    ],
+    "footerStrapLine1": "Refined aesthetics.",
+    "footerStrapLine2": "Entirely yours."
+  },
+  "shared": {
+    "statsSection": {
+      "eyebrow": "Proof, not promises",
+      "titleLine1": "Experience you",
+      "titleLine2": "can feel.",
+      "copy": "Experience across Fatima’s complete client history and verified feedback collected across the clinic’s booking platforms."
+    },
+    "resultFilmPanel": {
+      "eyebrow": "Inside Injectox",
+      "titleLine1": "Treatment moments,",
+      "titleLine2": "on loop."
+    },
+    "bookingSteps": [
+      {
+        "title": "Choose your route",
+        "copy": "Book a free consultation when you’re unsure, or select a treatment directly."
+      },
+      {
+        "title": "Plan with Fatima",
+        "copy": "Your features, goals, timing and suitability shape the recommendation."
+      },
+      {
+        "title": "Leave polished",
+        "copy": "Receive tailored aftercare and a clear route for review or maintenance."
+      }
+    ],
+    "trustPanel": [
+      {
+        "title": "Consultation-led",
+        "copy": "Advice before treatment"
+      },
+      {
+        "title": "Natural by design",
+        "copy": "Harmony over trends"
+      },
+      {
+        "title": "Transparent pricing",
+        "copy": "Live booking prices"
+      }
+    ],
+    "finalCta": {
+      "eyebrow": "Begin your treatment plan",
+      "titleLine1": "Ready to look like you—",
+      "titleLine2": "only more considered?",
+      "copy": "Start with a complimentary consultation in Salford."
+    },
+    "socialFollow": "Follow the latest work",
+    "bookingFlowCopy": {
+      "introTitle": "Build your appointment.",
+      "introCopy": "Choose your treatment, preferred visit and details without leaving Injectox.",
+      "step1Eyebrow": "01 · Choose your route",
+      "step1Title": "What would you like to book?",
+      "step2Eyebrow": "02 · Choose your preference",
+      "step2Title": "When would you like to visit?",
+      "step2Copy": "Select your preferred date and time. Final availability is confirmed by the clinic.",
+      "step3Eyebrow": "03 · Your details",
+      "step3Title": "Where should we confirm?",
+      "step3Copy": "These details are used to confirm your appointment and send your branded booking email.",
+      "step4Eyebrow": "04 · Review your request",
+      "step4Title": "Everything, considered.",
+      "depositNote": "A £20 deposit is taken securely through Stripe. The remaining balance is paid according to clinic policy.",
+      "freeConsultNote": "No payment is required for this consultation.",
+      "consentCopy": "By continuing, you acknowledge the clinic’s booking, cancellation and privacy policies.",
+      "summaryEyebrow": "Your appointment",
+      "summaryEmptyTitle": "Your plan will appear here.",
+      "summaryEmptyCopy": "Select a treatment to begin.",
+      "secureTitle": "Secure by design",
+      "secureCopy": "Payment is handled on Stripe Checkout. Card details never touch this website."
+    },
+    "reviewSubmitCopy": {
+      "successTitle": "Thank you for sharing your experience.",
+      "successCopy": "Your review has been sent for approval and will only be published with your permission.",
+      "eyebrow": "Share your experience",
+      "titleLine1": "Tell the next client",
+      "titleLine2": "how it felt.",
+      "copy": "Reviews are moderated before publishing. We only use your first name and surname initial unless you choose otherwise."
+    }
+  }
 }

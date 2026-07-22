@@ -4,28 +4,14 @@ import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles } from 
 import { GalleryGrid } from "@/components/gallery-grid";
 import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
+import { EditableText } from "@/components/dev/editable-text";
 import { Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
-import { booking } from "@/lib/content";
+import { booking, pages } from "@/lib/content";
 
-const reasons = [
-  {
-    icon: HeartHandshake,
-    title: "Honest consultation",
-    copy: "Every plan starts with what will suit your face, not what is trending online.",
-  },
-  {
-    icon: Sparkles,
-    title: "Natural-looking finish",
-    copy: "Lips, skin and facial balancing are approached with polish, restraint and proportion.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Clear treatment info",
-    copy: "Prices, booking notes and suitability guidance stay visible before you commit.",
-  },
-];
+const reasonIcons = [HeartHandshake, Sparkles, ShieldCheck];
 
 export default function Home() {
+  const h = pages.home;
   return (
     <>
       <section className="home-hero reference-hero">
@@ -34,60 +20,62 @@ export default function Home() {
         <div className="hero-grain" />
         <div className="hero-copy reference-hero-copy">
           <Reveal>
-            <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
+            <span className="eyebrow hero-location"><span><EditableText path="pages.home.heroEyebrowLine1" value={h.heroEyebrowLine1} /></span><span><EditableText path="pages.home.heroEyebrowLine2" value={h.heroEyebrowLine2} /></span></span>
             <h1><span>Injectox</span><span>Clinic</span></h1>
             <p>
-              Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
-              consultation-led approach.
+              <EditableText path="pages.home.heroIntro" value={h.heroIntro} />
             </p>
             <div className="button-row">
               <Button href={booking.treatment}>Book now</Button>
               <Button href="/treatments" variant="line">View treatments</Button>
             </div>
             <div className="hero-proof" aria-label="Injectox Clinic approach">
-              <span>Facial harmony</span>
-              <span>Natural by design</span>
-              <span>Consultation-led</span>
+              {h.heroProof.map((item, i) => <span key={i}><EditableText path={`pages.home.heroProof.${i}`} value={item} /></span>)}
             </div>
           </Reveal>
         </div>
         <div className="reference-hero-panel">
-          <span>Known for</span>
-          <b>Russian lips, skin glow plans and balanced, natural-looking enhancement.</b>
+          <span><EditableText path="pages.home.heroPanelLabel" value={h.heroPanelLabel} /></span>
+          <b><EditableText path="pages.home.heroPanelText" value={h.heroPanelText} /></b>
           <Link href="/pricing">View pricing <ArrowRight size={14} /></Link>
         </div>
       </section>
 
       <section className="reference-trust shell" aria-label="Clinic trust points">
-        {["18+ treatments only", "Free consultation option", "Transparent pricing", "Salford clinic"].map((item) => (
-          <div key={item}><CheckCircle2 size={17} /><span>{item}</span></div>
+        {h.trustPoints.map((item, i) => (
+          <div key={i}><CheckCircle2 size={17} /><span><EditableText path={`pages.home.trustPoints.${i}`} value={item} /></span></div>
         ))}
       </section>
 
       <section className="section shell why-section">
         <div className="split-heading">
           <SectionIntro
-            eyebrow="Why Injectox"
-            title={<>Beauty that feels<br /><em>considered.</em></>}
+            eyebrow={h.whyEyebrow}
+            eyebrowPath="pages.home.whyEyebrow"
+            title={<><EditableText as="span" path="pages.home.whyTitleLine1" value={h.whyTitleLine1} /><br /><em><EditableText as="span" path="pages.home.whyTitleLine2" value={h.whyTitleLine2} /></em></>}
           />
           <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
         </div>
         <div className="reason-grid">
-          {reasons.map(({ icon: Icon, title, copy }, index) => (
-            <Reveal className="reason-card" delay={index * 0.06} key={title}>
-              <Icon size={22} />
-              <h3>{title}</h3>
-              <p>{copy}</p>
-            </Reveal>
-          ))}
+          {h.reasons.map((reason, index) => {
+            const Icon = reasonIcons[index] ?? HeartHandshake;
+            return (
+              <Reveal className="reason-card" delay={index * 0.06} key={reason.title}>
+                <Icon size={22} />
+                <h3><EditableText path={`pages.home.reasons.${index}.title`} value={reason.title} /></h3>
+                <p><EditableText path={`pages.home.reasons.${index}.copy`} value={reason.copy} /></p>
+              </Reveal>
+            );
+          })}
         </div>
       </section>
 
       <section id="discover" className="section shell concern-section reference-concerns">
         <div className="split-heading">
           <SectionIntro
-            eyebrow="What brings you here?"
-            title={<>Start with your<br /><em>concern.</em></>}
+            eyebrow={h.concernEyebrow}
+            eyebrowPath="pages.home.concernEyebrow"
+            title={<><EditableText as="span" path="pages.home.concernTitleLine1" value={h.concernTitleLine1} /><br /><em><EditableText as="span" path="pages.home.concernTitleLine2" value={h.concernTitleLine2} /></em></>}
           />
         </div>
         <ConcernGrid />
@@ -96,8 +84,9 @@ export default function Home() {
       <section className="section shell reference-services">
         <div className="split-heading">
           <SectionIntro
-            eyebrow="Signature treatments"
-            title={<>Lips, skin, laser<br /><em>and balance.</em></>}
+            eyebrow={h.servicesEyebrow}
+            eyebrowPath="pages.home.servicesEyebrow"
+            title={<><EditableText as="span" path="pages.home.servicesTitleLine1" value={h.servicesTitleLine1} /><br /><em><EditableText as="span" path="pages.home.servicesTitleLine2" value={h.servicesTitleLine2} /></em></>}
           />
           <Link className="text-link" href="/treatments">All treatments <ArrowRight /></Link>
         </div>
@@ -109,9 +98,13 @@ export default function Home() {
           <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima consulting with a client at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 44vw" />
         </div>
         <div className="home-about-copy">
-          <SectionIntro eyebrow="Meet Fatima" title={<>Honest advice.<br /><em>Beautiful judgement.</em></>} />
-          <p>Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you.</p>
-          <p>There is no one-size-fits-all plan. Fatima considers your features, lifestyle and timing before recommending what will make a genuine difference—and will always say when less is more.</p>
+          <SectionIntro
+            eyebrow={h.aboutEyebrow}
+            eyebrowPath="pages.home.aboutEyebrow"
+            title={<><EditableText as="span" path="pages.home.aboutTitleLine1" value={h.aboutTitleLine1} /><br /><em><EditableText as="span" path="pages.home.aboutTitleLine2" value={h.aboutTitleLine2} /></em></>}
+          />
+          <p><EditableText path="pages.home.aboutParagraph1" value={h.aboutParagraph1} /></p>
+          <p><EditableText path="pages.home.aboutParagraph2" value={h.aboutParagraph2} /></p>
           <Button href="/about" variant="line">About Fatima</Button>
         </div>
       </section>
@@ -119,8 +112,9 @@ export default function Home() {
       <section className="experience-section">
         <div className="experience-copy">
           <SectionIntro
-            eyebrow="The Injectox experience"
-            title={<>A calm space for<br /><em>considered care.</em></>}
+            eyebrow={h.experienceEyebrow}
+            eyebrowPath="pages.home.experienceEyebrow"
+            title={<><EditableText as="span" path="pages.home.experienceTitleLine1" value={h.experienceTitleLine1} /><br /><em><EditableText as="span" path="pages.home.experienceTitleLine2" value={h.experienceTitleLine2} /></em></>}
           />
           <TrustPanel />
           <Button href="/book" variant="line">Book an appointment</Button>
@@ -132,7 +126,7 @@ export default function Home() {
 
       <section className="clinic-location-band">
         <div className="shell clinic-location-grid">
-          <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
+          <div><span className="eyebrow">Find the clinic</span><h2><EditableText as="span" path="pages.home.locationTitleLine1" value={h.locationTitleLine1} /><br /><em><EditableText as="span" path="pages.home.locationTitleLine2" value={h.locationTitleLine2} /></em></h2></div>
           <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
@@ -142,8 +136,8 @@ export default function Home() {
 
       <section className="section shell pricing-preview">
         <div className="pricing-preview-copy">
-          <span className="eyebrow">Treatment pricing</span>
-          <h2>Clear prices before you book.</h2>
+          <span className="eyebrow"><EditableText path="pages.home.pricingPreviewEyebrow" value={h.pricingPreviewEyebrow} /></span>
+          <h2><EditableText as="span" path="pages.home.pricingPreviewTitle" value={h.pricingPreviewTitle} /></h2>
         </div>
         <div className="mini-pricing">
           {[
@@ -165,8 +159,9 @@ export default function Home() {
       <section className="section social-section reference-social">
         <div className="shell split-heading">
           <SectionIntro
-            eyebrow="Our work"
-            title={<>Results that look<br /><em>polished, not overdone.</em></>}
+            eyebrow={h.socialEyebrow}
+            eyebrowPath="pages.home.socialEyebrow"
+            title={<><EditableText as="span" path="pages.home.socialTitleLine1" value={h.socialTitleLine1} /><br /><em><EditableText as="span" path="pages.home.socialTitleLine2" value={h.socialTitleLine2} /></em></>}
           />
           <SocialFollow />
         </div>
@@ -175,7 +170,11 @@ export default function Home() {
 
       <section className="section shell reviews-section reference-reviews">
         <div className="split-heading">
-          <SectionIntro eyebrow="Client feedback" title={<>Trust built through<br /><em>real experience.</em></>} />
+          <SectionIntro
+            eyebrow={h.reviewsEyebrow}
+            eyebrowPath="pages.home.reviewsEyebrow"
+            title={<><EditableText as="span" path="pages.home.reviewsTitleLine1" value={h.reviewsTitleLine1} /><br /><em><EditableText as="span" path="pages.home.reviewsTitleLine2" value={h.reviewsTitleLine2} /></em></>}
+          />
           <div className="review-actions">
             <Link className="text-link" href="/reviews">Read reviews <ArrowRight /></Link>
             <Link className="text-link muted" href="/reviews#leave-review">Leave a review <ArrowRight /></Link>
@@ -188,13 +187,17 @@ export default function Home() {
 
       <section className="section shell faq-section reference-faq">
         <div>
-          <SectionIntro eyebrow="Before you book" title={<>Common<br /><em>questions.</em></>} />
+          <SectionIntro
+            eyebrow={h.faqEyebrow}
+            eyebrowPath="pages.home.faqEyebrow"
+            title={<><EditableText as="span" path="pages.home.faqTitleLine1" value={h.faqTitleLine1} /><br /><em><EditableText as="span" path="pages.home.faqTitleLine2" value={h.faqTitleLine2} /></em></>}
+          />
           <Button href="/faq" variant="line">View all FAQs</Button>
         </div>
         <FAQList limit={5} />
       </section>
 
-      <FinalCTA title={<>Ready to begin with<br /><em>Injectox Clinic?</em></>} />
+      <FinalCTA title={<><EditableText as="span" path="pages.home.finalCtaTitleLine1" value={h.finalCtaTitleLine1} /><br /><em><EditableText as="span" path="pages.home.finalCtaTitleLine2" value={h.finalCtaTitleLine2} /></em></>} />
     </>
   );
 }

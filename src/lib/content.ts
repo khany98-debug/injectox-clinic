@@ -49,6 +49,84 @@ export const reviews = contentData.reviews as Review[];
 export type Faq = { q: string; a: string };
 export const faqs = contentData.faqs as Faq[];
 
+export type TitleCopyItem = { title: string; copy: string };
+
+export type PagesContent = {
+  home: {
+    heroEyebrowLine1: string; heroEyebrowLine2: string; heroIntro: string; heroProof: string[];
+    heroPanelLabel: string; heroPanelText: string; trustPoints: string[];
+    whyEyebrow: string; whyTitleLine1: string; whyTitleLine2: string; reasons: TitleCopyItem[];
+    concernEyebrow: string; concernTitleLine1: string; concernTitleLine2: string;
+    servicesEyebrow: string; servicesTitleLine1: string; servicesTitleLine2: string;
+    aboutEyebrow: string; aboutTitleLine1: string; aboutTitleLine2: string; aboutParagraph1: string; aboutParagraph2: string;
+    experienceEyebrow: string; experienceTitleLine1: string; experienceTitleLine2: string;
+    locationTitleLine1: string; locationTitleLine2: string;
+    pricingPreviewEyebrow: string; pricingPreviewTitle: string;
+    socialEyebrow: string; socialTitleLine1: string; socialTitleLine2: string;
+    reviewsEyebrow: string; reviewsTitleLine1: string; reviewsTitleLine2: string;
+    faqEyebrow: string; faqTitleLine1: string; faqTitleLine2: string;
+    finalCtaTitleLine1: string; finalCtaTitleLine2: string;
+  };
+  about: {
+    heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
+    storyEyebrow: string; storyTitleLine1: string; storyTitleLine2: string;
+    storyParagraph1: string; storyParagraph2: string; storyQuote: string;
+  };
+  contact: {
+    heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
+    cardEyebrow: string; cardTitle: string; cardCopy: string; visitCopy: string; socialCopy: string;
+  };
+  gallery: {
+    heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
+    introEyebrow: string; introTitleLine1: string; introTitleLine2: string; introCopy: string;
+  };
+  concerns: {
+    heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
+    introEyebrow: string; introCopy: string;
+  };
+  concernDetail: { heroEyebrow: string; optionsEyebrow: string; optionsTitle: string; optionsCopy: string; ctaCopy: string };
+  treatmentsList: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string };
+  packages: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string };
+  payLater: {
+    heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
+    sectionEyebrow: string; sectionTitleLine1: string; sectionTitleLine2: string; sectionCopy: string;
+  };
+  shop: { eyebrow: string; titleLine1: string; titleLine2: string; copy: string };
+  book: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string };
+  bookSuccess: { titleLine1: string; titleLine2: string; copy: string };
+  policies: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string; items: TitleCopyItem[] };
+};
+
+export const pages = contentData.pages as PagesContent;
+
+export type LegalSection = { title: string; intro: string; sections: TitleCopyItem[] };
+export type LegalContent = { cookies: LegalSection; privacy: LegalSection; terms: LegalSection };
+export const legal = contentData.legal as LegalContent;
+
+export type SiteChromeContent = { nav: string[]; footerStrapLine1: string; footerStrapLine2: string };
+export const siteChrome = contentData.siteChrome as SiteChromeContent;
+
+export type SharedContent = {
+  statsSection: { eyebrow: string; titleLine1: string; titleLine2: string; copy: string };
+  resultFilmPanel: { eyebrow: string; titleLine1: string; titleLine2: string };
+  bookingSteps: TitleCopyItem[];
+  trustPanel: TitleCopyItem[];
+  finalCta: { eyebrow: string; titleLine1: string; titleLine2: string; copy: string };
+  socialFollow: string;
+  bookingFlowCopy: {
+    introTitle: string; introCopy: string;
+    step1Eyebrow: string; step1Title: string;
+    step2Eyebrow: string; step2Title: string; step2Copy: string;
+    step3Eyebrow: string; step3Title: string; step3Copy: string;
+    step4Eyebrow: string; step4Title: string;
+    depositNote: string; freeConsultNote: string; consentCopy: string;
+    summaryEyebrow: string; summaryEmptyTitle: string; summaryEmptyCopy: string;
+    secureTitle: string; secureCopy: string;
+  };
+  reviewSubmitCopy: { successTitle: string; successCopy: string; eyebrow: string; titleLine1: string; titleLine2: string; copy: string };
+};
+export const shared = contentData.shared as SharedContent;
+
 export function treatmentBySlug(slug: string) {
   return treatments.find((t) => t.slug === slug);
 }

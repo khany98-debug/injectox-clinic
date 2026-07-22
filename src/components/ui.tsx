@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
-import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
+import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, shared, treatments, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
 import { EditableText } from "@/components/dev/editable-text";
@@ -12,23 +12,23 @@ export function Button({ href, children, variant = "dark", external = false }: {
   return <Link className={cls} href={href}>{children}<ArrowRight size={16} /></Link>;
 }
 
-export function SectionIntro({ eyebrow, title, copy, align = "left" }: { eyebrow: string; title: React.ReactNode; copy?: string; align?: "left" | "center" }) {
+export function SectionIntro({ eyebrow, title, copy, align = "left", eyebrowPath, copyPath }: { eyebrow: string; title: React.ReactNode; copy?: string; align?: "left" | "center"; eyebrowPath?: string; copyPath?: string }) {
   return (
     <Reveal className={`section-intro ${align === "center" ? "center" : ""}`}>
-      <span className="eyebrow">{eyebrow}</span>
+      <span className="eyebrow">{eyebrowPath ? <EditableText path={eyebrowPath} value={eyebrow} /> : eyebrow}</span>
       <h2>{title}</h2>
-      {copy && <p>{copy}</p>}
+      {copy && <p>{copyPath ? <EditableText path={copyPath} value={copy} /> : copy}</p>}
     </Reveal>
   );
 }
 
-export function PageHero({ eyebrow, title, copy, index = "01", compact = false }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string; compact?: boolean }) {
+export function PageHero({ eyebrow, title, copy, index = "01", compact = false, eyebrowPath, copyPath }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string; compact?: boolean; eyebrowPath?: string; copyPath?: string }) {
   return (
     <section className={`page-hero shell ${compact ? "page-hero-compact" : ""}`}>
       <Reveal className="page-hero-copy">
-        <span className="eyebrow">{eyebrow}</span>
+        <span className="eyebrow">{eyebrowPath ? <EditableText path={eyebrowPath} value={eyebrow} /> : eyebrow}</span>
         <h1>{title}</h1>
-        <p>{copy}</p>
+        <p>{copyPath ? <EditableText path={copyPath} value={copy} /> : copy}</p>
       </Reveal>
       <span className="page-index">/{index}</span>
       <div className="page-hero-line" />
@@ -69,12 +69,12 @@ export function ConcernGrid({ limit }: { limit?: number }) {
   };
   return (
     <div className="concern-grid">
-      {items.map((concern) => {
+      {items.map((concern, i) => {
         const Icon = concernIcons[concern.slug] ?? Heart;
         return (
           <Link href={`/concerns/${concern.slug}`} className="concern-card" key={concern.slug}>
             <span className="concern-card-kicker"><Icon aria-hidden="true" strokeWidth={1.65} /></span>
-            <div><h3>{concern.title}</h3><p>{concern.short}</p></div><ArrowDownRight aria-hidden="true" />
+            <div><h3><EditableText path={`concerns.${i}.title`} value={concern.title} /></h3><p><EditableText path={`concerns.${i}.short`} value={concern.short} /></p></div><ArrowDownRight aria-hidden="true" />
           </Link>
         );
       })}
@@ -83,10 +83,15 @@ export function ConcernGrid({ limit }: { limit?: number }) {
 }
 
 export function StatsSection() {
+  const s = shared.statsSection;
   return (
     <section className="stats-section">
       <div className="shell stats-grid">
-        <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2><p>Experience across Fatima’s complete client history and verified feedback collected across the clinic’s booking platforms.</p></Reveal>
+        <Reveal className="stats-heading">
+          <span className="eyebrow"><EditableText path="shared.statsSection.eyebrow" value={s.eyebrow} /></span>
+          <h2><EditableText as="span" path="shared.statsSection.titleLine1" value={s.titleLine1} /><br /><em><EditableText as="span" path="shared.statsSection.titleLine2" value={s.titleLine2} /></em></h2>
+          <p><EditableText path="shared.statsSection.copy" value={s.copy} /></p>
+        </Reveal>
         <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
         <div className="stat"><strong><CountUp value={clinic.verifiedReviews} suffix="+" /></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
@@ -120,11 +125,12 @@ export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolea
 }
 
 export function ResultFilmPanel() {
+  const r = shared.resultFilmPanel;
   return (
     <section className="result-film-section shell">
       <div className="result-film-copy">
-        <span className="eyebrow">Inside Injectox</span>
-        <h2>Treatment moments,<br /><em>on loop.</em></h2>
+        <span className="eyebrow"><EditableText path="shared.resultFilmPanel.eyebrow" value={r.eyebrow} /></span>
+        <h2><EditableText as="span" path="shared.resultFilmPanel.titleLine1" value={r.titleLine1} /><br /><em><EditableText as="span" path="shared.resultFilmPanel.titleLine2" value={r.titleLine2} /></em></h2>
         <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
       </div>
       <div className="result-film-grid">
@@ -178,20 +184,24 @@ export function PricingTable({ compact = false }: { compact?: boolean }) {
 export function BookingSteps() {
   return (
     <div className="booking-steps">
-      {[
-        ["01", "Choose your route", "Book a free consultation when you’re unsure, or select a treatment directly."],
-        ["02", "Plan with Fatima", "Your features, goals, timing and suitability shape the recommendation."],
-        ["03", "Leave polished", "Receive tailored aftercare and a clear route for review or maintenance."],
-      ].map(([n, title, copy]) => <div key={n}><span>{n}</span><h3>{title}</h3><p>{copy}</p></div>)}
+      {shared.bookingSteps.map((step, i) => (
+        <div key={step.title}>
+          <span>{String(i + 1).padStart(2, "0")}</span>
+          <h3><EditableText path={`shared.bookingSteps.${i}.title`} value={step.title} /></h3>
+          <p><EditableText path={`shared.bookingSteps.${i}.copy`} value={step.copy} /></p>
+        </div>
+      ))}
     </div>
   );
 }
 
-export function FinalCTA({ title = <>Ready to look like you—<em>only more considered?</em></> }: { title?: React.ReactNode }) {
+export function FinalCTA({ title }: { title?: React.ReactNode }) {
+  const c = shared.finalCta;
+  const defaultTitle = <><EditableText as="span" path="shared.finalCta.titleLine1" value={c.titleLine1} /><em><EditableText as="span" path="shared.finalCta.titleLine2" value={c.titleLine2} /></em></>;
   return (
     <section className="final-cta">
       <div className="final-orbit" aria-hidden="true"><span /><span /><span /></div>
-      <Reveal className="final-cta-copy"><span className="eyebrow">Begin your treatment plan</span><h2>{title}</h2><p>Start with a complimentary consultation in Salford.</p><div className="button-row"><Button href={booking.consultation} variant="light">Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></Reveal>
+      <Reveal className="final-cta-copy"><span className="eyebrow"><EditableText path="shared.finalCta.eyebrow" value={c.eyebrow} /></span><h2>{title ?? defaultTitle}</h2><p><EditableText path="shared.finalCta.copy" value={c.copy} /></p><div className="button-row"><Button href={booking.consultation} variant="light">Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></Reveal>
     </section>
   );
 }
@@ -201,16 +211,17 @@ export function StickyBook() {
 }
 
 export function TrustPanel() {
+  const icons = [ShieldCheck, Sparkles, Check];
   return (
     <div className="trust-panel">
-      {[ [ShieldCheck, "Consultation-led", "Advice before treatment"], [Sparkles, "Natural by design", "Harmony over trends"], [Check, "Transparent pricing", "Live booking prices"] ].map(([Icon, title, copy]) => {
-        const C = Icon as typeof ShieldCheck;
-        return <div key={String(title)}><C /><span><b>{String(title)}</b><small>{String(copy)}</small></span></div>;
+      {shared.trustPanel.map((item, i) => {
+        const Icon = icons[i] ?? ShieldCheck;
+        return <div key={item.title}><Icon /><span><b><EditableText path={`shared.trustPanel.${i}.title`} value={item.title} /></b><small><EditableText path={`shared.trustPanel.${i}.copy`} value={item.copy} /></small></span></div>;
       })}
     </div>
   );
 }
 
 export function SocialFollow() {
-  return <a className="social-follow" href={booking.instagram} target="_blank" rel="noreferrer"><Camera /> <span>Follow the latest work</span><b>@injectoxclinic</b><ArrowRight /></a>;
+  return <a className="social-follow" href={booking.instagram} target="_blank" rel="noreferrer"><Camera /> <span><EditableText path="shared.socialFollow" value={shared.socialFollow} /></span><b>@injectoxclinic</b><ArrowRight /></a>;
 }
