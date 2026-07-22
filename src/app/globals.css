@@ -3299,14 +3299,14 @@ h2 em,
 
 /* Dev-only click-to-edit overlay (see src/components/dev/editable-text.tsx). */
 .editable-text {
-  outline: 1px dashed rgba(59, 130, 246, 0.45);
-  outline-offset: 2px;
+  outline: 2px dashed #3b82f6;
+  outline-offset: 3px;
   border-radius: 2px;
   cursor: text;
   transition: outline-color 0.15s ease, background-color 0.15s ease;
 }
-.editable-text:hover { outline-color: rgba(59, 130, 246, 0.9); background-color: rgba(59, 130, 246, 0.08); }
-.editable-text:focus { outline: 2px solid #3b82f6; background-color: rgba(59, 130, 246, 0.1); }
+.editable-text:hover { outline-color: #3b82f6; background-color: rgba(59, 130, 246, 0.12); }
+.editable-text:focus { outline: 2px solid #3b82f6; background-color: rgba(59, 130, 246, 0.15); }
 .editable-text--saving { outline-color: #f59e0b; }
 .editable-text--saved { outline-color: #22c55e; }
 .editable-text--error { outline-color: #ef4444; }
