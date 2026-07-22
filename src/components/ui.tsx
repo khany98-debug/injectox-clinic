@@ -6,10 +6,11 @@ import { LoopVideo } from "@/components/loop-video";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
 import { EditableText } from "@/components/dev/editable-text";
 
-export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
+export function Button({ href, children, variant = "dark", external = false, textPath, textValue }: { href: string; children?: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean; textPath?: string; textValue?: string }) {
   const cls = `button button-${variant}`;
-  if (external) return <a className={cls} href={href} target="_blank" rel="noreferrer">{children}<ArrowRight size={16} /></a>;
-  return <Link className={cls} href={href}>{children}<ArrowRight size={16} /></Link>;
+  const content = textPath && textValue ? <EditableText path={textPath} value={textValue} /> : children;
+  if (external) return <a className={cls} href={href} target="_blank" rel="noreferrer">{content}<ArrowRight size={16} /></a>;
+  return <Link className={cls} href={href}>{content}<ArrowRight size={16} /></Link>;
 }
 
 export function SectionIntro({ eyebrow, title, copy, align = "left", eyebrowPath, copyPath }: { eyebrow: string; title: React.ReactNode; copy?: string; align?: "left" | "center"; eyebrowPath?: string; copyPath?: string }) {

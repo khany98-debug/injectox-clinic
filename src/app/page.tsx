@@ -26,8 +26,8 @@ export default function Home() {
               <EditableText path="pages.home.heroIntro" value={h.heroIntro} />
             </p>
             <div className="button-row">
-              <Button href={booking.treatment}>Book now</Button>
-              <Button href="/treatments" variant="line">View treatments</Button>
+              <Button href={booking.treatment} textPath="pages.home.bookNowBtn" textValue={h.bookNowBtn} />
+              <Button href="/treatments" variant="line" textPath="pages.home.viewTreatmentsBtn" textValue={h.viewTreatmentsBtn} />
             </div>
             <div className="hero-proof" aria-label="Injectox Clinic approach">
               {h.heroProof.map((item, i) => <span key={i}><EditableText path={`pages.home.heroProof.${i}`} value={item} /></span>)}
@@ -37,7 +37,7 @@ export default function Home() {
         <div className="reference-hero-panel">
           <span><EditableText path="pages.home.heroPanelLabel" value={h.heroPanelLabel} /></span>
           <b><EditableText path="pages.home.heroPanelText" value={h.heroPanelText} /></b>
-          <Link href="/pricing">View pricing <ArrowRight size={14} /></Link>
+          <Link href="/pricing"><EditableText path="pages.home.viewPricingLink" value={h.viewPricingLink} /> <ArrowRight size={14} /></Link>
         </div>
       </section>
 
@@ -54,7 +54,7 @@ export default function Home() {
             eyebrowPath="pages.home.whyEyebrow"
             title={<><EditableText as="span" path="pages.home.whyTitleLine1" value={h.whyTitleLine1} /><br /><em><EditableText as="span" path="pages.home.whyTitleLine2" value={h.whyTitleLine2} /></em></>}
           />
-          <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
+          <Link className="text-link" href="/about"><EditableText path="pages.home.meetFatimaLink" value={h.meetFatimaLink} /> <ArrowRight /></Link>
         </div>
         <div className="reason-grid">
           {h.reasons.map((reason, index) => {
@@ -88,7 +88,7 @@ export default function Home() {
             eyebrowPath="pages.home.servicesEyebrow"
             title={<><EditableText as="span" path="pages.home.servicesTitleLine1" value={h.servicesTitleLine1} /><br /><em><EditableText as="span" path="pages.home.servicesTitleLine2" value={h.servicesTitleLine2} /></em></>}
           />
-          <Link className="text-link" href="/treatments">All treatments <ArrowRight /></Link>
+          <Link className="text-link" href="/treatments"><EditableText path="pages.home.allTreatmentsLink" value={h.allTreatmentsLink} /> <ArrowRight /></Link>
         </div>
         <TreatmentsGrid limit={6} />
       </section>
@@ -105,7 +105,7 @@ export default function Home() {
           />
           <p><EditableText path="pages.home.aboutParagraph1" value={h.aboutParagraph1} /></p>
           <p><EditableText path="pages.home.aboutParagraph2" value={h.aboutParagraph2} /></p>
-          <Button href="/about" variant="line">About Fatima</Button>
+          <Button href="/about" variant="line" textPath="pages.home.aboutFatimaBtn" textValue={h.aboutFatimaBtn} />
         </div>
       </section>
 
@@ -117,7 +117,7 @@ export default function Home() {
             title={<><EditableText as="span" path="pages.home.experienceTitleLine1" value={h.experienceTitleLine1} /><br /><em><EditableText as="span" path="pages.home.experienceTitleLine2" value={h.experienceTitleLine2} /></em></>}
           />
           <TrustPanel />
-          <Button href="/book" variant="line">Book an appointment</Button>
+          <Button href="/book" variant="line" textPath="pages.home.bookAppointmentBtn" textValue={h.bookAppointmentBtn} />
         </div>
         <div className="experience-media">
           <Image src="/images/dropbox/curated/clinic-treatment-room.jpg" alt="Inside the private Injectox Clinic treatment room" fill sizes="(max-width: 800px) 100vw, 46vw" />
@@ -126,8 +126,8 @@ export default function Home() {
 
       <section className="clinic-location-band">
         <div className="shell clinic-location-grid">
-          <div><span className="eyebrow">Find the clinic</span><h2><EditableText as="span" path="pages.home.locationTitleLine1" value={h.locationTitleLine1} /><br /><em><EditableText as="span" path="pages.home.locationTitleLine2" value={h.locationTitleLine2} /></em></h2></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
+          <div><span className="eyebrow"><EditableText path="pages.home.findClinicEyebrow" value={h.findClinicEyebrow} /></span><h2><EditableText as="span" path="pages.home.locationTitleLine1" value={h.locationTitleLine1} /><br /><em><EditableText as="span" path="pages.home.locationTitleLine2" value={h.locationTitleLine2} /></em></h2></div>
+          <div><p><b><EditableText path="pages.home.clinicName" value={h.clinicName} /></b><br /><EditableText path="pages.home.clinicAddress1" value={h.clinicAddress1} /><br /><EditableText path="pages.home.clinicAddress2" value={h.clinicAddress2} /></p><Button href="/contact" variant="light" textPath="pages.home.directionsLink" textValue={h.directionsLink} /><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
 
@@ -140,20 +140,15 @@ export default function Home() {
           <h2><EditableText as="span" path="pages.home.pricingPreviewTitle" value={h.pricingPreviewTitle} /></h2>
         </div>
         <div className="mini-pricing">
-          {[
-            ["Russian Lip - 0.7ml", "From £160"],
-            ["Anti-Wrinkle", "From £149"],
-            ["Skin Boosters", "From £119"],
-            ["Laser Hair Removal", "From £25"],
-          ].map(([name, price]) => (
-            <Link href={`/book?service=${encodeURIComponent(name)}`} key={name}>
-              <span>{name}</span>
-              <b>{price}</b>
+          {h.pricingItems.map((item, i) => (
+            <Link href={`/book?service=${encodeURIComponent(item.name)}`} key={i}>
+              <span><EditableText path={`pages.home.pricingItems.${i}.name`} value={item.name} /></span>
+              <b><EditableText path={`pages.home.pricingItems.${i}.price`} value={item.price} /></b>
               <ArrowRight size={15} />
             </Link>
           ))}
         </div>
-        <Link className="text-link" href="/pricing">View full pricing <ArrowRight /></Link>
+        <Link className="text-link" href="/pricing"><EditableText path="pages.home.viewFullPricingLink" value={h.viewFullPricingLink} /> <ArrowRight /></Link>
       </section>
 
       <section className="section social-section reference-social">
@@ -176,8 +171,8 @@ export default function Home() {
             title={<><EditableText as="span" path="pages.home.reviewsTitleLine1" value={h.reviewsTitleLine1} /><br /><em><EditableText as="span" path="pages.home.reviewsTitleLine2" value={h.reviewsTitleLine2} /></em></>}
           />
           <div className="review-actions">
-            <Link className="text-link" href="/reviews">Read reviews <ArrowRight /></Link>
-            <Link className="text-link muted" href="/reviews#leave-review">Leave a review <ArrowRight /></Link>
+            <Link className="text-link" href="/reviews"><EditableText path="pages.home.readReviewsLink" value={h.readReviewsLink} /> <ArrowRight /></Link>
+            <Link className="text-link muted" href="/reviews#leave-review"><EditableText path="pages.home.leaveReviewLink" value={h.leaveReviewLink} /> <ArrowRight /></Link>
           </div>
         </div>
         <ReviewsStrip mobileLoop />
@@ -192,7 +187,7 @@ export default function Home() {
             eyebrowPath="pages.home.faqEyebrow"
             title={<><EditableText as="span" path="pages.home.faqTitleLine1" value={h.faqTitleLine1} /><br /><em><EditableText as="span" path="pages.home.faqTitleLine2" value={h.faqTitleLine2} /></em></>}
           />
-          <Button href="/faq" variant="line">View all FAQs</Button>
+          <Button href="/faq" variant="line" textPath="pages.home.viewAllFaqsBtn" textValue={h.viewAllFaqsBtn} />
         </div>
         <FAQList limit={5} />
       </section>

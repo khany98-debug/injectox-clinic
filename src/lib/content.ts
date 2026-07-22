@@ -55,16 +55,24 @@ export type PagesContent = {
   home: {
     heroEyebrowLine1: string; heroEyebrowLine2: string; heroIntro: string; heroProof: string[];
     heroPanelLabel: string; heroPanelText: string; trustPoints: string[];
+    bookNowBtn: string; viewTreatmentsBtn: string; viewPricingLink: string; meetFatimaLink: string;
     whyEyebrow: string; whyTitleLine1: string; whyTitleLine2: string; reasons: TitleCopyItem[];
+    allTreatmentsLink: string;
     concernEyebrow: string; concernTitleLine1: string; concernTitleLine2: string;
     servicesEyebrow: string; servicesTitleLine1: string; servicesTitleLine2: string;
     aboutEyebrow: string; aboutTitleLine1: string; aboutTitleLine2: string; aboutParagraph1: string; aboutParagraph2: string;
+    aboutFatimaBtn: string;
     experienceEyebrow: string; experienceTitleLine1: string; experienceTitleLine2: string;
-    locationTitleLine1: string; locationTitleLine2: string;
+    bookAppointmentBtn: string;
+    findClinicEyebrow: string; locationTitleLine1: string; locationTitleLine2: string;
+    clinicName: string; clinicAddress1: string; clinicAddress2: string; directionsLink: string;
     pricingPreviewEyebrow: string; pricingPreviewTitle: string;
+    pricingItems: { name: string; price: string }[]; viewFullPricingLink: string;
     socialEyebrow: string; socialTitleLine1: string; socialTitleLine2: string;
     reviewsEyebrow: string; reviewsTitleLine1: string; reviewsTitleLine2: string;
+    readReviewsLink: string; leaveReviewLink: string;
     faqEyebrow: string; faqTitleLine1: string; faqTitleLine2: string;
+    viewAllFaqsBtn: string;
     finalCtaTitleLine1: string; finalCtaTitleLine2: string;
   };
   about: {
