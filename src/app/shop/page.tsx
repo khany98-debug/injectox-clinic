@@ -11,7 +11,7 @@ export default function ShopPage() {
       <span className="eyebrow"><EditableText path="pages.shop.eyebrow" value={s.eyebrow} /></span>
       <h1><EditableText as="span" path="pages.shop.titleLine1" value={s.titleLine1} /><br /><em><EditableText as="span" path="pages.shop.titleLine2" value={s.titleLine2} /></em></h1>
       <p><EditableText path="pages.shop.copy" value={s.copy} /></p>
-      <Button href="/treatments">Explore treatments</Button>
+      <Button href="/treatments" textPath="pages.shop.exploreTreatmentsBtn" textValue={s.exploreTreatmentsBtn} />
     </div>
   </section>;
 }

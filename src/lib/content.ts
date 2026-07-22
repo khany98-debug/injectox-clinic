@@ -102,7 +102,7 @@ export type PagesContent = {
     heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
     sectionEyebrow: string; sectionTitleLine1: string; sectionTitleLine2: string; sectionCopy: string;
   };
-  shop: { eyebrow: string; titleLine1: string; titleLine2: string; copy: string };
+  shop: { eyebrow: string; titleLine1: string; titleLine2: string; copy: string; exploreTreatmentsBtn: string };
   book: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string };
   bookSuccess: { titleLine1: string; titleLine2: string; copy: string };
   policies: { heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string; items: TitleCopyItem[] };
