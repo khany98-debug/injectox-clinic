@@ -79,10 +79,13 @@ export type PagesContent = {
     heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
     storyEyebrow: string; storyTitleLine1: string; storyTitleLine2: string;
     storyParagraph1: string; storyParagraph2: string; storyQuote: string;
+    consultationBtn: string;
   };
   contact: {
     heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;
-    cardEyebrow: string; cardTitle: string; cardCopy: string; visitCopy: string; socialCopy: string;
+    cardEyebrow: string; cardTitle: string; cardCopy: string;
+    bookOnSiteBtn: string; messageInstagramBtn: string;
+    visitCopy: string; openMapsLink: string; socialCopy: string;
   };
   gallery: {
     heroEyebrow: string; heroTitleLine1: string; heroTitleLine2: string; heroCopy: string;

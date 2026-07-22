@@ -1107,7 +1107,8 @@
       "storyTitleLine2": "It is knowing when not to.",
       "storyParagraph1": "Fatima’s work returns to the same principle: the best result is tailored to the person in front of her. That means facial harmony over trends, staged change where appropriate and honest advice when a treatment is not needed.",
       "storyParagraph2": "The Injectox experience is designed to feel warm, polished and clear—from an informed consultation through aftercare.",
-      "storyQuote": "The goal is not to make you look treated. It is to make the whole picture feel more resolved."
+      "storyQuote": "The goal is not to make you look treated. It is to make the whole picture feel more resolved.",
+      "consultationBtn": "Meet Fatima in consultation"
     },
     "contact": {
       "heroEyebrow": "Talk to Injectox",
@@ -1117,7 +1118,10 @@
       "cardEyebrow": "Fastest route",
       "cardTitle": "Ready to choose a time?",
       "cardCopy": "Use the on-site booking studio to explore every treatment, price and preferred appointment without leaving Injectox.",
+      "bookOnSiteBtn": "Book on this site",
+      "messageInstagramBtn": "Message on Instagram",
       "visitCopy": "Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road, Salford. Your confirmation email includes full arrival details.",
+      "openMapsLink": "Open in Google Maps ↗",
       "socialCopy": "Follow current results, educational content and clinic updates."
     },
     "gallery": {

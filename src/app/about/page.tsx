@@ -26,7 +26,7 @@ export default function AboutPage() {
         <p><EditableText path="pages.about.storyParagraph2" value={a.storyParagraph2} /></p>
         <div className="story-quote">“<EditableText path="pages.about.storyQuote" value={a.storyQuote} />”</div>
         <TrustPanel />
-        <Button href={booking.consultation}>Meet Fatima in consultation</Button>
+        <Button href={booking.consultation} textPath="pages.about.consultationBtn" textValue={a.consultationBtn} />
       </div>
     </section>
     <FinalCTA />

@@ -22,15 +22,15 @@ export default function ContactPage() {
         <span className="eyebrow"><EditableText path="pages.contact.cardEyebrow" value={c.cardEyebrow} /></span>
         <h2><EditableText as="span" path="pages.contact.cardTitle" value={c.cardTitle} /></h2>
         <p><EditableText path="pages.contact.cardCopy" value={c.cardCopy} /></p>
-        <Button href={booking.treatment} variant="light">Book on this site</Button>
-        <Button href={booking.instagram} variant="line" external>Message on Instagram</Button>
+        <Button href={booking.treatment} variant="light" textPath="pages.contact.bookOnSiteBtn" textValue={c.bookOnSiteBtn} />
+        <Button href={booking.instagram} variant="line" external textPath="pages.contact.messageInstagramBtn" textValue={c.messageInstagramBtn} />
       </div>
       <div className="contact-details">
         <div>
           <small>Visit</small>
           <h3><MapPin size={20} /> <EditableText as="span" path="clinic.location" value={clinic.location} /></h3>
           <p><EditableText path="pages.contact.visitCopy" value={c.visitCopy} /></p>
-          <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Waters+Edge+Business+Park+Modwen+Road+Salford" target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+          <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Waters+Edge+Business+Park+Modwen+Road+Salford" target="_blank" rel="noreferrer"><EditableText path="pages.contact.openMapsLink" value={c.openMapsLink} /></a>
         </div>
         <div><small>Social</small><h3><Camera size={20} /> @injectoxclinic</h3><p><EditableText path="pages.contact.socialCopy" value={c.socialCopy} /></p></div>
         <BookingSteps />
