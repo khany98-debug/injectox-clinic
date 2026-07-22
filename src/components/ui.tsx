@@ -4,6 +4,7 @@ import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Hea
 import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
+import { EditableText } from "@/components/dev/editable-text";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
   const cls = `button button-${variant}`;
@@ -58,18 +59,18 @@ export function TreatmentsGrid({ limit }: { limit?: number }) {
 
 export function ConcernGrid({ limit }: { limit?: number }) {
   const items = limit ? concerns.slice(0, limit) : concerns;
-  const concernIcons = {
+  const concernIcons: Record<string, typeof Heart> = {
     "thin-lips": Heart,
     "facial-imbalance": ScanFace,
     "fine-lines": Clock3,
     "dull-skin": Droplets,
     "acne-pigmentation-texture": Focus,
     "unwanted-hair": Zap,
-  } as const;
+  };
   return (
     <div className="concern-grid">
       {items.map((concern) => {
-        const Icon = concernIcons[concern.slug];
+        const Icon = concernIcons[concern.slug] ?? Heart;
         return (
           <Link href={`/concerns/${concern.slug}`} className="concern-card" key={concern.slug}>
             <span className="concern-card-kicker"><Icon aria-hidden="true" strokeWidth={1.65} /></span>
@@ -102,7 +103,7 @@ export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolea
         {baseCards.map((review, i) => (
           <Reveal className={`review-card ${i % baseCards.length === 1 ? "featured" : ""}`} delay={(i % 3) * 0.08} key={`${review.name}-${i}`}>
             <div className="review-stars">★★★★★</div>
-            <blockquote>“{review.quote}”</blockquote>
+            <blockquote>“<EditableText path={`reviews.${i}.quote`} value={review.quote} />”</blockquote>
             <div><b>{review.name}</b><span>{review.treatment} · {review.date}</span></div>
           </Reveal>
         ))}
@@ -143,9 +144,9 @@ export function FAQList({ limit }: { limit?: number }) {
   return (
     <div className="faq-list">
       {items.map((faq, i) => (
-        <details key={faq.q} open={i === 0}>
-          <summary><span>{String(i + 1).padStart(2, "0")}</span>{faq.q}<i>+</i></summary>
-          <p>{faq.a}</p>
+        <details key={i} open={i === 0}>
+          <summary><span>{String(i + 1).padStart(2, "0")}</span><EditableText path={`faqs.${i}.q`} value={faq.q} /><i>+</i></summary>
+          <p><EditableText path={`faqs.${i}.a`} value={faq.a} /></p>
         </details>
       ))}
     </div>
@@ -158,11 +159,11 @@ export function PricingTable({ compact = false }: { compact?: boolean }) {
     <div className="pricing-groups">
       {groups.map((group, groupIndex) => (
         <section className="price-group" id={({ 1: "filler", 3: "skin", 5: "laser", 6: "packages" } as Record<number, string>)[groupIndex]} key={group.category}>
-          <div className="price-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h2>{group.category}</h2>{group.note && <p>{group.note}</p>}</div>
+          <div className="price-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h2><EditableText path={`pricing.${groupIndex}.category`} value={group.category} /></h2>{group.note && <p><EditableText path={`pricing.${groupIndex}.note`} value={group.note} /></p>}</div>
           <div>
-            {group.items.map((item) => (
+            {group.items.map((item, itemIndex) => (
               <div className="price-row" key={`${group.category}-${item.name}`}>
-                <div><h3>{item.name}</h3><span><Clock3 size={13} />{item.duration}</span></div>
+                <div><h3><EditableText path={`pricing.${groupIndex}.items.${itemIndex}.name`} value={item.name} /></h3><span><Clock3 size={13} />{item.duration}</span></div>
                 <b>{formatPrice(item.price)}</b>
                 <Link href={`/book?service=${encodeURIComponent(item.name)}`} aria-label={`Book ${item.name}`}><ArrowRight /></Link>
               </div>
