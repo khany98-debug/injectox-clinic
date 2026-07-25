@@ -41,7 +41,7 @@ export async function POST(request: Request) {
 
     if (service.price === 0) {
       const emailResult = await sendBookingEmails({ reference, clientName: name, clientEmail: email, clientPhone: phone, treatment: service.name, date, time, duration: service.duration, notes, siteUrl: origin });
-      if (!emailResult.configured) return NextResponse.json({ error: "Consultation confirmation is ready but Resend is not connected. Add RESEND_API_KEY and clinic email settings in Vercel." }, { status: 503 });
+      if (!emailResult.configured) return NextResponse.json({ error: "Consultation confirmation is ready but Resend is not connected. Add RESEND_API_KEY and ADMIN_NOTIFICATION_EMAIL in Vercel." }, { status: 503 });
       const success = new URL("/book/success", origin);
       success.searchParams.set("reference", reference);
       success.searchParams.set("service", service.name);

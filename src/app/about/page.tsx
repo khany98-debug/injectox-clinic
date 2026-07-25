@@ -12,12 +12,16 @@ export default function AboutPage() {
       <div className="story-image"><Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima Khan consulting with a client at Injectox Clinic" fill priority sizes="(max-width: 760px) 100vw, 42vw" /></div>
       <div className="story-copy">
         <span className="eyebrow">Meet Fatima</span>
-        <h2>Expertise is not only what you can do.<br /><em>It is knowing when not to.</em></h2>
-        <p>Fatima’s work returns to the same principle: the best result is tailored to the person in front of her. That means facial harmony over trends, staged change where appropriate and honest advice when a treatment is not needed.</p>
-        <p>The Injectox experience is designed to feel warm, polished and clear—from an informed consultation through aftercare.</p>
-        <div className="story-quote">“The goal is not to make you look treated. It is to make the whole picture feel more resolved.”</div>
+        <h2>No handovers. No juniors.<br /><em>Just me.</em></h2>
+        <p>I’m Fatima — I founded Injectox Clinic and I’m the lead aesthetician here. I specialise in Russian lip and umbrella technique filler, and every appointment is with me personally, from your first consultation right through to aftercare.</p>
+        <p>I’ve always believed treatments should enhance what you already have, not change it. That’s why every plan I put together is built around your face, not a trend — and if less is the right call for you, I’ll always say so.</p>
+        <p>My goal for every client who walks into Injectox is simple: I want you to leave feeling heard, confident and like a better version of yourself. Whether it’s your first treatment with me or your tenth, you’ll always get the same thing — my full attention, every single time.</p>
+        <div className="story-quote">Expert judgement. Honest advice.</div>
         <TrustPanel />
-        <Button href={booking.consultation}>Meet Fatima in consultation</Button>
+        <div className="button-row">
+          <Button href={booking.consultation}>Meet Fatima in consultation</Button>
+          <Button href="/#find-the-clinic" variant="line">Find the clinic</Button>
+        </div>
       </div>
     </section>
     <FinalCTA />

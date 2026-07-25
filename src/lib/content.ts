@@ -13,7 +13,7 @@ export const clinic = {
   name: "Injectox Clinic",
   practitioner: "Fatima Khan",
   role: "Aesthetic practitioner",
-  location: "Skin Clinic MCR, Waters Edge Business Park, Modwen Road, Salford",
+  location: "Skin Clinic MCR, Waters Edge Business Park, Modwen Road, Salford, Greater Manchester",
   areas: ["Salford", "Manchester"],
   rating: "5.0",
   verifiedReviews: 100,
@@ -225,7 +225,7 @@ export const pricing: PriceGroup[] = [
     { name: "Adjustment / follow-up deposit", price: 20, duration: "45 mins" },
   ]},
   { category: "Lip & dermal filler", items: [
-    { name: "Russian Lip — 0.7ml", price: 160, duration: "45 mins" },
+    { name: "Russian Lip Filler 0.7ML", price: 160, duration: "45 mins" },
     { name: "Smile lines — 1.1ml", price: 119, duration: "45 mins" },
     { name: "Marionette lines — 1.1ml", price: 119, duration: "30 mins" },
     { name: "Nasolabial folds — 1.1ml", price: 119, duration: "30 mins" },
@@ -257,7 +257,14 @@ export const pricing: PriceGroup[] = [
     { name: "Polynucleotides", price: 119, duration: "45 mins" },
     { name: "Lemon Bottle skin booster", price: 119, duration: "30 mins" },
   ]},
-  { category: "Facials & microneedling", items: [
+  { category: "Laser Hair Removal Packages", note: "Patch test and consultation requirements apply.", items: [
+    { name: "Small area laser package", price: 150, duration: "6 + 1 sessions" },
+    { name: "Medium area laser package", price: 270, duration: "6 + 1 sessions" },
+    { name: "Large area laser package", price: 540, duration: "6 + 1 sessions" },
+    { name: "Underarms + Hollywood laser package", price: 570, duration: "6 + 1 sessions" },
+    { name: "Full-body laser package", price: 1050, duration: "6 sessions" },
+  ]},
+  { category: "Facials / skin treatments", items: [
     { name: "Microneedling", price: 65, duration: "60 mins" },
     { name: "Microneedling + BioRePeel", price: 99, duration: "45 mins" },
     { name: "Chemical peel", price: 60, duration: "30 mins" },
@@ -268,7 +275,7 @@ export const pricing: PriceGroup[] = [
     { name: "Dermaplane", price: 15, duration: "15 mins" },
     { name: "Dermaplane add-on", price: 10, duration: "15 mins" },
   ]},
-  { category: "Laser hair removal", note: "Patch test and consultation requirements apply.", items: [
+  { category: "Laser hair removal", note: "Single-session area pricing. Packages are listed separately above.", items: [
     { name: "Small area", price: 25, duration: "30 mins" },
     { name: "Medium area", price: 45, duration: "30 mins" },
     { name: "Large area", price: 90, duration: "45 mins" },
@@ -281,22 +288,18 @@ export const pricing: PriceGroup[] = [
     { name: "3.3ml package", price: 299, duration: "90 mins" },
     { name: "4.4ml package", price: 399, duration: "105 mins" },
     { name: "Bespoke facial balancing", price: 499, duration: "60 mins" },
-    { name: "Small-area laser course", price: 150, duration: "6 + 1 sessions" },
-    { name: "Medium-area laser course", price: 270, duration: "6 + 1 sessions" },
-    { name: "Large-area laser course", price: 540, duration: "6 + 1 sessions" },
-    { name: "Full-body laser package", price: 1050, duration: "6 sessions" },
-    { name: "Underarms + Hollywood laser course", price: 570, duration: "6 + 1 sessions" },
-    { name: "Lemon Bottle six-session package", price: 300, duration: "6 sessions" },
   ]},
-  { category: "Wellness & other", items: [
+  { category: "Vitamin Injections", items: [
     { name: "Vitamin B12", price: 25, duration: "30 mins" },
     { name: "Vitamin B complex", price: 25, duration: "30 mins" },
     { name: "Vitamin D", price: 29, duration: "30 mins" },
     { name: "Biotin (Vitamin B7)", price: 29, duration: "30 mins" },
+  ]},
+  { category: "Fat Dissolving", items: [
+    { name: "Lemon Bottle six-session package", price: 300, duration: "6 sessions" },
     { name: "Lemon Bottle small area", price: 60, duration: "30 mins" },
     { name: "Lemon Bottle medium area", price: 75, duration: "30 mins" },
     { name: "Lemon Bottle large area", price: 90, duration: "30 mins" },
-    { name: "Tattoo removal", price: 70, duration: "30 mins" },
   ]},
 ];
 
@@ -322,16 +325,13 @@ export const gallery = [
 
 // First-party client imagery supplied by Injectox. Publish only where the clinic has confirmed image consent.
 export const results = [
-  { src: "/images/dropbox/client-labelled/lip-1-1ml.jpg", label: "Polished lip result", category: "Lips", note: "Shape, definition and a softly glossy finish photographed in clinic." },
-  { src: "/images/dropbox/client-labelled/lip-0-5ml.jpg", label: "Close-up lip finish", category: "Lips", note: "A close-up client result with proportion and detail retained." },
-  { src: "/images/dropbox/client-labelled/lip-0-7ml.jpg", label: "Natural lip enhancement", category: "Lips", note: "A real client lip result selected from the Injectox Dropbox set." },
-  { src: "/images/dropbox/curated/result-treatment-detail.jpg", label: "Treatment detail", category: "Injectables", note: "Precision-led injectable treatment imagery from the clinic." },
-  { src: "/images/dropbox/curated/result-skin-glow.jpg", label: "Skin glow result", category: "Skin", note: "A real skin treatment image from the clinic gallery." },
-  { src: "/images/dropbox/curated/treatment-skin-booster.jpg", label: "Skin booster session", category: "Skin", note: "Hydration-focused skin treatment imagery." },
-  { src: "/images/dropbox/client-labelled/lip-treatment.jpg", label: "Lip injection detail", category: "Lips", note: "A close treatment-room moment from a lip appointment." },
-  { src: "/images/dropbox/curated/treatment-advanced-facial.jpg", label: "Advanced facial moment", category: "Skin", note: "A calm, treatment-room moment from the Injectox client set." },
-  { src: "/images/dropbox/curated/clinic-treatment-room.jpg", label: "Treatment room", category: "Clinic", note: "The Injectox treatment environment, calm and minimal." },
-  { src: "/images/dropbox/curated/treatment-laser-machine.jpg", label: "Laser technology", category: "Laser", note: "Laser equipment imagery for course-led hair removal content." },
+  { src: "/images/dropbox/client-labelled/lip-1-1ml.jpg", label: "Russian lip filler 1.1ML", category: "Lips", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/lip-0-5ml.jpg", label: "Russian lip filler 0.5ML", category: "Lips", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/lip-0-7ml.jpg", label: "Russian lip filler 0.7ML", category: "Lips", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/microneedling.jpg", label: "Microneedling", category: "Skin", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/skin-booster-main.jpg", label: "Skin booster microneedling", category: "Skin", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/lip-treatment.jpg", label: "Lip filler 1.1ML", category: "Lips", note: "Real Injectox client treatment imagery." },
+  { src: "/images/dropbox/client-labelled/lip-result.jpg", label: "Russian lip filler 0.5ML", category: "Lips", note: "Real Injectox client treatment imagery." },
 ] as const;
 
 export const resultFilms = [
@@ -352,6 +352,7 @@ export const resultFilms = [
 ] as const;
 
 export const reviews = [
+  { name: "Molly Plant", treatment: "Lip filler", date: "Approved client review", quote: "I had the best experience at Injectox Clinic! I was made to feel so at ease and had a thorough consultation as part of my appointment. I couldn’t be happier with my lips!! Can’t wait to go back." },
   { name: "Evin B.", treatment: "Aesthetics", date: "July 2026", quote: "The only person I will ever let touch my face. I’m ageing backwards!" },
   { name: "Lacey H.", treatment: "Bespoke plan", date: "July 2026", quote: "Fatima is amazing. She is so genuine and has talked me out of procedures she knew I didn’t need. She really cares about the results and looking natural." },
   { name: "Amina K.", treatment: "Facial balancing", date: "April 2026", quote: "Everything looks so natural and balanced. This is by far the best outcome I’ve had." },
@@ -360,7 +361,7 @@ export const reviews = [
 ] as const;
 
 export const faqs = [
-  { q: "Do I need a consultation?", a: "Consultation is central to injectable, laser and more advanced treatment planning. A free 15-minute consultation is currently listed through Faces." },
+  { q: "Do I need a consultation?", a: "I never treat without a proper consultation first, which is why it’s built into every appointment so there’s nothing extra to book. If you’d rather talk things through separately beforehand, a consultation can be booked on its own too." },
   { q: "Will I still look like myself?", a: "That is the point. The clinic’s public philosophy is built around facial harmony, tailored plans and enhancement that looks polished rather than overdone." },
   { q: "Where is the clinic?", a: "Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road in Salford, Greater Manchester. Full directions are available on the contact page and in every booking confirmation." },
   { q: "How do deposits and cancellations work?", a: "The external booking flow shows the terms that apply to your appointment. Read and accept the current provider policy before paying a deposit." },

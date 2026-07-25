@@ -51,11 +51,6 @@ export default function Home() {
             </div>
           </Reveal>
         </div>
-        <div className="reference-hero-panel">
-          <span>Known for</span>
-          <b>Russian lips, skin glow plans and balanced, natural-looking enhancement.</b>
-          <Link href="/pricing">View pricing <ArrowRight size={14} /></Link>
-        </div>
       </section>
 
       <section className="reference-trust shell" aria-label="Clinic trust points">
@@ -130,10 +125,10 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="clinic-location-band">
+      <section id="find-the-clinic" className="clinic-location-band">
         <div className="shell clinic-location-grid">
           <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
+          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
 
@@ -147,7 +142,7 @@ export default function Home() {
         </div>
         <div className="mini-pricing">
           {[
-            ["Russian Lip - 0.7ml", "From £160"],
+            ["Russian Lip Filler 0.7ML", "From £160"],
             ["Anti-Wrinkle", "From £149"],
             ["Skin Boosters", "From £119"],
             ["Laser Hair Removal", "From £25"],

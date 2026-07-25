@@ -11,7 +11,7 @@ export function SiteFooter() {
           <div className="footer-brand-stack">
             <ClinicLogo />
           </div>
-          <p className="footer-strap">Refined aesthetics.<br /><em>Entirely yours.</em></p>
+          <p className="footer-strap">Aesthetics,<br /><em>done honestly.</em></p>
         </div>
         <div className="footer-links">
           <div><b>Discover</b><Link href="/treatments">Treatments</Link><Link href="/concerns">Concerns</Link><Link href="/pricing">Pricing</Link><Link href="/gallery">Results</Link></div>

@@ -157,7 +157,7 @@ export function PricingTable({ compact = false }: { compact?: boolean }) {
   return (
     <div className="pricing-groups">
       {groups.map((group, groupIndex) => (
-        <section className="price-group" id={({ 1: "filler", 3: "skin", 5: "laser", 6: "packages" } as Record<number, string>)[groupIndex]} key={group.category}>
+        <section className="price-group" id={({ 1: "filler", 3: "skin", 4: "laser", 6: "packages" } as Record<number, string>)[groupIndex]} key={group.category}>
           <div className="price-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h2>{group.category}</h2>{group.note && <p>{group.note}</p>}</div>
           <div>
             {group.items.map((item) => (

@@ -28,7 +28,7 @@ function calendarUrl(data: BookingEmailData) {
 }
 
 function shell(content: string, preheader: string) {
-  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Injectox Clinic</title></head><body style="margin:0;background:#f2f0ea;color:#292a26;font-family:Arial,sans-serif"><div style="display:none;max-height:0;overflow:hidden">${escapeHtml(preheader)}</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f0ea"><tr><td align="center" style="padding:32px 12px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fbfaf6;border:1px solid #d9d7ce"><tr><td style="padding:28px 34px;background:#292a26;color:#fbfaf6"><table role="presentation" width="100%"><tr><td><span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border:1px solid #fbfaf6;border-radius:50%;font-family:Georgia,serif;font-size:20px;font-style:italic">I</span><b style="margin-left:12px;font-size:12px;letter-spacing:3px">INJECTOX</b></td><td align="right" style="font-size:9px;letter-spacing:1.8px;color:#c9c8c0">MANCHESTER · SALFORD · BOLTON</td></tr></table></td></tr><tr><td style="padding:42px 34px">${content}</td></tr><tr><td style="padding:24px 34px;border-top:1px solid #d9d7ce;color:#7e8178;font-size:10px;line-height:1.7">${escapeHtml(clinic.location)}<br>Injectox Clinic · Consultation-led aesthetics<br><a href="https://www.instagram.com/injectoxclinic/" style="color:#68675d">@injectoxclinic</a></td></tr></table></td></tr></table></body></html>`;
+  return `<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Injectox Clinic</title></head><body style="margin:0;background:#f2f0ea;color:#292a26;font-family:Arial,sans-serif"><div style="display:none;max-height:0;overflow:hidden">${escapeHtml(preheader)}</div><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f2f0ea"><tr><td align="center" style="padding:32px 12px"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="max-width:640px;background:#fbfaf6;border:1px solid #d9d7ce"><tr><td style="padding:28px 34px;background:#292a26;color:#fbfaf6"><table role="presentation" width="100%"><tr><td><span style="display:inline-block;width:34px;height:34px;line-height:34px;text-align:center;border:1px solid #fbfaf6;border-radius:50%;font-family:Georgia,serif;font-size:20px;font-style:italic">I</span><b style="margin-left:12px;font-size:12px;letter-spacing:3px">INJECTOX</b></td><td align="right" style="font-size:9px;letter-spacing:1.8px;color:#c9c8c0">SALFORD · MANCHESTER</td></tr></table></td></tr><tr><td style="padding:42px 34px">${content}</td></tr><tr><td style="padding:24px 34px;border-top:1px solid #d9d7ce;color:#7e8178;font-size:10px;line-height:1.7">${escapeHtml(clinic.location)}<br>Injectox Clinic · Consultation-led aesthetics<br><a href="https://www.instagram.com/injectoxclinic/" style="color:#68675d">@injectoxclinic</a></td></tr></table></td></tr></table></body></html>`;
 }
 
 function detailTable(data: BookingEmailData) {
@@ -46,7 +46,7 @@ function clinicHtml(data: BookingEmailData) {
 
 export async function sendBookingEmails(data: BookingEmailData) {
   const apiKey = process.env.RESEND_API_KEY;
-  const clinicEmail = process.env.CLINIC_NOTIFICATION_EMAIL;
+  const clinicEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
   if (!apiKey || !clinicEmail) return { configured: false };
   const resend = new Resend(apiKey);
   const from = process.env.RESEND_FROM_EMAIL ?? "Injectox Clinic <bookings@injectoxclinic.co.uk>";
@@ -59,7 +59,7 @@ export async function sendBookingEmails(data: BookingEmailData) {
 
 export async function sendReviewNotification(data: { name: string; treatment: string; review: string }) {
   const apiKey = process.env.RESEND_API_KEY;
-  const clinicEmail = process.env.CLINIC_NOTIFICATION_EMAIL;
+  const clinicEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
   if (!apiKey || !clinicEmail) return { configured: false };
   const resend = new Resend(apiKey);
   const from = process.env.RESEND_FROM_EMAIL ?? "Injectox Clinic <bookings@injectoxclinic.co.uk>";

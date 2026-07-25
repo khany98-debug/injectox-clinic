@@ -6,7 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 type Booking = { id: string; client: string; service: string; date: string; time: string; status: "Confirmed" | "Pending" | "Completed" | "Cancelled"; amount: number };
 
 const initialBookings: Booking[] = [
-  { id: "IC-4K8P2Q", client: "Sophie M.", service: "Russian Lip — 0.7ml", date: "18 Jul 2026", time: "10:00", status: "Confirmed", amount: 160 },
+  { id: "IC-4K8P2Q", client: "Sophie M.", service: "Russian Lip Filler 0.7ML", date: "18 Jul 2026", time: "10:00", status: "Confirmed", amount: 160 },
   { id: "IC-7D2L9X", client: "Amelia R.", service: "Skin Booster", date: "18 Jul 2026", time: "13:00", status: "Pending", amount: 119 },
   { id: "IC-1H6N4V", client: "Layla H.", service: "Laser Hair Removal", date: "19 Jul 2026", time: "11:30", status: "Confirmed", amount: 90 },
   { id: "IC-9Q5B7M", client: "Chloe B.", service: "Facial Balancing", date: "16 Jul 2026", time: "14:30", status: "Completed", amount: 249 },
@@ -16,7 +16,7 @@ export function AdminDashboard() {
   const [bookings, setBookings] = useState(initialBookings);
   const [tab, setTab] = useState("Overview");
   const [notice, setNotice] = useState("");
-  const serviceNames = ["Russian Lip — 0.7ml", "Facial Balancing", "Anti-Wrinkle · 3 areas", "Skin Booster", "Microneedling", "Laser · large area"];
+  const serviceNames = ["Russian Lip Filler 0.7ML", "Facial Balancing", "Anti-Wrinkle · 3 areas", "Skin Booster", "Microneedling", "Laser · large area"];
   const [servicePrices, setServicePrices] = useState([160, 249, 199, 119, 65, 90]);
   const revenue = useMemo(() => bookings.reduce((sum, item) => sum + item.amount, 0), [bookings]);
 
