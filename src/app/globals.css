@@ -688,10 +688,16 @@ body {
 
 .clinic-location-grid {
   display: grid;
-  grid-template-columns: 1.1fr .9fr;
-  gap: 80px;
-  align-items: end;
+  grid-template-columns: 1fr;
+  gap: 26px;
+  align-items: center;
+  text-align: center;
 }
+
+.clinic-location-grid > div { display: flex; flex-direction: column; align-items: center; }
+.clinic-location-grid h3 { margin: 8px 0 0; font-size: clamp(28px, 3vw, 48px); font-weight: 400; }
+.clinic-location-grid p { margin-inline: auto; }
+.clinic-location-grid .clinic-map { width: min(100%, 1120px); min-height: 360px; margin: 14px auto 0; }
 
 .clinic-location-grid h2 {
   margin: 0;
@@ -3007,28 +3013,19 @@ h2 em,
 
 .reference-hero-panel {
   right: max(42px, calc((100vw - 1420px) / 2));
-  bottom: 92px;
-  width: min(400px, 28vw);
-  padding: 30px 34px 29px;
+  bottom: 38px;
+  width: min(320px, 24vw);
+  padding: 22px 24px 20px;
   border: 1px solid rgba(239, 219, 198, .25);
   background: linear-gradient(135deg, rgba(42, 25, 20, .7), rgba(20, 13, 11, .57));
   box-shadow: 0 28px 70px rgba(0,0,0,.18), inset 0 1px 0 rgba(255,255,255,.05);
   backdrop-filter: blur(15px);
 }
 
-.reference-hero-panel::before {
-  content: "Signature approach";
-  display: block;
-  margin-bottom: 17px;
-  color: #ebc9b8;
-  font-size: 7px;
-  font-weight: 700;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-}
+.reference-hero-panel::before { display: none; }
 
 .reference-hero-panel span { display: none; }
-.reference-hero-panel b { margin: 0 0 23px; font-size: clamp(23px, 2vw, 30px); line-height: 1.05; }
+.reference-hero-panel b { margin: 0 0 16px; font-size: clamp(18px, 1.5vw, 23px); line-height: 1.08; }
 
 .reference-trust {
   margin-top: -49px;

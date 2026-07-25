@@ -340,14 +340,14 @@ export const resultFilms = [
   {
     src: "/media/dropbox/injectox-editorial-result-loop.mp4",
     poster: "/images/dropbox/curated/clinic-treatment-room.jpg",
-    label: "Treatment-room film",
+    label: "Inside the clinic",
     category: "Clinic film",
     note: "A short Injectox video loop for the results journey.",
   },
   {
     src: "/media/dropbox/injectox-skin-loop.mp4",
     poster: "/images/dropbox/curated/treatment-skin-booster.jpg",
-    label: "Skin treatment loop",
+    label: "Skin Booster in action",
     category: "Skin film",
     note: "Professional skin-treatment motion embedded into the page.",
   },
