@@ -7,7 +7,9 @@ export const metadata: Metadata = {
   description: "Choose an Injectox Clinic treatment, preferred appointment and contact details in one beautifully simple on-site booking journey.",
 };
 
-export default async function BookPage({ searchParams }: PageProps<"/book">) {
+type BookPageProps = { searchParams: Promise<Record<string, string | string[] | undefined>> };
+
+export default async function BookPage({ searchParams }: BookPageProps) {
   const query = await searchParams;
   const initialService = Array.isArray(query.service) ? query.service[0] : query.service;
 

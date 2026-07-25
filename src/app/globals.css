@@ -417,6 +417,7 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
 .coming-soon p { max-width: 520px; margin: 25px auto 35px; color: var(--taupe); }
 
 .site-footer { padding: 90px 5vw 32px; color: #f6ede6; background: #191310; }
+.clinic-map { display: block; width: 100%; min-height: 280px; margin-top: 24px; border: 0; border-radius: 18px; }
 .footer-top { display: grid; grid-template-columns: 1.1fr .9fr; gap: 80px; padding-bottom: 70px; }
 .footer-brand-stack { display: flex; flex-direction: column; align-items: flex-start; gap: 1px; margin-bottom: 20px; }
 .footer-brand-main { font-family: var(--font-display); font-size: 32px; font-style: italic; font-weight: 400; letter-spacing: .05em; line-height: 1; color: var(--champagne); }
