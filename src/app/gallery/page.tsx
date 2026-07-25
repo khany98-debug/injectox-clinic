@@ -6,11 +6,11 @@ export const metadata: Metadata = { title: "Client Results", description: "Explo
 export default function GalleryPage() {
   return (
     <>
-      <PageHero eyebrow="Real client results" title={<>Subtle changes.<br /><em>Beautifully considered.</em></>} copy="A curated edit of genuine Injectox client outcomes photographed in the clinic. Tap any result to view it in detail." index="06" />
+      <PageHero eyebrow="Real client results" title={<>Small changes.<br /><em>Serious results.</em></>} copy="A curated edit of real Injectox outcomes, photographed in clinic. Tap any result to see it up close." index="06" />
       <section className="results-intro shell">
         <span className="eyebrow">The work</span>
         <h2>Real faces. Real treatments.<br /><em>No stock imagery.</em></h2>
-        <p>These images show individual client experiences supplied by the clinic. Results, swelling, recovery and longevity vary. Images should only remain published where valid client consent is recorded.</p>
+        <p>Real clients. Real results. Every image on this page was taken right here at Injectox Clinic.</p>
       </section>
       <section className="results-gallery"><GalleryGrid source="results" mobileLoop includeFilms /></section>
       <ResultFilmPanel />

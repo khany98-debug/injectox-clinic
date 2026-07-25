@@ -13,6 +13,8 @@ const nav = [
   ["Results", "/gallery"],
   ["Pricing", "/pricing"],
   ["About", "/about"],
+  ["Address", "/#find-the-clinic"],
+  ["FAQ", "/faq"],
 ] as const;
 
 export function SiteHeader() {

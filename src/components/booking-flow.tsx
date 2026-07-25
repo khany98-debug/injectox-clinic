@@ -26,7 +26,7 @@ const services: BookingService[] = pricing.flatMap((group, groupIndex) =>
 const timeSlots = ["10:00", "11:30", "13:00", "14:30", "16:00", "17:30"];
 const steps = ["Treatment", "Preferred date", "Your details", "Review"];
 const serviceAliases: Record<string, string> = {
-  "Russian Lip Filler": "Russian Lip Filler 0.7ML",
+  "Russian Lip Filler": "Russian Lip Filler",
   "Facial Balancing": "Bespoke facial balancing",
   "Anti-Wrinkle": "One area",
   "Skin Boosters": "Lumi Pro / Aqua Shine / Skin Booster",

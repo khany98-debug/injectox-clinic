@@ -48,12 +48,12 @@ export const treatments: Treatment[] = [
     category: "Injectables",
     eyebrow: "The signature",
     intro:
-      "A precision-led lip treatment designed around shape, lift and proportion—not a one-size-fits-all trend.",
-    price: 160,
+      "A softer, natural lip shape for lips that still look like yours, only better.",
+    price: 149,
     duration: "45 mins",
     downtime: "Usually 2–7 days",
     consultation: true,
-    benefits: ["Refined definition", "Tailored volume", "Balanced side profile", "Natural-looking finish"],
+    benefits: ["Refined definition", "Tailored volume", "Balanced side profile", "Natural Looking Results"],
     idealFor: ["Lips lacking shape", "Subtle volume", "Cupid’s bow definition", "Rebalancing existing filler"],
     process: ["Consultation and facial assessment", "Bespoke technique selection", "Precision treatment", "Aftercare and review guidance"],
     faq: [
@@ -89,7 +89,7 @@ export const treatments: Treatment[] = [
     name: "Anti-Wrinkle",
     category: "Injectables",
     eyebrow: "Expression, softened",
-    intro: "Consultation-led treatment for a fresher, rested appearance while protecting the character of your face.",
+    intro: "A consultation-led treatment for softened lines, not a frozen face — you still look like you.",
     price: 149,
     duration: "30–45 mins",
     downtime: "Minimal",
@@ -149,7 +149,7 @@ export const treatments: Treatment[] = [
     name: "Advanced Facials",
     category: "Skin",
     eyebrow: "The polished reset",
-    intro: "From Glass Skin to extraction-led and medical-grade facial options, chosen around what your skin needs now.",
+    intro: "Glass skin, deep clean facials or medical grade treatments — whatever your skin needs right now.",
     price: 60,
     duration: "30–60 mins",
     downtime: "None to minimal",
@@ -213,7 +213,7 @@ export const concerns = [
   { slug: "fine-lines", title: "Fine lines", short: "A fresher expression without erasing character.", treatments: ["anti-wrinkle", "skin-boosters"] },
   { slug: "dull-skin", title: "Dull or tired skin", short: "Hydration, brightness and a polished reset.", treatments: ["skin-boosters", "advanced-facials"] },
   { slug: "acne-pigmentation-texture", title: "Texture & clarity", short: "Support for uneven texture, visible pores and post-acne marks.", treatments: ["microneedling", "advanced-facials"] },
-  { slug: "unwanted-hair", title: "Unwanted hair", short: "A considered course for face or body.", treatments: ["laser-hair-removal"] },
+  { slug: "unwanted-hair", title: "Unwanted hair", short: "Pain free laser hair removal courses.", treatments: ["laser-hair-removal"] },
 ] as const;
 
 export type PriceItem = { name: string; price: number; duration: string };
@@ -226,7 +226,7 @@ export const pricing: PriceGroup[] = [
   ]},
   { category: "Lip & dermal filler", items: [
     { name: "Russian Lip Filler 0.5ML", price: 149, duration: "45 mins" },
-    { name: "Russian Lip Filler 0.7ML", price: 160, duration: "45 mins" },
+    { name: "Russian Lip Filler", price: 149, duration: "45 mins" },
     { name: "Russian Lip Filler 1.1ML", price: 219, duration: "60 mins" },
     { name: "Smile lines — 1.1ml", price: 119, duration: "45 mins" },
     { name: "Marionette lines — 1.1ml", price: 119, duration: "30 mins" },

@@ -15,8 +15,8 @@ const reasons = [
   },
   {
     icon: Sparkles,
-    title: "Natural-looking finish",
-    copy: "Lips, skin and facial balancing are approached with polish, restraint and proportion.",
+    title: "Natural Looking Results",
+    copy: "Enhanced, not obvious — every result is judged against your natural proportions first.",
   },
   {
     icon: ShieldCheck,
@@ -37,24 +37,24 @@ export default function Home() {
             <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
             <h1><span>Injectox</span><span>Clinic</span></h1>
             <p>
-              Refined lip filler, facial balancing, medical-grade skin and laser hair removal with a calm,
-              consultation-led approach.
+              Specialists in Russian lip filler, laser hair removal and medical-grade skincare in Salford, Manchester. Free Consultation available online or in person.
             </p>
             <div className="button-row">
               <Button href={booking.treatment}>Book now</Button>
               <Button href="/treatments" variant="line">View treatments</Button>
             </div>
             <div className="hero-proof" aria-label="Injectox Clinic approach">
-              <span>Facial harmony</span>
-              <span>Natural by design</span>
-              <span>Consultation-led</span>
+              <span>Derma Fillers</span>
+              <span>Skin Treatments</span>
+              <span>Laser Hair Removal</span>
             </div>
           </Reveal>
         </div>
+        <div className="reference-hero-panel"><b>“I had the best experience at Injectox Clinic! I was made to feel so at ease and had a thorough consultation as part of my appointment. I couldn’t be happier with my lips!! Can’t wait to go back”</b><span>— Molly Plant</span><Link href="/pricing">View pricing <ArrowRight /></Link></div>
       </section>
 
       <section className="reference-trust shell" aria-label="Clinic trust points">
-        {["18+ treatments only", "Free consultation option", "Transparent pricing", "Salford clinic"].map((item) => (
+        {["18+ only", "Free Consultation", "Natural Results", "Free Parking"].map((item) => (
           <div key={item}><CheckCircle2 size={17} /><span>{item}</span></div>
         ))}
       </section>
@@ -63,7 +63,7 @@ export default function Home() {
         <div className="split-heading">
           <SectionIntro
             eyebrow="Why Injectox"
-            title={<>Beauty that feels<br /><em>considered.</em></>}
+            title={<>We won’t tell you what you want to hear.<br /><em>We’ll tell you what actually suits your face.</em></>}
           />
           <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
         </div>
@@ -102,11 +102,13 @@ export default function Home() {
       <section className="section shell home-about">
         <div className="home-about-media">
           <Image src="/images/dropbox/client-labelled/consultation-fatima.jpg" alt="Fatima consulting with a client at Injectox Clinic" fill sizes="(max-width: 800px) 100vw, 44vw" />
+          <span className="fatima-caption">Founder · Lead Aesthetician</span>
         </div>
         <div className="home-about-copy">
-          <SectionIntro eyebrow="Meet Fatima" title={<>Honest advice.<br /><em>Beautiful judgement.</em></>} />
-          <p>Every appointment is led by Fatima from her private Salford clinic, with a focus on facial harmony, calm consultation and results that still feel like you.</p>
-          <p>There is no one-size-fits-all plan. Fatima considers your features, lifestyle and timing before recommending what will make a genuine difference—and will always say when less is more.</p>
+          <SectionIntro eyebrow="Meet Fatima" title={<>No handovers. No juniors.<br /><em>Just me.</em></>} />
+          <p>I’m Fatima — I founded Injectox Clinic and I’m the lead aesthetician here. I specialise in Russian lip and umbrella technique filler, and every appointment is with me personally, from your first consultation right through to aftercare.</p>
+          <p>I’ve always believed treatments should enhance what you already have, not change it. That’s why every plan I put together is built around your face, not a trend — and if less is the right call for you, I’ll always say so.</p>
+          <p>My goal for every client who walks into Injectox is simple: I want you to leave feeling heard, confident and like a better version of yourself. Whether it’s your first treatment with me or your tenth, you’ll always get the same thing — my full attention, every single time.</p>
           <Button href="/about" variant="line">About Fatima</Button>
         </div>
       </section>
@@ -127,7 +129,7 @@ export default function Home() {
 
       <section id="find-the-clinic" className="clinic-location-band">
         <div className="shell clinic-location-grid">
-          <div><span className="eyebrow">Find the clinic</span><h2>Salford, Greater<br /><em>Manchester.</em></h2></div>
+          <div><span className="eyebrow">Find the clinic</span><h2>Address</h2><h3>Salford, Greater<br /><em>Manchester.</em></h3></div>
           <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
         </div>
       </section>
@@ -142,7 +144,7 @@ export default function Home() {
         </div>
         <div className="mini-pricing">
           {[
-            ["Russian Lip Filler 0.7ML", "From £160"],
+            ["Russian Lip Filler", "From £149"],
             ["Anti-Wrinkle", "From £149"],
             ["Skin Boosters", "From £119"],
             ["Laser Hair Removal", "From £25"],

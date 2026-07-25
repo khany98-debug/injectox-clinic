@@ -85,7 +85,7 @@ export function StatsSection() {
   return (
     <section className="stats-section">
       <div className="shell stats-grid">
-        <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2><p>Experience across Fatima’s complete client history and verified feedback collected across the clinic’s booking platforms.</p></Reveal>
+        <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2></Reveal>
         <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
         <div className="stat"><strong><CountUp value={clinic.verifiedReviews} suffix="+" /></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
@@ -123,14 +123,14 @@ export function ResultFilmPanel() {
     <section className="result-film-section shell">
       <div className="result-film-copy">
         <span className="eyebrow">Inside Injectox</span>
-        <h2>Treatment moments,<br /><em>on loop.</em></h2>
+        <h2>See exactly what happens<br /><em>in the room.</em></h2>
         <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
       </div>
       <div className="result-film-grid">
         {resultFilms.map((film, index) => (
           <div className="result-film-card" key={film.src}>
             <LoopVideo src={film.src} poster={film.poster} preload={index === 0 ? "auto" : "metadata"} />
-            <span><small>{String(index + 1).padStart(2, "0")}</small>{film.label}</span>
+            <span><small>{String(index + 1).padStart(2, "0")}</small>{index === 0 ? "Inside the clinic" : "Skin Booster in action"}</span>
           </div>
         ))}
       </div>
@@ -202,7 +202,7 @@ export function StickyBook() {
 export function TrustPanel() {
   return (
     <div className="trust-panel">
-      {[ [ShieldCheck, "Consultation-led", "Advice before treatment"], [Sparkles, "Natural by design", "Harmony over trends"], [Check, "Transparent pricing", "Live booking prices"] ].map(([Icon, title, copy]) => {
+      {[ [ShieldCheck, "Consultation-led", "Advice before treatment"], [Sparkles, "Natural results", "Harmony over trends"], [Check, "Transparent pricing", "Live booking prices"] ].map(([Icon, title, copy]) => {
         const C = Icon as typeof ShieldCheck;
         return <div key={String(title)}><C /><span><b>{String(title)}</b><small>{String(copy)}</small></span></div>;
       })}

@@ -49,7 +49,7 @@ export function NewsletterPopup() {
       return;
     }
     window.localStorage.setItem(storageKey, "true");
-    setStatus("success");
+    setVisible(false);
   }
 
   if (!visible) return null;
