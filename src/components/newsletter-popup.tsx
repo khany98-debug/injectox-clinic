@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from "react";
 import { X } from "lucide-react";
+import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner";
 
 const storageKey = "injectox-newsletter-dismissed";
 
@@ -14,14 +15,23 @@ export function NewsletterPopup() {
 
   useEffect(() => {
     if (window.localStorage.getItem(storageKey)) return;
-    const timer = window.setTimeout(() => setVisible(true), 6500);
+
+    let timer: number | undefined;
     const onPointerOut = (event: PointerEvent) => {
       if (event.clientY <= 0) setVisible(true);
     };
-    document.addEventListener("pointerout", onPointerOut);
+    const showAfterCookieChoice = () => {
+      if (!window.localStorage.getItem(cookieConsentKey) || timer) return;
+      timer = window.setTimeout(() => setVisible(true), 3500);
+      document.addEventListener("pointerout", onPointerOut);
+    };
+
+    showAfterCookieChoice();
+    window.addEventListener(cookieConsentEvent, showAfterCookieChoice);
     return () => {
-      window.clearTimeout(timer);
+      if (timer) window.clearTimeout(timer);
       document.removeEventListener("pointerout", onPointerOut);
+      window.removeEventListener(cookieConsentEvent, showAfterCookieChoice);
     };
   }, []);
 

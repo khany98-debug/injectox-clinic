@@ -3317,7 +3317,7 @@ h2 em,
 /* Newsletter sign-up: compact, dismissible and ready for a provider bridge. */
 .newsletter-popover {
   position: fixed;
-  z-index: 110;
+  z-index: 59;
   right: 24px;
   bottom: 24px;
   width: min(390px, calc(100vw - 32px));
