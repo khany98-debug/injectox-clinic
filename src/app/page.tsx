@@ -4,6 +4,7 @@ import { ArrowRight, CheckCircle2, HeartHandshake, ShieldCheck, Sparkles } from 
 import { GalleryGrid } from "@/components/gallery-grid";
 import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
+import { MapEmbed } from "@/components/map-embed";
 import { Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
 import { booking } from "@/lib/content";
 
@@ -63,7 +64,7 @@ export default function Home() {
         <div className="split-heading">
           <SectionIntro
             eyebrow="Why Injectox"
-            title={<>We won’t tell you what you want to hear.<br /><em>We’ll tell you what actually suits your face.</em></>}
+            title={<><span className="why-title-line">We won’t tell you what</span><span className="why-title-line">you want to hear.</span><em><span className="why-title-line">We’ll tell you what actually</span><span className="why-title-line">suits your face.</span></em></>}
           />
           <Link className="text-link" href="/about">Meet Fatima <ArrowRight /></Link>
         </div>
@@ -130,7 +131,7 @@ export default function Home() {
       <section id="find-the-clinic" className="clinic-location-band">
         <div className="shell clinic-location-grid">
           <div><span className="eyebrow">Find the clinic</span><h2>Address</h2><h3>Salford, Greater<br /><em>Manchester.</em></h3></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester</p><Button href="/contact" variant="light">Directions &amp; contact</Button><div className="clinic-map" aria-label="Map showing Injectox Clinic in Salford"><iframe title="Injectox Clinic location map" loading="lazy" src="https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&amp;output=embed" /></div></div>
+          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester</p><Button href="/contact" variant="light">Directions &amp; contact</Button><MapEmbed /></div>
         </div>
       </section>
 

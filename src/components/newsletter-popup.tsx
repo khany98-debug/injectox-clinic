@@ -9,6 +9,7 @@ export function NewsletterPopup() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
+  const [marketingConsent, setMarketingConsent] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export function NewsletterPopup() {
     const response = await fetch("/api/newsletter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
+      body: JSON.stringify({ email, marketingConsent }),
     });
     if (!response.ok) {
       const payload = await response.json().catch(() => ({ error: "Subscription could not be saved." })) as { error?: string };
@@ -73,8 +74,9 @@ export function NewsletterPopup() {
             <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" inputMode="email" autoComplete="email" required placeholder="you@example.com" />
           </label>
           {error && <p className="newsletter-error" role="alert">{error}</p>}
-          <button className="button button-dark" type="submit" disabled={status === "submitting"}>{status === "submitting" ? "Subscribing..." : "Subscribe"}</button>
-          <small>No spam, just the good stuff. You can unsubscribe at any time.</small>
+          <label className="newsletter-consent"><input checked={marketingConsent} onChange={(event) => setMarketingConsent(event.target.checked)} type="checkbox" required /><span>I agree to receive Injectox Clinic marketing emails and understand I can unsubscribe at any time.</span></label>
+          <button className="button button-dark" type="submit" disabled={status === "submitting" || !marketingConsent}>{status === "submitting" ? "Subscribing..." : "Subscribe"}</button>
+          <small>Read the <a href="/privacy-policy">Privacy Policy</a> before subscribing.</small>
         </form>
       )}
     </div>

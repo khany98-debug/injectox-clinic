@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import { pricing } from "@/lib/content";
 import { sendBookingEmails } from "@/lib/emails";
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { requireSameOrigin, secureSiteOrigin } from "@/lib/request-security";
 
 type CheckoutBody = { service?: string; date?: string; time?: string; name?: string; email?: string; phone?: string; notes?: string };
 
@@ -22,6 +23,8 @@ function isValidAppointmentDate(value: string) {
 
 export async function POST(request: Request) {
   try {
+    const originError = requireSameOrigin(request);
+    if (originError) return originError;
     const limiter = rateLimit(request, "checkout", 12, 10 * 60 * 1000);
     if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
     if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid booking request." }, { status: 415 });
@@ -36,7 +39,7 @@ export async function POST(request: Request) {
     const notes = safe(body.notes, 500);
     if (!service || !/^\d{4}-\d{2}-\d{2}$/.test(date) || !isValidAppointmentDate(date) || !/^\d{2}:\d{2}$/.test(time) || !name || !emailPattern.test(email) || phone.length < 7) return NextResponse.json({ error: "Please review your treatment, appointment and contact details." }, { status: 400 });
 
-    const origin = process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? new URL(request.url).origin;
+    const origin = secureSiteOrigin(request);
     const reference = `IC-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
 
     if (service.price === 0) {

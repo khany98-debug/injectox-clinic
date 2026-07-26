@@ -1,9 +1,12 @@
 import { NextResponse } from "next/server";
 import { sendReviewNotification } from "@/lib/emails";
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
+import { requireSameOrigin } from "@/lib/request-security";
 
 export async function POST(request: Request) {
   try {
+    const originError = requireSameOrigin(request);
+    if (originError) return originError;
     const limiter = rateLimit(request, "reviews", 5, 15 * 60 * 1000);
     if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
     if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid review request." }, { status: 415 });
