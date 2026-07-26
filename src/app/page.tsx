@@ -29,6 +29,7 @@ const reasons = [
 export default function Home() {
   return (
     <>
+      <link rel="preload" href="/media/dropbox/injectox-client-hero.mp4" as="video" type="video/mp4" />
       <section className="home-hero reference-hero">
         <HeroFilm />
         <div className="hero-wash" />

@@ -4,6 +4,18 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       {
+        source: "/media/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
+        ],
+      },
+      {
+        source: "/images/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=604800, stale-while-revalidate=2592000" },
+        ],
+      },
+      {
         source: "/(.*)",
         headers: [
           { key: "Content-Security-Policy", value: "default-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; object-src 'none'; script-src 'self' 'unsafe-inline' https://js.stripe.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https://www.google.com; font-src 'self' data:; connect-src 'self' https://api.stripe.com https://*.stripe.com; frame-src https://www.google.com https://js.stripe.com https://hooks.stripe.com; media-src 'self' blob:; upgrade-insecure-requests" },

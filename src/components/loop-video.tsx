@@ -12,10 +12,28 @@ type LoopVideoProps = {
 export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
+  const [shouldLoad, setShouldLoad] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        setShouldLoad(true);
+        observer.disconnect();
+      },
+      { rootMargin: "360px 0px" },
+    );
+
+    observer.observe(video);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video || !shouldLoad) return;
 
     video.muted = true;
     video.defaultMuted = true;
@@ -49,7 +67,7 @@ export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVide
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", play);
     };
-  }, []);
+  }, [shouldLoad]);
 
   return (
     <video
@@ -60,11 +78,11 @@ export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVide
       muted
       loop
       playsInline
-      preload={preload}
+      preload={shouldLoad ? preload : "none"}
       aria-hidden="true"
       tabIndex={-1}
     >
-      <source src={src} type="video/mp4" />
+      {shouldLoad ? <source src={src} type="video/mp4" /> : null}
     </video>
   );
 }

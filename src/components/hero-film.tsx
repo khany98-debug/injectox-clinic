@@ -3,83 +3,55 @@
 import { useEffect, useRef, useState } from "react";
 
 const filmSrc = "/media/dropbox/injectox-client-hero.mp4";
+const posterSrc = "/images/injectox-hero-film-poster.jpg";
 
 export function HeroFilm() {
-  const mainVideoRef = useRef<HTMLVideoElement>(null);
-  const backdropVideoRef = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
 
   useEffect(() => {
-    const mainVideo = mainVideoRef.current;
-    const backdropVideo = backdropVideoRef.current;
-    if (!mainVideo || !backdropVideo) return;
+    const video = videoRef.current;
+    if (!video) return;
 
-    const videos = [mainVideo, backdropVideo];
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
 
-    videos.forEach((video) => {
-      video.muted = true;
-      video.defaultMuted = true;
-      video.loop = true;
-      video.setAttribute("muted", "");
-      video.setAttribute("playsinline", "");
-    });
-
-    const attemptPlayback = () => {
+    const markReady = () => setReady(true);
+    const play = () => {
       if (document.hidden) return;
-
-      // The foreground is the essential film. Let it appear as soon as it is
-      // ready, even if the decorative blurred backdrop is still buffering.
-      void backdropVideo.play().catch(() => undefined);
-      mainVideo.play().then(handlePlaying).catch(() => undefined);
+      void video.play().then(markReady).catch(() => undefined);
     };
-    const handlePlaying = () => {
-      setReady(true);
-    };
-    const handleVisibility = () => {
-      if (!document.hidden) attemptPlayback();
+    const onVisibility = () => {
+      if (!document.hidden) play();
     };
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    video.addEventListener("loadeddata", play);
+    video.addEventListener("canplay", play);
+    video.addEventListener("playing", markReady);
+    document.addEventListener("visibilitychange", onVisibility);
+    window.addEventListener("pageshow", play);
 
-    if (!reducedMotion) {
-      mainVideo.addEventListener("loadeddata", attemptPlayback);
-      mainVideo.addEventListener("canplay", attemptPlayback);
-      mainVideo.addEventListener("playing", handlePlaying);
-      document.addEventListener("visibilitychange", handleVisibility);
-      window.addEventListener("pageshow", attemptPlayback);
-
-      if (mainVideo.readyState >= 2) {
-        attemptPlayback();
-      }
-    }
+    if (video.readyState >= HTMLMediaElement.HAVE_CURRENT_DATA) play();
 
     return () => {
-      mainVideo.removeEventListener("loadeddata", attemptPlayback);
-      mainVideo.removeEventListener("canplay", attemptPlayback);
-      mainVideo.removeEventListener("playing", handlePlaying);
-      document.removeEventListener("visibilitychange", handleVisibility);
-      window.removeEventListener("pageshow", attemptPlayback);
+      video.removeEventListener("loadeddata", play);
+      video.removeEventListener("canplay", play);
+      video.removeEventListener("playing", markReady);
+      document.removeEventListener("visibilitychange", onVisibility);
+      window.removeEventListener("pageshow", play);
     };
   }, []);
 
   return (
     <div className={`hero-film ${ready ? "is-ready" : ""}`}>
       <video
-        ref={backdropVideoRef}
-        className="hero-video hero-video-backdrop"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="metadata"
-        aria-hidden="true"
-        tabIndex={-1}
-      >
-        <source src={filmSrc} type="video/mp4; codecs=avc1.4D401F" />
-      </video>
-      <video
-        ref={mainVideoRef}
+        ref={videoRef}
         className="hero-video hero-video-main"
+        poster={posterSrc}
         autoPlay
         muted
         loop
