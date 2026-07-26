@@ -6,6 +6,16 @@ import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner
 
 const storageKey = "injectox-newsletter-dismissed";
 
+function hasDismissedNewsletter() {
+  if (typeof window === "undefined") return true;
+  return Boolean(window.localStorage.getItem(storageKey) || window.sessionStorage.getItem(storageKey));
+}
+
+function persistDismissal() {
+  window.localStorage.setItem(storageKey, "true");
+  window.sessionStorage.setItem(storageKey, "true");
+}
+
 export function NewsletterPopup() {
   const [visible, setVisible] = useState(false);
   const [email, setEmail] = useState("");
@@ -14,14 +24,15 @@ export function NewsletterPopup() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (window.localStorage.getItem(storageKey)) return;
+    if (hasDismissedNewsletter()) return;
 
     let timer: number | undefined;
+    let active = true;
     const onPointerOut = (event: PointerEvent) => {
       if (event.clientY <= 0) setVisible(true);
     };
     const showAfterCookieChoice = () => {
-      if (!window.localStorage.getItem(cookieConsentKey) || timer) return;
+      if (hasDismissedNewsletter() || !window.localStorage.getItem(cookieConsentKey) || timer || !active) return;
       timer = window.setTimeout(() => setVisible(true), 3500);
       document.addEventListener("pointerout", onPointerOut);
     };
@@ -29,6 +40,7 @@ export function NewsletterPopup() {
     showAfterCookieChoice();
     window.addEventListener(cookieConsentEvent, showAfterCookieChoice);
     return () => {
+      active = false;
       if (timer) window.clearTimeout(timer);
       document.removeEventListener("pointerout", onPointerOut);
       window.removeEventListener(cookieConsentEvent, showAfterCookieChoice);
@@ -36,7 +48,10 @@ export function NewsletterPopup() {
   }, []);
 
   function close() {
-    window.localStorage.setItem(storageKey, "true");
+    persistDismissal();
+    setStatus("idle");
+    setEmail("");
+    setError("");
     setVisible(false);
   }
 
@@ -59,8 +74,14 @@ export function NewsletterPopup() {
       setStatus("idle");
       return;
     }
-    window.localStorage.setItem(storageKey, "true");
-    setVisible(false);
+    setStatus("success");
+    persistDismissal();
+    window.setTimeout(() => {
+      setVisible(false);
+      setEmail("");
+      setMarketingConsent(false);
+      setStatus("idle");
+    }, 1400);
   }
 
   if (!visible) return null;
