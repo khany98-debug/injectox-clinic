@@ -5,15 +5,25 @@ import { X } from "lucide-react";
 import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner";
 
 const storageKey = "injectox-newsletter-dismissed";
+let newsletterDismissedInMemory = false;
 
 function hasDismissedNewsletter() {
-  if (typeof window === "undefined") return true;
-  return Boolean(window.localStorage.getItem(storageKey) || window.sessionStorage.getItem(storageKey));
+  if (newsletterDismissedInMemory || typeof window === "undefined") return true;
+  try {
+    return Boolean(window.localStorage.getItem(storageKey) || window.sessionStorage.getItem(storageKey));
+  } catch {
+    return false;
+  }
 }
 
 function persistDismissal() {
-  window.localStorage.setItem(storageKey, "true");
-  window.sessionStorage.setItem(storageKey, "true");
+  newsletterDismissedInMemory = true;
+  try {
+    window.localStorage.setItem(storageKey, "true");
+    window.sessionStorage.setItem(storageKey, "true");
+  } catch {
+    // The in-memory flag still prevents the popup reopening if storage is blocked.
+  }
 }
 
 export function NewsletterPopup() {
@@ -28,12 +38,15 @@ export function NewsletterPopup() {
 
     let timer: number | undefined;
     let active = true;
+    const showNewsletter = () => {
+      if (active && !hasDismissedNewsletter() && window.localStorage.getItem(cookieConsentKey)) setVisible(true);
+    };
     const onPointerOut = (event: PointerEvent) => {
-      if (event.clientY <= 0) setVisible(true);
+      if (event.clientY <= 0) showNewsletter();
     };
     const showAfterCookieChoice = () => {
       if (hasDismissedNewsletter() || !window.localStorage.getItem(cookieConsentKey) || timer || !active) return;
-      timer = window.setTimeout(() => setVisible(true), 3500);
+      timer = window.setTimeout(showNewsletter, 3500);
       document.addEventListener("pointerout", onPointerOut);
     };
 
