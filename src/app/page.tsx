@@ -41,7 +41,7 @@ export default function Home() {
               Specialists in Russian lip filler, laser hair removal and medical-grade skincare in Salford, Manchester. Free Consultation available online or in person.
             </p>
             <div className="button-row">
-              <Button href={booking.treatment}>Book now</Button>
+              <Button href={booking.currentDiary} external>Book now</Button>
               <Button href="/treatments" variant="line">View treatments</Button>
             </div>
             <div className="hero-proof" aria-label="Injectox Clinic approach">
@@ -121,7 +121,7 @@ export default function Home() {
             title={<>A calm space for<br /><em>considered care.</em></>}
           />
           <TrustPanel />
-          <Button href="/book" variant="line">Book an appointment</Button>
+          <Button href={booking.currentDiary} variant="line" external>Book an appointment</Button>
         </div>
         <div className="experience-media">
           <Image src="/images/dropbox/curated/clinic-treatment-room.jpg" alt="Inside the private Injectox Clinic treatment room" fill sizes="(max-width: 800px) 100vw, 46vw" />
@@ -150,11 +150,11 @@ export default function Home() {
             ["Skin Boosters", "From £119"],
             ["Laser Hair Removal", "From £25"],
           ].map(([name, price]) => (
-            <Link href={`/book?service=${encodeURIComponent(name)}`} key={name}>
+            <a href={booking.currentDiary} target="_blank" rel="noreferrer" key={name}>
               <span>{name}</span>
               <b>{price}</b>
               <ArrowRight size={15} />
-            </Link>
+            </a>
           ))}
         </div>
         <Link className="text-link" href="/pricing">View full pricing <ArrowRight /></Link>

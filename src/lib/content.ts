@@ -1,9 +1,11 @@
 export const booking = {
   provider: "Injectox",
-  consultation: "/book?service=Free%20consultation",
-  treatment: "/book",
   currentDiary:
-    "https://facesconsent.com/clinics/manchester-salford-injectox-clinic-7fa674fa29d6/injectoxclinic?clinicName=injectoxclinic",
+    "https://facesconsent.com/v1/bookings/injectoxclinic",
+  consultation:
+    "https://facesconsent.com/v1/bookings/injectoxclinic",
+  treatment:
+    "https://facesconsent.com/v1/bookings/injectoxclinic",
   instagram: "https://www.instagram.com/injectoxclinic/",
   // Add the clinic's dedicated WhatsApp URL before launch. CTAs gracefully fall back to Instagram.
   whatsapp: "",

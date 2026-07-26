@@ -24,6 +24,23 @@ export async function POST(request: Request) {
   if (!emailPattern.test(email)) return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   if (!body.marketingConsent) return NextResponse.json({ error: "Please confirm that you want to receive marketing emails." }, { status: 400 });
 
+  const brevoKey = process.env.BREVO_API_KEY;
+  const brevoListId = Number.parseInt(process.env.BREVO_LIST_ID ?? "", 10);
+  if (brevoKey && Number.isInteger(brevoListId) && brevoListId > 0) {
+    try {
+      const response = await fetch("https://api.brevo.com/v3/contacts", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "api-key": brevoKey },
+        body: JSON.stringify({ email, listIds: [brevoListId], updateEnabled: true }),
+        cache: "no-store",
+      });
+      if (!response.ok) return NextResponse.json({ error: "Subscription could not be saved. Please try again shortly." }, { status: 502 });
+      return NextResponse.json({ ok: true });
+    } catch {
+      return NextResponse.json({ error: "Subscription could not be saved. Please try again shortly." }, { status: 502 });
+    }
+  }
+
   const endpoint = process.env.NEWSLETTER_SUBSCRIBE_ENDPOINT;
   const token = process.env.NEWSLETTER_API_KEY;
   if (endpoint) {

@@ -164,7 +164,7 @@ export function PricingTable({ compact = false }: { compact?: boolean }) {
               <div className="price-row" key={`${group.category}-${item.name}`}>
                 <div><h3>{item.name}</h3><span><Clock3 size={13} />{item.duration}</span></div>
                 <b>{formatPrice(item.price)}</b>
-                <Link href={`/book?service=${encodeURIComponent(item.name)}`} aria-label={`Book ${item.name}`}><ArrowRight /></Link>
+                <a href={booking.currentDiary} target="_blank" rel="noreferrer" aria-label={`Book ${item.name} through Faces`}><ArrowRight /></a>
               </div>
             ))}
           </div>
@@ -190,13 +190,13 @@ export function FinalCTA({ title = <>Ready to look like you—<em>only more cons
   return (
     <section className="final-cta">
       <div className="final-orbit" aria-hidden="true"><span /><span /><span /></div>
-      <Reveal className="final-cta-copy"><span className="eyebrow">Begin your treatment plan</span><h2>{title}</h2><p>Start with a complimentary consultation in Salford.</p><div className="button-row"><Button href={booking.consultation} variant="light">Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></Reveal>
+      <Reveal className="final-cta-copy"><span className="eyebrow">Begin your treatment plan</span><h2>{title}</h2><p>Start with a complimentary consultation in Salford.</p><div className="button-row"><Button href={booking.currentDiary} variant="light" external>Book consultation</Button><Button href="/contact" variant="line">Ask a question</Button></div></Reveal>
     </section>
   );
 }
 
 export function StickyBook() {
-  return <Link className="sticky-book" href={booking.treatment}><span><Sparkles size={13} /> Book now</span><ArrowRight size={15} /></Link>;
+  return <a className="sticky-book" href={booking.currentDiary} target="_blank" rel="noreferrer"><span><Sparkles size={13} /> Book now</span><ArrowRight size={15} /></a>;
 }
 
 export function TrustPanel() {

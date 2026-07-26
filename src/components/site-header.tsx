@@ -46,10 +46,10 @@ export function SiteHeader() {
             <Link key={href} href={href} data-active={pathname.startsWith(href)}>{label}</Link>
           ))}
         </nav>
-        <Link className="header-book" href={booking.treatment}>
+        <a className="header-book" href={booking.currentDiary} target="_blank" rel="noreferrer">
           <span className="header-book-label">Book now</span>
           <span className="header-book-icon" aria-hidden="true"><ArrowUpRight size={14} strokeWidth={1.7} /></span>
-        </Link>
+        </a>
         <button className="menu-button" onClick={() => setOpen(!open)} aria-expanded={open} aria-controls="mobile-menu" aria-label={open ? "Close menu" : "Open menu"}>
           {open ? <X /> : <Menu />}
         </button>
@@ -59,7 +59,7 @@ export function SiteHeader() {
         {nav.map(([label, href], i) => <Link key={href} href={href} onClick={() => setOpen(false)}><small>0{i + 1}</small>{label}</Link>)}
         <Link href="/reviews" onClick={() => setOpen(false)}><small>06</small>Reviews</Link>
         <Link href="/contact" onClick={() => setOpen(false)}><small>07</small>Contact</Link>
-        <Link className="button button-light" href={booking.treatment} onClick={() => setOpen(false)}>Book now</Link>
+        <a className="button button-light" href={booking.currentDiary} target="_blank" rel="noreferrer" onClick={() => setOpen(false)}>Book now</a>
       </div>
     </>
   );

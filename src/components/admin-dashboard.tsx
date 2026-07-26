@@ -2,6 +2,7 @@
 
 import { CalendarDays, Check, ChevronDown, Clock3, CreditCard, LayoutDashboard, Settings2, Sparkles, Users, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { booking } from "@/lib/content";
 
 type Booking = { id: string; client: string; service: string; date: string; time: string; status: "Confirmed" | "Pending" | "Completed" | "Cancelled"; amount: number };
 
@@ -39,8 +40,8 @@ export function AdminDashboard() {
   }
 
   async function copyBookingLink() {
-    await navigator.clipboard.writeText(`${window.location.origin}/book`);
-    setNotice("New booking link copied to clipboard.");
+    await navigator.clipboard.writeText(booking.currentDiary);
+    setNotice("Faces booking link copied to clipboard.");
   }
 
   function savePrices() {
@@ -55,19 +56,19 @@ export function AdminDashboard() {
         <nav aria-label="Admin navigation">
           {["Overview", "Bookings", "Services & pricing", "Reviews", "Settings"].map((item) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)}>{item === "Overview" ? <LayoutDashboard size={15} /> : item === "Bookings" ? <CalendarDays size={15} /> : item === "Reviews" ? <Users size={15} /> : item === "Settings" ? <Settings2 size={15} /> : <CreditCard size={15} />}{item}</button>)}
         </nav>
-        <div className="admin-sidebar-note"><Sparkles size={15} /><span><b>Test mode</b><small>Stripe is ready for sandbox keys.</small></span></div>
+        <div className="admin-sidebar-note"><Sparkles size={15} /><span><b>Faces connected</b><small>Bookings and payments stay in Faces.</small></span></div>
       </div>
       <div className="admin-main">
         <header className="admin-topbar"><div><span className="eyebrow">Private workspace</span><h1>{tab}</h1></div><div className="admin-user"><span>FK</span><div><b>Fatima Khan</b><small>Owner & practitioner</small></div><button type="button" onClick={logout}>Sign out</button><ChevronDown size={14} /></div></header>
         {notice && <div className="admin-notice" role="status"><Check size={15} />{notice}</div>}
         {tab === "Overview" && <>
           <div className="admin-metrics"><div><small>Upcoming bookings</small><strong>{bookings.filter((item) => item.status !== "Completed").length}</strong><span>Next 7 days</span></div><div><small>Projected revenue</small><strong>£{revenue}</strong><span>From current diary</span></div><div><small>Reviews to approve</small><strong>3</strong><span>Awaiting moderation</span></div><div><small>Completion rate</small><strong>96%</strong><span>Last 30 days</span></div></div>
-          <div className="admin-grid"><div className="admin-card admin-calendar"><div className="admin-card-heading"><div><span className="eyebrow">Your diary</span><h2>Upcoming appointments</h2></div><button className="admin-link" onClick={() => setTab("Bookings")}>View all <span>↗</span></button></div><BookingTable bookings={bookings.slice(0, 3)} onUpdate={updateBooking} /></div><div className="admin-card admin-quick"><span className="eyebrow">Quick actions</span><h2>Keep the clinic moving.</h2><button onClick={() => setTab("Services & pricing")}>Edit pricing <span>↗</span></button><button onClick={() => setTab("Reviews")}>Review submissions <span>↗</span></button><a href="/book">Preview booking flow <span>↗</span></a></div></div>
+          <div className="admin-grid"><div className="admin-card admin-calendar"><div className="admin-card-heading"><div><span className="eyebrow">Your Faces diary</span><h2>Upcoming appointments</h2></div><a className="admin-link" href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces <span>↗</span></a></div><BookingTable bookings={bookings.slice(0, 3)} onUpdate={updateBooking} /></div><div className="admin-card admin-quick"><span className="eyebrow">Quick actions</span><h2>Keep the clinic moving.</h2><button onClick={() => setTab("Services & pricing")}>Edit pricing <span>↗</span></button><button onClick={() => setTab("Reviews")}>Review submissions <span>↗</span></button><a href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking <span>↗</span></a></div></div>
         </>}
         {tab === "Bookings" && <div className="admin-card"><div className="admin-card-heading"><div><span className="eyebrow">Diary management</span><h2>Bookings, reschedules & cancellations</h2></div><button className="button button-dark" onClick={copyBookingLink}>Copy booking link</button></div><BookingTable bookings={bookings} onUpdate={updateBooking} /></div>}
         {tab === "Services & pricing" && <div className="admin-card"><div className="admin-card-heading"><div><span className="eyebrow">Content management</span><h2>Services & pricing</h2></div><button className="button button-dark" onClick={savePrices}>Save changes</button></div><div className="admin-price-list">{serviceNames.map((item, index) => <label key={item}><span>{item}<small>Visible on booking and pricing pages</small></span><input value={servicePrices[index]} onChange={(event) => setServicePrices((prices) => prices.map((price, priceIndex) => priceIndex === index ? Number(event.target.value) : price))} type="number" aria-label={`${item} price`} /><b>£</b></label>)}</div></div>}
         {tab === "Reviews" && <div className="admin-card"><span className="eyebrow">Moderation queue</span><h2>Client reviews</h2><p className="admin-muted">Approve only reviews you have permission to publish. Approved entries can be surfaced on the public reviews page.</p><div className="admin-review-queue">{["The most thoughtful consultation I’ve ever had.", "My lips look like me, just more polished.", "The clinic was calm, professional and spotless."].map((quote, index) => <div key={quote}><span><b>{["Hannah P.", "Megan S.", "Zara K."][index]}</b><small>Submitted today · {index === 1 ? "Russian lips" : "Aesthetics"}</small></span><p>“{quote}”</p><button onClick={() => setNotice("Review approved and queued for publishing.")}><Check size={14} />Approve</button><button onClick={() => setNotice("Review removed from the moderation queue.")}><X size={14} />Dismiss</button></div>)}</div></div>}
-        {tab === "Settings" && <div className="admin-card"><span className="eyebrow">Clinic controls</span><h2>Booking & payments</h2><div className="admin-settings"><label><span>Clinic booking email</span><input defaultValue="hello@injectoxclinic.co.uk" type="email" /></label><label><span>Stripe mode</span><select defaultValue="test"><option value="test">Test / sandbox</option><option value="live">Live</option></select></label><label><span>Deposit amount</span><input defaultValue="20" type="number" /></label><label><span>WhatsApp number</span><input placeholder="Add clinic number" /></label></div><button className="button button-dark" onClick={() => setNotice("Clinic settings saved locally for this preview.")}>Save settings</button></div>}
+        {tab === "Settings" && <div className="admin-card"><span className="eyebrow">Clinic controls</span><h2>Faces booking setup</h2><p className="admin-muted">Faces is the live source for availability, consent, deposits, payments and appointment confirmations.</p><div className="admin-settings"><label><span>Faces booking link</span><input value={booking.currentDiary} readOnly /></label><label><span>Clinic booking email</span><input defaultValue="hello@injectoxclinic.co.uk" type="email" /></label><label><span>WhatsApp number</span><input placeholder="Add clinic number" /></label></div><a className="button button-dark" href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking</a></div>}
       </div>
     </section>
   );

@@ -12,8 +12,8 @@ export default function ContactPage() {
       <div className="contact-card">
         <span className="eyebrow">Fastest route</span>
         <h2>Ready to choose a time?</h2>
-        <p>Use the on-site booking studio to explore every treatment, price and preferred appointment without leaving Injectox.</p>
-        <Button href={booking.treatment} variant="light">Book on this site</Button>
+        <p>Choose your treatment, date and time securely through Faces, where your consent and appointment details stay together.</p>
+        <Button href={booking.currentDiary} variant="light" external>Book through Faces</Button>
         <Button href={booking.instagram} variant="line" external>Message on Instagram</Button>
       </div>
       <div className="contact-details">

@@ -1,30 +1,12 @@
 import type { Metadata } from "next";
-import { BookingFlow } from "@/components/booking-flow";
-import { PageHero } from "@/components/ui";
+import { redirect } from "next/navigation";
+import { booking } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Book Online",
-  description: "Choose an Injectox Clinic treatment, preferred appointment and contact details in one beautifully simple on-site booking journey.",
+  description: "Book Injectox Clinic treatments securely through Faces.",
 };
 
-type BookPageProps = { searchParams: Promise<Record<string, string | string[] | undefined>> };
-
-export default async function BookPage({ searchParams }: BookPageProps) {
-  const query = await searchParams;
-  const initialService = Array.isArray(query.service) ? query.service[0] : query.service;
-
-  return (
-    <>
-      <PageHero
-        eyebrow="Book directly with Injectox"
-        title={<>Your next appointment.<br /><em>Beautifully simple.</em></>}
-        copy="Explore the full treatment menu, choose a preferred time and keep the whole journey inside Injectox."
-        index="11"
-        compact
-      />
-      <section id="booking-studio" className="booking-studio-section shell">
-        <BookingFlow initialService={initialService} />
-      </section>
-    </>
-  );
+export default function BookPage() {
+  redirect(booking.currentDiary);
 }
