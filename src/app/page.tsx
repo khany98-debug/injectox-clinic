@@ -36,7 +36,7 @@ export default function Home() {
         <div className="hero-grain" />
         <div className="hero-copy reference-hero-copy">
           <Reveal>
-            <span className="eyebrow hero-location"><span>Aesthetics clinic in</span><span>Salford, Manchester</span></span>
+            <span className="eyebrow hero-location">Aesthetics clinic in Salford, Manchester</span>
             <h1><span>Injectox</span><span>Clinic</span></h1>
             <p>
               Specialists in Russian lip filler, laser hair removal and medical-grade skincare in Salford, Manchester. Free Consultation available online or in person.
@@ -46,7 +46,7 @@ export default function Home() {
               <Button href="/treatments" variant="line">View treatments</Button>
             </div>
             <div className="hero-proof" aria-label="Injectox Clinic approach">
-              <span>Derma Fillers</span>
+              <span>Dermal Filler</span>
               <span>Skin Treatments</span>
               <span>Laser Hair Removal</span>
             </div>
@@ -193,7 +193,7 @@ export default function Home() {
         <FAQList limit={5} />
       </section>
 
-      <FinalCTA title={<>Ready to begin with<br /><em>Injectox Clinic?</em></>} />
+      <FinalCTA title={<>Ready to see it<br /><em>yourself?</em></>} />
     </>
   );
 }

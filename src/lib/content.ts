@@ -228,7 +228,7 @@ export const pricing: PriceGroup[] = [
   ]},
   { category: "Lip & dermal filler", items: [
     { name: "Russian Lip Filler 0.5ML", price: 149, duration: "45 mins" },
-    { name: "Russian Lip Filler", price: 149, duration: "45 mins" },
+    { name: "Russian Lip Filler 0.7ML", price: 149, duration: "45 mins" },
     { name: "Russian Lip Filler 1.1ML", price: 219, duration: "60 mins" },
     { name: "Smile lines — 1.1ml", price: 119, duration: "45 mins" },
     { name: "Marionette lines — 1.1ml", price: 119, duration: "30 mins" },
