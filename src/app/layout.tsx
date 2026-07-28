@@ -6,6 +6,7 @@ import { NewsletterPopup } from "@/components/newsletter-popup";
 import { CookieBanner } from "@/components/cookie-banner";
 import { StickyBook } from "@/components/ui";
 import { WhatsAppChat } from "@/components/whatsapp-chat";
+import { SiteContentProvider } from "@/components/site-content-provider";
 import { clinic } from "@/lib/content";
 import "./globals.css";
 
@@ -43,13 +44,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${display.variable} ${editorial.variable} ${sans.variable}`}>
       <body>
         <a className="skip-link" href="#main">Skip to content</a>
-        <SiteHeader />
-        <main id="main">{children}</main>
-        <SiteFooter />
-        <StickyBook />
-        <WhatsAppChat />
-        <CookieBanner />
-        <NewsletterPopup />
+        <SiteContentProvider>
+          <SiteHeader />
+          <main id="main">{children}</main>
+          <SiteFooter />
+          <StickyBook />
+          <WhatsAppChat />
+          <CookieBanner />
+          <NewsletterPopup />
+        </SiteContentProvider>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       </body>
     </html>

@@ -21,10 +21,10 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - `/book` redirects visitors to the Injectox Clinic Faces booking page.
 - `/admin` is the private clinic workspace for Faces link access, service pricing, review moderation and settings. Faces remains the source of truth for the diary.
 - Booking availability, consent, deposits, payment and confirmation are handled by Faces.
-- Add the Resend, Brevo, admin notification email, site URL and admin password values shown in `.env.example` to Vercel before launch.
+- Add the Resend, Brevo, admin notification email, site URL, admin password and KV values shown in `.env.example` to Vercel before launch.
 - Resend is used only for website-generated notifications such as approved reviews; booking confirmations remain in Faces.
 - Newsletter sign-ups post to `/api/newsletter`. Connect Brevo with `BREVO_API_KEY` and `BREVO_LIST_ID`.
-- No database is currently required. Admin dashboard edits are preview/local-state only until a production database and migrations are added.
+- The admin dashboard stores treatment, pricing, website-copy and review moderation changes in Vercel KV / Upstash Redis. Create a KV store in Vercel Storage, connect it to this project, and confirm `KV_REST_API_URL` and `KV_REST_API_TOKEN` are present in the Production environment.
 - `/admin` is gated by `ADMIN_PASSWORD`; without it, the dashboard does not open.
 - Dropbox-supplied media is stored in `public/media/dropbox` and `public/images/dropbox` so the site does not depend on third-party image URLs.
 

@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
-import { booking, clinic, concerns, faqs, formatPrice, pricing, resultFilms, reviews, treatments, type Treatment } from "@/lib/content";
+import { booking, clinic, concerns, faqs, formatPrice, resultFilms, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
 import { CountUp, Reveal, TiltCard } from "@/components/motion";
+import { useSiteContent } from "@/components/site-content-provider";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
   const cls = `button button-${variant}`;
@@ -21,13 +24,16 @@ export function SectionIntro({ eyebrow, title, copy, align = "left" }: { eyebrow
   );
 }
 
-export function PageHero({ eyebrow, title, copy, index = "01", compact = false }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string; compact?: boolean }) {
+export function PageHero({ eyebrow, title, copy, index = "01", compact = false, contentKey }: { eyebrow: string; title: React.ReactNode; copy: string; index?: string; compact?: boolean; contentKey?: string }) {
+  const { copy: managedCopy } = useSiteContent();
+  const managedTitle = contentKey ? managedCopy[`${contentKey}Title`] : undefined;
+  const managedDescription = contentKey ? managedCopy[`${contentKey}Description`] : undefined;
   return (
     <section className={`page-hero shell ${compact ? "page-hero-compact" : ""}`}>
       <Reveal className="page-hero-copy">
         <span className="eyebrow">{eyebrow}</span>
-        <h1>{title}</h1>
-        <p>{copy}</p>
+        <h1>{managedTitle ? managedTitle.split("\n").map((line, index) => <span key={`${line}-${index}`}>{index > 0 && <br />}{line}</span>) : title}</h1>
+        <p>{managedDescription ?? copy}</p>
       </Reveal>
       <span className="page-index">/{index}</span>
       <div className="page-hero-line" />
@@ -36,15 +42,17 @@ export function PageHero({ eyebrow, title, copy, index = "01", compact = false }
 }
 
 export function TreatmentCard({ treatment, index }: { treatment: Treatment; index: number }) {
+  const { treatments } = useSiteContent();
+  const managed = treatments.find((item) => item.slug === treatment.slug) ?? treatment;
   return (
     <TiltCard className="treatment-card">
-      <Link href={`/treatments/${treatment.slug}`}>
+      <Link href={`/treatments/${managed.slug}`}>
         <div className="treatment-image">
-          <Image src={treatment.image} alt={treatment.name} fill loading={index === 0 ? "eager" : "lazy"} sizes="(max-width: 760px) 86vw, 30vw" />
+          <Image src={managed.image} alt={managed.name} fill loading={index === 0 ? "eager" : "lazy"} sizes="(max-width: 760px) 86vw, 30vw" />
         </div>
-        <div className="treatment-card-meta"><span>{treatment.category}</span><span>From {formatPrice(treatment.price)}</span></div>
-        <h3>{treatment.name}</h3>
-        <p>{treatment.intro}</p>
+        <div className="treatment-card-meta"><span>{managed.category}</span><span>From {formatPrice(managed.price)}</span></div>
+        <h3>{managed.name}</h3>
+        <p>{managed.intro}</p>
         <b>Discover treatment <ArrowDownRight size={18} /></b>
       </Link>
     </TiltCard>
@@ -52,7 +60,8 @@ export function TreatmentCard({ treatment, index }: { treatment: Treatment; inde
 }
 
 export function TreatmentsGrid({ limit }: { limit?: number }) {
-  const items = limit ? treatments.slice(0, limit) : treatments;
+  const { treatments: managedTreatments } = useSiteContent();
+  const items = limit ? managedTreatments.slice(0, limit) : managedTreatments;
   return <div className="treatments-grid">{items.map((t, i) => <TreatmentCard treatment={t} index={i} key={t.slug} />)}</div>;
 }
 
@@ -95,7 +104,8 @@ export function StatsSection() {
 }
 
 export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolean; mobileLoop?: boolean }) {
-  const baseCards = all ? reviews : reviews.slice(0, 4);
+  const { reviews: managedReviews } = useSiteContent();
+  const baseCards = all ? managedReviews : managedReviews.slice(0, 4);
   return (
     <div className={mobileLoop ? "mobile-carousel-viewport reviews-carousel-viewport" : undefined}>
       <div className={`reviews-grid ${mobileLoop ? "mobile-review-carousel" : ""}`}>
@@ -153,7 +163,8 @@ export function FAQList({ limit }: { limit?: number }) {
 }
 
 export function PricingTable({ compact = false }: { compact?: boolean }) {
-  const groups = compact ? pricing.slice(0, 4) : pricing;
+  const { pricing: managedPricing } = useSiteContent();
+  const groups = compact ? managedPricing.slice(0, 4) : managedPricing;
   return (
     <div className="pricing-groups">
       {groups.map((group, groupIndex) => (

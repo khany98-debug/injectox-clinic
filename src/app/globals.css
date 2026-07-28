@@ -1224,7 +1224,7 @@ h2 {
 .admin-status.completed { color: var(--taupe); background: #ecebe6; }
 .admin-status.cancelled { color: #863f39; background: #f6e5e2; }
 .admin-price-list { display: grid; margin-bottom: 24px; }
-.admin-price-list label, .admin-settings label { display: grid; grid-template-columns: 1fr 100px 20px; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.admin-price-list label, .admin-settings label { display: grid; grid-template-columns: 1fr 100px 110px 20px; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
 .admin-price-list label > span, .admin-settings label > span { font-size: 11px; }
 .admin-price-list b { color: var(--taupe); }
 .admin-muted { max-width: 640px; color: var(--taupe); font-size: 12px; }
@@ -1234,6 +1234,17 @@ h2 {
 .admin-review-queue small { color: var(--taupe); font-size: 9px; }
 .admin-review-queue p { margin: 0; font-family: var(--font-display); font-size: 20px; font-style: italic; }
 .admin-review-queue button { display: inline-flex; gap: 6px; align-items: center; padding: 8px 10px; border: 1px solid var(--line); background: none; cursor: pointer; font-size: 9px; text-transform: uppercase; letter-spacing: .08em; }
+.admin-nav-count { display: inline-grid; place-items: center; min-width: 18px; height: 18px; margin-left: auto; border-radius: 999px; color: var(--paper); background: var(--rose); font-size: 9px; font-style: normal; }
+.admin-price-group { margin-top: 32px; }
+.admin-price-group h3 { margin: 0; font-size: 17px; }
+.admin-price-list label > span { display: grid; gap: 5px; }
+.admin-price-list label > span input { min-height: 32px; padding: 0 8px; border: 1px solid var(--line); background: var(--paper); font-size: 11px; }
+.admin-price-list label > span small, .admin-settings label small { display: block; color: var(--taupe); font-size: 9px; }
+.admin-edit-list { display: grid; gap: 18px; margin-top: 30px; }
+.admin-edit-list fieldset { display: grid; gap: 12px; padding: 20px; border: 1px solid var(--line); }
+.admin-edit-list legend { padding: 0 8px; font-size: 14px; font-weight: 700; }
+.admin-edit-list label { display: grid; gap: 7px; font-size: 10px; }
+.admin-edit-list input, .admin-edit-list textarea, .admin-settings textarea { width: 100%; padding: 10px; border: 1px solid var(--line); background: var(--paper); font: inherit; font-size: 11px; resize: vertical; }
 .admin-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin: 24px 0; }
 .admin-settings label { display: grid; grid-template-columns: 1fr; gap: 8px; border: 0; }
 
@@ -1283,7 +1294,7 @@ h2 {
   .admin-review-queue > div { grid-template-columns: 1fr; gap: 10px; }
   .admin-review-queue button { width: fit-content; }
   .admin-settings { grid-template-columns: 1fr; }
-  .admin-price-list label { grid-template-columns: 1fr 80px 15px; }
+  .admin-price-list label { grid-template-columns: 1fr 72px 84px 15px; gap: 7px; }
   .review-submit { grid-template-columns: 1fr; gap: 38px; padding: 28px 20px; }
   .review-submit-fields { grid-template-columns: 1fr; }
   .review-field-wide { grid-column: auto; }
