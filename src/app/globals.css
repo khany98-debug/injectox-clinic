@@ -1201,6 +1201,12 @@ h2 {
 .admin-metrics small, .admin-metrics span { display: block; color: var(--taupe); font-size: 9px; text-transform: uppercase; letter-spacing: .1em; }
 .admin-metrics strong { display: block; margin: 14px 0 4px; font-family: var(--font-display); font-size: 45px; font-weight: 500; }
 .admin-grid { display: grid; grid-template-columns: 1.5fr .8fr; gap: 18px; }
+.admin-health-list { display: grid; margin-top: 28px; border-top: 1px solid var(--line); }
+.admin-health-list > div { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.admin-health-list > div > span { display: flex; flex-direction: column; gap: 3px; }
+.admin-health-list b { font-size: 12px; }
+.admin-health-list small { color: var(--taupe); font-size: 10px; }
+.admin-health-list button { display: inline-flex; align-items: center; gap: 12px; padding: 7px 0; border: 0; border-bottom: 1px solid currentColor; background: none; cursor: pointer; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
 .admin-card-heading { display: flex; justify-content: space-between; gap: 16px; align-items: end; margin-bottom: 24px; }
 .admin-card h2 { margin: 0; font-size: 34px; line-height: .95; }
 .admin-link, .admin-quick button, .admin-quick a { display: flex; justify-content: space-between; width: 100%; padding: 13px 0; border: 0; border-bottom: 1px solid var(--line); background: none; cursor: pointer; text-align: left; font-size: 11px; }
@@ -1268,6 +1274,7 @@ h2 {
   .admin-metrics > div { padding: 16px; }
   .admin-metrics strong { font-size: 36px; }
   .admin-grid { min-width: 0; grid-template-columns: minmax(0, 1fr); }
+  .admin-health-list > div { align-items: start; flex-direction: column; gap: 10px; }
   .admin-card { min-width: 0; padding: 18px; overflow: hidden; }
   .admin-table { width: 100%; max-width: 100%; overflow-x: auto; }
   .admin-card-heading { align-items: start; flex-direction: column; }

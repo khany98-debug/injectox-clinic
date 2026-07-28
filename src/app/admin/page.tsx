@@ -11,5 +11,5 @@ export default async function AdminPage() {
   const cookie = (await cookies()).get(ADMIN_COOKIE)?.value;
   if (!password) return <AdminLogin />;
   if (password && cookie !== await adminToken(password)) return <AdminLogin />;
-  return <><section className="admin-intro"><div className="shell"><span className="eyebrow">Injectox Clinic</span><p>Use this private workspace to manage the clinic diary, pricing, reviews and payment settings.</p></div></section><AdminDashboard /></>;
+  return <><section className="admin-intro"><div className="shell"><span className="eyebrow">Injectox Clinic</span><p>A calm, private workspace for managing public prices, client reviews and clinic details.</p></div></section><AdminDashboard /></>;
 }

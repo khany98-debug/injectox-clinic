@@ -58,12 +58,28 @@ export async function sendBookingEmails(data: BookingEmailData) {
 }
 
 export async function sendReviewNotification(data: { name: string; treatment: string; review: string }) {
-  const apiKey = process.env.RESEND_API_KEY;
+  const apiKey = process.env.BREVO_API_KEY;
   const clinicEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
+  const fromEmail = process.env.BREVO_FROM_EMAIL ?? "hello@injectoxclinic.co.uk";
+  const fromName = process.env.BREVO_FROM_NAME ?? "Injectox Clinic";
   if (!apiKey || !clinicEmail) return { configured: false };
-  const resend = new Resend(apiKey);
-  const from = process.env.RESEND_FROM_EMAIL ?? "Injectox Clinic <bookings@injectoxclinic.co.uk>";
-  const message = await resend.emails.send({ from, to: clinicEmail, subject: `New review awaiting approval · ${data.name}`, html: shell(`<p style="color:#9b766a;font-size:10px;text-transform:uppercase;letter-spacing:2px">Review moderation</p><h1 style="font-family:Georgia,serif;font-size:38px;font-weight:400">A client shared<br><em>their experience.</em></h1><p style="font-family:Georgia,serif;font-size:24px;line-height:1.4">“${escapeHtml(data.review)}”</p><p style="color:#68675d;font-size:12px">${escapeHtml(data.name)} · ${escapeHtml(data.treatment)}</p>`, `New review from ${data.name}`) });
-  if (message.error) throw new Error(message.error.message);
+  const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "api-key": apiKey,
+      accept: "application/json",
+    },
+    body: JSON.stringify({
+      sender: { email: fromEmail, name: fromName },
+      to: [{ email: clinicEmail }],
+      subject: `New review awaiting approval · ${data.name}`,
+      htmlContent: shell(`<p style="color:#9b766a;font-size:10px;text-transform:uppercase;letter-spacing:2px">Review moderation</p><h1 style="font-family:Georgia,serif;font-size:38px;font-weight:400">A client shared<br><em>their experience.</em></h1><p style="font-family:Georgia,serif;font-size:24px;line-height:1.4">“${escapeHtml(data.review)}”</p><p style="color:#68675d;font-size:12px">${escapeHtml(data.name)} · ${escapeHtml(data.treatment)}</p>`, `New review from ${data.name}`),
+    }),
+  });
+  if (!response.ok) {
+    const detail = await response.text().catch(() => "");
+    throw new Error(detail || "Brevo could not send the review notification.");
+  }
   return { configured: true };
 }

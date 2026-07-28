@@ -1,37 +1,42 @@
 "use client";
 
-import { CalendarDays, Check, ChevronDown, Clock3, CreditCard, LayoutDashboard, Settings2, Sparkles, Users, X } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { Check, CreditCard, ExternalLink, LayoutDashboard, MessageSquareQuote, Settings2, Sparkles, X } from "lucide-react";
+import { useState } from "react";
 import { booking } from "@/lib/content";
 
-type Booking = { id: string; client: string; service: string; date: string; time: string; status: "Confirmed" | "Pending" | "Completed" | "Cancelled"; amount: number };
+type Tab = "Overview" | "Prices" | "Reviews" | "Clinic settings";
 
-const initialBookings: Booking[] = [
-  { id: "IC-4K8P2Q", client: "Sophie M.", service: "Russian Lip Filler 0.7ML", date: "18 Jul 2026", time: "10:00", status: "Confirmed", amount: 160 },
-  { id: "IC-7D2L9X", client: "Amelia R.", service: "Skin Booster", date: "18 Jul 2026", time: "13:00", status: "Pending", amount: 119 },
-  { id: "IC-1H6N4V", client: "Layla H.", service: "Laser Hair Removal", date: "19 Jul 2026", time: "11:30", status: "Confirmed", amount: 90 },
-  { id: "IC-9Q5B7M", client: "Chloe B.", service: "Facial Balancing", date: "16 Jul 2026", time: "14:30", status: "Completed", amount: 249 },
-];
+const services = [
+  ["Russian Lip Filler 0.7ML", 149],
+  ["Facial Balancing", 249],
+  ["Anti-Wrinkle · 3 areas", 199],
+  ["Skin Booster", 119],
+  ["Microneedling", 65],
+  ["Laser · large area", 90],
+] as const;
+
+const pendingReviews = [
+  ["Hannah P.", "The most thoughtful consultation I’ve ever had."],
+  ["Megan S.", "My lips look like me, just more polished."],
+  ["Zara K.", "The clinic was calm, professional and spotless."],
+] as const;
 
 export function AdminDashboard() {
-  const [bookings, setBookings] = useState(initialBookings);
-  const [tab, setTab] = useState("Overview");
+  const [tab, setTab] = useState<Tab>("Overview");
   const [notice, setNotice] = useState("");
-  const serviceNames = ["Russian Lip Filler 0.7ML", "Facial Balancing", "Anti-Wrinkle · 3 areas", "Skin Booster", "Microneedling", "Laser · large area"];
-  const [servicePrices, setServicePrices] = useState([160, 249, 199, 119, 65, 90]);
-  const revenue = useMemo(() => bookings.reduce((sum, item) => sum + item.amount, 0), [bookings]);
+  const [prices, setPrices] = useState<number[]>(() => {
+    if (typeof window === "undefined") return services.map(([, price]) => price);
+    try {
+      const parsed = JSON.parse(window.localStorage.getItem("injectox-admin-prices") ?? "null") as unknown;
+      return Array.isArray(parsed) && parsed.length === services.length && parsed.every((value) => typeof value === "number" && Number.isFinite(value) && value >= 0) ? parsed : services.map(([, price]) => price);
+    } catch {
+      return services.map(([, price]) => price);
+    }
+  });
 
-  useEffect(() => {
-    const saved = window.localStorage.getItem("injectox-admin-prices");
-    if (!saved) return;
-    const timeout = window.setTimeout(() => { try { setServicePrices(JSON.parse(saved) as number[]); } catch { /* Ignore invalid local preview data. */ } }, 0);
-    return () => window.clearTimeout(timeout);
-  }, []);
-
-  function updateBooking(id: string, status: Booking["status"]) {
-    setBookings((items) => items.map((item) => item.id === id ? { ...item, status } : item));
-    setNotice(`Booking ${id} updated to ${status.toLowerCase()}.`);
-    window.setTimeout(() => setNotice(""), 3000);
+  function showNotice(message: string) {
+    setNotice(message);
+    window.setTimeout(() => setNotice(""), 3500);
   }
 
   async function logout() {
@@ -39,41 +44,51 @@ export function AdminDashboard() {
     window.location.reload();
   }
 
-  async function copyBookingLink() {
-    await navigator.clipboard.writeText(booking.currentDiary);
-    setNotice("Faces booking link copied to clipboard.");
+  function savePrices() {
+    window.localStorage.setItem("injectox-admin-prices", JSON.stringify(prices));
+    showNotice("Pricing changes saved in this browser. Connect a production content store to publish them across devices.");
   }
 
-  function savePrices() {
-    window.localStorage.setItem("injectox-admin-prices", JSON.stringify(servicePrices));
-    setNotice("Pricing changes saved in this browser. Connect the production database to publish them across devices.");
-  }
+  const navItems: [Tab, typeof LayoutDashboard][] = [["Overview", LayoutDashboard], ["Prices", CreditCard], ["Reviews", MessageSquareQuote], ["Clinic settings", Settings2]];
 
   return (
     <section className="admin-shell shell">
-      <div className="admin-sidebar">
+      <aside className="admin-sidebar">
         <div className="admin-brand"><span className="wordmark-mark">I</span><span>INJECTOX<br /><small>STUDIO ADMIN</small></span></div>
         <nav aria-label="Admin navigation">
-          {["Overview", "Bookings", "Services & pricing", "Reviews", "Settings"].map((item) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)}>{item === "Overview" ? <LayoutDashboard size={15} /> : item === "Bookings" ? <CalendarDays size={15} /> : item === "Reviews" ? <Users size={15} /> : item === "Settings" ? <Settings2 size={15} /> : <CreditCard size={15} />}{item}</button>)}
+          {navItems.map(([item, Icon]) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)} type="button"><Icon size={15} />{item}</button>)}
         </nav>
-        <div className="admin-sidebar-note"><Sparkles size={15} /><span><b>Faces connected</b><small>Bookings and payments stay in Faces.</small></span></div>
-      </div>
+        <div className="admin-sidebar-note"><Sparkles size={15} /><span><b>Faces connected</b><small>Clients book, pay and complete consent in Faces.</small></span></div>
+      </aside>
+
       <div className="admin-main">
-        <header className="admin-topbar"><div><span className="eyebrow">Private workspace</span><h1>{tab}</h1></div><div className="admin-user"><span>FK</span><div><b>Fatima Khan</b><small>Owner & practitioner</small></div><button type="button" onClick={logout}>Sign out</button><ChevronDown size={14} /></div></header>
+        <header className="admin-topbar"><div><span className="eyebrow">Private workspace</span><h1>{tab}</h1></div><div className="admin-user"><span>FK</span><div><b>Fatima Khan</b><small>Owner & practitioner</small></div><button type="button" onClick={logout}>Sign out</button></div></header>
         {notice && <div className="admin-notice" role="status"><Check size={15} />{notice}</div>}
-        {tab === "Overview" && <>
-          <div className="admin-metrics"><div><small>Upcoming bookings</small><strong>{bookings.filter((item) => item.status !== "Completed").length}</strong><span>Next 7 days</span></div><div><small>Projected revenue</small><strong>£{revenue}</strong><span>From current diary</span></div><div><small>Reviews to approve</small><strong>3</strong><span>Awaiting moderation</span></div><div><small>Completion rate</small><strong>96%</strong><span>Last 30 days</span></div></div>
-          <div className="admin-grid"><div className="admin-card admin-calendar"><div className="admin-card-heading"><div><span className="eyebrow">Your Faces diary</span><h2>Upcoming appointments</h2></div><a className="admin-link" href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces <span>↗</span></a></div><BookingTable bookings={bookings.slice(0, 3)} onUpdate={updateBooking} /></div><div className="admin-card admin-quick"><span className="eyebrow">Quick actions</span><h2>Keep the clinic moving.</h2><button onClick={() => setTab("Services & pricing")}>Edit pricing <span>↗</span></button><button onClick={() => setTab("Reviews")}>Review submissions <span>↗</span></button><a href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking <span>↗</span></a></div></div>
-        </>}
-        {tab === "Bookings" && <div className="admin-card"><div className="admin-card-heading"><div><span className="eyebrow">Diary management</span><h2>Bookings, reschedules & cancellations</h2></div><button className="button button-dark" onClick={copyBookingLink}>Copy booking link</button></div><BookingTable bookings={bookings} onUpdate={updateBooking} /></div>}
-        {tab === "Services & pricing" && <div className="admin-card"><div className="admin-card-heading"><div><span className="eyebrow">Content management</span><h2>Services & pricing</h2></div><button className="button button-dark" onClick={savePrices}>Save changes</button></div><div className="admin-price-list">{serviceNames.map((item, index) => <label key={item}><span>{item}<small>Visible on booking and pricing pages</small></span><input value={servicePrices[index]} onChange={(event) => setServicePrices((prices) => prices.map((price, priceIndex) => priceIndex === index ? Number(event.target.value) : price))} type="number" aria-label={`${item} price`} /><b>£</b></label>)}</div></div>}
-        {tab === "Reviews" && <div className="admin-card"><span className="eyebrow">Moderation queue</span><h2>Client reviews</h2><p className="admin-muted">Approve only reviews you have permission to publish. Approved entries can be surfaced on the public reviews page.</p><div className="admin-review-queue">{["The most thoughtful consultation I’ve ever had.", "My lips look like me, just more polished.", "The clinic was calm, professional and spotless."].map((quote, index) => <div key={quote}><span><b>{["Hannah P.", "Megan S.", "Zara K."][index]}</b><small>Submitted today · {index === 1 ? "Russian lips" : "Aesthetics"}</small></span><p>“{quote}”</p><button onClick={() => setNotice("Review approved and queued for publishing.")}><Check size={14} />Approve</button><button onClick={() => setNotice("Review removed from the moderation queue.")}><X size={14} />Dismiss</button></div>)}</div></div>}
-        {tab === "Settings" && <div className="admin-card"><span className="eyebrow">Clinic controls</span><h2>Faces booking setup</h2><p className="admin-muted">Faces is the live source for availability, consent, deposits, payments and appointment confirmations.</p><div className="admin-settings"><label><span>Faces booking link</span><input value={booking.currentDiary} readOnly /></label><label><span>Clinic booking email</span><input defaultValue="hello@injectoxclinic.co.uk" type="email" /></label><label><span>WhatsApp number</span><input placeholder="Add clinic number" /></label></div><a className="button button-dark" href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking</a></div>}
+
+        {tab === "Overview" && <Overview onNavigate={setTab} />}
+        {tab === "Prices" && <Prices prices={prices} setPrices={setPrices} savePrices={savePrices} />}
+        {tab === "Reviews" && <Reviews showNotice={showNotice} />}
+        {tab === "Clinic settings" && <Settings />}
       </div>
     </section>
   );
 }
 
-function BookingTable({ bookings, onUpdate }: { bookings: Booking[]; onUpdate: (id: string, status: Booking["status"]) => void }) {
-  return <div className="admin-table"><div className="admin-table-row admin-table-head"><span>Client</span><span>Treatment</span><span>Appointment</span><span>Status</span><span>Amount</span><span /></div>{bookings.map((item) => <div className="admin-table-row" key={item.id}><span><b>{item.client}</b><small>{item.id}</small></span><span>{item.service}</span><span><b>{item.date}</b><small><Clock3 size={12} /> {item.time}</small></span><span><em className={`admin-status ${item.status.toLowerCase()}`}>{item.status}</em></span><span>£{item.amount}</span><span><select value={item.status} onChange={(event) => onUpdate(item.id, event.target.value as Booking["status"])} aria-label={`Update ${item.client} booking`}><option>Confirmed</option><option>Pending</option><option>Completed</option><option>Cancelled</option></select></span></div>)}</div>;
+function Overview({ onNavigate }: { onNavigate: (tab: Tab) => void }) {
+  return <>
+    <div className="admin-metrics"><div><small>Public treatment pages</small><strong>8</strong><span>Ready to review</span></div><div><small>Pricing groups</small><strong>10</strong><span>Published catalogue</span></div><div><small>Reviews published</small><strong>6</strong><span>Clinic-approved stories</span></div><div><small>Booking provider</small><strong>1</strong><span>Faces connected</span></div></div>
+    <div className="admin-grid"><div className="admin-card admin-calendar"><div className="admin-card-heading"><div><span className="eyebrow">Content health</span><h2>Everything in one place.</h2></div></div><div className="admin-health-list"><div><span><b>Prices</b><small>Review the public starting prices and labels.</small></span><button type="button" onClick={() => onNavigate("Prices")}>Edit prices <span>↗</span></button></div><div><span><b>Reviews</b><small>Moderate new client submissions before publishing.</small></span><button type="button" onClick={() => onNavigate("Reviews")}>Review queue <span>↗</span></button></div><div><span><b>Clinic details</b><small>Keep the booking destination and contact details current.</small></span><button type="button" onClick={() => onNavigate("Clinic settings")}>Open settings <span>↗</span></button></div></div></div><div className="admin-card admin-quick"><span className="eyebrow">Quick actions</span><h2>Keep the clinic moving.</h2><button type="button" onClick={() => onNavigate("Prices")}>Edit pricing <span>↗</span></button><button type="button" onClick={() => onNavigate("Reviews")}>Review submissions <span>↗</span></button><a href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking <ExternalLink size={13} /></a></div></div>
+  </>;
+}
+
+function Prices({ prices, setPrices, savePrices }: { prices: number[]; setPrices: React.Dispatch<React.SetStateAction<number[]>>; savePrices: () => void }) {
+  return <div className="admin-card"><div className="admin-card-heading"><div><span className="eyebrow">Content management</span><h2>Public starting prices.</h2></div><button className="button button-dark" onClick={savePrices} type="button">Save changes</button></div><p className="admin-muted">These are the highlighted prices used for quick edits. The live catalogue remains the source of truth for the full treatment list.</p><div className="admin-price-list">{services.map(([name], index) => <label key={name}><span>{name}<small>Visible on treatment and pricing pages</small></span><input min="0" step="1" value={prices[index]} onChange={(event) => setPrices((current) => current.map((price, priceIndex) => priceIndex === index ? Math.max(0, Number(event.target.value) || 0) : price))} type="number" aria-label={`${name} price`} /><b>£</b></label>)}</div></div>;
+}
+
+function Reviews({ showNotice }: { showNotice: (message: string) => void }) {
+  return <div className="admin-card"><span className="eyebrow">Moderation queue</span><h2>Client reviews.</h2><p className="admin-muted">Approve only reviews you have permission to publish. Approved entries can then be added to the public reviews content.</p><div className="admin-review-queue">{pendingReviews.map(([name, quote]) => <div key={quote}><span><b>{name}</b><small>Submitted recently · client review</small></span><p>“{quote}”</p><button type="button" onClick={() => showNotice("Review approved and queued for publishing.")}><Check size={14} />Approve</button><button type="button" onClick={() => showNotice("Review removed from the moderation queue.")}><X size={14} />Dismiss</button></div>)}</div></div>;
+}
+
+function Settings() {
+  return <div className="admin-card"><span className="eyebrow">Clinic controls</span><h2>Simple, external booking.</h2><p className="admin-muted">Faces is the live source for availability, consent, deposits, payments and appointment confirmations. The website does not store or manage appointments.</p><div className="admin-settings"><label><span>Faces booking link</span><input value={booking.currentDiary} readOnly /></label><label><span>Clinic contact email</span><input defaultValue="hello@injectoxclinic.co.uk" type="email" /></label><label><span>WhatsApp number</span><input value="07930 912949" readOnly /></label></div><a className="button button-dark" href={booking.currentDiary} target="_blank" rel="noreferrer">Open Faces booking <ExternalLink size={15} /></a></div>;
 }
