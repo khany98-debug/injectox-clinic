@@ -3373,6 +3373,8 @@ h2 em,
   border-radius: 999px;
   background: #fffaf3;
 }
+.newsletter-popover > form > label + label { margin-top: 12px; }
+.newsletter-honeypot { position: absolute !important; left: -10000px !important; width: 1px !important; height: 1px !important; overflow: hidden !important; }
 
 .newsletter-popover .button {
   width: 100%;

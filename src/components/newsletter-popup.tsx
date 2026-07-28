@@ -28,7 +28,9 @@ function persistDismissal() {
 
 export function NewsletterPopup() {
   const [visible, setVisible] = useState(false);
+  const [firstName, setFirstName] = useState("");
   const [email, setEmail] = useState("");
+  const [website, setWebsite] = useState("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
   const [marketingConsent, setMarketingConsent] = useState(false);
   const [error, setError] = useState("");
@@ -63,7 +65,9 @@ export function NewsletterPopup() {
   function close() {
     persistDismissal();
     setStatus("idle");
+    setFirstName("");
     setEmail("");
+    setWebsite("");
     setError("");
     setVisible(false);
   }
@@ -71,6 +75,11 @@ export function NewsletterPopup() {
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setError("");
+    const cleanedFirstName = firstName.trim().replace(/\s+/g, " ");
+    if (!/^[\p{L}][\p{L}\s'’-]{0,59}$/u.test(cleanedFirstName)) {
+      setError("Please enter your first name.");
+      return;
+    }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       setError("Please enter a valid email address.");
       return;
@@ -79,7 +88,7 @@ export function NewsletterPopup() {
     const response = await fetch("/api/newsletter", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, marketingConsent }),
+      body: JSON.stringify({ firstName: cleanedFirstName, email, website, marketingConsent }),
     });
     if (!response.ok) {
       const payload = await response.json().catch(() => ({ error: "Subscription could not be saved." })) as { error?: string };
@@ -91,7 +100,9 @@ export function NewsletterPopup() {
     persistDismissal();
     window.setTimeout(() => {
       setVisible(false);
+      setFirstName("");
       setEmail("");
+      setWebsite("");
       setMarketingConsent(false);
       setStatus("idle");
     }, 1400);
@@ -111,11 +122,19 @@ export function NewsletterPopup() {
       ) : (
         <form onSubmit={submit} noValidate>
           <span className="eyebrow">DON’T MISS OUT</span>
-          <h2 id="newsletter-title">Sign up. Your FREE treatment is waiting.</h2>
-          <p>Subscribe now for a free Lemon Bottle session, exclusive offers, and first access to appointment drops.</p>
+          <h2 id="newsletter-title">Your free treatment is waiting.</h2>
+          <p>Subscribe for a free Lemon Bottle session with any paid treatment, plus exclusive offers and first access to appointment drops.</p>
+          <label>
+            <span>First name</span>
+            <input value={firstName} onChange={(event) => setFirstName(event.target.value)} type="text" autoComplete="given-name" maxLength={60} required placeholder="Your first name" />
+          </label>
           <label>
             <span>Email address</span>
             <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" inputMode="email" autoComplete="email" required placeholder="you@example.com" />
+          </label>
+          <label className="newsletter-honeypot" aria-hidden="true">
+            <span>Website</span>
+            <input value={website} onChange={(event) => setWebsite(event.target.value)} type="text" tabIndex={-1} autoComplete="off" />
           </label>
           {error && <p className="newsletter-error" role="alert">{error}</p>}
           <label className="newsletter-consent"><input checked={marketingConsent} onChange={(event) => setMarketingConsent(event.target.checked)} type="checkbox" required /><span>I agree to receive Injectox Clinic marketing emails and understand I can unsubscribe at any time.</span></label>

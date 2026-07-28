@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 import { requireSameOrigin, validHttpsUrl } from "@/lib/request-security";
 
-type NewsletterBody = { email?: string; website?: string; marketingConsent?: boolean };
+type NewsletterBody = { firstName?: string; email?: string; website?: string; marketingConsent?: boolean };
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -20,7 +20,9 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Invalid subscription request." }, { status: 400 });
   }
   if (body.website) return NextResponse.json({ ok: true });
+  const firstName = typeof body.firstName === "string" ? body.firstName.trim().replace(/\s+/g, " ").slice(0, 60) : "";
   const email = typeof body.email === "string" ? body.email.trim().toLowerCase().slice(0, 160) : "";
+  if (!/^[\p{L}][\p{L}\s'’-]{0,59}$/u.test(firstName)) return NextResponse.json({ error: "Please enter your first name." }, { status: 400 });
   if (!emailPattern.test(email)) return NextResponse.json({ error: "Please enter a valid email address." }, { status: 400 });
   if (!body.marketingConsent) return NextResponse.json({ error: "Please confirm that you want to receive marketing emails." }, { status: 400 });
 
@@ -31,7 +33,7 @@ export async function POST(request: Request) {
       const response = await fetch("https://api.brevo.com/v3/contacts", {
         method: "POST",
         headers: { "Content-Type": "application/json", "api-key": brevoKey },
-        body: JSON.stringify({ email, listIds: [brevoListId], updateEnabled: true }),
+        body: JSON.stringify({ email, listIds: [brevoListId], updateEnabled: true, attributes: { FIRSTNAME: firstName } }),
         cache: "no-store",
       });
       if (!response.ok) return NextResponse.json({ error: "Subscription could not be saved. Please try again shortly." }, { status: 502 });
@@ -51,7 +53,7 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
-      body: JSON.stringify({ email, source: "injectox-website", marketingConsent: true, consentedAt: new Date().toISOString() }),
+      body: JSON.stringify({ email, firstName, source: "injectox-website", marketingConsent: true, consentedAt: new Date().toISOString() }),
       cache: "no-store",
     });
     if (!response.ok) return NextResponse.json({ error: "Subscription could not be saved. Please try again shortly." }, { status: 502 });
