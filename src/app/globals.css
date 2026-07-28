@@ -3416,12 +3416,11 @@ h2 em,
 .whatsapp-chat { position: fixed; z-index: 85; right: 24px; bottom: 24px; display: inline-flex; align-items: center; justify-content: center; width: 58px; height: 58px; color: #fff; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; background: #16863d; box-shadow: 0 12px 30px rgba(17, 62, 32, .35); transition: transform .25s ease, background .25s ease, box-shadow .25s ease; }
 .whatsapp-chat:hover { background: #107633; box-shadow: 0 16px 34px rgba(17, 62, 32, .45); transform: translateY(-3px); }
 .whatsapp-chat svg { width: 27px; height: 27px; }
-.whatsapp-chat-label { position: absolute; right: 70px; display: block; width: max-content; padding: 8px 11px; color: var(--paper); border-radius: 4px; background: var(--espresso); font-size: 10px; font-weight: 700; letter-spacing: .05em; opacity: 0; pointer-events: none; transform: translateX(5px); transition: opacity .2s ease, transform .2s ease; }
-.whatsapp-chat:hover .whatsapp-chat-label, .whatsapp-chat:focus-visible .whatsapp-chat-label { opacity: 1; transform: translateX(0); }
+.whatsapp-chat-label { position: absolute; right: 70px; display: block; width: max-content; padding: 9px 13px; color: var(--paper); border: 1px solid rgba(255,255,255,.18); border-radius: 5px; background: var(--espresso); box-shadow: 0 8px 20px rgba(24,14,11,.22); font-size: 10px; font-weight: 700; letter-spacing: .05em; white-space: nowrap; }
 
 @media (max-width: 760px) {
   .whatsapp-chat { right: 16px; bottom: 64px; width: 54px; height: 54px; }
-  .whatsapp-chat-label { display: none; }
+  .whatsapp-chat-label { right: 64px; padding: 8px 11px; }
 
   .newsletter-popover {
     right: 12px;
