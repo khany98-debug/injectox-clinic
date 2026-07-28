@@ -111,8 +111,8 @@ export function NewsletterPopup() {
       ) : (
         <form onSubmit={submit} noValidate>
           <span className="eyebrow">DON’T MISS OUT</span>
-          <h2 id="newsletter-title">Be first to hear.</h2>
-          <p>Be the first to hear about new treatments, exclusive offers and appointment drops.</p>
+          <h2 id="newsletter-title">Sign up. Your FREE treatment is waiting.</h2>
+          <p>Subscribe now for a free Lemon Bottle session, exclusive offers, and first access to appointment drops.</p>
           <label>
             <span>Email address</span>
             <input value={email} onChange={(event) => setEmail(event.target.value)} type="email" inputMode="email" autoComplete="email" required placeholder="you@example.com" />

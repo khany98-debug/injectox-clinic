@@ -4,15 +4,13 @@ Use `marketing/brevo-injectox-campaign.html` as the campaign HTML in Brevo.
 
 This is the automated first email for a new newsletter subscriber. Set it up as a Brevo automation triggered when a contact joins the Injectox newsletter list.
 
-Recommended subject lines:
+Recommended subject line:
 
-- Welcome to Injectox Clinic
-- A little more considered. A lot more you.
-- Your Injectox welcome
+- Your free treatment is waiting 🎁
 
 Recommended preheader:
 
-- Meet the clinic where honest advice and natural results come first.
+- Claim your free Lemon Bottle fat dissolving session with any paid treatment booking.
 
 Import path in Brevo:
 
