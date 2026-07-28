@@ -18,7 +18,8 @@ export const metadata: Metadata = {
   title: { default: "Injectox Clinic | Refined Aesthetics in Manchester & Salford", template: "%s | Injectox Clinic" },
   description: "Luxury, consultation-led lip filler, facial balancing, skin and laser treatments in Salford, Greater Manchester.",
   keywords: ["lip filler Manchester", "Russian lips Manchester", "facial balancing Manchester", "aesthetics clinic Salford", "laser hair removal Manchester"],
-  openGraph: { title: "Injectox Clinic", description: "Refined aesthetics. Entirely yours.", images: [{ url: "/images/injectox-hero.png", width: 1672, height: 941, alt: "Injectox Clinic editorial campaign" }], locale: "en_GB", type: "website" },
+  openGraph: { title: "Injectox Clinic", description: "Refined aesthetics. Entirely yours.", images: [{ url: "/images/injectox-social-share.png", width: 1729, height: 910, alt: "Injectox Clinic interior" }], locale: "en_GB", type: "website" },
+  twitter: { card: "summary_large_image", title: "Injectox Clinic", description: "Refined aesthetics. Entirely yours.", images: ["/images/injectox-social-share.png"] },
   robots: { index: true, follow: true },
 };
 
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     "@context": "https://schema.org",
     "@type": "BeautySalon",
     name: clinic.name,
-    image: "https://injectoxclinic.co.uk/images/injectox-hero.png",
+    image: "https://injectoxclinic.co.uk/images/injectox-social-share.png",
     address: { "@type": "PostalAddress", streetAddress: "Waters Edge Business Park, Modwen Road", addressLocality: "Salford", addressRegion: "Greater Manchester", addressCountry: "GB" },
     areaServed: clinic.areas,
     aggregateRating: { "@type": "AggregateRating", ratingValue: clinic.rating, reviewCount: clinic.verifiedReviews },
