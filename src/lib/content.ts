@@ -7,8 +7,7 @@ export const booking = {
   treatment:
     "https://facesconsent.com/clinics/manchester-salford-injectox-clinic-7fa674fa29d6/injectoxclinic?clinicName=injectoxclinic",
   instagram: "https://www.instagram.com/injectoxclinic/",
-  // Add the clinic's dedicated WhatsApp URL before launch. CTAs gracefully fall back to Instagram.
-  whatsapp: "",
+  whatsapp: "https://wa.me/447930912949?text=Hi%20Fatima%2C%20I%27d%20like%20to%20ask%20about%20a%20treatment.",
 } as const;
 
 export const clinic = {

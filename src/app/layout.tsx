@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/site-header";
 import { NewsletterPopup } from "@/components/newsletter-popup";
 import { CookieBanner } from "@/components/cookie-banner";
 import { StickyBook } from "@/components/ui";
+import { WhatsAppChat } from "@/components/whatsapp-chat";
 import { clinic } from "@/lib/content";
 import "./globals.css";
 
@@ -42,6 +43,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <main id="main">{children}</main>
         <SiteFooter />
         <StickyBook />
+        <WhatsAppChat />
         <CookieBanner />
         <NewsletterPopup />
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
