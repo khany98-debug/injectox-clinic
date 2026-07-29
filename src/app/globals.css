@@ -3240,9 +3240,10 @@ h2 em,
     position: absolute;
     z-index: 0;
     inset: -30px;
-    background: url("/images/injectox-hero-film-poster.jpg") center / cover no-repeat;
-    filter: blur(24px) saturate(.68) contrast(1.04) brightness(.48);
-    transform: scale(1.08);
+    background:
+      radial-gradient(circle at 56% 28%, rgba(112, 73, 57, .2), transparent 32%),
+      radial-gradient(circle at 81% 54%, rgba(88, 51, 42, .32), transparent 35%),
+      linear-gradient(90deg, #1a100d 0%, #261711 48%, #17100e 100%);
   }
 
   .reference-hero .hero-video-main {
