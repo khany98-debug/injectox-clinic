@@ -1,6 +1,7 @@
 import "server-only";
 
 import { pricing, reviews as publishedReviews, treatments } from "@/lib/content";
+import { ensureNeonSchema, neonConfigured } from "@/lib/neon";
 import type { ContentOverrides, ReviewSubmission } from "@/lib/site-types";
 export type { ContentOverrides, ReviewSubmission } from "@/lib/site-types";
 
@@ -35,28 +36,70 @@ async function kv<T>(command: unknown[]) {
   return data[0]?.result as T | null;
 }
 
+function mergeOverrides(value: Partial<ContentOverrides> | undefined): ContentOverrides {
+  return { ...defaultOverrides, ...value, clinic: { ...defaultOverrides.clinic, ...value?.clinic } };
+}
+
+function parseContent(value: unknown) {
+  if (!value) return defaultOverrides;
+  if (typeof value === "string") {
+    try { return mergeOverrides(JSON.parse(value) as Partial<ContentOverrides>); } catch { return defaultOverrides; }
+  }
+  return typeof value === "object" && !Array.isArray(value) ? mergeOverrides(value as Partial<ContentOverrides>) : defaultOverrides;
+}
+
+function normaliseReview(row: Record<string, unknown>): ReviewSubmission {
+  return {
+    id: String(row.id),
+    name: String(row.name),
+    treatment: String(row.treatment),
+    review: String(row.review),
+    rating: Number(row.rating),
+    consent: Boolean(row.consent),
+    status: row.status === "approved" || row.status === "dismissed" ? row.status : "pending",
+    createdAt: new Date(String(row.createdAt ?? row.created_at)).toISOString(),
+  };
+}
+
 export function contentStoreConfigured() {
-  return Boolean(kvConfig());
+  return neonConfigured() || Boolean(kvConfig());
 }
 
 export async function getContentOverrides(): Promise<ContentOverrides> {
-  const value = await kv<string | null>(["GET", "injectox:content"]);
-  if (value) {
-    try {
-      const parsed = JSON.parse(value) as Partial<ContentOverrides>;
-      return { ...defaultOverrides, ...parsed, clinic: { ...defaultOverrides.clinic, ...parsed.clinic } };
-    } catch { return defaultOverrides; }
+  const sql = await ensureNeonSchema();
+  if (sql) {
+    const rows = await sql`SELECT content FROM injectox_site_content WHERE id = 1 LIMIT 1` as { content: unknown }[];
+    return parseContent(rows[0]?.content);
   }
+  const value = await kv<string | null>(["GET", "injectox:content"]);
+  if (value) return parseContent(value);
   return memory.content;
 }
 
 export async function saveContentOverrides(content: ContentOverrides) {
   memory.content = content;
+  const sql = await ensureNeonSchema();
+  if (sql) {
+    await sql`
+      INSERT INTO injectox_site_content (id, content, updated_at)
+      VALUES (1, ${JSON.stringify(content)}::jsonb, NOW())
+      ON CONFLICT (id) DO UPDATE SET content = EXCLUDED.content, updated_at = NOW()
+    `;
+    return content;
+  }
   await kv(["SET", "injectox:content", JSON.stringify(content)]);
   return content;
 }
 
 export async function getReviews(): Promise<ReviewSubmission[]> {
+  const sql = await ensureNeonSchema();
+  if (sql) {
+    const rows = await sql`
+      SELECT id, name, treatment, review, rating, consent, status, created_at AS "createdAt"
+      FROM injectox_reviews ORDER BY created_at DESC LIMIT 500
+    ` as Record<string, unknown>[];
+    return rows.map(normaliseReview);
+  }
   const value = await kv<string | null>(["GET", "injectox:reviews"]);
   if (value) {
     try { return JSON.parse(value) as ReviewSubmission[]; } catch { return []; }
@@ -66,6 +109,23 @@ export async function getReviews(): Promise<ReviewSubmission[]> {
 
 export async function saveReviews(reviews: ReviewSubmission[]) {
   memory.reviews = reviews;
+  const sql = await ensureNeonSchema();
+  if (sql) {
+    // Each write is an upsert. This avoids accidentally losing a review if a
+    // client submits feedback at the same moment the clinic moderates another.
+    if (reviews.length) await sql.transaction(reviews.map((review) => sql`
+      INSERT INTO injectox_reviews (id, name, treatment, review, rating, consent, status, created_at)
+      VALUES (${review.id}, ${review.name}, ${review.treatment}, ${review.review}, ${review.rating}, ${review.consent}, ${review.status}, ${review.createdAt})
+      ON CONFLICT (id) DO UPDATE SET
+        name = EXCLUDED.name,
+        treatment = EXCLUDED.treatment,
+        review = EXCLUDED.review,
+        rating = EXCLUDED.rating,
+        consent = EXCLUDED.consent,
+        status = EXCLUDED.status
+    `));
+    return reviews;
+  }
   await kv(["SET", "injectox:reviews", JSON.stringify(reviews)]);
   return reviews;
 }
