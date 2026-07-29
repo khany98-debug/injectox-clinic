@@ -4,7 +4,7 @@ import { pricing, reviews as publishedReviews, treatments } from "@/lib/content"
 import type { ContentOverrides, ReviewSubmission } from "@/lib/site-types";
 export type { ContentOverrides, ReviewSubmission } from "@/lib/site-types";
 
-const defaultOverrides: ContentOverrides = { copy: {}, treatments: {}, pricing: {} };
+const defaultOverrides: ContentOverrides = { copy: {}, treatments: {}, pricing: {}, clinic: {} };
 const memory = { content: defaultOverrides, reviews: [] as ReviewSubmission[] };
 
 function kvConfig() {
@@ -34,7 +34,10 @@ export function contentStoreConfigured() {
 export async function getContentOverrides(): Promise<ContentOverrides> {
   const value = await kv<string | null>(["GET", "injectox:content"]);
   if (value) {
-    try { return { ...defaultOverrides, ...JSON.parse(value) } as ContentOverrides; } catch { return defaultOverrides; }
+    try {
+      const parsed = JSON.parse(value) as Partial<ContentOverrides>;
+      return { ...defaultOverrides, ...parsed, clinic: { ...defaultOverrides.clinic, ...parsed.clinic } };
+    } catch { return defaultOverrides; }
   }
   return memory.content;
 }

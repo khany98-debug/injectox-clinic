@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { sendReviewNotification } from "@/lib/emails";
 import { rateLimit, rateLimitResponse } from "@/lib/rate-limit";
 import { requireSameOrigin } from "@/lib/request-security";
-import { getReviews, saveReviews } from "@/lib/site-store";
+import { getContentOverrides, getReviews, saveReviews } from "@/lib/site-store";
 
 export async function POST(request: Request) {
   try {
@@ -21,7 +21,8 @@ export async function POST(request: Request) {
     const reviews = await getReviews();
     await saveReviews([submission, ...reviews].slice(0, 500));
     try {
-      const result = await sendReviewNotification({ name, treatment, review });
+      const settings = await getContentOverrides();
+      const result = await sendReviewNotification({ name, treatment, review, recipient: settings.clinic.contactEmail });
       if (!result.configured) return NextResponse.json({ success: true, notice: "Review received and queued for moderation." });
     } catch {
       return NextResponse.json({ success: true, notice: "Review received and queued for moderation. Email notification is temporarily unavailable." });

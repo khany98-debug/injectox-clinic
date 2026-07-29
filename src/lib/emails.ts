@@ -57,12 +57,12 @@ export async function sendBookingEmails(data: BookingEmailData) {
   return { configured: true, customer, clinic: clinicMessage };
 }
 
-export async function sendReviewNotification(data: { name: string; treatment: string; review: string }) {
+export async function sendReviewNotification(data: { name: string; treatment: string; review: string; recipient?: string }) {
   const apiKey = process.env.BREVO_API_KEY;
-  const clinicEmail = process.env.ADMIN_NOTIFICATION_EMAIL;
+  const clinicEmail = data.recipient || process.env.ADMIN_NOTIFICATION_EMAIL || "Injectoxclinic@gmail.com";
   const fromEmail = process.env.BREVO_FROM_EMAIL ?? "hello@injectoxclinic.co.uk";
   const fromName = process.env.BREVO_FROM_NAME ?? "Injectox Clinic";
-  if (!apiKey || !clinicEmail) return { configured: false };
+  if (!apiKey) return { configured: false };
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: {

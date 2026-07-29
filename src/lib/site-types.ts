@@ -15,4 +15,7 @@ export type ContentOverrides = {
   copy: Record<string, string>;
   treatments: Record<string, Partial<Pick<Treatment, "name" | "intro" | "price" | "duration" | "downtime">>>;
   pricing: Record<string, Partial<Pick<PriceGroup["items"][number], "name" | "price" | "duration">>>;
+  clinic: {
+    contactEmail?: string;
+  };
 };
