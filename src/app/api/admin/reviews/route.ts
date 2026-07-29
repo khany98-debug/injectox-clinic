@@ -19,10 +19,14 @@ export async function PATCH(request: Request) {
   if (!await authorised()) return NextResponse.json({ error: "Unauthorised" }, { status: 401 });
   const originError = requireSameOrigin(request);
   if (originError) return originError;
-  const body = await request.json() as { id?: string; status?: "pending" | "approved" | "dismissed" };
-  if (!body.id || !body.status) return NextResponse.json({ error: "Review and status are required" }, { status: 400 });
+  if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid review request" }, { status: 415 });
+  if (Number(request.headers.get("content-length") || 0) > 8_000) return NextResponse.json({ error: "Request is too large" }, { status: 413 });
+  let body: { id?: string; status?: string };
+  try { body = await request.json() as { id?: string; status?: string }; } catch { return NextResponse.json({ error: "Invalid review request" }, { status: 400 }); }
+  const statuses = new Set(["pending", "approved", "dismissed"]);
+  if (typeof body.id !== "string" || body.id.length > 100 || !statuses.has(body.status ?? "")) return NextResponse.json({ error: "Review and status are required" }, { status: 400 });
   const reviews = await getReviews();
-  const updated = reviews.map((review) => review.id === body.id ? { ...review, status: body.status! } : review);
+  const updated = reviews.map((review) => review.id === body.id ? { ...review, status: body.status as "pending" | "approved" | "dismissed" } : review);
   await saveReviews(updated);
   return NextResponse.json({ reviews: updated });
 }

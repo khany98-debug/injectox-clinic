@@ -1,12 +1,18 @@
+import "server-only";
+
+import { createHash } from "node:crypto";
+
 type Bucket = { count: number; resetAt: number };
 
 const buckets = new Map<string, Bucket>();
 
-/** Lightweight per-instance guard for public POST endpoints.
- * Configure a shared edge limiter (or Upstash) for multi-instance production traffic. */
-export function rateLimit(request: Request, scope: string, limit: number, windowMs: number) {
+function clientKey(request: Request) {
   const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim();
-  const client = forwarded || request.headers.get("x-real-ip") || "unknown";
+  return forwarded || request.headers.get("x-real-ip") || "unknown";
+}
+
+function localRateLimit(request: Request, scope: string, limit: number, windowMs: number) {
+  const client = clientKey(request);
   const key = `${scope}:${client}`;
   const now = Date.now();
   const current = buckets.get(key);
@@ -19,6 +25,52 @@ export function rateLimit(request: Request, scope: string, limit: number, window
   }
   current.count += 1;
   return { allowed: true, retryAfter: 0 };
+}
+
+function sharedStore() {
+  const url = process.env.KV_REST_API_URL || process.env.UPSTASH_REDIS_REST_URL;
+  const token = process.env.KV_REST_API_TOKEN || process.env.UPSTASH_REDIS_REST_TOKEN;
+  return url && token ? { url: url.replace(/\/$/, ""), token } : null;
+}
+
+/**
+ * Uses Vercel KV/Upstash when configured so limits are shared across serverless
+ * instances. If the store is unavailable, the in-memory guard still protects
+ * the current instance rather than making the form unusable.
+ */
+export async function rateLimit(request: Request, scope: string, limit: number, windowMs: number) {
+  const store = sharedStore();
+  if (!store) return localRateLimit(request, scope, limit, windowMs);
+
+  const client = createHash("sha256").update(clientKey(request)).digest("hex");
+  const key = `injectox:rate:${scope}:${client}`;
+  const seconds = Math.max(1, Math.ceil(windowMs / 1000));
+  const headers = { Authorization: `Bearer ${store.token}` };
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 1500);
+
+  try {
+    const response = await fetch(`${store.url}/incr/${encodeURIComponent(key)}`, {
+      headers,
+      cache: "no-store",
+      signal: controller.signal,
+    });
+    if (!response.ok) return localRateLimit(request, scope, limit, windowMs);
+    const count = Number((await response.json())?.result);
+    if (!Number.isFinite(count)) return localRateLimit(request, scope, limit, windowMs);
+    if (count === 1) {
+      await fetch(`${store.url}/expire/${encodeURIComponent(key)}/${seconds}`, {
+        headers,
+        cache: "no-store",
+        signal: controller.signal,
+      });
+    }
+    return { allowed: count <= limit, retryAfter: count <= limit ? 0 : seconds };
+  } catch {
+    return localRateLimit(request, scope, limit, windowMs);
+  } finally {
+    clearTimeout(timeout);
+  }
 }
 
 export function rateLimitResponse(retryAfter: number) {

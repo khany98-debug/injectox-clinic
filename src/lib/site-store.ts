@@ -16,12 +16,20 @@ function kvConfig() {
 async function kv<T>(command: unknown[]) {
   const config = kvConfig();
   if (!config) return null;
-  const response = await fetch(`${config.url}/pipeline`, {
-    method: "POST",
-    headers: { Authorization: `Bearer ${config.token}`, "Content-Type": "application/json" },
-    body: JSON.stringify([command]),
-    cache: "no-store",
-  });
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 3000);
+  let response: Response;
+  try {
+    response = await fetch(`${config.url}/pipeline`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${config.token}`, "Content-Type": "application/json" },
+      body: JSON.stringify([command]),
+      cache: "no-store",
+      signal: controller.signal,
+    });
+  } finally {
+    clearTimeout(timeout);
+  }
   if (!response.ok) throw new Error("Content store request failed");
   const data = await response.json() as Array<{ result?: unknown }>;
   return data[0]?.result as T | null;

@@ -25,6 +25,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 - Review notifications use Brevo and are delivered to `ADMIN_NOTIFICATION_EMAIL` (set this to `injectoxclinic@gmail.com`). Booking confirmations remain in Faces.
 - Newsletter sign-ups post to `/api/newsletter`. Connect Brevo with `BREVO_API_KEY` and `BREVO_LIST_ID`.
 - The admin dashboard stores treatment, pricing, website-copy, clinic settings and review moderation changes in Vercel KV / Upstash Redis. Create a KV store in Vercel Storage, connect it to this project, and confirm `KV_REST_API_URL` and `KV_REST_API_TOKEN` are present in the Production environment. Without these, serverless deployments cannot reliably retain edits or submitted reviews.
+- The newsletter, reviews and admin-login endpoints use shared KV/Upstash rate limits when those variables are present, with a short-lived in-memory fallback if the store is unavailable. Keep the KV variables configured in Production for consistent abuse protection across Vercel instances.
 - `/admin` is gated by `ADMIN_PASSWORD`; without it, the dashboard does not open.
 - Dropbox-supplied media is stored in `public/media/dropbox` and `public/images/dropbox` so the site does not depend on third-party image URLs.
 

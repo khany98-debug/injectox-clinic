@@ -6,7 +6,7 @@ import { requireSameOrigin, safePasswordMatch } from "@/lib/request-security";
 export async function POST(request: Request) {
   const originError = requireSameOrigin(request);
   if (originError) return originError;
-  const limiter = rateLimit(request, "admin-login", 5, 15 * 60 * 1000);
+  const limiter = await rateLimit(request, "admin-login", 5, 15 * 60 * 1000);
   if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
   if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid login request." }, { status: 415 });
   const configured = process.env.ADMIN_PASSWORD;

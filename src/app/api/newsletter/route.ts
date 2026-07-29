@@ -9,7 +9,8 @@ const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 export async function POST(request: Request) {
   const originError = requireSameOrigin(request);
   if (originError) return originError;
-  const limiter = rateLimit(request, "newsletter", 8, 10 * 60 * 1000);
+  const limiter = await rateLimit(request, "newsletter", 8, 10 * 60 * 1000);
+  if (Number(request.headers.get("content-length") || 0) > 32_000) return NextResponse.json({ error: "Invalid subscription request." }, { status: 413 });
   if (!limiter.allowed) return rateLimitResponse(limiter.retryAfter);
   if (!request.headers.get("content-type")?.includes("application/json")) return NextResponse.json({ error: "Invalid subscription request." }, { status: 415 });
 
