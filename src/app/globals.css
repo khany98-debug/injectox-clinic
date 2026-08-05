@@ -223,12 +223,11 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
 .faq-section { display: grid; grid-template-columns: .75fr 1.25fr; gap: 100px; border-top: 1px solid var(--line); }
 .faq-list { border-top: 1px solid var(--line); }
 .faq-list details { border-bottom: 1px solid var(--line); }
-.faq-list summary { display: grid; grid-template-columns: 45px 1fr 30px; align-items: center; gap: 18px; padding: 27px 0; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 23px; }
+.faq-list summary { display: grid; grid-template-columns: 1fr 30px; align-items: center; gap: 18px; padding: 27px 0; cursor: pointer; list-style: none; font-family: var(--font-display); font-size: 23px; }
 .faq-list summary::-webkit-details-marker { display: none; }
-.faq-list summary > span { color: var(--rose); font-size: 13px; font-style: italic; }
 .faq-list summary i { font-family: var(--font-sans); font-size: 17px; font-style: normal; font-weight: 300; transition: transform .3s; }
 .faq-list details[open] summary i { transform: rotate(45deg); }
-.faq-list details p { padding: 0 45px 25px 63px; color: rgba(36,27,23,.62); font-size: 12px; }
+.faq-list details p { padding: 0 45px 25px 0; color: rgba(36,27,23,.62); font-size: 12px; }
 
 .final-cta { position: relative; min-height: 670px; display: grid; place-items: center; overflow: hidden; color: #f7efe8; background: #3b2923; text-align: center; }
 .final-cta::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 50% 80%, rgba(174,112,99,.32), transparent 40%); }
@@ -2006,14 +2005,6 @@ h2 {
   font-family: var(--font-display);
   font-size: 24px;
   font-style: italic;
-}
-
-.result-film-card small {
-  font-family: var(--font-sans);
-  font-size: 8px;
-  font-style: normal;
-  letter-spacing: .14em;
-  text-transform: uppercase;
 }
 
 .review-honeypot {

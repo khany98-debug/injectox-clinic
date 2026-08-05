@@ -140,7 +140,7 @@ export function ResultFilmPanel() {
         {resultFilms.map((film, index) => (
           <div className="result-film-card" key={film.src}>
             <LoopVideo src={film.src} poster={film.poster} preload={index === 0 ? "auto" : "metadata"} />
-            <span><small>{String(index + 1).padStart(2, "0")}</small>{index === 0 ? "Inside the clinic" : "Skin Booster in action"}</span>
+            <span>{index === 0 ? "Inside the clinic" : "Skin Booster in action"}</span>
           </div>
         ))}
       </div>
@@ -154,7 +154,7 @@ export function FAQList({ limit }: { limit?: number }) {
     <div className="faq-list">
       {items.map((faq, i) => (
         <details key={faq.q} open={i === 0}>
-          <summary><span>{String(i + 1).padStart(2, "0")}</span>{faq.q}<i>+</i></summary>
+          <summary>{faq.q}<i>+</i></summary>
           <p>{faq.a}</p>
         </details>
       ))}
