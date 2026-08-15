@@ -2,6 +2,7 @@
 
 import { AlertTriangle, Check, Cloud, CreditCard, ExternalLink, LayoutDashboard, Mail, MessageSquareQuote, Save, Settings2, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
+import { ClinicLogo } from "@/components/clinic-logo";
 import { booking, pricing as defaultPricing, treatments as defaultTreatments, type PriceGroup, type Treatment } from "@/lib/content";
 import type { ContentOverrides, ReviewSubmission } from "@/lib/site-types";
 
@@ -95,14 +96,15 @@ export function AdminDashboard() {
   const pending = reviews.filter((review) => review.status === "pending").length;
   const navItems: [Tab, typeof LayoutDashboard][] = [["Overview", LayoutDashboard], ["Prices", CreditCard], ["Treatments", Sparkles], ["Reviews", MessageSquareQuote], ["Website copy", Settings2], ["Clinic settings", Settings2]];
 
-  return <section className="admin-shell shell">
+  return <section className="admin-app"><div className="admin-shell shell">
     <aside className="admin-sidebar">
-      <div className="admin-brand"><span className="wordmark-mark">I</span><span>INJECTOX<br /><small>STUDIO ADMIN</small></span></div>
-      <nav aria-label="Admin navigation">{navItems.map(([item, Icon]) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)} type="button"><Icon size={15} />{item}{item === "Reviews" && pending > 0 && <i className="admin-nav-count">{pending}</i>}</button>)}</nav>
+      <div className="admin-brand"><ClinicLogo showClinic /><span><b>Studio admin</b><small>Private workspace</small></span></div>
+      <nav className="admin-desktop-nav" aria-label="Admin navigation">{navItems.map(([item, Icon]) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)} type="button"><Icon size={15} />{item}{item === "Reviews" && pending > 0 && <i className="admin-nav-count">{pending}</i>}</button>)}</nav>
       <div className="admin-sidebar-note"><Sparkles size={15} /><span><b>Faces connected</b><small>Clients book, pay and complete consent in Faces.</small></span></div>
     </aside>
+    <nav className="admin-mobile-nav" aria-label="Mobile admin navigation">{navItems.map(([item, Icon]) => <button className={tab === item ? "is-active" : ""} key={item} onClick={() => setTab(item)} type="button"><Icon size={17} /><span>{({ Overview: "Home", Prices: "Prices", Treatments: "Treatments", Reviews: "Reviews", "Website copy": "Copy", "Clinic settings": "Settings" } as Record<Tab, string>)[item]}</span>{item === "Reviews" && pending > 0 && <i className="admin-nav-count">{pending}</i>}</button>)}</nav>
     <div className="admin-main">
-      <header className="admin-topbar"><div><span className="eyebrow">Private workspace</span><h1>{tab}</h1></div><div className="admin-user"><span>FK</span><div><b>Fatima Khan</b><small>Owner & practitioner</small></div><button type="button" onClick={logout}>Sign out</button></div></header>
+      <header className="admin-topbar"><div><span className="eyebrow">Injectox Clinic</span><h1>{tab}</h1><p className="admin-topbar-hint">Manage the public website from one calm workspace.</p></div><div className="admin-topbar-actions"><a className="admin-preview-link" href="/" target="_blank" rel="noreferrer">View website <ExternalLink size={13} /></a><div className="admin-user"><span>FK</span><div><b>Fatima Khan</b><small>Owner & practitioner</small></div><button type="button" onClick={logout}>Sign out</button></div></div></header>
       {!persistent && <StorageWarning />}
       {notice && <div className="admin-notice" role="status"><Check size={15} />{notice}</div>}
       {loading ? <div className="admin-card"><p className="admin-muted">Loading the live clinic content…</p></div> : <>
@@ -114,7 +116,7 @@ export function AdminDashboard() {
         {tab === "Clinic settings" && <Settings content={content} setContent={setContent} saveContent={saveContent} integrations={integrations} />}
       </>}
     </div>
-  </section>;
+  </div></section>;
 }
 
 function StorageWarning() {

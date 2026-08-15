@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180">
+  <rect width="180" height="180" rx="38" fill="#35171d"/>
+  <rect x="13" y="13" width="154" height="154" rx="30" fill="none" stroke="#d9b7a0" stroke-width="2"/>
+  <text x="90" y="91" fill="#fffaf4" font-family="Georgia,serif" font-size="48" font-style="italic" text-anchor="middle">Injectox</text>
+  <text x="90" y="123" fill="#e2bdad" font-family="Arial,sans-serif" font-size="11" font-weight="700" letter-spacing="4" text-anchor="middle">CLINIC</text>
+  <path d="M48 139h84" stroke="#e2bdad" stroke-width="1"/>
+</svg>

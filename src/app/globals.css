@@ -1176,6 +1176,7 @@ h2 {
 .admin-login-page { min-height: 100svh; display: grid; place-items: center; padding: 120px 20px 60px; background: linear-gradient(135deg,#e7e7df,#f2f0ea); }
 .admin-login-card { width: min(520px,100%); padding: 56px; border: 1px solid var(--line); background: rgba(251,250,246,.92); box-shadow: 0 30px 100px rgba(41,42,38,.12); }
 .admin-login-mark { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 35px; border: 1px solid var(--espresso); border-radius: 50%; font-family: var(--font-display); font-size: 31px; font-style: italic; }
+.admin-login-mark .clinic-logo { color: var(--espresso); transform: scale(.72); }
 .admin-login-card h1 { margin: 0 0 20px; font-size: 62px; line-height: .86; }
 .admin-login-card > p { color: var(--taupe); font-size: 12px; }
 .admin-login-card label { display: grid; gap: 8px; margin: 30px 0 15px; font-size: 10px; }
@@ -1260,6 +1261,73 @@ h2 {
 .admin-edit-list input, .admin-edit-list textarea, .admin-settings textarea { width: 100%; padding: 10px; border: 1px solid var(--line); background: var(--paper); font: inherit; font-size: 11px; resize: vertical; }
 .admin-settings { display: grid; grid-template-columns: 1fr 1fr; gap: 18px 20px; margin: 24px 0; }
 .admin-settings label { display: grid; grid-template-columns: 1fr; gap: 8px; border: 0; }
+
+/* Admin app shell */
+.admin-app { min-height: 100svh; color: var(--espresso); background: linear-gradient(180deg, #f5f1eb 0%, #efe7dc 100%); }
+.admin-app .admin-shell { width: min(1440px, calc(100% - 48px)); grid-template-columns: 238px minmax(0, 1fr); gap: 32px; min-height: 100svh; padding-top: 30px; }
+.admin-app .admin-sidebar { position: sticky; top: 24px; height: calc(100svh - 54px); padding: 20px 14px; border: 1px solid rgba(73, 49, 39, .14); border-radius: 24px; background: rgba(255, 252, 247, .7); box-shadow: 0 18px 55px rgba(73, 49, 39, .07); }
+.admin-app .admin-brand { gap: 13px; padding: 5px 8px 20px; border-bottom: 1px solid var(--line); letter-spacing: 0; }
+.admin-app .admin-brand .clinic-logo { color: var(--espresso); flex: 0 0 auto; }
+.admin-app .admin-brand .clinic-logo-name { font-size: 24px; }
+.admin-app .admin-brand .clinic-logo-clinic { margin-top: 3px; font-size: 6px; }
+.admin-app .admin-brand > span:last-child { display: grid; gap: 4px; }
+.admin-app .admin-brand b { font-size: 12px; font-weight: 700; }
+.admin-app .admin-brand small { color: var(--taupe); font-size: 8px; letter-spacing: .1em; text-transform: uppercase; }
+.admin-app .admin-sidebar nav { gap: 4px; }
+.admin-app .admin-sidebar nav button { min-height: 46px; border-radius: 12px; }
+.admin-app .admin-sidebar nav button.is-active { color: var(--espresso); background: #fffdf9; box-shadow: 0 5px 18px rgba(73, 49, 39, .06); }
+.admin-app .admin-sidebar-note { border-radius: 14px; background: #f7eee7; }
+.admin-app .admin-main { padding: 2px 0 100px; }
+.admin-app .admin-topbar { align-items: center; margin-bottom: 24px; padding: 8px 4px 20px; border-bottom: 1px solid rgba(73, 49, 39, .14); }
+.admin-app .admin-topbar h1 { margin-top: 6px; font-size: clamp(40px, 4.5vw, 64px); }
+.admin-topbar-hint { margin: 9px 0 0; color: var(--taupe); font-size: 11px; }
+.admin-topbar-actions { display: flex; align-items: center; gap: 22px; }
+.admin-preview-link { display: inline-flex; gap: 7px; align-items: center; color: var(--taupe); border-bottom: 1px solid currentColor; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.admin-app .admin-user { padding: 7px 0 7px 14px; border-left: 1px solid var(--line); }
+.admin-mobile-nav { display: none; }
+.admin-app .admin-card, .admin-app .admin-metrics > div { border-radius: 18px; background: rgba(255, 252, 247, .72); box-shadow: 0 12px 40px rgba(73, 49, 39, .045); }
+.admin-app .admin-card-heading { align-items: center; }
+.admin-app .admin-save { border-radius: 999px; padding-inline: 18px; }
+.admin-app input, .admin-app textarea, .admin-app select { border-radius: 10px; }
+.admin-app .admin-edit-list fieldset { border-radius: 16px; background: rgba(255, 252, 247, .5); }
+.admin-app .admin-review-queue > article { border-radius: 14px; }
+
+@media (max-width: 760px) {
+  .admin-app { padding-bottom: calc(74px + env(safe-area-inset-bottom)); }
+  .admin-app .admin-shell { display: block; width: 100%; padding: 12px 14px 30px; }
+  .admin-app .admin-sidebar { position: static; height: auto; margin-bottom: 12px; padding: 11px 4px 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+  .admin-app .admin-brand { justify-content: space-between; padding: 6px 8px 13px; border-bottom: 0; }
+  .admin-app .admin-brand > span:last-child { margin-right: auto; }
+  .admin-app .admin-sidebar-note, .admin-app .admin-desktop-nav { display: none; }
+  .admin-app .admin-mobile-nav { position: fixed; right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); left: 10px; z-index: 20; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 2px; padding: 7px; border: 1px solid rgba(73, 49, 39, .14); border-radius: 18px; background: rgba(255, 252, 247, .94); box-shadow: 0 12px 36px rgba(42, 30, 24, .18); backdrop-filter: blur(18px); }
+  .admin-app .admin-mobile-nav button { position: relative; display: grid; min-width: 0; min-height: 50px; place-items: center; gap: 3px; padding: 4px 2px; color: var(--taupe); border: 0; border-radius: 12px; background: transparent; cursor: pointer; font-size: 8px; font-weight: 700; letter-spacing: .01em; }
+  .admin-app .admin-mobile-nav button.is-active { color: var(--paper); background: var(--espresso); }
+  .admin-app .admin-mobile-nav .admin-nav-count { position: absolute; top: 1px; right: 5px; min-width: 15px; height: 15px; font-size: 8px; }
+  .admin-app .admin-main { padding-bottom: 20px; }
+  .admin-app .admin-topbar { align-items: stretch; gap: 14px; margin: 0 4px 16px; padding: 9px 4px 16px; }
+  .admin-app .admin-topbar h1 { font-size: 42px; }
+  .admin-topbar-hint { max-width: 270px; line-height: 1.45; }
+  .admin-topbar-actions { justify-content: space-between; gap: 10px; }
+  .admin-preview-link { min-height: 38px; align-items: center; }
+  .admin-app .admin-user { padding: 0; border-left: 0; }
+  .admin-app .admin-user > span { width: 34px; height: 34px; }
+  .admin-app .admin-user div { display: none; }
+  .admin-app .admin-user > button { min-height: 38px; }
+  .admin-app .admin-card, .admin-app .admin-metrics > div { border-radius: 15px; }
+  .admin-app .admin-card-heading { gap: 14px; }
+  .admin-app .admin-card h2 { font-size: 29px; line-height: 1; }
+  .admin-app .admin-card-heading .admin-save { position: sticky; bottom: calc(78px + env(safe-area-inset-bottom)); width: 100%; min-height: 46px; justify-content: center; border-radius: 999px; box-shadow: 0 12px 26px rgba(42, 30, 24, .18); }
+  .admin-app .admin-warning { border-radius: 14px; }
+  .admin-app .admin-health-list > div { gap: 12px; padding: 17px 0; }
+  .admin-app .admin-health-list button { min-height: 36px; }
+  .admin-app .admin-review-queue > article { padding: 16px; }
+  .admin-app .admin-review-queue p { font-size: 18px; line-height: 1.15; }
+  .admin-app .admin-review-actions button { min-height: 38px; border-radius: 999px; }
+  .admin-app .admin-filter { width: 100%; overflow-x: auto; flex-wrap: nowrap; padding-bottom: 3px; }
+  .admin-app .admin-filter button { min-height: 34px; border-radius: 999px; white-space: nowrap; }
+  .admin-app .admin-price-list label { grid-template-columns: minmax(0, 1fr) 68px 78px 14px; }
+  .admin-app .admin-price-list label > span input { min-width: 0; }
+}
 
 /* Review submission */
 .review-submit-section { background: #e7e7df; }
