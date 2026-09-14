@@ -280,6 +280,14 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
 .treatment-body aside { position: sticky; top: 30px; align-self: start; }
 .treatment-body aside h2 { font-size: 53px; line-height: .92; }
 .treatment-body aside .button { width: 100%; margin-top: 20px; }
+.laser-course-list { border-top: 1px solid var(--line); }
+.laser-course-list > div { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.laser-course-list span { display: grid; gap: 4px; }
+.laser-course-list b { font-family: var(--font-display); font-size: 24px; font-weight: 500; }
+.laser-course-list small, .laser-note { color: var(--taupe); font-size: 11px; }
+.laser-course-list strong { font-family: var(--font-display); font-size: 24px; font-weight: 500; white-space: nowrap; }
+.laser-disclaimer { padding-bottom: 0 !important; margin-bottom: 0 !important; border-bottom: 0 !important; }
+.laser-disclaimer p { margin: 0; padding: 19px 22px; border-left: 3px solid var(--rose); background: rgba(199, 145, 135, .1); }
 .treatment-content > section { padding: 0 0 60px; margin-bottom: 60px; border-bottom: 1px solid var(--line); }
 .treatment-content h2 { font-size: 47px; }
 .treatment-content p { color: rgba(36,27,23,.67); }

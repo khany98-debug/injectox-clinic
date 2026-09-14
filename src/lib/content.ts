@@ -261,10 +261,10 @@ export const pricing: PriceGroup[] = [
     { name: "Lemon Bottle skin booster", price: 119, duration: "30 mins" },
   ]},
   { category: "Laser Hair Removal Packages", note: "Patch test and consultation requirements apply.", items: [
-    { name: "Small area laser package", price: 150, duration: "6 + 1 sessions" },
-    { name: "Medium area laser package", price: 270, duration: "6 + 1 sessions" },
-    { name: "Large area laser package", price: 540, duration: "6 + 1 sessions" },
-    { name: "Underarms + Hollywood laser package", price: 570, duration: "6 + 1 sessions" },
+    { name: "Small area laser package", price: 150, duration: "7-session course" },
+    { name: "Medium area laser package", price: 270, duration: "7-session course" },
+    { name: "Large area laser package", price: 540, duration: "7-session course" },
+    { name: "Underarms + Hollywood laser package", price: 570, duration: "7-session course" },
     { name: "Full-body laser package", price: 1050, duration: "6 sessions" },
   ]},
   { category: "Facials / skin treatments", items: [
@@ -291,12 +291,6 @@ export const pricing: PriceGroup[] = [
     { name: "3.3ml package", price: 299, duration: "90 mins" },
     { name: "4.4ml package", price: 399, duration: "105 mins" },
     { name: "Bespoke facial balancing", price: 499, duration: "60 mins" },
-  ]},
-  { category: "Vitamin Injections", items: [
-    { name: "Vitamin B12", price: 25, duration: "30 mins" },
-    { name: "Vitamin B complex", price: 25, duration: "30 mins" },
-    { name: "Vitamin D", price: 29, duration: "30 mins" },
-    { name: "Biotin (Vitamin B7)", price: 29, duration: "30 mins" },
   ]},
   { category: "Fat Dissolving", items: [
     { name: "Lemon Bottle six-session package", price: 300, duration: "6 sessions" },
@@ -387,7 +381,6 @@ export function formatPrice(value: number) {
 export function bookingImageFor(serviceName: string) {
   const name = serviceName.toLowerCase();
   if (name.includes("consultation")) return "/images/dropbox/client-labelled/consultation-fatima.jpg";
-  if (name.includes("vitamin") || name.includes("biotin")) return "/images/dropbox/client-labelled/vitamin-injection.jpg";
   if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle-booking.jpg";
   if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal-main.jpg";
   if (name.includes("microneedling")) return "/images/dropbox/client-labelled/microneedling.jpg";
