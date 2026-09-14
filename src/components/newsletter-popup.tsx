@@ -43,13 +43,9 @@ export function NewsletterPopup() {
     const showNewsletter = () => {
       if (active && !hasDismissedNewsletter() && window.localStorage.getItem(cookieConsentKey)) setVisible(true);
     };
-    const onPointerOut = (event: PointerEvent) => {
-      if (event.clientY <= 0) showNewsletter();
-    };
     const showAfterCookieChoice = () => {
       if (hasDismissedNewsletter() || !window.localStorage.getItem(cookieConsentKey) || timer || !active) return;
-      timer = window.setTimeout(showNewsletter, 3500);
-      document.addEventListener("pointerout", onPointerOut);
+      timer = window.setTimeout(showNewsletter, 8000);
     };
 
     showAfterCookieChoice();
@@ -57,7 +53,6 @@ export function NewsletterPopup() {
     return () => {
       active = false;
       if (timer) window.clearTimeout(timer);
-      document.removeEventListener("pointerout", onPointerOut);
       window.removeEventListener(cookieConsentEvent, showAfterCookieChoice);
     };
   }, []);
@@ -122,8 +117,8 @@ export function NewsletterPopup() {
       ) : (
         <form onSubmit={submit} noValidate>
           <span className="eyebrow">DON’T MISS OUT</span>
-          <h2 id="newsletter-title">Your free treatment is waiting.</h2>
-          <p>Subscribe for a free Lemon Bottle session with any paid treatment, plus exclusive offers and first access to appointment drops.</p>
+          <h2 id="newsletter-title">A free laser session is waiting.</h2>
+          <p>Subscribe for a free laser hair removal session for a small area, plus exclusive offers and first access to appointment drops.</p>
           <label>
             <span>First name</span>
             <input value={firstName} onChange={(event) => setFirstName(event.target.value)} type="text" autoComplete="given-name" maxLength={60} required placeholder="Your first name" />

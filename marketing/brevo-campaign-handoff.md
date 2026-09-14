@@ -10,7 +10,7 @@ Recommended subject line:
 
 Recommended preheader:
 
-- Claim your free Lemon Bottle fat dissolving session with any paid treatment booking.
+- Claim your free laser hair removal session for a small area.
 
 Import path in Brevo:
 
