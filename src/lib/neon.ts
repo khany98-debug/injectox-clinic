@@ -5,11 +5,22 @@ import { neon } from "@neondatabase/serverless";
 let schemaPromise: Promise<void> | undefined;
 
 export function neonConfigured() {
-  return Boolean(process.env.DATABASE_URL);
+  return Boolean(validConnectionString());
+}
+
+function validConnectionString() {
+  const connectionString = process.env.DATABASE_URL?.trim();
+  if (!connectionString) return null;
+  try {
+    new URL(connectionString);
+    return connectionString;
+  } catch {
+    return null;
+  }
 }
 
 function database() {
-  const connectionString = process.env.DATABASE_URL;
+  const connectionString = validConnectionString();
   return connectionString ? neon(connectionString) : null;
 }
 

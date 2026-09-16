@@ -12,7 +12,7 @@ type Integrations = { reviewNotifications: boolean; notificationEmail: string };
 const defaultContent: ContentOverrides = {
   copy: {
     treatmentsHeroTitle: "Precision,\nThe right treatment.\nChosen for you,",
-    treatmentsHeroDescription: "Explore signature injectables, advanced skin, laser and wellness options. Every route begins with suitability—not pressure.",
+    treatmentsHeroDescription: "Explore signature injectables, advanced skin and laser treatments. Every route begins with suitability—not pressure.",
     faqHeroTitle: "Clear answers.\nYour questions, answered simply.",
     faqHeroDescription: "Everything first-time and returning clients usually want to know before booking.",
   },

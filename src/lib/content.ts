@@ -14,10 +14,13 @@ export const clinic = {
   name: "Injectox Clinic",
   practitioner: "Fatima Khan",
   role: "Aesthetic practitioner",
-  location: "Skin Clinic MCR, Waters Edge Business Park, Modwen Road, Salford, Greater Manchester",
+  location: "Skin Clinic MCR, Unit 36, Waters Edge Business Park, Modwen Road, Salford, Greater Manchester",
+  postcode: "M5 3EZ",
+  phone: "+44 7930 912949",
+  openingHours: ["Monday", "Wednesday", "Friday", "Saturday", "Sunday"] as const,
   areas: ["Salford", "Manchester"],
   rating: "5.0",
-  verifiedReviews: 100,
+  verifiedReviews: 10,
   treatmentsCompleted: 1500,
   // Figures supplied and approved by Fatima across her full treatment and review history.
   instagramFollowers: "8.3k",
@@ -58,8 +61,8 @@ export const treatments: Treatment[] = [
     idealFor: ["Lips lacking shape", "Subtle volume", "Cupid’s bow definition", "Rebalancing existing filler"],
     process: ["Consultation and facial assessment", "Bespoke technique selection", "Precision treatment", "Aftercare and review guidance"],
     faq: [
-      { q: "Will my lips look overfilled?", a: "The plan is built around your proportions and desired finish. Fatima’s public treatment philosophy prioritises facial harmony and staged results over chasing volume." },
-      { q: "How much product is used?", a: "The current Russian Lip appointment listed on Faces is 0.7ml. The right plan is confirmed during your assessment." },
+      { q: "Will my lips look overfilled?", a: "I plan your shape around your proportions and desired finish. I prioritise facial harmony and staged results over chasing volume." },
+      { q: "How much product is used?", a: "Most first-time clients have 0.5ml or 0.7ml. We decide the right amount together during your assessment." },
       { q: "How long do results last?", a: "Longevity varies with metabolism, product and lifestyle. Your practitioner will explain realistic expectations at consultation." },
     ],
     image: "/images/dropbox/client-labelled/lip-1-1ml.jpg",
@@ -170,18 +173,18 @@ export const treatments: Treatment[] = [
     name: "Laser Hair Removal",
     category: "Laser",
     eyebrow: "Long-term smoothness",
-    intro: "A course-led route to reducing unwanted facial or body hair with flexible single-area and package options.",
+    intro: "Laser hair removal courses for face and body, from a single small area to full body.",
     price: 25,
-    duration: "30–60 mins",
+    duration: "Varies by area",
     downtime: "Minimal",
     consultation: true,
     patchTest: true,
-    benefits: ["Face and body options", "Flexible area sizing", "Six-session packages", "Course planning"],
+    benefits: ["Face and body options", "Flexible area sizing", "Area-specific courses", "Course planning"],
     idealFor: ["Unwanted facial hair", "Underarms", "Bikini", "Full-body planning"],
     process: ["Consultation and patch test", "Course design", "Treatment sessions", "Progress review"],
     faq: [
       { q: "Do I need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course." },
-      { q: "How many sessions are available?", a: "Current package listings use six sessions with one session free for selected areas." },
+      { q: "How many sessions are available?", a: "Current package listings vary by area. Selected areas are listed as a seven-session course with one session free, while full body is listed separately." },
     ],
     image: "/images/dropbox/client-labelled/laser-hair-removal-main.jpg",
     relatedConcerns: ["unwanted-hair"],
@@ -214,7 +217,7 @@ export const concerns = [
   { slug: "fine-lines", title: "Fine lines", short: "A fresher expression without erasing character.", treatments: ["anti-wrinkle", "skin-boosters"] },
   { slug: "dull-skin", title: "Dull or tired skin", short: "Hydration, brightness and a polished reset.", treatments: ["skin-boosters", "advanced-facials"] },
   { slug: "acne-pigmentation-texture", title: "Texture & clarity", short: "Support for uneven texture, visible pores and post-acne marks.", treatments: ["microneedling", "advanced-facials"] },
-  { slug: "unwanted-hair", title: "Unwanted hair", short: "Pain free laser hair removal courses.", treatments: ["laser-hair-removal"] },
+  { slug: "unwanted-hair", title: "Unwanted hair", short: "Laser hair removal courses, planned around your skin and hair.", treatments: ["laser-hair-removal"] },
 ] as const;
 
 export type PriceItem = { name: string; price: number; duration: string };
@@ -226,9 +229,9 @@ export const pricing: PriceGroup[] = [
     { name: "Adjustment / follow-up deposit", price: 20, duration: "45 mins" },
   ]},
   { category: "Lip & dermal filler", items: [
-    { name: "Russian Lip Filler 0.5ML", price: 149, duration: "45 mins" },
-    { name: "Russian Lip Filler 0.7ML", price: 149, duration: "45 mins" },
-    { name: "Russian Lip Filler 1.1ML", price: 219, duration: "60 mins" },
+    { name: "Russian Lip Filler, 0.5ml", price: 149, duration: "45 mins" },
+    { name: "Russian Lip Filler, 0.7ml", price: 149, duration: "45 mins" },
+    { name: "Russian Lip Filler, 1.1ml", price: 219, duration: "60 mins" },
     { name: "Smile lines — 1.1ml", price: 119, duration: "45 mins" },
     { name: "Marionette lines — 1.1ml", price: 119, duration: "30 mins" },
     { name: "Nasolabial folds — 1.1ml", price: 119, duration: "30 mins" },
@@ -244,7 +247,7 @@ export const pricing: PriceGroup[] = [
     { name: "One area", price: 149, duration: "30 mins" },
     { name: "Two areas", price: 175, duration: "45 mins" },
     { name: "Three areas", price: 199, duration: "30 mins" },
-    { name: "Masseter", price: 175, duration: "30 mins" },
+    { name: "Masseter anti-wrinkle (jaw slimming)", price: 175, duration: "30 mins" },
     { name: "Lip flip add-on", price: 75, duration: "30 mins" },
     { name: "Brow lift add-on", price: 75, duration: "30 mins" },
     { name: "Bunny lines add-on", price: 75, duration: "30 mins" },
@@ -258,14 +261,13 @@ export const pricing: PriceGroup[] = [
     { name: "Lumi Eyes", price: 149, duration: "30 mins" },
     { name: "Ami Eyes", price: 99, duration: "30 mins" },
     { name: "Polynucleotides", price: 119, duration: "45 mins" },
-    { name: "Lemon Bottle skin booster", price: 119, duration: "30 mins" },
   ]},
   { category: "Laser Hair Removal Packages", note: "Patch test and consultation requirements apply.", items: [
     { name: "Small area laser package", price: 150, duration: "7-session course" },
     { name: "Medium area laser package", price: 270, duration: "7-session course" },
     { name: "Large area laser package", price: 540, duration: "7-session course" },
     { name: "Underarms + Hollywood laser package", price: 570, duration: "7-session course" },
-    { name: "Full-body laser package", price: 1050, duration: "6 sessions" },
+    { name: "Full-body laser package", price: 1050, duration: "6-session course" },
   ]},
   { category: "Facials / skin treatments", items: [
     { name: "Microneedling", price: 65, duration: "60 mins" },
@@ -279,24 +281,18 @@ export const pricing: PriceGroup[] = [
     { name: "Dermaplane add-on", price: 10, duration: "15 mins" },
   ]},
   { category: "Laser hair removal", note: "Single-session area pricing. Packages are listed separately above.", items: [
-    { name: "Small area", price: 25, duration: "30 mins" },
-    { name: "Medium area", price: 45, duration: "30 mins" },
-    { name: "Large area", price: 90, duration: "45 mins" },
+    { name: "Small area", price: 25, duration: "About 5 mins" },
+    { name: "Medium area", price: 45, duration: "Time confirmed at booking" },
+    { name: "Large area", price: 90, duration: "Time confirmed at booking" },
     { name: "Full bikini / Hollywood", price: 60, duration: "30 mins" },
     { name: "Underarms + full Hollywood", price: 95, duration: "30 mins" },
-    { name: "Full body", price: 175, duration: "60 mins" },
+    { name: "Full body", price: 175, duration: "Around 90 mins" },
   ]},
   { category: "Packages", items: [
     { name: "2.2ml package", price: 249, duration: "60 mins" },
     { name: "3.3ml package", price: 299, duration: "90 mins" },
     { name: "4.4ml package", price: 399, duration: "105 mins" },
     { name: "Bespoke facial balancing", price: 499, duration: "60 mins" },
-  ]},
-  { category: "Fat Dissolving", items: [
-    { name: "Lemon Bottle six-session package", price: 300, duration: "6 sessions" },
-    { name: "Lemon Bottle small area", price: 60, duration: "30 mins" },
-    { name: "Lemon Bottle medium area", price: 75, duration: "30 mins" },
-    { name: "Lemon Bottle large area", price: 90, duration: "30 mins" },
   ]},
 ];
 
@@ -359,11 +355,14 @@ export const reviews = [
 
 export const faqs = [
   { q: "Do I need a consultation?", a: "I never treat without a proper consultation first, which is why it’s built into every appointment so there’s nothing extra to book. If you’d rather talk things through separately beforehand, a consultation can be booked on its own too." },
-  { q: "Will I still look like myself?", a: "That is the point. The clinic’s public philosophy is built around facial harmony, tailored plans and enhancement that looks polished rather than overdone." },
-  { q: "Where is the clinic?", a: "Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road in Salford, Greater Manchester. Full directions are available on the contact page and in every booking confirmation." },
-  { q: "How do deposits and cancellations work?", a: "The external booking flow shows the terms that apply to your appointment. Read and accept the current provider policy before paying a deposit." },
-  { q: "Are treatments 18+?", a: "Injectable aesthetic treatments on this site are presented for adults aged 18 and over. ID and suitability checks may apply." },
-  { q: "Do laser treatments need a patch test?", a: "Patch testing and suitability should be confirmed before starting a laser course. The clinic will give you the correct preparation window." },
+  { q: "Will I still look like myself?", a: "That is the point. I build every plan around facial harmony and tailored enhancement that looks polished rather than overdone." },
+  { q: "Where is the clinic?", a: "I’m based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road in Salford, Greater Manchester, M5 3EZ. Full directions are available on the contact page and in every booking confirmation." },
+  { q: "How do deposits and cancellations work?", a: "A £15 deposit may be requested when you book. Faces shows the current cancellation terms for your appointment, so please read and accept that policy before paying." },
+  { q: "Are treatments 18+?", a: "Yes. I provide the injectable aesthetic treatments shown here for adults aged 18 and over, with ID and suitability checks where needed." },
+  { q: "Do laser treatments need a patch test?", a: "Yes, patch testing and suitability are confirmed before I start a laser course. I’ll give you the correct preparation window for your appointment." },
+  { q: "Does treatment hurt?", a: "I’ll explain what to expect during your consultation, including any comfort measures that are suitable for your chosen treatment." },
+  { q: "How long do filler results last?", a: "Longevity varies with the product, area, metabolism and lifestyle. I’ll set realistic expectations and explain when a review may be appropriate." },
+  { q: "What if I’m not happy after treatment?", a: "Please contact me promptly so I can understand what has happened and advise on the safest next step. A review is part of thoughtful aftercare." },
 ] as const;
 
 export function treatmentBySlug(slug: string) {
@@ -375,13 +374,12 @@ export function concernBySlug(slug: string) {
 }
 
 export function formatPrice(value: number) {
-  return value === 0 ? "Free" : `£${value}`;
+  return value === 0 ? "Free" : new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }).format(value);
 }
 
 export function bookingImageFor(serviceName: string) {
   const name = serviceName.toLowerCase();
   if (name.includes("consultation")) return "/images/dropbox/client-labelled/consultation-fatima.jpg";
-  if (name.includes("lemon bottle")) return "/images/dropbox/client-labelled/lemon-bottle-booking.jpg";
   if (name.includes("laser") || name.includes("body") || name.includes("bikini") || name.includes("hollywood") || name.includes("small area") || name.includes("medium area") || name.includes("large area")) return "/images/dropbox/client-labelled/laser-hair-removal-main.jpg";
   if (name.includes("microneedling")) return "/images/dropbox/client-labelled/microneedling.jpg";
   if (name.includes("chemical peel") || name.includes("biorepeel")) return "/images/dropbox/client-labelled/chemical-peel.jpg";

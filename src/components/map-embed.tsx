@@ -1,33 +1,14 @@
-"use client";
+import Image from "next/image";
 
-import { useEffect, useRef, useState } from "react";
-import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner";
-const embedUrl = "https://www.google.com/maps?q=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford&output=embed";
+const mapsUrl = "https://www.google.com/maps/search/?api=1&query=Skin+Clinic+MCR,+Waters+Edge+Business+Park,+Modwen+Road,+Salford,+M5+3EZ";
 
 export function MapEmbed() {
-  const [loaded, setLoaded] = useState(false);
-  const [mapConsent, setMapConsent] = useState(false);
-  const container = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const syncConsent = () => setMapConsent(window.localStorage.getItem(cookieConsentKey) === "accepted");
-    syncConsent();
-    window.addEventListener(cookieConsentEvent, syncConsent);
-    return () => window.removeEventListener(cookieConsentEvent, syncConsent);
-  }, []);
-
-  useEffect(() => {
-    if (!mapConsent) return;
-    const element = container.current;
-    if (!element) return;
-    const observer = new IntersectionObserver(([entry]) => {
-      if (!entry.isIntersecting) return;
-      setLoaded(true);
-      observer.disconnect();
-    }, { rootMargin: "320px 0px" });
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [mapConsent]);
-
-  return <div ref={container} className="clinic-map" aria-label="Map showing Injectox Clinic in Salford">{loaded && <iframe title="Injectox Clinic location map" loading="lazy" src={embedUrl} />}{!mapConsent && <p className="map-consent-note">Accept cookies to load the clinic map automatically.</p>}</div>;
+  return (
+    <a className="clinic-map clinic-map-static" href={mapsUrl} target="_blank" rel="noreferrer" aria-label="Open the Injectox Clinic location in Google Maps">
+      <Image src="/images/clinic-map.jpg" alt="Map showing the clinic location at Waters Edge Business Park, Salford M5 3EZ" fill sizes="(max-width: 760px) 100vw, 50vw" />
+      <span className="clinic-map-pin" aria-hidden="true">•</span>
+      <span className="clinic-map-link">Open in Google Maps ↗</span>
+      <small>© OpenStreetMap contributors</small>
+    </a>
+  );
 }

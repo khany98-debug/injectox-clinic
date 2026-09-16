@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TreatmentCard } from "@/components/ui";
 import { useSiteContent } from "@/components/site-content-provider";
 
-const filters = ["All", "Injectables", "Skin", "Laser", "Wellness"] as const;
+const filters = ["All", "Injectables", "Skin", "Laser"] as const;
 
 export function TreatmentBrowser() {
   const [filter, setFilter] = useState<(typeof filters)[number]>("All");

@@ -14,12 +14,12 @@ export function SiteFooter() {
           <p className="footer-strap">Aesthetics,<br /><em>done honestly.</em></p>
         </div>
         <div className="footer-links">
-          <div><b>Discover</b><Link href="/treatments">Treatments</Link><Link href="/concerns">Concerns</Link><Link href="/pricing">Pricing</Link><Link href="/gallery">Results</Link></div>
-          <div><b>Clinic</b><Link href="/about">About</Link><Link href="/reviews">Reviews</Link><Link href="/faq">FAQ</Link><Link href="/contact">Contact</Link></div>
-          <div><b>Essentials</b><Link href="/policies">Policies</Link><Link href="/privacy-policy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/cookies">Cookies</Link><Link href="/admin">Clinic admin</Link></div>
+          <div><b>Discover</b><Link prefetch={false} href="/treatments">Treatments</Link><Link prefetch={false} href="/concerns">Concerns</Link><Link prefetch={false} href="/pricing">Pricing</Link><Link prefetch={false} href="/gallery">Results</Link></div>
+          <div><b>Clinic</b><Link prefetch={false} href="/about">About</Link><Link prefetch={false} href="/reviews">Reviews</Link><Link prefetch={false} href="/faq">FAQ</Link><Link prefetch={false} href="/contact">Contact</Link></div>
+          <div><b>Essentials</b><Link prefetch={false} href="/policies">Policies</Link><Link prefetch={false} href="/privacy-policy">Privacy</Link><Link prefetch={false} href="/terms">Terms</Link><Link prefetch={false} href="/cookies">Cookies</Link></div>
         </div>
       </div>
-      <div className="footer-location"><MapPin size={17} /><span>{clinic.location}</span></div>
+      <div className="footer-location"><MapPin size={17} /><span>{clinic.location}, {clinic.postcode}<br />Open Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm · Free parking on site<br />WhatsApp {clinic.phone}</span></div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Injectox Clinic</span>
         <span>Salford · Greater Manchester</span>

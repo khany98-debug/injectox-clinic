@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { ContactDetails } from "@/components/contact-details";
 import { Button, FinalCTA, PageHero } from "@/components/ui";
 import { booking } from "@/lib/content";
+import { LocalBusinessSchema } from "@/components/structured-data";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Contact", description: "Contact Injectox Clinic or find the Salford clinic serving Greater Manchester." };
+export const metadata: Metadata = pageMetadata({ title: "Contact Injectox Clinic in Salford", description: "Contact Injectox Clinic or find the Salford clinic serving Greater Manchester.", path: "/contact" });
 
 export default function ContactPage() {
   return <>
@@ -19,5 +21,6 @@ export default function ContactPage() {
       <ContactDetails />
     </section>
     <FinalCTA />
+    <LocalBusinessSchema />
   </>;
 }

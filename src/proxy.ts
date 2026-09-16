@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const canonicalHost = "injectoxclinic.co.uk";
+const canonicalHost = "www.injectoxclinic.co.uk";
 
 export function proxy(request: NextRequest) {
   const host = request.headers.get("host")?.split(":")[0].toLowerCase();

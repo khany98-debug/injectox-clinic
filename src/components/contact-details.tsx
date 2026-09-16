@@ -1,9 +1,9 @@
 "use client";
 
-import { Camera, Mail, MapPin } from "lucide-react";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
 import { BookingSteps } from "@/components/ui";
 import { useSiteContent } from "@/components/site-content-provider";
-import { clinic } from "@/lib/content";
+import { booking, clinic } from "@/lib/content";
 
 export function ContactDetails() {
   const { clinic: clinicSettings } = useSiteContent();
@@ -12,8 +12,15 @@ export function ContactDetails() {
     <div>
       <small>Visit</small>
       <h3><MapPin size={20} /> {clinic.location}</h3>
-      <p>Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road, Salford. Your confirmation email includes full arrival details.</p>
-      <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Waters+Edge+Business+Park+Modwen+Road+Salford" target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+      <p>Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road, Salford {clinic.postcode}. Free parking is available on site. Your confirmation email includes full arrival details.</p>
+      <p><b>Opening hours</b><br />Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm</p>
+      <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Skin+Clinic+MCR,+Waters+Edge+Business+Park+Modwen+Road+Salford,+M5+3EZ" target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
+    </div>
+    <div>
+      <small>WhatsApp</small>
+      <h3><Phone size={20} /> {clinic.phone}</h3>
+      <p>Message Fatima with a question before booking.</p>
+      <a className="text-link" href={booking.whatsapp} target="_blank" rel="noreferrer">Message on WhatsApp ↗</a>
     </div>
     <div>
       <small>Email</small>

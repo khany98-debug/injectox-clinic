@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { ADMIN_COOKIE, adminToken } from "@/lib/admin-auth";
 import { getContentOverrides, saveContentOverrides, contentStoreConfigured, type ContentOverrides } from "@/lib/site-store";
@@ -69,5 +70,6 @@ export async function PUT(request: Request) {
   const contactEmail = typeof clinic.contactEmail === "string" ? clinic.contactEmail.trim().toLowerCase().slice(0, 160) : "";
   if (contactEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contactEmail)) return NextResponse.json({ error: "Enter a valid clinic email address." }, { status: 400 });
   const content = await saveContentOverrides({ copy, treatments, pricing, clinic: { contactEmail } });
+  revalidatePath("/", "layout");
   return NextResponse.json({ content, persistent: contentStoreConfigured() });
 }

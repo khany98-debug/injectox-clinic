@@ -40,19 +40,29 @@ export function NewsletterPopup() {
 
     let timer: number | undefined;
     let active = true;
+    let eligible = false;
     const showNewsletter = () => {
-      if (active && !hasDismissedNewsletter() && window.localStorage.getItem(cookieConsentKey)) setVisible(true);
+      if (active && eligible && !hasDismissedNewsletter() && window.localStorage.getItem(cookieConsentKey) && !document.body.classList.contains("menu-is-open")) setVisible(true);
     };
     const showAfterCookieChoice = () => {
       if (hasDismissedNewsletter() || !window.localStorage.getItem(cookieConsentKey) || timer || !active) return;
-      timer = window.setTimeout(showNewsletter, 8000);
+      timer = window.setTimeout(() => { eligible = true; showNewsletter(); }, 30000);
     };
+    const showAfterScroll = () => {
+      const pageHeight = document.documentElement.scrollHeight - window.innerHeight;
+      if (pageHeight > 0 && window.scrollY / pageHeight >= 0.5) { eligible = true; showNewsletter(); }
+    };
+    const menuObserver = new MutationObserver(() => showNewsletter());
 
     showAfterCookieChoice();
+    window.addEventListener("scroll", showAfterScroll, { passive: true });
+    menuObserver.observe(document.body, { attributes: true, attributeFilter: ["class"] });
     window.addEventListener(cookieConsentEvent, showAfterCookieChoice);
     return () => {
       active = false;
       if (timer) window.clearTimeout(timer);
+      window.removeEventListener("scroll", showAfterScroll);
+      menuObserver.disconnect();
       window.removeEventListener(cookieConsentEvent, showAfterCookieChoice);
     };
   }, []);
@@ -119,6 +129,7 @@ export function NewsletterPopup() {
           <span className="eyebrow">DON’T MISS OUT</span>
           <h2 id="newsletter-title">A free laser session is waiting.</h2>
           <p>Subscribe for a free laser hair removal session for a small area, plus exclusive offers and first access to appointment drops.</p>
+          <p className="newsletter-terms">One free small-area session per person, for new laser clients. Patch test and consultation first. 18+. Subject to availability.</p>
           <label>
             <span>First name</span>
             <input value={firstName} onChange={(event) => setFirstName(event.target.value)} type="text" autoComplete="given-name" maxLength={60} required placeholder="Your first name" />

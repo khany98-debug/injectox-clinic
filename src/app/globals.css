@@ -621,6 +621,56 @@ h1 em, h2 em, .footer-strap em { color: var(--rose); font-weight: 400; }
   .sticky-book span { display: flex; gap: 9px; align-items: center; }
 }
 
+/* Website review fixes: readable mobile controls, accessible loops and consent-safe location. */
+.hero-video-toggle {
+  position: absolute;
+  z-index: 4;
+  right: 28px;
+  bottom: 28px;
+  padding: 10px 13px;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,.55);
+  border-radius: 999px;
+  background: rgba(25, 19, 16, .48);
+  cursor: pointer;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.hero-video-toggle:hover, .hero-video-toggle:focus-visible { background: rgba(25, 19, 16, .78); }
+.clinic-map-static { min-height: 280px; color: #fff; isolation: isolate; }
+.clinic-map-static > img { z-index: -1; object-fit: cover; filter: saturate(.72) contrast(.96); }
+.clinic-map-static::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(25,19,16,.72), transparent 55%); pointer-events: none; }
+.clinic-map-pin { position: absolute; z-index: 1; top: 50%; left: 50%; color: var(--rose); font-family: Georgia, serif; font-size: 72px; line-height: .2; text-shadow: 0 2px 10px rgba(25,19,16,.4); transform: translate(-50%, -50%); }
+.clinic-map-link { position: absolute; z-index: 1; left: 20px; bottom: 18px; font-size: 12px; font-weight: 700; }
+.clinic-map-static small { position: absolute; z-index: 1; right: 12px; bottom: 10px; color: rgba(255,255,255,.75); font-size: 9px; }
+.clinic-location-details { margin-top: 18px !important; color: rgba(255,255,255,.65); font-size: 11px; line-height: 1.7; }
+.treatment-signature-line { display: block; margin: -9px 0 23px; color: var(--champagne); font-family: var(--font-display); font-size: 20px; font-style: italic; }
+.newsletter-terms { margin-top: -9px !important; color: rgba(255,248,239,.63) !important; font-size: 11px !important; }
+.menu-is-open .newsletter-popover { display: none !important; }
+
+@media (max-width: 760px) {
+  .hero-video-toggle { left: 18px; right: auto; bottom: 20px; font-size: 12px; }
+  .cookie-banner { left: 12px; right: 12px; bottom: 54px; grid-template-columns: 1fr; gap: 8px; width: auto; padding: 12px 13px; border-radius: 12px; }
+  .cookie-banner > div:first-child .eyebrow, .cookie-banner h2 { display: none; }
+  .cookie-banner p { max-width: none; font-size: 11px; line-height: 1.4; }
+  .cookie-banner-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-width: 0; }
+  .cookie-banner-actions .button { min-height: 40px; padding: 8px 9px; font-size: 12px; }
+  .cookie-banner-actions a { display: none; }
+  body:has(.cookie-banner) .whatsapp-chat { display: none; }
+  .eyebrow, .button, .hero-proof, .reference-trust span, .treatment-card-meta, .treatment-card b, .gallery-card span, .gallery-card small, .text-link { font-size: 12px; }
+  .hero-proof { gap: 8px 14px; letter-spacing: .04em; }
+  .hero-proof span:nth-child(3) { display: inline-flex; }
+  .treatment-card-meta { letter-spacing: .04em; }
+  .treatment-signature-line { font-size: 18px; }
+  .newsletter-terms { font-size: 11px !important; }
+}
+
+@media (max-width: 760px) {
+  body:has(.cookie-banner) .whatsapp-chat { display: none; }
+}
+.concern-guidance { max-width: 520px; margin-top: 18px; color: var(--taupe); font-size: 14px; line-height: 1.7; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
@@ -3624,4 +3674,34 @@ h2 em,
     min-height: 0;
     aspect-ratio: 4 / 5;
   }
+}
+
+/* Final audit overrides. */
+.hero-video-toggle { position: absolute; z-index: 4; right: 28px; bottom: 28px; padding: 10px 13px; color: #fff; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; background: rgba(25,19,16,.48); cursor: pointer; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.hero-video-toggle:hover, .hero-video-toggle:focus-visible { background: rgba(25,19,16,.78); }
+.clinic-map-static { min-height: 280px; color: #fff; isolation: isolate; }
+.clinic-map-static > img { z-index: -1; object-fit: cover; filter: saturate(.72) contrast(.96); }
+.clinic-map-static::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(25,19,16,.72), transparent 55%); pointer-events: none; }
+.clinic-map-pin { position: absolute; z-index: 1; top: 50%; left: 50%; color: var(--rose); font-family: Georgia, serif; font-size: 72px; line-height: .2; text-shadow: 0 2px 10px rgba(25,19,16,.4); transform: translate(-50%, -50%); }
+.clinic-map-link { position: absolute; z-index: 1; left: 20px; bottom: 18px; font-size: 12px; font-weight: 700; }
+.clinic-map-static small { position: absolute; z-index: 1; right: 12px; bottom: 10px; color: rgba(255,255,255,.75); font-size: 9px; }
+.clinic-location-details { margin-top: 18px !important; color: rgba(255,255,255,.65); font-size: 11px; line-height: 1.7; }
+.treatment-signature-line { display: block; margin: -9px 0 23px; color: var(--champagne); font-family: var(--font-display); font-size: 20px; font-style: italic; }
+.newsletter-terms { margin-top: -9px !important; color: rgba(255,248,239,.63) !important; font-size: 11px !important; }
+.menu-is-open .newsletter-popover { display: none !important; }
+
+@media (max-width: 760px) {
+  .hero-video-toggle { left: 18px; right: auto; bottom: 20px; font-size: 12px; }
+  .cookie-banner { left: 12px; right: 12px; bottom: 54px; grid-template-columns: 1fr; gap: 8px; width: auto; padding: 12px 13px; border-radius: 12px; }
+  .cookie-banner > div:first-child .eyebrow, .cookie-banner h2 { display: none; }
+  .cookie-banner p { max-width: none; font-size: 11px; line-height: 1.4; }
+  .cookie-banner-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; min-width: 0; }
+  .cookie-banner-actions .button { min-height: 40px; padding: 8px 9px; font-size: 12px; }
+  .cookie-banner-actions a { display: none; }
+  .eyebrow, .button, .hero-proof, .reference-trust span, .treatment-card-meta, .treatment-card b, .gallery-card span, .gallery-card small, .text-link { font-size: 12px; }
+  .hero-proof { gap: 8px 14px; letter-spacing: .04em; }
+  .hero-proof span:nth-child(3) { display: inline-flex; }
+  .treatment-card-meta { letter-spacing: .04em; }
+  .treatment-signature-line { font-size: 18px; }
+  .newsletter-terms { font-size: 11px !important; }
 }

@@ -5,13 +5,13 @@ import Link from "next/link";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { booking, clinic, concerns, faqs, formatPrice, resultFilms, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
-import { CountUp, Reveal, TiltCard } from "@/components/motion";
+import { Reveal, TiltCard } from "@/components/motion";
 import { useSiteContent } from "@/components/site-content-provider";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
   const cls = `button button-${variant}`;
   if (external) return <a className={cls} href={href} target="_blank" rel="noreferrer">{children}<ArrowRight size={16} /></a>;
-  return <Link className={cls} href={href}>{children}<ArrowRight size={16} /></Link>;
+  return <Link className={cls} href={href} prefetch={false}>{children}<ArrowRight size={16} /></Link>;
 }
 
 export function SectionIntro({ eyebrow, title, copy, align = "left" }: { eyebrow: string; title: React.ReactNode; copy?: string; align?: "left" | "center" }) {
@@ -95,8 +95,8 @@ export function StatsSection() {
     <section className="stats-section">
       <div className="shell stats-grid">
         <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2></Reveal>
-        <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
-        <div className="stat"><strong><CountUp value={clinic.verifiedReviews} suffix="+" /></strong><span>Verified reviews</span></div>
+        <div className="stat"><strong>{clinic.treatmentsCompleted.toLocaleString("en-GB")}<span aria-hidden="true">+</span></strong><span>Treatments performed</span></div>
+        <div className="stat"><strong>{clinic.verifiedReviews.toLocaleString("en-GB")}<span aria-hidden="true">+</span></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
       </div>
     </section>
@@ -117,7 +117,7 @@ export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolea
           </Reveal>
         ))}
         {mobileLoop && baseCards.map((review, i) => (
-          <Reveal className={`review-card mobile-loop-copy ${i % baseCards.length === 1 ? "featured" : ""}`} delay={0} key={`${review.name}-loop-${i}`}>
+          <Reveal aria-hidden="true" className={`review-card mobile-loop-copy ${i % baseCards.length === 1 ? "featured" : ""}`} delay={0} key={`${review.name}-loop-${i}`}>
             <div className="review-stars">★★★★★</div>
             <blockquote>“{review.quote}”</blockquote>
             <div><b>{review.name}</b><span>{review.treatment} · {review.date}</span></div>
@@ -139,7 +139,7 @@ export function ResultFilmPanel() {
       <div className="result-film-grid">
         {resultFilms.map((film, index) => (
           <div className="result-film-card" key={film.src}>
-            <LoopVideo src={film.src} poster={film.poster} preload={index === 0 ? "auto" : "metadata"} />
+            <LoopVideo src={film.src} poster={film.poster} preload="metadata" />
             <span>{index === 0 ? "Inside the clinic" : "Skin Booster in action"}</span>
           </div>
         ))}
@@ -162,13 +162,15 @@ export function FAQList({ limit }: { limit?: number }) {
   );
 }
 
-export function PricingTable({ compact = false }: { compact?: boolean }) {
+export function PricingTable({ compact = false, onlyPackages = false }: { compact?: boolean; onlyPackages?: boolean }) {
   const { pricing: managedPricing } = useSiteContent();
-  const groups = compact ? managedPricing.slice(0, 4) : managedPricing;
+  const packageCategories = new Set(["Laser Hair Removal Packages", "Packages"]);
+  const groups = (onlyPackages ? managedPricing.filter((group) => packageCategories.has(group.category)) : managedPricing);
+  const visibleGroups = compact ? groups.slice(0, 4) : groups;
   return (
     <div className="pricing-groups">
-      {groups.map((group, groupIndex) => (
-        <section className="price-group" id={({ 1: "filler", 3: "skin", 4: "laser", 6: "packages" } as Record<number, string>)[groupIndex]} key={group.category}>
+      {visibleGroups.map((group, groupIndex) => (
+        <section className="price-group" id={({ "Lip & dermal filler": "filler", "Skin boosters & polynucleotides": "skin", "Laser Hair Removal Packages": "laser", "Packages": "packages" } as Record<string, string>)[group.category]} key={group.category}>
           <div className="price-title"><span>{String(groupIndex + 1).padStart(2, "0")}</span><h2>{group.category}</h2>{group.note && <p>{group.note}</p>}</div>
           <div>
             {group.items.map((item) => (

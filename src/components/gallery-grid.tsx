@@ -37,14 +37,14 @@ export function GalleryGrid({ limit, source = "journal", mobileLoop = false, inc
           </button>
         ))}
         {mobileLoop && baseItems.map((item, i) => (
-          <button className="gallery-card mobile-loop-copy" key={`${item.src}-loop-${i}`} onClick={() => setSelected(item)} aria-label={`View ${item.label}`}>
+          <button className="gallery-card mobile-loop-copy" key={`${item.src}-loop-${i}`} onClick={() => setSelected(item)} aria-label={`View ${item.label}`} aria-hidden="true" tabIndex={-1}>
             {item.kind === "video" ? (
               <>
                 <video src={item.src} poster={item.poster} autoPlay muted loop playsInline preload="metadata" />
                 <i className="gallery-play"><Play size={14} fill="currentColor" /></i>
               </>
             ) : (
-              <Image src={item.src} alt={item.label} fill sizes={limit ? "(max-width: 700px) 88vw, 30vw" : "(max-width: 700px) 100vw, 33vw"} />
+              <Image src={item.src} alt="" fill sizes={limit ? "(max-width: 700px) 88vw, 30vw" : "(max-width: 700px) 100vw, 33vw"} />
             )}
             <span>{item.category && <small>{item.category}</small>}{item.label}</span>
           </button>

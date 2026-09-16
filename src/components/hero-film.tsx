@@ -7,7 +7,9 @@ const posterSrc = "/images/injectox-hero-film-poster.jpg";
 
 export function HeroFilm() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const pausedRef = useRef(false);
   const [ready, setReady] = useState(false);
+  const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -22,7 +24,7 @@ export function HeroFilm() {
 
     const markReady = () => setReady(true);
     const play = () => {
-      if (document.hidden) return;
+      if (document.hidden || pausedRef.current) return;
       void video.play().then(markReady).catch(() => undefined);
     };
     const onVisibility = () => {
@@ -56,12 +58,25 @@ export function HeroFilm() {
         muted
         loop
         playsInline
-        preload="auto"
+        preload="metadata"
         aria-hidden="true"
         tabIndex={-1}
       >
         <source src={filmSrc} type="video/mp4; codecs=avc1.4D401F" />
       </video>
+      <button className="hero-video-toggle" type="button" aria-pressed={paused} onClick={() => {
+        const video = videoRef.current;
+        if (!video) return;
+        if (paused) {
+          pausedRef.current = false;
+          setPaused(false);
+          void video.play();
+        } else {
+          pausedRef.current = true;
+          setPaused(true);
+          video.pause();
+        }
+      }}>{paused ? "Play film" : "Pause film"}</button>
     </div>
   );
 }

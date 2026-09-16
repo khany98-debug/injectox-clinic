@@ -5,8 +5,15 @@ import { GalleryGrid } from "@/components/gallery-grid";
 import { Reveal } from "@/components/motion";
 import { HeroFilm } from "@/components/hero-film";
 import { MapEmbed } from "@/components/map-embed";
+import { LocalBusinessSchema } from "@/components/structured-data";
 import { Button, ConcernGrid, FAQList, FinalCTA, ResultFilmPanel, ReviewsStrip, SectionIntro, SocialFollow, StatsSection, TreatmentsGrid, TrustPanel } from "@/components/ui";
-import { booking } from "@/lib/content";
+import { booking, clinic } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
+
+export const metadata = pageMetadata({
+  title: "Russian Lip Filler & Laser Hair Removal in Salford",
+  description: "Russian lip filler, facial balancing and laser hair removal in Salford, Greater Manchester. Every injectable treatment is planned and done by Fatima.",
+});
 
 const reasons = [
   {
@@ -29,7 +36,6 @@ const reasons = [
 export default function Home() {
   return (
     <>
-      <link rel="preload" href="/media/dropbox/injectox-client-hero.mp4" as="video" type="video/mp4" />
       <section className="home-hero reference-hero">
         <HeroFilm />
         <div className="hero-wash" />
@@ -37,9 +43,9 @@ export default function Home() {
         <div className="hero-copy reference-hero-copy">
           <Reveal>
             <span className="eyebrow hero-location">Aesthetics clinic in Salford, Manchester</span>
-            <h1><span>Injectox</span><span>Clinic</span></h1>
+            <h1><span>Natural lip filler</span><span>&amp; facial balancing</span></h1>
             <p>
-              Specialists in Russian lip filler, laser hair removal and medical-grade skincare in Salford, Manchester. Free Consultation available online or in person.
+              Russian lip filler, facial balancing and laser hair removal in Salford, Greater Manchester. Every injectable treatment is planned and done by me, Fatima. Free consultation available online or in person.
             </p>
             <div className="button-row">
               <Button href={booking.currentDiary} external>Book now</Button>
@@ -56,7 +62,7 @@ export default function Home() {
       </section>
 
       <section className="reference-trust shell" aria-label="Clinic trust points">
-        {["18+ only", "Free Consultation", "Natural Results", "Free Parking"].map((item) => (
+        {["18+ only", "Free consultation", "Natural results", "Free parking"].map((item) => (
           <div key={item}><CheckCircle2 size={17} /><span>{item}</span></div>
         ))}
       </section>
@@ -98,7 +104,7 @@ export default function Home() {
           />
           <Link className="text-link" href="/treatments">All treatments <ArrowRight /></Link>
         </div>
-        <TreatmentsGrid limit={6} />
+        <TreatmentsGrid limit={7} />
       </section>
 
       <section className="section shell home-about">
@@ -131,8 +137,8 @@ export default function Home() {
 
       <section id="find-the-clinic" className="clinic-location-band">
         <div className="shell clinic-location-grid">
-          <div><span className="eyebrow">Find the clinic</span><h2>Address</h2><h3>Salford, Greater<br /><em>Manchester.</em></h3></div>
-          <div><p><b>Skin Clinic MCR</b><br />Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester</p><Button href="/contact" variant="light">Directions &amp; contact</Button><MapEmbed /></div>
+          <div><span className="eyebrow">Find the clinic</span><h2>Find the clinic.</h2><h3>Salford, Greater<br /><em>Manchester.</em></h3></div>
+          <div><p><b>Inside Skin Clinic MCR</b><br />Unit 36, Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester, {clinic.postcode}</p><p className="clinic-location-details"><b>Opening hours</b><br />Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm<br />Free parking on site</p><Button href="/contact" variant="light">Directions &amp; contact</Button><MapEmbed /></div>
         </div>
       </section>
 
@@ -142,7 +148,7 @@ export default function Home() {
       <section className="section shell pricing-preview">
         <div className="pricing-preview-copy">
           <span className="eyebrow">Treatment pricing</span>
-          <h2>Clear prices before you book.</h2>
+          <h2>Every price,<br /><em>before you book.</em></h2>
         </div>
         <div className="mini-pricing">
           {[
@@ -169,7 +175,7 @@ export default function Home() {
           />
           <SocialFollow />
         </div>
-        <GalleryGrid source="results" limit={8} mobileLoop includeFilms />
+        <GalleryGrid source="results" limit={8} />
       </section>
 
       <section className="section shell reviews-section reference-reviews">
@@ -180,7 +186,7 @@ export default function Home() {
             <Link className="text-link muted" href="/reviews#leave-review">Leave a review <ArrowRight /></Link>
           </div>
         </div>
-        <ReviewsStrip mobileLoop />
+        <ReviewsStrip />
       </section>
 
 
@@ -194,6 +200,7 @@ export default function Home() {
       </section>
 
       <FinalCTA title={<>Ready to see it<br /><em>yourself?</em></>} />
+      <LocalBusinessSchema />
     </>
   );
 }

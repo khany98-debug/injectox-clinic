@@ -3,15 +3,18 @@
 import { motion, useInView, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
-export function Reveal({ children, className = "", delay = 0, y = 28 }: { children: React.ReactNode; className?: string; delay?: number; y?: number }) {
+type RevealProps = { children: React.ReactNode; className?: string; delay?: number; y?: number; "aria-hidden"?: boolean | "true" | "false" };
+
+export function Reveal({ children, className = "", delay = 0, y = 28, "aria-hidden": ariaHidden }: RevealProps) {
   const reduce = useReducedMotion();
   return (
     <motion.div
       className={className}
+      aria-hidden={ariaHidden}
       initial={reduce ? false : { opacity: 0, y }}
       whileInView={reduce ? undefined : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.16 }}
-      transition={{ duration: 0.85, delay, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.45, delay, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
     </motion.div>

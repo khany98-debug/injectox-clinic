@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { FinalCTA, PageHero } from "@/components/ui";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Clinic Policies", description: "Injectox Clinic booking, consultation, age, laser and cancellation policy guidance." };
+export const metadata: Metadata = pageMetadata({ title: "Clinic Policies & Booking Information", description: "Injectox Clinic booking, consultation, age, laser and cancellation policy guidance.", path: "/policies" });
 const policies = [
   ["01", "Adults only", "Injectable treatments are presented for clients aged 18 and over. Valid photo ID may be requested."],
   ["02", "Consultation & suitability", "Treatment is subject to assessment and medical suitability. A booking does not guarantee that treatment will proceed."],
-  ["03", "Deposits", "Bookings and any deposits are completed securely through Faces. Review the current appointment, payment and cancellation terms shown there before confirming."],
+  ["03", "Deposits", "A £15 deposit may be requested when you book. Bookings and payments are completed securely through Faces; review the current appointment, payment and cancellation terms shown there before confirming."],
   ["04", "Cancellations", "Please review the cancellation and rescheduling window shown during booking. Late changes and non-attendance may affect your deposit."],
   ["05", "Laser patch testing", "A consultation and patch test may be required before laser treatment. Follow all preparation guidance supplied by the clinic."],
   ["06", "Results & aftercare", "Results and recovery vary. Follow your personalised aftercare and contact the clinic promptly with any concerns."],

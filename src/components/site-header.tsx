@@ -9,6 +9,7 @@ import { booking } from "@/lib/content";
 
 const nav = [
   ["Treatments", "/treatments"],
+  ["Laser", "/treatments/laser-hair-removal"],
   ["Concerns", "/concerns"],
   ["Results", "/gallery"],
   ["Pricing", "/pricing"],
