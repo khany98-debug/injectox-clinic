@@ -8,7 +8,7 @@ const policies = [
   ["02", "Consultation & suitability", "Treatment is subject to assessment and medical suitability. A booking does not guarantee that treatment will proceed."],
   ["03", "Deposits", "A £15 deposit may be requested when you book. Bookings and payments are completed securely through Faces; review the current appointment, payment and cancellation terms shown there before confirming."],
   ["04", "Cancellations", "Please review the cancellation and rescheduling window shown during booking. Late changes and non-attendance may affect your deposit."],
-  ["05", "Laser patch testing", "A consultation and patch test may be required before laser treatment. Follow all preparation guidance supplied by the clinic."],
+  ["05", "Laser patch testing", "A consultation and patch test are required before laser treatment. For the free laser promotion, the patch test must be completed 48 hours before treatment. Follow all preparation guidance supplied by the clinic."],
   ["06", "Results & aftercare", "Results and recovery vary. Follow your personalised aftercare and contact the clinic promptly with any concerns."],
 ] as const;
 export default function PoliciesPage() { return <><PageHero eyebrow="Policy before pressure" title={<>The details that keep<br /><em>care feeling clear.</em></>} copy="This page summarises key principles. The provider terms displayed during your live booking are the final terms for that appointment." index="09" /><section className="policy-list shell">{policies.map(([n,title,copy]) => <article className="policy-card" key={n}><span>{n}</span><h2>{title}</h2><p>{copy}</p></article>)}</section><FinalCTA /></>; }

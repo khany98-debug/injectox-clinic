@@ -12,18 +12,26 @@ export const booking = {
 
 export const clinic = {
   name: "Injectox Clinic",
+  legalName: "Injectox Clinic Ltd",
   practitioner: "Fatima Khan",
   role: "Aesthetic practitioner",
   location: "Skin Clinic MCR, Unit 36, Waters Edge Business Park, Modwen Road, Salford, Greater Manchester",
   postcode: "M5 3EZ",
   phone: "+44 7930 912949",
-  openingHours: ["Monday", "Wednesday", "Friday", "Saturday", "Sunday"] as const,
+  openingHours: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] as const,
+  openingHoursLabel: "Monday to Sunday · 12pm–6pm",
   areas: ["Salford", "Manchester"],
   rating: "5.0",
   verifiedReviews: 10,
   treatmentsCompleted: 1500,
   // Figures supplied and approved by Fatima across her full treatment and review history.
   instagramFollowers: "8.3k",
+} as const;
+
+export const laserOffer = {
+  smallArea: "One free small-area session per person, for new laser clients.",
+  terms: "Patch test required 48 hours prior. Consultation first. 18+. Subject to availability.",
+  expiry: "Promotion ends 31 December 2026.",
 } as const;
 
 export type Treatment = {

@@ -3,6 +3,7 @@
 import { FormEvent, useEffect, useState } from "react";
 import { X } from "lucide-react";
 import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner";
+import { laserOffer } from "@/lib/content";
 
 const storageKey = "injectox-newsletter-dismissed";
 let newsletterDismissedInMemory = false;
@@ -129,7 +130,7 @@ export function NewsletterPopup() {
           <span className="eyebrow">DON’T MISS OUT</span>
           <h2 id="newsletter-title">A free laser session is waiting.</h2>
           <p>Subscribe for a free laser hair removal session for a small area, plus exclusive offers and first access to appointment drops.</p>
-          <p className="newsletter-terms">One free small-area session per person, for new laser clients. Patch test and consultation first. 18+. Subject to availability.</p>
+          <p className="newsletter-terms">{laserOffer.smallArea} {laserOffer.terms} {laserOffer.expiry}</p>
           <label>
             <span>First name</span>
             <input value={firstName} onChange={(event) => setFirstName(event.target.value)} type="text" autoComplete="given-name" maxLength={60} required placeholder="Your first name" />

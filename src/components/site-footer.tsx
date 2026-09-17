@@ -19,7 +19,7 @@ export function SiteFooter() {
           <div><b>Essentials</b><Link prefetch={false} href="/policies">Policies</Link><Link prefetch={false} href="/privacy-policy">Privacy</Link><Link prefetch={false} href="/terms">Terms</Link><Link prefetch={false} href="/cookies">Cookies</Link></div>
         </div>
       </div>
-      <div className="footer-location"><MapPin size={17} /><span>{clinic.location}, {clinic.postcode}<br />Open Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm · Free parking on site<br />WhatsApp {clinic.phone}</span></div>
+      <div className="footer-location"><MapPin size={17} /><span>{clinic.location}, {clinic.postcode}<br />Open {clinic.openingHoursLabel} · Free parking on site<br />WhatsApp {clinic.phone}</span></div>
       <div className="footer-bottom">
         <span>© {new Date().getFullYear()} Injectox Clinic</span>
         <span>Salford · Greater Manchester</span>

@@ -13,7 +13,7 @@ export function ContactDetails() {
       <small>Visit</small>
       <h3><MapPin size={20} /> {clinic.location}</h3>
       <p>Injectox is based inside Skin Clinic MCR at Waters Edge Business Park on Modwen Road, Salford {clinic.postcode}. Free parking is available on site. Your confirmation email includes full arrival details.</p>
-      <p><b>Opening hours</b><br />Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm</p>
+      <p><b>Opening hours</b><br />{clinic.openingHoursLabel}</p>
       <a className="text-link" href="https://www.google.com/maps/search/?api=1&query=Skin+Clinic+MCR,+Waters+Edge+Business+Park+Modwen+Road+Salford,+M5+3EZ" target="_blank" rel="noreferrer">Open in Google Maps ↗</a>
     </div>
     <div>

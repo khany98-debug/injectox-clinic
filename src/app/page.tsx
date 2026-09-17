@@ -138,7 +138,7 @@ export default function Home() {
       <section id="find-the-clinic" className="clinic-location-band">
         <div className="shell clinic-location-grid">
           <div><span className="eyebrow">Find the clinic</span><h2>Find the clinic.</h2><h3>Salford, Greater<br /><em>Manchester.</em></h3></div>
-          <div><p><b>Inside Skin Clinic MCR</b><br />Unit 36, Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester, {clinic.postcode}</p><p className="clinic-location-details"><b>Opening hours</b><br />Monday, Wednesday, Friday, Saturday &amp; Sunday · 12pm–6pm<br />Free parking on site</p><Button href="/contact" variant="light">Directions &amp; contact</Button><MapEmbed /></div>
+          <div><p><b>Inside Skin Clinic MCR</b><br />Unit 36, Waters Edge Business Park<br />Modwen Road, Salford<br />Greater Manchester, {clinic.postcode}</p><p className="clinic-location-details"><b>Opening hours</b><br />{clinic.openingHoursLabel}<br />Free parking on site</p><Button href="/contact" variant="light">Directions &amp; contact</Button><MapEmbed /></div>
         </div>
       </section>
 

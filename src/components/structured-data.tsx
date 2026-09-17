@@ -16,6 +16,7 @@ export function LocalBusinessSchema() {
     "@type": "BeautySalon",
     "@id": `${siteUrl}/#clinic`,
     name: clinic.name,
+    legalName: clinic.legalName,
     image: `${siteUrl}/images/injectox-social-share.jpg`,
     address,
     url: siteUrl,
