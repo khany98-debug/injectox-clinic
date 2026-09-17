@@ -12,6 +12,12 @@ const courses = [
   ["Small area", "7-session course", "£150"],
 ] as const;
 
+const clientVideos = [
+  { src: "/media/dropbox/injectox-laser-client-01.mp4", label: "Laser treatment video 01" },
+  { src: "/media/dropbox/injectox-laser-client-02.mp4", label: "Laser treatment video 02" },
+  { src: "/media/dropbox/injectox-laser-client-03.mp4", label: "Laser treatment video 03" },
+] as const;
+
 export function LaserHairRemovalDetail() {
   return <>
     <section className="treatment-detail-hero laser-detail-hero">
@@ -19,6 +25,25 @@ export function LaserHairRemovalDetail() {
       <div className="treatment-detail-image"><Image src="/images/dropbox/client-labelled/laser-hair-removal-main.jpg" alt="Laser hair removal treatment at Injectox Clinic" fill priority sizes="(max-width: 760px) 100vw, 50vw" /></div>
     </section>
     <div className="glance"><div><small>Starts with</small><b>Patch test</b></div><div><small>Consultation</small><b>Required</b></div><div><small>Sessions</small><b>6–8 per course</b></div><div><small>Small areas</small><b>About 5 mins</b></div><div><small>Underarms & Hollywood</small><b>About 30 mins</b></div></div>
+    <section className="section shell laser-video-section" aria-labelledby="laser-video-title">
+      <div className="laser-video-intro">
+        <span className="eyebrow">See the treatment</span>
+        <h2 id="laser-video-title">Care, shown<br /><em>in motion.</em></h2>
+        <p>A closer look at the laser treatment experience, shared with the clinic’s permission.</p>
+      </div>
+      <div className="laser-video-grid">
+        {clientVideos.map((video, index) => (
+          <figure className="laser-video-card" key={video.src}>
+            <div className="laser-video-frame">
+              <video controls playsInline preload="metadata" muted aria-label={video.label}>
+                <source src={video.src} type="video/mp4" />
+              </video>
+            </div>
+            <figcaption><span>Laser treatment</span><b>0{index + 1}</b></figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
     <section className="treatment-body shell laser-detail-body"><aside><span className="eyebrow">A considered course</span><h2>Planned around <em>your skin.</em></h2><p>Results and the number of sessions vary. A patch test and consultation are required before treatment.</p><Button href={booking.currentDiary} external>Book a patch test</Button></aside><div className="treatment-content">
       <section><span className="eyebrow">How a course works</span><h2>Consistency makes the difference.</h2><p>A course is usually 6–8 sessions, spaced a few weeks apart. Hair grows in cycles, and each session treats the hairs that are actively growing, which is why it takes a course rather than a single visit.</p><p>Sessions are quick: around five minutes for small areas, and around 30 minutes for underarms and Hollywood.</p></section>
       <section><span className="eyebrow">Why autumn is the time to start</span><h2>Give your course time.</h2><p>Treated skin needs protecting from the sun, so autumn and winter are the best months to begin. Starting now usually means finishing your course by spring.</p></section>
