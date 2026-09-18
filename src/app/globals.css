@@ -3895,3 +3895,73 @@ h2 em,
   .treatment-signature-line { font-size: 18px; }
   .newsletter-terms { font-size: 11px !important; }
 }
+
+/* Final mobile hero alignment: keep the shortened title balanced and the
+   conversion actions on one clean baseline. */
+@media (max-width: 760px) {
+  .reference-hero-copy {
+    bottom: 82px;
+  }
+
+  .reference-hero-copy h1 {
+    max-width: 100%;
+    font-size: clamp(62px, 16.5vw, 76px);
+    line-height: .86;
+    letter-spacing: -.026em;
+    text-align: left;
+  }
+
+  .reference-hero-copy h1 span {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .reference-hero-copy .button-row {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    gap: 8px;
+  }
+
+  .reference-hero-copy .button-dark,
+  .reference-hero-copy .button-line {
+    width: 100%;
+    min-width: 0;
+    padding-inline: 10px;
+    gap: 7px;
+    white-space: nowrap;
+    font-size: 9px;
+    letter-spacing: .1em;
+  }
+
+  .reference-hero-copy .button-dark svg,
+  .reference-hero-copy .button-line svg {
+    flex: 0 0 30px;
+    width: 30px;
+    height: 30px;
+    padding: 8px;
+  }
+
+  .reference-hero-copy .hero-proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 6px;
+    letter-spacing: .07em;
+  }
+
+  .reference-hero-copy .hero-proof span {
+    display: flex;
+    min-width: 0;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .reference-hero-copy .hero-proof span::before {
+    flex: 0 0 3px;
+    width: 3px;
+    height: 3px;
+  }
+}
