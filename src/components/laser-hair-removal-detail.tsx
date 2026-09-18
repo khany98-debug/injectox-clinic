@@ -13,9 +13,9 @@ const courses = [
 ] as const;
 
 const clientVideos = [
-  { src: "/media/dropbox/injectox-laser-client-01.mp4", label: "Laser treatment video 01" },
+  { src: "/media/dropbox/injectox-laser-client-03.mp4", label: "Laser treatment video 01" },
   { src: "/media/dropbox/injectox-laser-client-02.mp4", label: "Laser treatment video 02" },
-  { src: "/media/dropbox/injectox-laser-client-03.mp4", label: "Laser treatment video 03" },
+  { src: "/media/dropbox/injectox-laser-client-01.mp4", label: "Laser treatment video 03" },
 ] as const;
 
 export function LaserHairRemovalDetail() {
@@ -35,7 +35,7 @@ export function LaserHairRemovalDetail() {
         {clientVideos.map((video, index) => (
           <figure className="laser-video-card" key={video.src}>
             <div className="laser-video-frame">
-              <video controls playsInline preload="metadata" muted aria-label={video.label}>
+              <video autoPlay loop controls playsInline preload="metadata" muted aria-label={video.label}>
                 <source src={video.src} type="video/mp4" />
               </video>
             </div>
