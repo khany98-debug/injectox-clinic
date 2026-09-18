@@ -3867,8 +3867,6 @@ h2 em,
 }
 
 /* Final audit overrides. */
-.hero-video-toggle { position: absolute; z-index: 4; right: 28px; bottom: 28px; padding: 10px 13px; color: #fff; border: 1px solid rgba(255,255,255,.55); border-radius: 999px; background: rgba(25,19,16,.48); cursor: pointer; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
-.hero-video-toggle:hover, .hero-video-toggle:focus-visible { background: rgba(25,19,16,.78); }
 .clinic-map-static { min-height: 280px; color: #fff; isolation: isolate; }
 .clinic-map-static > img { z-index: -1; object-fit: cover; filter: saturate(.72) contrast(.96); }
 .clinic-map-static::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgba(25,19,16,.72), transparent 55%); pointer-events: none; }
@@ -3881,7 +3879,6 @@ h2 em,
 .menu-is-open .newsletter-popover { display: none !important; }
 
 @media (max-width: 760px) {
-  .hero-video-toggle { left: 18px; right: auto; bottom: 20px; font-size: 12px; }
   .cookie-banner { left: 12px; right: 12px; bottom: 54px; grid-template-columns: 1fr; gap: 8px; width: auto; padding: 12px 13px; border-radius: 12px; }
   .cookie-banner > div:first-child .eyebrow, .cookie-banner h2 { display: none; }
   .cookie-banner p { max-width: none; font-size: 11px; line-height: 1.4; }
@@ -3915,6 +3912,14 @@ h2 em,
     display: block;
     width: fit-content;
     max-width: 100%;
+  }
+
+  .reference-hero-copy h1 span + span {
+    margin-top: 0;
+  }
+
+  .reference-hero-copy h1 span:last-child {
+    padding-left: 0;
   }
 
   .reference-hero-copy .button-row {
