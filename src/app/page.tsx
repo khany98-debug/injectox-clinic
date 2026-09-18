@@ -43,7 +43,7 @@ export default function Home() {
         <div className="hero-copy reference-hero-copy">
           <Reveal>
             <span className="eyebrow hero-location">Aesthetics clinic in Salford, Manchester</span>
-            <h1><span>Natural lip filler</span><span>&amp; facial balancing</span></h1>
+            <h1><span>Natural lip</span><span>filler &amp;</span><span>balancing</span></h1>
             <p>
               Russian lip filler, facial balancing and laser hair removal in Salford, Greater Manchester. Every injectable treatment is planned and done by me, Fatima. Free consultation available online or in person.
             </p>
