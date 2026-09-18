@@ -3979,3 +3979,48 @@ h2 em,
     height: 3px;
   }
 }
+
+/* At 100% desktop zoom, compact the cinematic hero rather than allowing its
+   lower CTA and proof points to sit behind the trust rail. */
+@media (min-width: 761px) and (max-height: 980px) {
+  .reference-hero {
+    min-height: 760px;
+  }
+
+  .reference-hero-copy {
+    top: clamp(118px, 15svh, 150px);
+  }
+
+  .reference-hero-copy .eyebrow {
+    margin-bottom: 16px;
+  }
+
+  .reference-hero-copy h1 {
+    margin-bottom: 18px;
+    font-size: clamp(66px, 6.1vw, 94px);
+    line-height: .83;
+  }
+
+  .reference-hero-copy p {
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .reference-hero-copy .button-dark,
+  .reference-hero-copy .button-line {
+    min-height: 48px;
+  }
+
+  .hero-proof {
+    margin-top: 14px;
+  }
+
+  .reference-hero-panel {
+    bottom: 58px;
+  }
+
+  .reference-trust {
+    margin-top: -24px;
+  }
+}
