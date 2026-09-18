@@ -3546,6 +3546,15 @@ h2 em,
 }
 
 @media (min-width: 761px) {
+  .reference-hero {
+    min-height: max(760px, min(900px, 100svh));
+  }
+
+  .reference-hero-copy {
+    top: clamp(140px, calc(50% - 220px), 285px);
+    transform: none;
+  }
+
   .reference-hero .hero-film::before {
     content: "";
     position: absolute;

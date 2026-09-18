@@ -6,19 +6,34 @@ import { cookieConsentEvent, cookieConsentKey } from "@/components/cookie-banner
 
 const pixelId = "8996832890404039";
 
+type Fbq = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  push?: Fbq;
+  loaded?: boolean;
+  version?: string;
+  queue: unknown[][];
+};
+
 declare global {
   interface Window {
-    fbq?: (...args: unknown[]) => void;
-    _fbq?: (...args: unknown[]) => void;
+    fbq?: Fbq;
+    _fbq?: Fbq;
   }
 }
 
 function installPixel() {
   if (window.fbq) return;
 
-  const fbq = (...args: unknown[]) => {
-    fbq.queue.push(args);
-  };
+  // Meta's standard dispatcher must call callMethod after fbevents.js has
+  // loaded. Keeping this behaviour is what lets consented click events leave
+  // the queue instead of remaining in the browser.
+  const fbq = ((...args: unknown[]) => {
+    if (fbq.callMethod) fbq.callMethod(...args);
+    else fbq.queue.push(args);
+  }) as Fbq;
+  fbq.push = fbq;
+  fbq.loaded = true;
+  fbq.version = "2.0";
   fbq.queue = [] as unknown[][];
   window.fbq = fbq;
   window._fbq = fbq;

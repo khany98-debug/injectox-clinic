@@ -13,9 +13,9 @@ const courses = [
 ] as const;
 
 const clientVideos = [
-  { src: "/media/dropbox/injectox-laser-client-03.mp4", label: "Laser treatment video 01" },
-  { src: "/media/dropbox/injectox-laser-client-02.mp4", label: "Laser treatment video 02" },
-  { src: "/media/dropbox/injectox-laser-client-01.mp4", label: "Laser treatment video 03" },
+  { src: "/media/dropbox/injectox-laser-client-03-trimmed.mp4", label: "Laser treatment video 01" },
+  { src: "/media/dropbox/injectox-laser-client-01.mp4", label: "Laser treatment video 02" },
+  { src: "/media/dropbox/injectox-laser-client-02.mp4", label: "Laser treatment video 03" },
 ] as const;
 
 export function LaserHairRemovalDetail() {

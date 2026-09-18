@@ -131,7 +131,7 @@ export async function saveReviews(reviews: ReviewSubmission[]) {
 }
 
 export async function getPublicReviews() {
-  const approved = (await getReviews()).filter((review) => review.status === "approved" && !/(?:PCOS|80%\s*reduction)/i.test(review.review));
+  const approved = (await getReviews()).filter((review) => review.status === "approved" && !/80%\s*reduction/i.test(review.review));
   return [...publishedReviews, ...approved.map((review) => ({ name: review.name, treatment: review.treatment, date: "Approved client review", quote: review.review }))];
 }
 
