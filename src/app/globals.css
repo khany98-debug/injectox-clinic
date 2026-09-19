@@ -2639,6 +2639,15 @@ body {
   object-position: center center;
 }
 
+/* The client-supplied Facial Balancing image has a single dark edge row; crop it visually at card ratios. */
+.treatment-image[data-treatment="facial-balancing"] img {
+  transform: scale(1.015);
+}
+
+.treatment-card:hover .treatment-image[data-treatment="facial-balancing"] img {
+  transform: scale(1.06);
+}
+
 .home-about-copy > p {
   margin: 6px 0 30px;
   color: var(--taupe);

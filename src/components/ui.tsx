@@ -48,7 +48,7 @@ export function TreatmentCard({ treatment, index }: { treatment: Treatment; inde
   return (
     <TiltCard className="treatment-card">
       <Link href={`/treatments/${managed.slug}`}>
-        <div className="treatment-image">
+        <div className="treatment-image" data-treatment={managed.slug}>
           <Image src={managed.image} alt={managed.name} fill loading={index === 0 ? "eager" : "lazy"} sizes="(max-width: 760px) 86vw, 30vw" />
         </div>
         <div className="treatment-card-meta"><span>{managed.category}</span><span>From {formatPrice(managed.price)}</span></div>
