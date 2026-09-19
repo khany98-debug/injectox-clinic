@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { booking, clinic, concerns, faqs, formatPrice, resultFilms, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
@@ -132,6 +132,11 @@ export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolea
 export function ResultFilmPanel() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(2);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const dragStartX = useRef<number | null>(null);
+  const dragStartY = useRef<number | null>(null);
+  const horizontalDrag = useRef(false);
   const maxStart = Math.max(0, resultFilms.length - visibleCount);
   const currentIndex = Math.min(activeIndex, maxStart);
 
@@ -143,6 +148,49 @@ export function ResultFilmPanel() {
   }, []);
 
   const advance = () => setActiveIndex((current) => current >= maxStart ? 0 : current + 1);
+  const step = (direction: 1 | -1) => {
+    setActiveIndex((current) => {
+      if (direction === 1) return current >= maxStart ? 0 : current + 1;
+      return current <= 0 ? maxStart : current - 1;
+    });
+  };
+
+  const finishDrag = (clientX: number) => {
+    if (dragStartX.current === null) return;
+    const distance = clientX - dragStartX.current;
+    if (horizontalDrag.current) {
+      const threshold = 48;
+      if (distance <= -threshold) step(1);
+      if (distance >= threshold) step(-1);
+    }
+    dragStartX.current = null;
+    dragStartY.current = null;
+    horizontalDrag.current = false;
+    setDragOffset(0);
+    setIsDragging(false);
+  };
+
+  const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    dragStartX.current = event.clientX;
+    dragStartY.current = event.clientY;
+    horizontalDrag.current = false;
+    event.currentTarget.setPointerCapture(event.pointerId);
+  };
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (dragStartX.current === null || dragStartY.current === null) return;
+    const distanceX = event.clientX - dragStartX.current;
+    const distanceY = event.clientY - dragStartY.current;
+    if (!horizontalDrag.current) {
+      if (Math.abs(distanceX) < 8) return;
+      if (Math.abs(distanceY) > Math.abs(distanceX)) return;
+      horizontalDrag.current = true;
+      setIsDragging(true);
+    }
+    event.preventDefault();
+    setDragOffset(distanceX);
+  };
 
   return (
     <section className="result-film-section shell">
@@ -152,10 +200,22 @@ export function ResultFilmPanel() {
         <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
       </div>
       <div className="result-film-viewport">
-        <div className="result-film-grid" style={{ transform: `translateX(calc(-${currentIndex} * (var(--film-card-width) + var(--film-gap))))` }}>
+        <div
+          className={`result-film-grid${isDragging ? " is-dragging" : ""}`}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={(event) => finishDrag(event.clientX)}
+          onPointerCancel={() => finishDrag(dragStartX.current ?? 0)}
+          role="region"
+          aria-label="Swipe through treatment films"
+          style={{
+            transform: `translateX(calc(-${currentIndex} * (var(--film-card-width) + var(--film-gap)) + ${dragOffset}px))`,
+            transition: isDragging ? "none" : undefined,
+          }}
+        >
           {resultFilms.map((film, index) => (
             <div className="result-film-card" key={film.src}>
-              <LoopVideo src={film.src} poster={film.poster} preload="metadata" onLoop={index === currentIndex ? advance : undefined} />
+              <LoopVideo src={film.src} poster={film.poster} preload="metadata" onLoop={index === currentIndex && !isDragging ? advance : undefined} />
               <span>{film.label}</span>
             </div>
           ))}

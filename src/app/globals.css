@@ -2301,13 +2301,21 @@ h2 {
   --film-gap: 12px;
   overflow: hidden;
   min-width: 0;
+  touch-action: pan-y;
 }
 
 .result-film-grid {
   --film-card-width: calc((100% - var(--film-gap)) / 2);
   display: flex;
   gap: var(--film-gap);
+  cursor: grab;
+  user-select: none;
+  will-change: transform;
   transition: transform .8s cubic-bezier(.22, 1, .36, 1);
+}
+
+.result-film-grid.is-dragging {
+  cursor: grabbing;
 }
 
 .result-film-card {
