@@ -81,6 +81,8 @@ export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVide
       preload={shouldLoad ? preload : "none"}
       aria-hidden="true"
       tabIndex={-1}
+      disablePictureInPicture
+      controlsList="nodownload nofullscreen noplaybackrate"
     >
       {shouldLoad ? <source src={src} type="video/mp4" /> : null}
     </video>

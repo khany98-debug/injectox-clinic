@@ -337,18 +337,18 @@ export const results = [
 
 export const resultFilms = [
   {
-    src: "/media/dropbox/injectox-editorial-result-loop.mp4",
-    poster: "/images/dropbox/curated/clinic-treatment-room.jpg",
-    label: "Inside the clinic",
+    src: "/media/dropbox/injectox-appointment-prep-loop.mp4",
+    poster: "/images/dropbox/curated/injectox-appointment-prep-loop-poster.jpg",
+    label: "Treatment preparation at Injectox Clinic",
     category: "Clinic film",
-    note: "A short Injectox video loop for the results journey.",
+    note: "A client-supplied look at a considered treatment appointment.",
   },
   {
-    src: "/media/dropbox/injectox-skin-loop.mp4",
-    poster: "/images/dropbox/curated/treatment-skin-booster.jpg",
-    label: "Skin Booster in action",
-    category: "Skin film",
-    note: "Professional skin-treatment motion embedded into the page.",
+    src: "/media/dropbox/injectox-client-arrival-loop.mp4",
+    poster: "/images/dropbox/curated/injectox-client-arrival-loop-poster.jpg",
+    label: "Client appointment at Injectox Clinic",
+    category: "Appointment film",
+    note: "A client-supplied view of the calm Injectox appointment experience.",
   },
 ] as const;
 

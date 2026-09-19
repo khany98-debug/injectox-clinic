@@ -140,7 +140,7 @@ export function ResultFilmPanel() {
         {resultFilms.map((film, index) => (
           <div className="result-film-card" key={film.src}>
             <LoopVideo src={film.src} poster={film.poster} preload="metadata" />
-            <span>{index === 0 ? "Inside the clinic" : "Skin Booster in action"}</span>
+            <span>{index === 0 ? "Treatment, considered" : "A calm appointment"}</span>
           </div>
         ))}
       </div>

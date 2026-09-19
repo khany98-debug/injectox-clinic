@@ -2,6 +2,7 @@ import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
 import { BookingSteps, Button, FinalCTA } from "@/components/ui";
 import { Reveal } from "@/components/motion";
+import { LoopVideo } from "@/components/loop-video";
 import { booking } from "@/lib/content";
 
 const courses = [
@@ -35,9 +36,7 @@ export function LaserHairRemovalDetail() {
         {clientVideos.map((video, index) => (
           <figure className="laser-video-card" key={video.src}>
             <div className="laser-video-frame">
-              <video autoPlay loop controls playsInline preload="metadata" muted aria-label={video.label}>
-                <source src={video.src} type="video/mp4" />
-              </video>
+              <LoopVideo src={video.src} preload="metadata" />
             </div>
             <figcaption><span>Laser treatment</span><b>0{index + 1}</b></figcaption>
           </figure>
