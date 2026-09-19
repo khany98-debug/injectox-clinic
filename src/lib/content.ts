@@ -337,18 +337,53 @@ export const results = [
 
 export const resultFilms = [
   {
+    src: "/media/dropbox/injectox-editorial-result-loop.mp4",
+    poster: "/images/dropbox/curated/clinic-treatment-room.jpg",
+    label: "Inside the clinic",
+    category: "Clinic film",
+    note: "A short Injectox video loop for the results journey.",
+  },
+  {
+    src: "/media/dropbox/injectox-skin-loop.mp4",
+    poster: "/images/dropbox/curated/treatment-skin-booster.jpg",
+    label: "Skin Booster in action",
+    category: "Skin film",
+    note: "Professional skin-treatment motion embedded into the page.",
+  },
+  {
     src: "/media/dropbox/injectox-appointment-prep-loop.mp4",
     poster: "/images/dropbox/curated/injectox-appointment-prep-loop-poster.jpg",
-    label: "Treatment preparation at Injectox Clinic",
+    label: "Treatment preparation",
     category: "Clinic film",
     note: "A client-supplied look at a considered treatment appointment.",
   },
   {
     src: "/media/dropbox/injectox-client-arrival-loop.mp4",
     poster: "/images/dropbox/curated/injectox-client-arrival-loop-poster.jpg",
-    label: "Client appointment at Injectox Clinic",
+    label: "A calm appointment",
     category: "Appointment film",
     note: "A client-supplied view of the calm Injectox appointment experience.",
+  },
+  {
+    src: "/media/dropbox/injectox-consultation-notes-loop.mp4",
+    poster: "/images/dropbox/curated/injectox-consultation-notes-loop-poster.jpg",
+    label: "Consultation planning",
+    category: "Consultation film",
+    note: "A client-supplied glimpse of the planning behind every appointment.",
+  },
+  {
+    src: "/media/dropbox/injectox-lip-result-loop.mp4",
+    poster: "/images/dropbox/curated/injectox-lip-result-loop-poster.jpg",
+    label: "Lip treatment result",
+    category: "Result film",
+    note: "A client-supplied close-up of a polished treatment result.",
+  },
+  {
+    src: "/media/dropbox/injectox-product-prep-loop.mp4",
+    poster: "/images/dropbox/curated/injectox-product-prep-loop-poster.jpg",
+    label: "Product preparation",
+    category: "Clinic film",
+    note: "A client-supplied look at the details behind considered care.",
   },
 ] as const;
 

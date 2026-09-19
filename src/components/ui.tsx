@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { ArrowDownRight, ArrowRight, Camera, Check, Clock3, Droplets, Focus, Heart, ScanFace, ShieldCheck, Sparkles, Zap } from "lucide-react";
 import { booking, clinic, concerns, faqs, formatPrice, resultFilms, type Treatment } from "@/lib/content";
 import { LoopVideo } from "@/components/loop-video";
-import { Reveal, TiltCard } from "@/components/motion";
+import { CountUp, Reveal, TiltCard } from "@/components/motion";
 import { useSiteContent } from "@/components/site-content-provider";
 
 export function Button({ href, children, variant = "dark", external = false }: { href: string; children: React.ReactNode; variant?: "dark" | "light" | "line"; external?: boolean }) {
@@ -95,8 +96,8 @@ export function StatsSection() {
     <section className="stats-section">
       <div className="shell stats-grid">
         <Reveal className="stats-heading"><span className="eyebrow">Proof, not promises</span><h2>Experience you<br /><em>can feel.</em></h2></Reveal>
-        <div className="stat"><strong>{clinic.treatmentsCompleted.toLocaleString("en-GB")}<span aria-hidden="true">+</span></strong><span>Treatments performed</span></div>
-        <div className="stat"><strong>{clinic.verifiedReviews.toLocaleString("en-GB")}<span aria-hidden="true">+</span></strong><span>Verified reviews</span></div>
+        <div className="stat"><strong><CountUp value={clinic.treatmentsCompleted} suffix="+" /></strong><span>Treatments performed</span></div>
+        <div className="stat"><strong><CountUp value={clinic.verifiedReviews} suffix="+" /></strong><span>Verified reviews</span></div>
         <div className="stat"><strong>{clinic.rating}</strong><span>Average rating</span></div>
       </div>
     </section>
@@ -129,6 +130,20 @@ export function ReviewsStrip({ all = false, mobileLoop = false }: { all?: boolea
 }
 
 export function ResultFilmPanel() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [visibleCount, setVisibleCount] = useState(2);
+  const maxStart = Math.max(0, resultFilms.length - visibleCount);
+  const currentIndex = Math.min(activeIndex, maxStart);
+
+  useEffect(() => {
+    const updateVisibleCount = () => setVisibleCount(window.matchMedia("(max-width: 1050px)").matches ? 1 : 2);
+    updateVisibleCount();
+    window.addEventListener("resize", updateVisibleCount);
+    return () => window.removeEventListener("resize", updateVisibleCount);
+  }, []);
+
+  const advance = () => setActiveIndex((current) => current >= maxStart ? 0 : current + 1);
+
   return (
     <section className="result-film-section shell">
       <div className="result-film-copy">
@@ -136,13 +151,18 @@ export function ResultFilmPanel() {
         <h2>See exactly what happens<br /><em>in the room.</em></h2>
         <Link className="text-link" href={booking.instagram} target="_blank" rel="noreferrer">View Instagram <ArrowRight /></Link>
       </div>
-      <div className="result-film-grid">
-        {resultFilms.map((film, index) => (
-          <div className="result-film-card" key={film.src}>
-            <LoopVideo src={film.src} poster={film.poster} preload="metadata" />
-            <span>{index === 0 ? "Treatment, considered" : "A calm appointment"}</span>
-          </div>
-        ))}
+      <div className="result-film-viewport">
+        <div className="result-film-grid" style={{ transform: `translateX(calc(-${currentIndex} * (var(--film-card-width) + var(--film-gap))))` }}>
+          {resultFilms.map((film, index) => (
+            <div className="result-film-card" key={film.src}>
+              <LoopVideo src={film.src} poster={film.poster} preload="metadata" onLoop={index === currentIndex ? advance : undefined} />
+              <span>{film.label}</span>
+            </div>
+          ))}
+        </div>
+        <div className="result-film-progress" aria-hidden="true">
+          {resultFilms.map((film, index) => <i className={index === currentIndex ? "is-active" : ""} key={film.src} />)}
+        </div>
       </div>
     </section>
   );

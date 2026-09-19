@@ -7,12 +7,14 @@ type LoopVideoProps = {
   poster?: string;
   className?: string;
   preload?: "none" | "metadata" | "auto";
+  onLoop?: () => void;
 };
 
-export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVideoProps) {
+export function LoopVideo({ src, poster, className, preload = "auto", onLoop }: LoopVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [ready, setReady] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
+  const lastLoopRef = useRef(0);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -51,10 +53,18 @@ export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVide
     const onVisibility = () => {
       if (!document.hidden) play();
     };
+    const onTimeUpdate = () => {
+      if (!onLoop || !video.duration || video.currentTime < video.duration - 0.25) return;
+      const now = Date.now();
+      if (now - lastLoopRef.current < 1000) return;
+      lastLoopRef.current = now;
+      onLoop();
+    };
 
     video.addEventListener("loadeddata", play);
     video.addEventListener("canplay", play);
     video.addEventListener("playing", markReady);
+    video.addEventListener("timeupdate", onTimeUpdate);
     document.addEventListener("visibilitychange", onVisibility);
     window.addEventListener("pageshow", play);
 
@@ -64,10 +74,11 @@ export function LoopVideo({ src, poster, className, preload = "auto" }: LoopVide
       video.removeEventListener("loadeddata", play);
       video.removeEventListener("canplay", play);
       video.removeEventListener("playing", markReady);
+      video.removeEventListener("timeupdate", onTimeUpdate);
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("pageshow", play);
     };
-  }, [shouldLoad]);
+  }, [onLoop, shouldLoad]);
 
   return (
     <video
