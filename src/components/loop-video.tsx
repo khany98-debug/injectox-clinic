@@ -15,6 +15,7 @@ export function LoopVideo({ src, poster, className, preload = "auto", onLoop }: 
   const [ready, setReady] = useState(false);
   const [shouldLoad, setShouldLoad] = useState(false);
   const lastLoopRef = useRef(0);
+  const loopReadyRef = useRef(false);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -41,6 +42,7 @@ export function LoopVideo({ src, poster, className, preload = "auto", onLoop }: 
     video.defaultMuted = true;
     video.loop = true;
     video.playsInline = true;
+    loopReadyRef.current = video.currentTime < 0.5;
     video.setAttribute("muted", "");
     video.setAttribute("playsinline", "");
 
@@ -54,10 +56,16 @@ export function LoopVideo({ src, poster, className, preload = "auto", onLoop }: 
       if (!document.hidden) play();
     };
     const onTimeUpdate = () => {
-      if (!onLoop || !video.duration || video.currentTime < video.duration - 0.25) return;
+      if (!onLoop || !video.duration) return;
+      if (video.currentTime < 0.5) {
+        loopReadyRef.current = true;
+        return;
+      }
+      if (!loopReadyRef.current || video.currentTime < video.duration - 0.25) return;
       const now = Date.now();
       if (now - lastLoopRef.current < 1000) return;
       lastLoopRef.current = now;
+      loopReadyRef.current = false;
       onLoop();
     };
 
